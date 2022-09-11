@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[34,)"
+license="GNU GPLv3"
+[[mods]]
+modId="bhtpvz"
+version="${file.jarVersion}"
+displayName="Better Hung_Teen's Plants vs Zombies"
+authors="zhilizhan"
+credits="GrassCarp、DLlover、寻声·约翰逊: art \n          136: data pack"
+description='''
+This is an add-on mod about "HTPVZ mod" version 1.16.5
+'''
+
+[[dependencies.bhtpvz]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.bhtpvz]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.bhtpvz]]
+    modId="pvz"
+    mandatory=true
+    versionRange="[0.5.3,)"
