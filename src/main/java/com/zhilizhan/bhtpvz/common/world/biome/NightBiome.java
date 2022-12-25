@@ -26,6 +26,6 @@ public class NightBiome {
         DefaultBiomeFeatures.addSurfaceFreezing(biomeGenerationSettings);
         biomeGenerationSettings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FeaturesRegistry.PATCH_TOXIC_SHROOM);//生成孢子
         biomeGenerationSettings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FeaturesRegistry.PATCH_QUESTION_MARK_POT);//生成问号罐
-        return BiomeRegistry.makeBiome(Category.MUSHROOM, RainType.RAIN, 0.125F, 0.05F, 0.8F, 0.4F, effects.build(), mobSpawnInfo.build(),biomeGenerationSettings.build());
+        return BiomeRegistry.makeBiome(Category.PLAINS, RainType.RAIN, 0.125F, 0.05F, 0.8F, 0.4F, effects.build(), mobSpawnInfo.build(),biomeGenerationSettings.build());
     }
 }

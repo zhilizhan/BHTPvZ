@@ -29,6 +29,7 @@ public class BHTPvZ {
         bus.addListener(EventPriority.HIGH, DecorationGenerate::addOresToBiomes);
         bus.addListener(EventPriority.HIGH, DecorationGenerate::addTreesToBiomes);
         bus.addListener(EventPriority.HIGH, DecorationGenerate::addBlocksToBiomes);
+        bus.register(BiomeRegistry.class);
     }
 
     public static final ItemGroup BHTPVZ = new ItemGroup("better_hung_teen_s_plants_vs_zombies") {

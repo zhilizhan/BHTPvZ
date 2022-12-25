@@ -1,6 +1,7 @@
 package com.zhilizhan.bhtpvz.common.Item;
 
 import com.zhilizhan.bhtpvz.BHTPvZ;
+import com.zhilizhan.bhtpvz.common.Item.superItem.DamsonCrystalSword;
 import com.zhilizhan.bhtpvz.common.Item.superItem.Garlic;
 import com.zhilizhan.bhtpvz.common.Item.superItem.Hammer;
 import com.zhilizhan.bhtpvz.common.Item.tools.BhtpvzArmor;
@@ -32,7 +33,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> SQUASH_SLICE = ITEMS.register("squash_slice", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new Food.Builder().nutrition(3).saturationMod(0.3F).build())));//倭瓜片
     //工具
     public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", ()-> new Hammer(BhtpvzTools.HAMMRE,1, -2.4F, new Item.Properties().tab(BHTPvZ.BHTPVZ)));//锤子
-    public static final RegistryObject<Item> DAMSON_CRYSTAL_SWORD = ITEMS.register("damson_crystal_sword", ()-> new SwordItem(BhtpvzTools.DAMSON_CRYSTAL_2, 3, -2.4F, new Item.Properties().tab(BHTPvZ.BHTPVZ)));//暗紫合金剑
+    public static final RegistryObject<Item> DAMSON_CRYSTAL_SWORD = ITEMS.register("damson_crystal_sword", ()-> new DamsonCrystalSword(BhtpvzTools.DAMSON_CRYSTAL_2, 3, -2.4F, new Item.Properties().tab(BHTPvZ.BHTPVZ)));//暗紫合金剑
     public static final RegistryObject<Item> DAMSON_CRYSTAL_SHOVEL = ITEMS.register("damson_crystal_shovel", ()-> new ShovelItem(BhtpvzTools.DAMSON_CRYSTAL_2,1.5F,-0.3F, new Item.Properties().tab(BHTPvZ.BHTPVZ)));//暗紫合金铲
     public static final RegistryObject<Item> DAMSON_CRYSTAL_PICKAXE = ITEMS.register("damson_crystal_pickaxe", ()-> new PickaxeItem(BhtpvzTools.DAMSON_CRYSTAL_2, 1, -2.8F, new Item.Properties().tab(BHTPvZ.BHTPVZ)));//暗紫合金镐
     public static final RegistryObject<Item> DAMSON_CRYSTAL_AXE = ITEMS.register("damson_crystal_axe", ()-> new AxeItem(BhtpvzTools.DAMSON_CRYSTAL_2, 5.0F, -3.0F, new Item.Properties().tab(BHTPvZ.BHTPVZ)));//暗紫合金斧

@@ -9,6 +9,7 @@ import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeType;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.DeferredRegister;
@@ -19,8 +20,8 @@ public class BiomeRegistry {
     public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, "bhtpvz");
     public static final RegistryObject<Biome> NIGHT_BIOME = BIOMES.register("night_biome", NightBiome::getNightBiome);
 
-    public static void registryBiomes(FMLCommonSetupEvent event) {
-        registryBiome(NIGHT_BIOME.get(), BiomeType.WARM, BHTPvZConfig.COMMON_CONFIG.WorldSettings.NightBiomeChance.get(), Type.MUSHROOM, Type.PLAINS, Type.FOREST, Type.OVERWORLD);
+    private void registryBiomes(final FMLCommonSetupEvent ev) {
+        registryBiome(NIGHT_BIOME.get(), BiomeManager.BiomeType.WARM, 10, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
     }
 
     public static void registryBiome(Biome biome, BiomeType biomeType, int weight, Type... type) {
