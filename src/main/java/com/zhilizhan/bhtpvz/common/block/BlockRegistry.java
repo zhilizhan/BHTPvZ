@@ -2,8 +2,8 @@ package com.zhilizhan.bhtpvz.common.block;
 
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.common.block.plants.PepperBlock;
-import com.zhilizhan.bhtpvz.common.block.superBlock.PlantPot;
-import com.zhilizhan.bhtpvz.common.block.superBlock.QuestionMarkPot;
+import com.zhilizhan.bhtpvz.common.block.renderfile.PlantPot;
+import com.zhilizhan.bhtpvz.common.block.renderfile.QuestionMarkPot;
 import com.zhilizhan.bhtpvz.common.block.trees.CherryTree;
 import com.zhilizhan.bhtpvz.common.block.trees.StarFruitTree;
 import net.minecraft.block.*;

@@ -1,7 +1,6 @@
 package com.zhilizhan.bhtpvz.common.world.biome;
 
 import com.hungteen.pvz.utils.BiomeUtil;
-import com.zhilizhan.bhtpvz.BHTPvZConfig;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeAmbience;
 import net.minecraft.world.biome.BiomeGenerationSettings;
@@ -9,7 +8,6 @@ import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeType;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.DeferredRegister;

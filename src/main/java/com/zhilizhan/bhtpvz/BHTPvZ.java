@@ -20,6 +20,7 @@ public class BHTPvZ {
     public static final String MOD_ID = "bhtpvz";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
+    //事件总线
     public BHTPvZ() {
         IEventBus bus = MinecraftForge.EVENT_BUS;
 
@@ -29,9 +30,9 @@ public class BHTPvZ {
         bus.addListener(EventPriority.HIGH, DecorationGenerate::addOresToBiomes);
         bus.addListener(EventPriority.HIGH, DecorationGenerate::addTreesToBiomes);
         bus.addListener(EventPriority.HIGH, DecorationGenerate::addBlocksToBiomes);
-        bus.register(BiomeRegistry.class);
     }
 
+    //注册创造物品栏
     public static final ItemGroup BHTPVZ = new ItemGroup("better_hung_teen_s_plants_vs_zombies") {
         @Override
         public ItemStack makeIcon() {return new ItemStack(ItemRegistry.BETTER_HUNG_TEEN_S_PLANTS_VS_ZONBIES.get());}

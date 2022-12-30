@@ -1,4 +1,4 @@
-package com.zhilizhan.bhtpvz.common.block.superBlock;
+package com.zhilizhan.bhtpvz.common.block.renderfile;
 
 import com.hungteen.pvz.common.block.AbstractFacingBlock;
 import net.minecraft.block.Block;
@@ -10,6 +10,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 
 public class PlantPot extends AbstractFacingBlock {
 
