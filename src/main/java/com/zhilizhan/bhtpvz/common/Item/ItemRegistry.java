@@ -27,7 +27,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> PEPPER_SEEDS = ITEMS.register("pepper_seeds", ()-> new BlockItem(BlockRegistry.PEPPER.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));//辣椒种子
     //食物
     public static final RegistryObject<Item> CHERRY = ITEMS.register("cherry", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new Food.Builder().nutrition(4).saturationMod(0.3F).build())));//樱桃
-    public static final RegistryObject<Item> GARLIC = ITEMS.register("garlic", ()-> new Garlic(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new Food.Builder().nutrition(2).saturationMod(0.3F).build())));//大蒜
+    public static final RegistryObject<Item> GARLIC = ITEMS.register("garlic", ()-> new Garlic(BlockRegistry.GARLIC.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new Food.Builder().nutrition(2).saturationMod(0.3F).build())));//大蒜
     public static final RegistryObject<Item> STAR_FRUIT = ITEMS.register("star_fruit", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new Food.Builder().nutrition(4).saturationMod(0.3F).build())));//杨桃
     public static final RegistryObject<Item> ANGEL_STAR_FRUIT = ITEMS.register("angel_star_fruit", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new Food.Builder().nutrition(8).saturationMod(1.2F).effect(new EffectInstance(Effects.REGENERATION, 100, 1), 1.0F).build())));//天使杨桃
     public static final RegistryObject<Item> SQUASH_SLICE = ITEMS.register("squash_slice", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new Food.Builder().nutrition(3).saturationMod(0.3F).build())));//倭瓜片

@@ -7,22 +7,10 @@
       "model": "bhtpvz:block/pepper/pepper_1"
     },
     "age=2": {
-      "model": "bhtpvz:block/pepper/pepper_1"
+      "model": "bhtpvz:block/pepper/pepper_2"
     },
     "age=3": {
-      "model": "bhtpvz:block/pepper/pepper_2"
-    },
-    "age=4": {
-      "model": "bhtpvz:block/pepper/pepper_2"
-    },
-    "age=5": {
       "model": "bhtpvz:block/pepper/pepper_3"
-    },
-    "age=6": {
-      "model": "bhtpvz:block/pepper/pepper_3"
-    },
-    "age=7": {
-      "model": "bhtpvz:block/pepper/pepper_4"
     }
   }
 }

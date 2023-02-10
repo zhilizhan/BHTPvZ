@@ -1,4 +1,4 @@
-package com.zhilizhan.bhtpvz.common.block.renderfile;
+package com.zhilizhan.bhtpvz.common.block.superBlock;
 
 import com.hungteen.pvz.common.block.AbstractFacingBlock;
 import net.minecraft.block.Block;

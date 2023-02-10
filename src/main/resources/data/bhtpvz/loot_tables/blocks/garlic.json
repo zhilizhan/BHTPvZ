@@ -5,26 +5,8 @@
       "rolls": 1.0,
       "entries": [
         {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "condition": "minecraft:block_state_property",
-                  "block": "bhtpvz:pepper",
-                  "properties": {
-                    "age": "3"
-                  }
-                }
-              ],
-              "name": "pvz:pepper"
-            },
-            {
-              "type": "minecraft:item",
-              "name": "bhtpvz:pepper_seeds"
-            }
-          ]
+          "type": "minecraft:item",
+          "name": "bhtpvz:garlic"
         }
       ]
     },
@@ -44,13 +26,13 @@
               }
             }
           ],
-          "name": "bhtpvz:pepper_seeds"
+          "name": "bhtpvz:garlic"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "bhtpvz:pepper",
+          "block": "bhtpvz:garlic",
           "properties": {
             "age": "3"
           }

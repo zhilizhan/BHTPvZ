@@ -1,9 +1,10 @@
 package com.zhilizhan.bhtpvz.common.block;
 
 import com.zhilizhan.bhtpvz.BHTPvZ;
+import com.zhilizhan.bhtpvz.common.block.plants.GarlicBlock;
 import com.zhilizhan.bhtpvz.common.block.plants.PepperBlock;
-import com.zhilizhan.bhtpvz.common.block.renderfile.PlantPot;
-import com.zhilizhan.bhtpvz.common.block.renderfile.QuestionMarkPot;
+import com.zhilizhan.bhtpvz.common.block.superBlock.PlantPot;
+import com.zhilizhan.bhtpvz.common.block.superBlock.QuestionMarkPot;
 import com.zhilizhan.bhtpvz.common.block.trees.CherryTree;
 import com.zhilizhan.bhtpvz.common.block.trees.StarFruitTree;
 import net.minecraft.block.*;
@@ -31,6 +32,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block> MORION_BLOCK = BLOCKS.register("morion_block", ()-> new Block(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(5.0F, 6.0F).sound(SoundType.METAL)));//黑晶块
     public static final RegistryObject<Block> DAMSON_CRYSTAL_BLOCK = BLOCKS.register("damson_crystal_block", ()-> new Block(AbstractBlock.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(5.0F, 6.0F).sound(SoundType.METAL)));//暗紫合晶块
     public static final RegistryObject<Block> PEPPER = BLOCKS.register("pepper", ()-> new PepperBlock(AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));//辣椒作物
+    public static final RegistryObject<Block> GARLIC = BLOCKS.register("garlic", ()-> new GarlicBlock(AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));//大蒜作物
     public static final RegistryObject<Block> DECOMPOSITION_STAGE = BLOCKS.register("decomposition_stage", ()-> new Block(AbstractBlock.Properties.of(Material.STONE).harvestLevel(2).strength(2.0F, 6.0F).sound(SoundType.STONE)));//分解台
 
     private static boolean always(BlockState p_1, IBlockReader p_2, BlockPos p_3) {return true;}

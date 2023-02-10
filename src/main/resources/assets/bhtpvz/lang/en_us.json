@@ -5,7 +5,6 @@
 
   "item.bhtpvz.better_hung_teen_s_plants_vs_zombies": "Better Hung_Teen's Plants vs Zombies",
   "item.bhtpvz.cherry": "cherry",
-  "item.bhtpvz.garlic": "garlic",
   "item.bhtpvz.star_fruit": "star fruit",
   "item.bhtpvz.angel_star_fruit": "angel star fruit",
   "item.bhtpvz.squash_slice": "squash slice",
@@ -41,5 +40,6 @@
   "block.bhtpvz.morion_block": "morion block",
   "block.bhtpvz.damson_crystal_block": "damson crystal block",
   "block.bhtpvz.pepper": "pepper seeds",
+  "block.bhtpvz.garlic": "garlic",
   "block.bhtpvz.decomposition_stage": "decomposition stage"
 }

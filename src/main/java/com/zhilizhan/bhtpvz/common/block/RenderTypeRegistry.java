@@ -15,5 +15,6 @@ public class RenderTypeRegistry {
         event.enqueueWork(()-> RenderTypeLookup.setRenderLayer(BlockRegistry.STAR_FRUIT_SAPLING.get(), RenderType.cutout()));//杨桃树树苗渲染
         event.enqueueWork(()-> RenderTypeLookup.setRenderLayer(BlockRegistry.ORIGIN_MUSHROOM.get(), RenderType.cutout()));//原始蘑菇渲染
         event.enqueueWork(()-> RenderTypeLookup.setRenderLayer(BlockRegistry.PEPPER.get(), RenderType.cutout()));//辣椒作物渲染
+        event.enqueueWork(()-> RenderTypeLookup.setRenderLayer(BlockRegistry.GARLIC.get(), RenderType.cutout()));//大蒜作物渲染
     }
 }

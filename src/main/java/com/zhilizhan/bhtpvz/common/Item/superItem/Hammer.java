@@ -20,7 +20,7 @@ public class Hammer extends SwordItem {
     public ActionResultType interactLivingEntity(ItemStack itemStack, PlayerEntity playerEntity, LivingEntity livingEntity, Hand hand) {
         //检查是否有CD
         if (playerEntity.getCooldowns().isOnCooldown(ItemRegistry.HAMMER.get())){
-            return ActionResultType.SUCCESS;
+            return ActionResultType.FAIL;
         }else if (livingEntity instanceof PVZZombieEntity) {
             //对PVZ僵尸照成伤害 20点
             livingEntity.hurt(DamageSource.MAGIC, 20.0F);
