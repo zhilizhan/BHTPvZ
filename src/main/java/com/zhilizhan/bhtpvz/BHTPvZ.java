@@ -2,6 +2,7 @@ package com.zhilizhan.bhtpvz;
 import com.zhilizhan.bhtpvz.common.Item.ItemRegistry;
 
 import com.zhilizhan.bhtpvz.common.block.BlockRegistry;
+import com.zhilizhan.bhtpvz.common.potion.EffectRegistry;
 import com.zhilizhan.bhtpvz.common.world.biome.BiomeRegistry;
 import com.zhilizhan.bhtpvz.common.world.biome.DecorationGenerate;
 import net.minecraft.item.ItemGroup;
@@ -27,6 +28,7 @@ public class BHTPvZ {
         ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BlockRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BiomeRegistry.BIOMES.register(FMLJavaModLoadingContext.get().getModEventBus());
+        EffectRegistry.EFFECTS.register(FMLJavaModLoadingContext.get().getModEventBus());
         bus.addListener(EventPriority.HIGH, DecorationGenerate::addOresToBiomes);
         bus.addListener(EventPriority.HIGH, DecorationGenerate::addTreesToBiomes);
         bus.addListener(EventPriority.HIGH, DecorationGenerate::addBlocksToBiomes);

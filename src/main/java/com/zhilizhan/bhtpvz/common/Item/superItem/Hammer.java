@@ -20,15 +20,17 @@ public class Hammer extends SwordItem {
     public ActionResultType interactLivingEntity(ItemStack itemStack, PlayerEntity playerEntity, LivingEntity livingEntity, Hand hand) {
         //检查是否有CD
         if (playerEntity.getCooldowns().isOnCooldown(ItemRegistry.HAMMER.get())){
+            //如果有CD则结束方法
             return ActionResultType.FAIL;
         }else if (livingEntity instanceof PVZZombieEntity) {
-            //对PVZ僵尸照成伤害 20点
+            //如果没有CD就执行一下语句
+            //对PVZ僵尸照成20点伤害
             livingEntity.hurt(DamageSource.MAGIC, 20.0F);
-            //减少锤子耐久 5点
+            //减少锤子5点耐久
             itemStack.hurtAndBreak(5, livingEntity, (p_0) -> {
                 p_0.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
             });
-            //如果是生存模式添加CD 30tick
+            //如果是生存模式添加30tick的CD
             if (!playerEntity.isCreative()) {
                 playerEntity.getCooldowns().addCooldown(ItemRegistry.HAMMER.get(), 30);
             }
