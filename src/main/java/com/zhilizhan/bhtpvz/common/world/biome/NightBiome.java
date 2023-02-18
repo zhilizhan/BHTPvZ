@@ -12,6 +12,9 @@ import net.minecraft.world.biome.Biome.Category;
 import net.minecraft.world.biome.Biome.RainType;
 
 public class NightBiome {
+
+
+
     public static Biome getNightBiome() {
         Builder effects = (new Builder()).fogColor(0x4F4E55).waterColor(0x8A8997).waterFogColor(0x8A8997).skyColor(0x4F4E55).foliageColorOverride(0x2BBB0F).grassColorOverride(0x55C93F).ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS);
         net.minecraft.world.biome.MobSpawnInfo.Builder mobSpawnInfo = new net.minecraft.world.biome.MobSpawnInfo.Builder();
@@ -26,6 +29,6 @@ public class NightBiome {
         DefaultBiomeFeatures.addSurfaceFreezing(biomeGenerationSettings);
         biomeGenerationSettings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FeaturesRegistry.PATCH_TOXIC_SHROOM);//生成孢子
         biomeGenerationSettings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FeaturesRegistry.PATCH_QUESTION_MARK_POT);//生成问号罐
-        return BiomeRegistry.makeBiome(Category.PLAINS, RainType.RAIN, 0.125F, 0.05F, 0.8F, 0.4F, effects.build(), mobSpawnInfo.build(),biomeGenerationSettings.build());
+        return BiomeRegistry.makeBiome(Category.PLAINS, RainType.RAIN, 0.125F, 0.25F, 0.8F, 0.4F, effects.build(), mobSpawnInfo.build(),biomeGenerationSettings.build());
     }
 }
