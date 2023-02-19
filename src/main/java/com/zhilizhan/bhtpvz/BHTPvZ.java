@@ -48,7 +48,6 @@ public class BHTPvZ {
 
     @SubscribeEvent
     public static void setUp(FMLCommonSetupEvent ev){
-
         BiomeRegistry.registerBiomes(ev);
         BiomeUtil.initBiomeSet();
     }

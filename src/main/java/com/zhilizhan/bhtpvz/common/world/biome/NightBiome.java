@@ -13,8 +13,6 @@ import net.minecraft.world.biome.Biome.RainType;
 
 public class NightBiome {
 
-
-
     public static Biome getNightBiome() {
         Builder effects = (new Builder()).fogColor(0x4F4E55).waterColor(0x8A8997).waterFogColor(0x8A8997).skyColor(0x4F4E55).foliageColorOverride(0x2BBB0F).grassColorOverride(0x55C93F).ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS);
         net.minecraft.world.biome.MobSpawnInfo.Builder mobSpawnInfo = new net.minecraft.world.biome.MobSpawnInfo.Builder();

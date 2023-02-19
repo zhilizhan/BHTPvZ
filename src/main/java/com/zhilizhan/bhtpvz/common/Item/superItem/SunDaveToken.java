@@ -56,6 +56,6 @@ public class SunDaveToken extends Item {
     }
     @Override
     public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(new TranslationTextComponent("tooltip.pvzadd.sun_token.use").withStyle(TextFormatting.YELLOW));
+        tooltip.add(new TranslationTextComponent("tooltip.bhtpvz.sun_token.use").withStyle(TextFormatting.YELLOW));
     }
 }

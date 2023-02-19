@@ -65,6 +65,6 @@ public class DaveToken extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(new TranslationTextComponent("tooltip.pvzadd.token.use").withStyle(TextFormatting.GREEN));
+        tooltip.add(new TranslationTextComponent("tooltip.bhtpvz.token.use").withStyle(TextFormatting.GREEN));
     }
 }

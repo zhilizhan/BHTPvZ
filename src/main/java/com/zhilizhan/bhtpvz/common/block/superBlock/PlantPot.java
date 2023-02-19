@@ -14,6 +14,7 @@ import net.minecraft.world.IBlockReader;
 public class PlantPot extends AbstractFacingBlock {
 
     private static VoxelShape shape;
+
     static {
         VoxelShape base = Block.box(4,0,4,12,1,12);
         VoxelShape plant_pot = Block.box(3,1,3,13,10,13);
