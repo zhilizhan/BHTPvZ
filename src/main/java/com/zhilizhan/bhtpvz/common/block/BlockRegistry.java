@@ -34,6 +34,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block> PEPPER;//辣椒作物
     public static final RegistryObject<Block> GARLIC;//大蒜作物
     public static final RegistryObject<Block> DECOMPOSITION_STAGE;//分解台
+    public static final RegistryObject<Block> STEEL_PUMPKIN;
 
     static {
         BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, BHTPvZ.MOD_ID);
@@ -52,6 +53,7 @@ public class BlockRegistry {
         PEPPER = BLOCKS.register("pepper", ()-> new PepperBlock(AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));//辣椒作物
         GARLIC = BLOCKS.register("garlic", ()-> new GarlicBlock(AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));//大蒜作物
         DECOMPOSITION_STAGE = BLOCKS.register("decomposition_stage", ()-> new Block(AbstractBlock.Properties.of(Material.STONE).harvestLevel(2).strength(2.0F, 6.0F).sound(SoundType.STONE)));//分解台
+        STEEL_PUMPKIN  = BLOCKS.register("steel_pumpkin", () -> new Block((AbstractBlock.Properties.of(Material.PLANT, MaterialColor.METAL).harvestTool(ToolType.PICKAXE).harvestLevel(2).strength(15.0F, 15.0F).sound(SoundType.METAL).requiresCorrectToolForDrops())));//钢南瓜
     }
 
     private static boolean always(BlockState p_1, IBlockReader p_2, BlockPos p_3) {return true;}

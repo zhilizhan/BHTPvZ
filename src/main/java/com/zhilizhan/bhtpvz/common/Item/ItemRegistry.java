@@ -1,12 +1,14 @@
 package com.zhilizhan.bhtpvz.common.Item;
 
 import com.hungteen.pvz.api.types.IPlantType;
+import com.hungteen.pvz.common.item.PVZItemGroups;
 import com.hungteen.pvz.common.item.spawn.card.PlantCardItem;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.common.Item.superItem.*;
 import com.zhilizhan.bhtpvz.common.Item.tools.BhtpvzArmor;
 import com.zhilizhan.bhtpvz.common.Item.tools.BhtpvzTools;
 import com.zhilizhan.bhtpvz.common.block.BlockRegistry;
+import com.zhilizhan.bhtpvz.common.impl.plant.AddPlants;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
@@ -55,6 +57,10 @@ public class ItemRegistry {
     public static final RegistryObject<Item> DAVE_TOKEN;//戴夫标志
     public static final RegistryObject<Item> SUN_DAVE_TOKEN;//阳光戴夫标志
     //植物卡
+    public static final RegistryObject<PlantCardItem> STEEL_PUMPKIN_CARD;
+    public static final RegistryObject<PlantCardItem> STEEL_PUMPKIN_ENJOY_CARD;
+    public static final RegistryObject<PlantCardItem> ICE_CABBAGE_PULT_CARD;
+    public static final RegistryObject<PlantCardItem> ICE_CABBAGE_PULT_ENJOY_CARD;
     //方块物品
     public static final RegistryObject<Item> CHERRY_TREE_LEAVES;//樱桃树树叶
     public static final RegistryObject<Item> STAR_FRUIT_LEAVES;//杨桃树树叶
@@ -69,6 +75,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> MORION_BLOCK;//黑晶块
     public static final RegistryObject<Item> DAMSON_CRYSTAL_BLOCK;//暗紫合晶块
     public static final RegistryObject<Item> DECOMPOSITION_STAGE;//分解台
+    public static final RegistryObject<BlockItem> STEEL_PUMPKIN;
 
     static {
         ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BHTPvZ.MOD_ID);
@@ -110,6 +117,10 @@ public class ItemRegistry {
         DAVE_TOKEN = ITEMS.register("dave_token", ()-> new DaveToken(new Item.Properties().tab(BHTPvZ.BHTPVZ).stacksTo(1)));//戴夫标志
         SUN_DAVE_TOKEN = ITEMS.register("sun_dave_token", ()-> new SunDaveToken(new Item.Properties().tab(BHTPvZ.BHTPVZ).stacksTo(1)));//阳光戴夫标志
         //植物卡
+        STEEL_PUMPKIN_CARD = registerCard((IPlantType) AddPlants.STEEL_PUMPKIN, false);
+        STEEL_PUMPKIN_ENJOY_CARD = registerCard((IPlantType) AddPlants.STEEL_PUMPKIN, true);
+        ICE_CABBAGE_PULT_CARD = registerCard((IPlantType) AddPlants.ICE_CABBAGE_PULT, false);
+        ICE_CABBAGE_PULT_ENJOY_CARD = registerCard((IPlantType) AddPlants.ICE_CABBAGE_PULT, true);
         //方块物品
         CHERRY_TREE_LEAVES = ITEMS.register("cherry_leaves", ()-> new BlockItem(BlockRegistry.CHERRY_LEAVES.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));//樱桃树树叶
         STAR_FRUIT_LEAVES = ITEMS.register("star_fruit_leaves", ()-> new BlockItem(BlockRegistry.STAR_FRUIT_LEAVES.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));//杨桃树树叶
@@ -124,6 +135,7 @@ public class ItemRegistry {
         MORION_BLOCK = ITEMS.register("morion_block", ()-> new BlockItem(BlockRegistry.MORION_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));//黑晶块
         DAMSON_CRYSTAL_BLOCK = ITEMS.register("damson_crystal_block", ()-> new BlockItem(BlockRegistry.DAMSON_CRYSTAL_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));//暗紫合晶块
         DECOMPOSITION_STAGE = ITEMS.register("decomposition_stage", ()-> new BlockItem(BlockRegistry.DECOMPOSITION_STAGE.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));//分解台
+        STEEL_PUMPKIN = ITEMS.register("steel_pumpkin",() -> new BlockItem(BlockRegistry.STEEL_PUMPKIN.get(), new Item.Properties().tab(PVZItemGroups.PVZ_MISC)));
     }
 
     private static RegistryObject<PlantCardItem> registerCard(IPlantType plant, boolean is){

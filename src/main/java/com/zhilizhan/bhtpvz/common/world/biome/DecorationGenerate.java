@@ -1,6 +1,5 @@
 package com.zhilizhan.bhtpvz.common.world.biome;
 
-
 import com.hungteen.pvz.common.world.biome.BiomeRegister;
 import com.zhilizhan.bhtpvz.common.world.FeaturesRegistry;
 import net.minecraft.world.biome.Biome;
@@ -23,7 +22,7 @@ public class DecorationGenerate {
         Biome biome = ForgeRegistries.BIOMES.getValue(event.getName());
 
         if (biome != null) {
-            if (biome.equals(BiomeRegister.ZEN_GARDEN.get())) {
+            if (biome.equals(BiomeRegistry.NIGHT_BIOME.get())) {
                 event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FeaturesRegistry.TREES_CHERRY);//樱桃树生成
                 event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FeaturesRegistry.TREES_STAR_FRUIT);//杨桃树生成
             }
@@ -35,7 +34,7 @@ public class DecorationGenerate {
         Biome biome = ForgeRegistries.BIOMES.getValue(event.getName());
 
         if (biome != null) {
-            if (biome.equals(BiomeRegister.ZEN_GARDEN.get())) {
+            if (biome.equals(BiomeRegistry.NIGHT_BIOME.get())) {
                 event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FeaturesRegistry.PATCH_SQUASH);//窝瓜生成
                 event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FeaturesRegistry.PATCH_QUESTION_MARK_POT);//问号罐生成
                 event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FeaturesRegistry.PATCH_PLANT_POT);//植物罐生成
