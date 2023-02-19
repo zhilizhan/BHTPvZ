@@ -31,6 +31,8 @@
   "item.bhtpvz.wisdom_sapling": "wisdom sapling",
   "item.bhtpvz.dave_token": "dave token",
   "item.bhtpvz.sun_dave_token": "sun dave token",
+  "item.bhtpvz.ice_cabbage_pult_card":"ice cabbage pult card",
+  "item.bhtpvz.ice_cabbage_pult_enjoy_card":"ice cabbage pult enjoy card",
 
   "block.bhtpvz.cherry_leaves": "cherry leaves",
   "block.bhtpvz.star_fruit_leaves": "star fruit leaves",
@@ -48,5 +50,11 @@
   "block.bhtpvz.garlic": "garlic",
   "block.bhtpvz.decomposition_stage": "decomposition stage",
 
-  "effect.bhtpvz.halitosis": "halitosis"
+  "effect.bhtpvz.halitosis": "halitosis",
+
+  "tooltip.bhtpvz.xp_sapling.use": "Eat to gain experience",
+  "tooltip.bhtpvz.token.use": "Use to summon dave",
+  "tooltip.bhtpvz.sun_token.use": "Use to summon sunDave",
+
+  "entity.bhtpvz.ice_cabbage_pult":"ice cabbage pult"
 }

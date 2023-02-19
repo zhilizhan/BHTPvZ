@@ -18,13 +18,8 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.Random;
 
 public class GarlicBlock extends CropsBlock {
-    public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
-    private  static final VoxelShape[] SHAPES = new VoxelShape[]{
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)
-    };
+    public static final IntegerProperty AGE;
+    private  static final VoxelShape[] SHAPES;
 
     public GarlicBlock(Properties properties) {
         super(properties);
@@ -52,5 +47,15 @@ public class GarlicBlock extends CropsBlock {
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPES[state.getValue(this.getAgeProperty())];
+    }
+
+    static {
+        AGE = BlockStateProperties.AGE_3;
+        SHAPES = new VoxelShape[]{
+                Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
+                Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
+                Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
+                Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)
+        };
     }
 }

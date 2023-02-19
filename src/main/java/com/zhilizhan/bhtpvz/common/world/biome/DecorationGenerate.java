@@ -1,6 +1,6 @@
 package com.zhilizhan.bhtpvz.common.world.biome;
 
-
+import com.hungteen.pvz.common.world.biome.BiomeRegister;
 import com.zhilizhan.bhtpvz.common.world.FeaturesRegistry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;

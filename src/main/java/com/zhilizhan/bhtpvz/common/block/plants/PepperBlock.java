@@ -18,13 +18,8 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.Random;
 
 public class PepperBlock extends CropsBlock {
-    public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
-    private static final VoxelShape[] SHAPE = new VoxelShape[]{
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 13.0D, 16.0D),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)
-    };
+    public static final IntegerProperty AGE;
+    private static final VoxelShape[] SHAPE;
 
     public PepperBlock(Properties properties) {
         super(properties);
@@ -52,5 +47,15 @@ public class PepperBlock extends CropsBlock {
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE[state.getValue(this.getAgeProperty())];
+    }
+
+    static {
+        AGE = BlockStateProperties.AGE_3;
+        SHAPE = new VoxelShape[]{
+                Block.box(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D),
+                Block.box(0.0D, 0.0D, 0.0D, 16.0D, 13.0D, 16.0D),
+                Block.box(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D),
+                Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)
+        };
     }
 }

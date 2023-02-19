@@ -14,6 +14,7 @@ import net.minecraft.world.IBlockReader;
 public class QuestionMarkPot extends AbstractFacingBlock {
 
     private static VoxelShape shape;
+
     static {
         VoxelShape base = Block.box(4,0,4,12,1,12);
         VoxelShape question_mark_pot = Block.box(3,1,3,13,10,13);

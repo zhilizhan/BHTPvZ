@@ -26,7 +26,6 @@ public class BiomeRegistry {
 
     public static final RegistryObject<Biome> NIGHT_BIOME = BIOMES.register("night_biome", NightBiome::getNightBiome);
 
-
     public static void registerBiomes(final FMLCommonSetupEvent ev) {
         registerBiome(NIGHT_BIOME.get(), BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
     }
