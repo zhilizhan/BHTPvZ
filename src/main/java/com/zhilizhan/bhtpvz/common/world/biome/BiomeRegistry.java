@@ -31,7 +31,6 @@ public class BiomeRegistry {
         registerBiome(NIGHT_BIOME.get(), BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
     }
 
-
     public static void biomeModification(final BiomeLoadingEvent event) {
         Biome biome = ForgeRegistries.BIOMES.getValue(event.getName());
         if(biome != null) {//prevent crash with other mod.

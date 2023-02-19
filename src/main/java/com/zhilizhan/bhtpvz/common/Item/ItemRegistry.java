@@ -1,11 +1,14 @@
 package com.zhilizhan.bhtpvz.common.Item;
 
+import com.hungteen.pvz.api.types.IPlantType;
+import com.hungteen.pvz.common.item.PVZItemGroups;
+import com.hungteen.pvz.common.item.spawn.card.PlantCardItem;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.common.Item.superItem.*;
 import com.zhilizhan.bhtpvz.common.Item.tools.BhtpvzArmor;
 import com.zhilizhan.bhtpvz.common.Item.tools.BhtpvzTools;
 import com.zhilizhan.bhtpvz.common.block.BlockRegistry;
-import com.zhilizhan.bhtpvz.common.potion.EffectRegistry;
+import com.zhilizhan.bhtpvz.common.impl.plant.AddPlants;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
@@ -67,4 +70,37 @@ public class ItemRegistry {
     public static final RegistryObject<Item> MORION_BLOCK = ITEMS.register("morion_block", ()-> new BlockItem(BlockRegistry.MORION_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));//黑晶块
     public static final RegistryObject<Item> DAMSON_CRYSTAL_BLOCK = ITEMS.register("damson_crystal_block", ()-> new BlockItem(BlockRegistry.DAMSON_CRYSTAL_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));//暗紫合晶块
     public static final RegistryObject<Item> DECOMPOSITION_STAGE = ITEMS.register("decomposition_stage", ()-> new BlockItem(BlockRegistry.DECOMPOSITION_STAGE.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));//分解台
+    public static final RegistryObject<BlockItem> STEEL_PUMPKIN = ITEMS.register("steel_pumpkin",() -> new BlockItem(BlockRegistry.STEEL_PUMPKIN.get(), new Item.Properties().tab(PVZItemGroups.PVZ_MISC)));
+
+    //植物卡牌
+    public static final RegistryObject<PlantCardItem> STEEL_PUMPKIN_CARD = registerCard((IPlantType) AddPlants.STEEL_PUMPKIN, false);
+    public static final RegistryObject<PlantCardItem> STEEL_PUMPKIN_ENJOY_CARD = registerCard((IPlantType) AddPlants.STEEL_PUMPKIN, true);
+    public static final RegistryObject<PlantCardItem> ICE_CABBAGE_PULT_CARD = registerCard((IPlantType) AddPlants.ICE_CABBAGE_PULT, false);
+    public static final RegistryObject<PlantCardItem> ICE_CABBAGE_PULT_ENJOY_CARD = registerCard((IPlantType) AddPlants.ICE_CABBAGE_PULT, true);
+
+   //
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private static RegistryObject<PlantCardItem> registerCard(IPlantType plant, boolean is){
+        String name = plant.toString();
+        if(is) {
+            name = name + "_enjoy";
+        }
+        name = name + "_card";
+        return ITEMS.register(name, () -> new PlantCardItem(plant, is));
+    }
 }

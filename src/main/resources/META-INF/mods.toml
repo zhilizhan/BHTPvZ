@@ -5,8 +5,9 @@ license="GNU GPLv3"
 modId="bhtpvz"
 version="${file.jarVersion}"
 displayName="Better Hung_Teen's Plants vs Zombies"
-authors="zhilizhan"
+authors="zhilizhan、susen36"
 credits="GrassCarp、DLlover、寻声·约翰逊: art \n          136: data pack"
+logoFile="logo.png"
 description='''
 This is an add-on mod about "HTPVZ mod" version 1.16.5
 '''
