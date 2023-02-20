@@ -33,6 +33,8 @@
   "item.bhtpvz.sun_dave_token": "阳光戴夫标志",
   "item.bhtpvz.ice_cabbage_pult_card": "冰卷心菜投手卡",
   "item.bhtpvz.ice_cabbage_pult_enjoy_card": "冰卷心菜投手体验卡",
+  "item.bhtpvz.steel_pumpkin_card": "钢南瓜卡",
+  "item.bhtpvz.steel_pumpkin_enjoy_card": "钢南瓜体验卡",
 
   "block.bhtpvz.cherry_leaves": "樱桃树树叶",
   "block.bhtpvz.star_fruit_leaves":"杨桃树树叶",
@@ -49,6 +51,7 @@
   "block.bhtpvz.pepper": "辣椒种子",
   "block.bhtpvz.garlic": "大蒜",
   "block.bhtpvz.decomposition_stage": "分解台",
+  "block.bhtpvz.steel_pumpkin": "钢南瓜",
 
   "effect.bhtpvz.halitosis": "口臭",
 
@@ -56,5 +59,13 @@
   "tooltip.bhtpvz.token.use": "使用以召唤戴夫",
   "tooltip.bhtpvz.sun_token.use": "使用以召唤阳光戴夫",
 
-  "entity.bhtpvz.ice_cabbage_pult": "冰卷心菜投手"
+  "entity.bhtpvz.ice_cabbage_pult": "冰卷心菜投手",
+  "entity.bhtpvz.steel_pumpkin": "钢南瓜",
+
+  "entity.bhtpvz.edgar_090547": "埃德加-090547",
+  "entity.bhtpvz.flower_pot_zombie": "花盆僵尸",
+  "entity.bhtpvz.airborne_zombie": "空降僵尸",
+  "entity.bhtpvz.mc_zombie": "MC僵尸",
+  "entity.bhtpvz.steel_pumpkin_zombie": "钢南瓜僵尸",
+  "entity.bhtpvz.target_arrow_zombie": "箭靶僵尸"
 }

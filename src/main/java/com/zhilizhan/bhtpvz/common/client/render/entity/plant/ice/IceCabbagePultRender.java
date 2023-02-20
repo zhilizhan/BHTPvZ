@@ -8,8 +8,6 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-;
-
 @OnlyIn(Dist.CLIENT)
 public class IceCabbagePultRender extends PVZPlantRender<IceCabbagePultEntity> {
 

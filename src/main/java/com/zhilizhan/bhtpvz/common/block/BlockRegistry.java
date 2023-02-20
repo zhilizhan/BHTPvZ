@@ -34,7 +34,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block> PEPPER;//辣椒作物
     public static final RegistryObject<Block> GARLIC;//大蒜作物
     public static final RegistryObject<Block> DECOMPOSITION_STAGE;//分解台
-    public static final RegistryObject<Block> STEEL_PUMPKIN;
+    public static final RegistryObject<Block> STEEL_PUMPKIN;//钢南瓜
 
     static {
         BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, BHTPvZ.MOD_ID);

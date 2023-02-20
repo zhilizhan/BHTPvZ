@@ -34,7 +34,6 @@ public class BHTPvZ {
         ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BlockRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         EntityRegister.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-
         BiomeRegistry.BIOMES.register(FMLJavaModLoadingContext.get().getModEventBus());
         BiomeRegistry.BIOMES.register(bus);
         EffectRegistry.EFFECTS.register(FMLJavaModLoadingContext.get().getModEventBus());
