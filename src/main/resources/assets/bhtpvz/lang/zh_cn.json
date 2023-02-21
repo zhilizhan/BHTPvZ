@@ -31,10 +31,18 @@
   "item.bhtpvz.wisdom_sapling": "智慧树苗",
   "item.bhtpvz.dave_token": "戴夫标志",
   "item.bhtpvz.sun_dave_token": "阳光戴夫标志",
+
   "item.bhtpvz.ice_cabbage_pult_card": "冰卷心菜投手卡",
   "item.bhtpvz.ice_cabbage_pult_enjoy_card": "冰卷心菜投手体验卡",
   "item.bhtpvz.steel_pumpkin_card": "钢南瓜卡",
   "item.bhtpvz.steel_pumpkin_enjoy_card": "钢南瓜体验卡",
+
+  "item.bhtpvz.edgar_090547_spawn_egg": "埃德加-090547刷怪蛋",
+  "item.bhtpvz.flower_pot_zombie_spawn_egg": "花盆僵尸刷怪蛋",
+  "item.bhtpvz.airborne_zombie_spawn_egg": "空降僵尸刷怪蛋",
+  "item.bhtpvz.mc_zombie_spawn_egg": "MC僵尸刷怪蛋",
+  "item.bhtpvz.steel_pumpkin_zombie_spawn_egg": "钢南瓜僵尸刷怪蛋",
+  "item.bhtpvz.target_arrow_zombie_spawn_egg": "箭靶僵尸刷怪蛋",
 
   "block.bhtpvz.cherry_leaves": "樱桃树树叶",
   "block.bhtpvz.star_fruit_leaves":"杨桃树树叶",

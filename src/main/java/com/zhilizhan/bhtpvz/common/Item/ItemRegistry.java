@@ -2,13 +2,18 @@ package com.zhilizhan.bhtpvz.common.Item;
 
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.item.PVZItemGroups;
+import com.hungteen.pvz.common.item.misc.PVZSpawnEggItem;
 import com.hungteen.pvz.common.item.spawn.card.PlantCardItem;
+import com.hungteen.pvz.utils.enums.Colors;
+import com.mojang.datafixers.util.Pair;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.common.Item.superItem.*;
 import com.zhilizhan.bhtpvz.common.Item.tools.BhtpvzArmor;
 import com.zhilizhan.bhtpvz.common.Item.tools.BhtpvzTools;
 import com.zhilizhan.bhtpvz.common.block.BlockRegistry;
+import com.zhilizhan.bhtpvz.common.entity.EntityRegister;
 import com.zhilizhan.bhtpvz.common.impl.plant.AddPlants;
+import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
@@ -53,6 +58,13 @@ public class ItemRegistry {
     public static final RegistryObject<Item> DAMSON_CRYSTAL_CHESTPLATE;//暗紫合晶胸甲
     public static final RegistryObject<Item> DAMSON_CRYSTAL_LEGGINGS;//暗紫合晶护腿
     public static final RegistryObject<Item> DAMSON_CRYSTAL_BOOTS;//暗紫合晶靴子
+    //刷怪蛋
+    public static final RegistryObject<BHTPVZSpawnEggItem> EDGAR_090547_SPAWN_EGG;//埃德加-090547刷怪蛋
+    public static final RegistryObject<BHTPVZSpawnEggItem> FLOWER_POT_ZOMBIE_SPAWN_EGG;//花盆僵尸刷怪蛋
+    public static final RegistryObject<BHTPVZSpawnEggItem> AIRBORNE_ZOMBIE_SPAWN_EGG;//空降僵尸刷怪蛋
+    public static final RegistryObject<BHTPVZSpawnEggItem> MC_ZOMBIE_SPAWN_EGG;//MC僵尸刷怪蛋
+    public static final RegistryObject<BHTPVZSpawnEggItem> STEEL_PUMPKIN_ZOMBIE_SPAWN_EGG;//钢南瓜僵尸刷怪蛋
+    public static final RegistryObject<BHTPVZSpawnEggItem> TARGET_ARROW_ZOMBIE_SPAWN_EGG;//箭靶僵尸刷怪蛋
     //戴夫生成工具
     public static final RegistryObject<Item> DAVE_TOKEN;//戴夫标志
     public static final RegistryObject<Item> SUN_DAVE_TOKEN;//阳光戴夫标志
@@ -113,6 +125,13 @@ public class ItemRegistry {
         DAMSON_CRYSTAL_CHESTPLATE = ITEMS.register("damson_crystal_chestplate", ()-> new ArmorItem(BhtpvzArmor.DAMSON_CRYSTAL_1, EquipmentSlotType.CHEST, new Item.Properties().tab(BHTPvZ.BHTPVZ)));//暗紫合晶胸甲
         DAMSON_CRYSTAL_LEGGINGS = ITEMS.register("damson_crystal_leggings", ()-> new ArmorItem(BhtpvzArmor.DAMSON_CRYSTAL_1, EquipmentSlotType.LEGS, new Item.Properties().tab(BHTPvZ.BHTPVZ)));//暗紫合晶护腿
         DAMSON_CRYSTAL_BOOTS = ITEMS.register("damson_crystal_boots", ()-> new ArmorItem(BhtpvzArmor.DAMSON_CRYSTAL_1, EquipmentSlotType.FEET, new Item.Properties().tab(BHTPvZ.BHTPVZ)));//暗紫合晶靴子
+        //刷怪蛋
+        EDGAR_090547_SPAWN_EGG = registerSpawnEgg("edgar_090547_spawn_egg", EntityRegister.EDGAR_090547, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ));//埃德加-090547刷怪蛋
+        FLOWER_POT_ZOMBIE_SPAWN_EGG = registerSpawnEgg("flower_pot_zombie_spawn_egg", EntityRegister.FLOWER_POT_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ));//花盆僵尸刷怪蛋
+        AIRBORNE_ZOMBIE_SPAWN_EGG = registerSpawnEgg("airborne_zombie_spawn_egg", EntityRegister.AIRBORNE_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ));//空降僵尸刷怪蛋
+        MC_ZOMBIE_SPAWN_EGG = registerSpawnEgg("mc_zombie_spawn_egg", EntityRegister.MC_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ));//MC僵尸刷怪蛋
+        STEEL_PUMPKIN_ZOMBIE_SPAWN_EGG = registerSpawnEgg("steel_pumpkin_zombie_spawn_egg", EntityRegister.STEEL_PUMPKIN_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ));//钢南瓜僵尸刷怪蛋
+        TARGET_ARROW_ZOMBIE_SPAWN_EGG = registerSpawnEgg("target_arrow_zombie_spawn_egg", EntityRegister.TARGET_ARROW_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ));//箭靶僵尸刷怪蛋
         //戴夫生成工具
         DAVE_TOKEN = ITEMS.register("dave_token", ()-> new DaveToken(new Item.Properties().tab(BHTPvZ.BHTPVZ).stacksTo(1)));//戴夫标志
         SUN_DAVE_TOKEN = ITEMS.register("sun_dave_token", ()-> new SunDaveToken(new Item.Properties().tab(BHTPvZ.BHTPVZ).stacksTo(1)));//阳光戴夫标志
@@ -136,6 +155,11 @@ public class ItemRegistry {
         DAMSON_CRYSTAL_BLOCK = ITEMS.register("damson_crystal_block", ()-> new BlockItem(BlockRegistry.DAMSON_CRYSTAL_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));//暗紫合晶块
         DECOMPOSITION_STAGE = ITEMS.register("decomposition_stage", ()-> new BlockItem(BlockRegistry.DECOMPOSITION_STAGE.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));//分解台
         STEEL_PUMPKIN = ITEMS.register("steel_pumpkin",() -> new BlockItem(BlockRegistry.STEEL_PUMPKIN.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));//钢南瓜
+    }
+
+    //僵尸实体注册方法
+    private static RegistryObject<BHTPVZSpawnEggItem> registerSpawnEgg(String name, RegistryObject<? extends EntityType<?>> entityType, Pair<Integer, Integer> color, Item.Properties tab) {
+        return ITEMS.register(name, () -> new BHTPVZSpawnEggItem(entityType, color.getFirst(), color.getSecond(), tab));
     }
 
     private static RegistryObject<PlantCardItem> registerCard(IPlantType plant, boolean is){

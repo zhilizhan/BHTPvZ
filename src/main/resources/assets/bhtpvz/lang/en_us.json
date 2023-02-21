@@ -31,10 +31,18 @@
   "item.bhtpvz.wisdom_sapling": "wisdom sapling",
   "item.bhtpvz.dave_token": "dave token",
   "item.bhtpvz.sun_dave_token": "sun dave token",
+
   "item.bhtpvz.ice_cabbage_pult_card":"ice cabbage pult card",
   "item.bhtpvz.ice_cabbage_pult_enjoy_card":"ice cabbage pult enjoy card",
   "item.bhtpvz.steel_pumpkin_card":"steel pumpkin card",
   "item.bhtpvz.steel_pumpkin_enjoy_card":"steel pumpkin enjoy card",
+
+  "item.bhtpvz.edgar_090547_spawn_egg": "edgar 090547 spawn egg",
+  "item.bhtpvz.flower_pot_zombie_spawn_egg": "flower pot zombie spawn egg",
+  "item.bhtpvz.airborne_zombie_spawn_egg": "airborne zombie spawn egg",
+  "item.bhtpvz.mc_zombie_spawn_egg": "mc zombie spawn egg",
+  "item.bhtpvz.steel_pumpkin_zombie_spawn_egg": "steel pumpkin zombie spawn egg",
+  "item.bhtpvz.target_arrow_zombie_spawn_egg": "target arrow zombie spawn egg",
 
   "block.bhtpvz.cherry_leaves": "cherry leaves",
   "block.bhtpvz.star_fruit_leaves": "star fruit leaves",
