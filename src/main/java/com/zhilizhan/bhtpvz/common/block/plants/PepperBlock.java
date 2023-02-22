@@ -1,6 +1,6 @@
 package com.zhilizhan.bhtpvz.common.block.plants;
 
-import com.zhilizhan.bhtpvz.common.Item.ItemRegistry;
+import com.zhilizhan.bhtpvz.common.item.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.IntegerProperty;

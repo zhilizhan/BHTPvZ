@@ -1,6 +1,6 @@
 package com.zhilizhan.bhtpvz;
 
-import com.zhilizhan.bhtpvz.common.Item.ItemRegistry;
+import com.zhilizhan.bhtpvz.common.item.ItemRegistry;
 import com.zhilizhan.bhtpvz.common.block.BlockRegistry;
 import com.zhilizhan.bhtpvz.common.entity.EntityRegister;
 import com.zhilizhan.bhtpvz.common.impl.plant.AddPlants;

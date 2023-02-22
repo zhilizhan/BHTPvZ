@@ -1,11 +1,10 @@
-package com.zhilizhan.bhtpvz.common.Item.superItem;
+package com.zhilizhan.bhtpvz.common.item.superItem;
 
 import com.hungteen.pvz.common.entity.zombie.PVZZombieEntity;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;

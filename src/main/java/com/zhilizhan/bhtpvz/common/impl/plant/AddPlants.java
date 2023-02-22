@@ -9,7 +9,7 @@ import com.hungteen.pvz.common.impl.RankTypes;
 import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.common.impl.plant.PlantType;
 import com.zhilizhan.bhtpvz.BHTPvZ;
-import com.zhilizhan.bhtpvz.common.Item.ItemRegistry;
+import com.zhilizhan.bhtpvz.common.item.ItemRegistry;
 import com.zhilizhan.bhtpvz.common.client.model.entity.plant.defence.SteelPumpkinModel;
 import com.zhilizhan.bhtpvz.common.client.model.entity.plant.ice.IceCabbagePultModel;
 import com.zhilizhan.bhtpvz.common.entity.EntityRegister;

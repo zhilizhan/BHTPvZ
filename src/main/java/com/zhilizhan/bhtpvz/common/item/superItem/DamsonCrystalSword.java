@@ -1,6 +1,6 @@
-package com.zhilizhan.bhtpvz.common.Item.superItem;
+package com.zhilizhan.bhtpvz.common.item.superItem;
 
-import com.zhilizhan.bhtpvz.common.Item.tools.BhtpvzTools;
+import com.zhilizhan.bhtpvz.common.item.tools.BhtpvzTools;
 import net.minecraft.item.SwordItem;
 
 public class DamsonCrystalSword extends SwordItem{

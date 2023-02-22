@@ -1,8 +1,8 @@
-package com.zhilizhan.bhtpvz.common.Item.superItem;
+package com.zhilizhan.bhtpvz.common.item.superItem;
 
 import com.hungteen.pvz.common.entity.zombie.PVZZombieEntity;
-import com.zhilizhan.bhtpvz.common.Item.ItemRegistry;
-import com.zhilizhan.bhtpvz.common.Item.tools.BhtpvzTools;
+import com.zhilizhan.bhtpvz.common.item.ItemRegistry;
+import com.zhilizhan.bhtpvz.common.item.tools.BhtpvzTools;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;

@@ -1,4 +1,4 @@
-package com.zhilizhan.bhtpvz.common.Item.superItem;
+package com.zhilizhan.bhtpvz.common.item.superItem;
 
 import com.hungteen.pvz.common.capability.CapabilityHandler;
 import com.hungteen.pvz.utils.PlayerUtil;

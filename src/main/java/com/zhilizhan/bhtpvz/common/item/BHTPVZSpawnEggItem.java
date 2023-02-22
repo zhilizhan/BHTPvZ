@@ -1,4 +1,4 @@
-package com.zhilizhan.bhtpvz.common.Item;
+package com.zhilizhan.bhtpvz.common.item;
 
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
