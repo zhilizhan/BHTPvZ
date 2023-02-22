@@ -2,8 +2,7 @@ package com.zhilizhan.bhtpvz.common.entity.bullet.itembullet;
 
 
 import com.hungteen.pvz.common.entity.bullet.PultBulletEntity;
-import com.hungteen.pvz.common.item.ItemRegister;
-import com.zhilizhan.bhtpvz.common.Item.ItemRegistry;
+import com.zhilizhan.bhtpvz.common.item.ItemRegistry;
 import com.zhilizhan.bhtpvz.common.entity.EntityRegister;
 import com.zhilizhan.bhtpvz.common.entity.bullet.DamageSource;
 import com.zhilizhan.bhtpvz.common.entity.plant.ice.IceCabbagePultEntity;

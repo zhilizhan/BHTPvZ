@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.zhilizhan.bhtpvz.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "refmap": "bhtpvz.refmap.json",
+  "mixins": [
+
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

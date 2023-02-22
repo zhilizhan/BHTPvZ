@@ -1,7 +1,7 @@
-package com.zhilizhan.bhtpvz.common.Item.tools;
+package com.zhilizhan.bhtpvz.common.item.tools;
 
 import com.hungteen.pvz.common.item.ItemRegister;
-import com.zhilizhan.bhtpvz.common.Item.ItemRegistry;
+import com.zhilizhan.bhtpvz.common.item.ItemRegistry;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;

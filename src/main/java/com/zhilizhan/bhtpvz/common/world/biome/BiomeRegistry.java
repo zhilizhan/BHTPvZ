@@ -26,11 +26,18 @@ public class BiomeRegistry {
 
     public static final RegistryObject<Biome> NIGHT_BIOME = BIOMES.register("night_biome", NightBiome::getNightBiome);
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 98a1f6f (增加仓库)
     public static void registerBiomes(final FMLCommonSetupEvent ev) {
         registerBiome(NIGHT_BIOME.get(), BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 98a1f6f (增加仓库)
     public static void biomeModification(final BiomeLoadingEvent event) {
         Biome biome = ForgeRegistries.BIOMES.getValue(event.getName());
         if(biome != null) {//prevent crash with other mod.

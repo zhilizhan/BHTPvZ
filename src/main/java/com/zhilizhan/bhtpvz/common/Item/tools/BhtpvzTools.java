@@ -1,6 +1,6 @@
-package com.zhilizhan.bhtpvz.common.Item.tools;
+package com.zhilizhan.bhtpvz.common.item.tools;
 
-import com.zhilizhan.bhtpvz.common.Item.ItemRegistry;
+import com.zhilizhan.bhtpvz.common.item.ItemRegistry;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
