@@ -1,20 +1,26 @@
-### [English](https://github.com/zhilizhan/BHTPvZ/blob/master/README.md)  | 中文
+# BHTPvZ 模组:
 
-# BHTPVZ模组:
-## 这是一个关于HTPVZ模组 1.16.5 版本的附属模组
+![CurseForge](https://cf.way2muchnoise.eu/685001.svg)
+![GitHub](https://img.shields.io/github/license/zhilizhan/BHTPvZ)
+
+### [English](https://github.com/zhilizhan/BHTPvZ/blob/main/README.md)  | 中文
+
+## 这是一个关于HTPvZ模组 1.16.5 版本的附属模组。
+
 ## 开发人员:
-### 智力站: 程序编写、组织者
-### 草鱼、DL绿焰、寻声·约翰逊: 美工
+### [智力站](https://github.com/zhilizhan), [SuSen36](https://github.com/Lzc-SuSen): 所有者, 程序
+### [草鱼](https://github.com/GrassCarp-CAOYU), DL绿焰, 寻声·约翰逊: 美术
 ### 136: 数据包
+
 ## 下载路径:
-### 1.[蓝奏云](https://wwb.lanzoub.com/b02devbna) 密码:byz1
-### 2.[curseforge](https://www.curseforge.com/minecraft/mc-mods/better-hungteen-s-plants-vs-zombies/files/all)
-### 3.MC百科请等待正式版本
-## 模组前置下载: 
-### 1.[GitHub](https://github.com/HungTeen/pvzmod)
-### 2.[MC百科](https://www.mcmod.cn/class/2640.html)
-### 3.[curseforge](https://www.curseforge.com/minecraft/mc-mods/hungteens-plants-vs-zombies-mod)
-## 更新计划:
-### https://www.yuque.com/zhilizhan/po39pc/qtxys4
-## QQ群: 
+### 1. [CurseForge](https://www.curseforge.com/minecraft/mc-mods/better-hungteen-s-plants-vs-zombies/files/all)
+### 2. [蓝奏云](https://www.lanzoui.com/b02devabn) 密码:byz1
+### 3. MC百科请等待稳定版本
+
+## HTPvZ模组下载:
+### 1. [MC百科](https://www.mcmod.cn/class/2640.html)
+### 2. [CurseForge](https://www.curseforge.com/minecraft/mc-mods/hungteens-plants-vs-zombies-mod)
+### 3. [GitHub](https://github.com/HungTeen/pvzmod)
+
+## QQ群:
 ### 603541486

@@ -1,6 +1,0 @@
-{
-  "parent": "block/template_single_face",
-  "textures": {
-    "texture": "bhtpvz:block/origin_mushroom_block"
-  }
-}
