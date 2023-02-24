@@ -1,7 +1,7 @@
 # BHTPvZ 模组:
 
-![CurseForge](https://cf.way2muchnoise.eu/685001.svg)
-![GitHub](https://img.shields.io/github/license/zhilizhan/BHTPvZ)
+[![CurseForge](https://cf.way2muchnoise.eu/685001.svg)](https://www.curseforge.com/minecraft/mc-mods/hungteens-plants-vs-zombies-mod)
+[![License](https://img.shields.io/github/license/zhilizhan/BHTPvZ)](https://github.com/zhilizhan/BHTPvZ/blob/main/LICENSE)
 
 ### [English](https://github.com/zhilizhan/BHTPvZ/blob/main/README.md)  | 中文
 
