@@ -63,13 +63,13 @@ public class SteelPumpkinZombieEntity extends DefenceZombieEntity implements IHa
 
     public static boolean canTargetPutLadder(Entity target) {
         // Can not put ladder or already has ladder on.
-        if(! (target instanceof PVZPlantEntity plant) || hasLadderOnEntity(target)) {
+        if(!(target instanceof PVZPlantEntity) || hasLadderOnEntity(target)) {
             return false;
         }
         if(target instanceof PlantDefenderEntity) {
             return true;
         }
-        return plant.getOuterPlantInfo().isPresent();
+        return ((PVZPlantEntity) target).getOuterPlantInfo().isPresent();
     }
 
     public void putLadderOn(Entity entity) {

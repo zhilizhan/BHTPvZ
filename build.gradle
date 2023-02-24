@@ -54,15 +54,13 @@ processResources {
 
 tasks.withType(JavaCompile) {
     options.encoding "UTF-8"
-    if (JavaVersion.current().isJava9Compatible()) {
-        options.release = Integer.parseInt(targetCompatibility)
-    }
 }
 
 java {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
     withSourcesJar()
+    toolchain {
+        languageVersion = JavaLanguageVersion.of 8
+    }
 }
 
 jar {
