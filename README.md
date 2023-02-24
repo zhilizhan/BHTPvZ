@@ -23,4 +23,4 @@
 ### 3. [GitHub](https://github.com/HungTeen/pvzmod)
 
 ## QQ Group:
-### 603541486
+### [603541486](https://qm.qq.com/cgi-bin/qm/qr?k=AEA_35haRhwuBI_J9aV-BFsp0fQ0Ak0D&jump_from=webapi&authKey=1w0Lv4iKQwDUb/evKYXhYiimwU65pTdiQS+WBdwXsTD2XyoHH9pRLGdouVV9q4d2)
