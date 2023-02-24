@@ -17,7 +17,8 @@ public class WisdomSapling extends XpSapling {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
-        if(livingEntity instanceof Player player) {
+        if(livingEntity instanceof Player) {
+            Player player = (Player) livingEntity;
             if(!level.isClientSide) {
                 player.getCapability(CapabilityHandler.PLAYER_DATA_CAPABILITY).ifPresent((l) -> {
                     int amount = 800;
