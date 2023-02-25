@@ -9,6 +9,12 @@ loom {
             mod project.mod_id
         }
     }
+
+    launches {
+        data {
+            arg "--existing", file("src/main/resources").absolutePath
+        }
+    }
 }
 
 repositories {
@@ -31,7 +37,7 @@ dependencies {
 
     forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
 
-    modImplementation "curse.maven:pvz-411396:3682625"
+    modImplementation "curse.maven:pvz-${project.pvz_id}:${project.pvz_file_id}"
 }
 
 processResources {
@@ -64,11 +70,22 @@ java {
 }
 
 jar {
-    archivesBaseName project.mod_id
+    archivesBaseName = project.mod_id
     from("LICENSE") {
         rename {
-            "${it}_${archivesBaseName}"
+            "${it}_${project.mod_id}"
         }
+    }
+    manifest {
+        attributes([
+                "Specification-Title": project.mod_name,
+                "Specification-Vendor": project.mod_authors,
+                "Specification-Version": "1",
+                "Implementation-Title": project.mod_name,
+                "Implementation-Version": project.version,
+                "Implementation-Vendor": project.mod_id,
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
     }
 }
 
