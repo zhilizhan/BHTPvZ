@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "ABA",
+    "ACA"
+  ],
+  "key": {
+    "A": {
+      "item": "pvz:appease_essence"
+    },
+    "B": {
+      "item": "bhtpvz:angel_star_fruit"
+    },
+    "C": {
+      "tag": "pvz:card/purple_cards"
+    }
+  },
+  "result": {
+    "item": "pvz:angel_star_fruit_card"
+  }
+}
