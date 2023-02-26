@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "bhtpvz:block/pepper/pepper_0"
+    },
+    "age=1": {
+      "model": "bhtpvz:block/pepper/pepper_1"
+    },
+    "age=2": {
+      "model": "bhtpvz:block/pepper/pepper_2"
+    },
+    "age=3": {
+      "model": "bhtpvz:block/pepper/pepper_3"
+    }
+  }
+}
