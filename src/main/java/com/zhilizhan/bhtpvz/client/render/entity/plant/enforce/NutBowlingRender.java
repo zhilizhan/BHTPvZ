@@ -1,4 +1,4 @@
-package com.zhilizhan.bhtpvz.client.render.entity.plant;
+package com.zhilizhan.bhtpvz.client.render.entity.plant.enforce;
 
 import com.hungteen.pvz.client.model.entity.plant.defence.WallNutModel;
 import com.hungteen.pvz.common.entity.plant.defence.WallNutEntity;
@@ -6,7 +6,7 @@ import com.hungteen.pvz.common.impl.plant.PVZPlants;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
-import com.zhilizhan.bhtpvz.common.entity.NutBowlingEntity;
+import com.zhilizhan.bhtpvz.common.entity.plant.enforce.NutBowlingEntity;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;

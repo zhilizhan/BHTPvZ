@@ -1,4 +1,4 @@
-package com.zhilizhan.bhtpvz.common.entity;
+package com.zhilizhan.bhtpvz.common.entity.plant.enforce;
 
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.advancement.trigger.EntityEffectAmountTrigger;
