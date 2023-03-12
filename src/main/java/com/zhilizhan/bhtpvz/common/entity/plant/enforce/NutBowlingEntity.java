@@ -200,7 +200,7 @@ public class NutBowlingEntity extends PVZPlantEntity {
     }
 
     public double getBowlingSpeed() {
-        return 0.4;
+        return 0.36;
     }
 
     protected void addHitEntity(Entity entity) {

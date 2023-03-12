@@ -1,6 +1,6 @@
 {
   "parent": "block/crop",
   "textures": {
-    "crop": "bhtpvz:block/pepper_1"
+    "crop": "bhtpvz:block/chili_1"
   }
 }

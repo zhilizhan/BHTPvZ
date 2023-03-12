@@ -12,17 +12,17 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "bhtpvz:pepper",
+                  "block": "bhtpvz:chili",
                   "properties": {
                     "age": "3"
                   }
                 }
               ],
-              "name": "pvz:pepper"
+              "name": "pvz:chili"
             },
             {
               "type": "minecraft:item",
-              "name": "bhtpvz:pepper_seeds"
+              "name": "bhtpvz:chili_seeds"
             }
           ]
         }
@@ -44,13 +44,13 @@
               }
             }
           ],
-          "name": "bhtpvz:pepper_seeds"
+          "name": "bhtpvz:chili_seeds"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "bhtpvz:pepper",
+          "block": "bhtpvz:chili",
           "properties": {
             "age": "3"
           }

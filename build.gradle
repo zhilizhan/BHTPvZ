@@ -15,6 +15,9 @@ loom {
             arg "--existing", file("src/main/resources").absolutePath
         }
     }
+    forge {
+        mixinConfig "mixin.bhtpvz.json"
+    }
 }
 
 repositories {

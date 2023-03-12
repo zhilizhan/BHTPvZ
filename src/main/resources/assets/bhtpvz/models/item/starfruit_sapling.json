@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "bhtpvz:item/pepper_seeds"
+    "layer0": "bhtpvz:block/starfruit_sapling"
   }
 }
