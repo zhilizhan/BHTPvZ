@@ -5,8 +5,8 @@
 
   "item.bhtpvz.better_hung_teen_s_plants_vs_zombies": "Better Hung_Teen's Plants vs Zombies",
   "item.bhtpvz.cherry": "cherry",
-  "item.bhtpvz.star_fruit": "star fruit",
-  "item.bhtpvz.angel_star_fruit": "angel star fruit",
+  "item.bhtpvz.starfruit": "starfruit",
+  "item.bhtpvz.angel_starfruit": "angel starfruit",
   "item.bhtpvz.squash_slice": "squash slice",
   "item.bhtpvz.ice_cabbage": "ice cabbage",
   "item.bhtpvz.origin_spore": "origin spore",
@@ -36,6 +36,10 @@
   "item.bhtpvz.ice_cabbage_pult_enjoy_card":"ice cabbage pult enjoy card",
   "item.bhtpvz.steel_pumpkin_card":"steel pumpkin card",
   "item.bhtpvz.steel_pumpkin_enjoy_card":"steel pumpkin enjoy card",
+  "item.bhtpvz.fire_peashooter_card": "fire peashooter card",
+  "item.bhtpvz.fire_peashooter_enjoy_card": "fire peashooter enjoy card",
+  "item.bhtpvz.nut_bowling_card": "nut bowling card",
+  "item.bhtpvz.nut_bowling_enjoy_card": "nut bowling enjoy card",
 
   "item.bhtpvz.edgar_090547_spawn_egg": "edgar 090547 spawn egg",
   "item.bhtpvz.flower_pot_zombie_spawn_egg": "flower pot zombie spawn egg",
@@ -45,9 +49,9 @@
   "item.bhtpvz.target_arrow_zombie_spawn_egg": "target arrow zombie spawn egg",
 
   "block.bhtpvz.cherry_leaves": "cherry leaves",
-  "block.bhtpvz.star_fruit_leaves": "star fruit leaves",
+  "block.bhtpvz.starfruit_leaves": "starfruit leaves",
   "block.bhtpvz.cherry_sapling": "cherry sapling",
-  "block.bhtpvz.star_fruit_sapling": "star fruit sapling",
+  "block.bhtpvz.starfruit_sapling": "starfruit sapling",
   "block.bhtpvz.origin_mushroom": "origin mushroom",
   "block.bhtpvz.origin_mushroom_block": "origin mushroom block",
   "block.bhtpvz.question_mark_pot": "question mark pot",
@@ -56,7 +60,7 @@
   "block.bhtpvz.morion_ore": "morion ore",
   "block.bhtpvz.morion_block": "morion block",
   "block.bhtpvz.damson_crystal_block": "damson crystal block",
-  "block.bhtpvz.pepper": "pepper seeds",
+  "block.bhtpvz.chili": "chili seeds",
   "block.bhtpvz.garlic": "garlic",
   "block.bhtpvz.decomposition_stage": "decomposition stage",
   "block.bhtpvz.steel_pumpkin": "steel pumpkin",
@@ -69,6 +73,8 @@
 
   "entity.bhtpvz.ice_cabbage_pult":"ice cabbage pult",
   "entity.bhtpvz.steel_pumpkin":"steel pumpkin",
+  "entity.bhtpvz.fire_peashooter": "fire peashooter",
+  "entity.bhtpvz.nut_bowling": "nut bowling",
 
   "entity.bhtpvz.edgar_090547": "edgar-090547",
   "entity.bhtpvz.flower_pot_zombie": "flower pot zombie",

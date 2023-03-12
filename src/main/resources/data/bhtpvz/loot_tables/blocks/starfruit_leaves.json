@@ -35,7 +35,7 @@
                   ]
                 }
               ],
-              "name": "bhtpvz:star_fruit_leaves"
+              "name": "bhtpvz:starfruit_leaves"
             },
             {
               "type": "minecraft:item",
@@ -54,7 +54,7 @@
                   ]
                 }
               ],
-              "name": "bhtpvz:star_fruit_sapling"
+              "name": "bhtpvz:starfruit_leaves"
             }
           ]
         }
@@ -144,7 +144,7 @@
               ]
             }
           ],
-          "name": "bhtpvz:star_fruit"
+          "name": "bhtpvz:starfruit"
         }
       ],
       "conditions": [

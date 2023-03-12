@@ -23,15 +23,17 @@ public class BHTPvZItems {
 
     // 普通物品
     public static final RegistryObject<Item> ORIGIN_SPORE = ITEMS.register("origin_spore", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 原始孢子
-    public static final RegistryObject<Item> MORION_INGOT = ITEMS.register("morion_ingot", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 黑晶锭;
+    public static final RegistryObject<Item> MORION_INGOT = ITEMS.register("morion_ingot", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 黑晶锭
     public static final RegistryObject<Item> DAMSON_CRYSTAL_INGOT = ITEMS.register("damson_crystal_ingot", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合晶锭
-    public static final RegistryObject<Item> BUTTER = ITEMS.register("butter", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 黄油;
+    public static final RegistryObject<Item> BUTTER = ITEMS.register("butter", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 黄油
+
     // 种子
-    public static final RegistryObject<Item> CHILI_SEEDS = ITEMS.register("pepper_seeds", ()-> new BlockItem(BHTPvZBlocks.CHILI.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 辣椒种子;
+    public static final RegistryObject<Item> CHILI_SEEDS = ITEMS.register("chili_seeds", ()-> new BlockItem(BHTPvZBlocks.CHILI.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 辣椒种子
+
     // 食物
-    public static final RegistryObject<Item> CHERRY = ITEMS.register("cherry", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3F).build()))); // 樱桃;
-    public static final RegistryObject<Item> GARLIC = ITEMS.register("garlic", ()-> new Garlic(BHTPvZBlocks.GARLIC.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).build()))); // 大蒜;
-    public static final RegistryObject<Item> STARFRUIT = ITEMS.register("starfruit", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3F).build()))); // 杨桃;
+    public static final RegistryObject<Item> CHERRY = ITEMS.register("cherry", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3F).build()))); // 樱桃
+    public static final RegistryObject<Item> GARLIC = ITEMS.register("garlic", ()-> new Garlic(BHTPvZBlocks.GARLIC.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).build()))); // 大蒜
+    public static final RegistryObject<Item> STARFRUIT = ITEMS.register("starfruit", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3F).build()))); // 杨桃
     public static final RegistryObject<Item> ANGEL_STARFRUIT = ITEMS.register("angel_starfruit", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(8).saturationMod(1.2F).effect(new MobEffectInstance(MobEffects.REGENERATION, 200, 1), 1.0F).build()))); // 天使杨桃
     public static final RegistryObject<Item> SQUASH_SLICE = ITEMS.register("squash_slice", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(3).saturationMod(0.3F).build()))); //倭瓜片
     public static final RegistryObject<Item> ICE_CABBAGE = ITEMS.register("ice_cabbage", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80, 1), 1.0F).build()))); // 冰卷心菜
@@ -71,12 +73,15 @@ public class BHTPvZItems {
     public static final RegistryObject<Item> SUN_DAVE_TOKEN = ITEMS.register("sun_dave_token", () -> new SunDaveToken(new Item.Properties().tab(BHTPvZ.BHTPVZ).stacksTo(1))); // 阳光戴夫标志
 
     // 植物卡
-    public static final RegistryObject<PlantCardItem> STEEL_PUMPKIN_CARD = registerCard(BHTPvZPlants.STEEL_PUMPKIN, false); // 冰卷心菜投手卡
-    public static final RegistryObject<PlantCardItem> STEEL_PUMPKIN_ENJOY_CARD = registerCard(BHTPvZPlants.STEEL_PUMPKIN, true); // 冰卷心菜投手体验卡
-    public static final RegistryObject<PlantCardItem> ICE_CABBAGE_PULT_CARD = registerCard(BHTPvZPlants.ICE_CABBAGE_PULT, false); // 钢南瓜卡
-    public static final RegistryObject<PlantCardItem> ICE_CABBAGE_PULT_ENJOY_CARD = registerCard(BHTPvZPlants.ICE_CABBAGE_PULT, true); // 钢南瓜体验卡
+    public static final RegistryObject<PlantCardItem> STEEL_PUMPKIN_CARD = registerCard(BHTPvZPlants.STEEL_PUMPKIN, false); // 钢南瓜卡
+    public static final RegistryObject<PlantCardItem> STEEL_PUMPKIN_ENJOY_CARD = registerCard(BHTPvZPlants.STEEL_PUMPKIN, true); // 钢南瓜体验卡
+    public static final RegistryObject<PlantCardItem> ICE_CABBAGE_PULT_CARD = registerCard(BHTPvZPlants.ICE_CABBAGE_PULT, false); // 冰卷心菜投手卡
+    public static final RegistryObject<PlantCardItem> ICE_CABBAGE_PULT_ENJOY_CARD = registerCard(BHTPvZPlants.ICE_CABBAGE_PULT, true); // 冰卷心菜投手体验卡
+    public static final RegistryObject<PlantCardItem> FIRE_PEASHOOTER_CARD = registerCard(BHTPvZPlants.FIRE_PEASHOOTER, false); // 火焰豌豆卡
+    public static final RegistryObject<PlantCardItem> FIRE_PEASHOOTER_ENJOY_CARD = registerCard(BHTPvZPlants.FIRE_PEASHOOTER, true); // 火焰豌豆体验卡
     public static final RegistryObject<PlantCardItem> NUT_BOWLING_CARD = registerCard(BHTPvZPlants.NUT_BOWLING, false); // 坚果卡
     public static final RegistryObject<PlantCardItem> NUT_BOWLING_ENJOY_CARD = registerCard(BHTPvZPlants.NUT_BOWLING, true); // 坚果体验卡
+
     // 方块物品
     public static final RegistryObject<Item> CHERRY_TREE_LEAVES = ITEMS.register("cherry_leaves", ()-> new BlockItem(BHTPvZBlocks.CHERRY_LEAVES.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 樱桃树树叶
     public static final RegistryObject<Item> STARFRUIT_LEAVES = ITEMS.register("starfruit_leaves", ()-> new BlockItem(BHTPvZBlocks.STARFRUIT_LEAVES.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 杨桃树树叶
