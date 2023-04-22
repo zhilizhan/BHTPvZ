@@ -6,12 +6,14 @@ import com.hungteen.pvz.common.entity.zombie.PVZZombieEntity;
 import com.hungteen.pvz.utils.StringUtil;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.client.render.entity.bullet.IceCabbageRender;
+import com.zhilizhan.bhtpvz.client.render.entity.plant.assist.WaterPotRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.defence.SteelPumpkinRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.enforce.NutBowlingRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.fire.FirePeashooterRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.ice.IceCabbagePultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.zombie.add.*;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.IceCabbageEntity;
+import com.zhilizhan.bhtpvz.common.entity.plant.assist.WaterPotEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.defence.SteelPumpkinEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.enforce.NutBowlingEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.fire.FirePeashooterEntity;
@@ -38,6 +40,8 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<IceCabbagePultEntity>> ICE_CABBAGE_PULT = registerPlantEntityType(IceCabbagePultEntity::new, "ice_cabbage_pult"); // 冰卷心菜投手
 	public static final RegistryObject<EntityType<FirePeashooterEntity>> FIRE_PEASHOOTER = registerPlantEntityType(FirePeashooterEntity::new, "fire_peashooter"); // 火焰豌豆
 	public static final RegistryObject<EntityType<NutBowlingEntity>> NUT_BOWLING = registerPlantEntityType(NutBowlingEntity::new, "nut_bowling"); // 保龄球坚果
+	public static final RegistryObject<EntityType<WaterPotEntity>> WATER_POT = registerPlantEntityType(WaterPotEntity::new, "water_pot"); // 水盆
+
 	// 子弹
 	public static final RegistryObject<EntityType<IceCabbageEntity>> ICE_CABBAGE = registerEntityType(IceCabbageEntity::new, "ice_cabbage", MobCategory.MISC); // 冰卷心菜子弹
 	// 僵尸
@@ -47,6 +51,8 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<MCZombieEntity>> MC_ZOMBIE = registerZombieEntityType(MCZombieEntity::new, "mc_zombie"); // MC僵尸
 	public static final RegistryObject<EntityType<SteelPumpkinZombieEntity>> STEEL_PUMPKIN_ZOMBIE = registerZombieEntityType(SteelPumpkinZombieEntity::new, "steel_pumpkin_zombie"); // 钢南瓜僵尸
 	public static final RegistryObject<EntityType<TargetArrowZombieEntity>> TARGET_ARROW_ZOMBIE = registerZombieEntityType(TargetArrowZombieEntity::new, "target_arrow_zombie"); // 箭靶僵尸
+	public static final RegistryObject<EntityType<RedEdgeZombieEntity>> RED_EDGE_ZOMBIE = registerZombieEntityType(RedEdgeZombieEntity::new, "red_edge_zombie"); // 红刀僵尸
+
 	// 普通生物
 
 	@OnlyIn(Dist.CLIENT)
@@ -57,6 +63,8 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(ICE_CABBAGE_PULT.get(), IceCabbagePultRender::new); // 冰卷心菜投手
 		RenderingRegistry.registerEntityRenderingHandler(FIRE_PEASHOOTER.get(), FirePeashooterRender::new); // 火焰豌豆
 		RenderingRegistry.registerEntityRenderingHandler(NUT_BOWLING.get(), NutBowlingRender::new); // 保龄球坚果
+		RenderingRegistry.registerEntityRenderingHandler(WATER_POT.get(), WaterPotRender::new); // 水盆
+
 		// 子弹
 		RenderingRegistry.registerEntityRenderingHandler(ICE_CABBAGE.get(), IceCabbageRender::new); // 冰卷心菜子弹
 		// 僵尸
@@ -66,6 +74,7 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(MC_ZOMBIE.get(), MCZombieRender::new); // MC僵尸
 		RenderingRegistry.registerEntityRenderingHandler(STEEL_PUMPKIN_ZOMBIE.get(), SteelPumpkinZombieRender::new); // 钢南瓜僵尸
 		RenderingRegistry.registerEntityRenderingHandler(TARGET_ARROW_ZOMBIE.get(), TargetArrowZombieRender::new); // 箭靶僵尸
+		RenderingRegistry.registerEntityRenderingHandler(RED_EDGE_ZOMBIE.get(), RedEdgeZombieRender::new); // 红刀僵尸
 		// 普通生物
 	}
 

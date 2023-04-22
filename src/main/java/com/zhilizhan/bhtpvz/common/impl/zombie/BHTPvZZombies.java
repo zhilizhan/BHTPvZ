@@ -1,10 +1,7 @@
 package com.zhilizhan.bhtpvz.common.impl.zombie;
 
 import com.zhilizhan.bhtpvz.BHTPvZ;
-import com.zhilizhan.bhtpvz.client.model.entity.zombie.bhtpvz.AirborneZombieModel;
-import com.zhilizhan.bhtpvz.client.model.entity.zombie.bhtpvz.FlowerPotZombieModel;
-import com.zhilizhan.bhtpvz.client.model.entity.zombie.bhtpvz.MCZombieModel;
-import com.zhilizhan.bhtpvz.client.model.entity.zombie.bhtpvz.TargetArrowZombieModel;
+import com.zhilizhan.bhtpvz.client.model.entity.zombie.bhtpvz.*;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 
 import com.hungteen.pvz.api.types.IZombieType;
@@ -28,6 +25,8 @@ public final class BHTPvZZombies extends ZombieType {
 	public static final ZombieType MC_ZOMBIE = new BHTPvZZombies("mc_zombie", new ZombieFeatures().rank(RankTypes.WHITE).xp(5).entityType(BHTPvZEntityTypes.MC_ZOMBIE::get).zombieModel(() -> MCZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
 	public static final ZombieType STEEL_PUMPKIN_ZOMBIE = new BHTPvZZombies("steel_pumpkin_zombie", new ZombieFeatures().rank(RankTypes.BLUE).xp(25).entityType(BHTPvZEntityTypes.STEEL_PUMPKIN_ZOMBIE::get).zombieModel(() -> MCZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
 	public static final ZombieType TARGET_ARROW_ZOMBIE = new BHTPvZZombies("target_arrow_zombie", new ZombieFeatures().rank(RankTypes.GREEN).xp(8).entityType(BHTPvZEntityTypes.TARGET_ARROW_ZOMBIE::get).zombieModel(() -> TargetArrowZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
+
+	public static final ZombieType RED_EDGE_ZOMBIE = new BHTPvZZombies("red_edge_zombie", new ZombieFeatures().rank(RankTypes.RED).xp(74).entityType(BHTPvZEntityTypes.RED_EDGE_ZOMBIE::get).zombieModel(() -> RedEdgeZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
 
 	public static void register() {
 		registerZombies(LIST);

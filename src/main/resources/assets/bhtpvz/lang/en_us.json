@@ -64,6 +64,8 @@
   "block.bhtpvz.garlic": "garlic",
   "block.bhtpvz.decomposition_stage": "decomposition stage",
   "block.bhtpvz.steel_pumpkin": "steel pumpkin",
+  "block.bhtpvz.water_pot": "WaterPot",
+
 
   "effect.bhtpvz.halitosis": "halitosis",
 
@@ -75,11 +77,17 @@
   "entity.bhtpvz.steel_pumpkin":"steel pumpkin",
   "entity.bhtpvz.fire_peashooter": "fire peashooter",
   "entity.bhtpvz.nut_bowling": "nut bowling",
+  "entity.bhtpvz.water_pot": "water pot",
 
   "entity.bhtpvz.edgar_090547": "edgar-090547",
   "entity.bhtpvz.flower_pot_zombie": "flower pot zombie",
   "entity.bhtpvz.airborne_zombie": "airborne zombie",
   "entity.bhtpvz.mc_zombie": "mc zombie",
   "entity.bhtpvz.steel_pumpkin_zombie": "steel pumpkin zombie",
-  "entity.bhtpvz.target_arrow_zombie": "target arrow zombie"
+  "entity.bhtpvz.target_arrow_zombie": "target arrow zombie",
+  
+  "challenge.bhttpvz.extra.msg1": "Additional challenges of bhttpvz",
+  "challenge.pvz.roof_extra.name": "Roof Extra",
+  "challenge.pvz.grass_add.name": "Grass Add",
+  "challenge.pvz.pool_add.name": "Pool Add"
 }

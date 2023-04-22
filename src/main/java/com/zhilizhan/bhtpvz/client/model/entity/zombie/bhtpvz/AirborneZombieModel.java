@@ -1,13 +1,10 @@
 package com.zhilizhan.bhtpvz.client.model.entity.zombie.bhtpvz;
 
-import com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz.AirborneZombieEntity;
-
 import com.hungteen.pvz.api.interfaces.IBodyEntity;
 import com.hungteen.pvz.client.model.entity.zombie.PVZZombieModel;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-
+import com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz.AirborneZombieEntity;
 import net.minecraft.client.model.geom.ModelPart;
 
 public class AirborneZombieModel extends PVZZombieModel<AirborneZombieEntity> {

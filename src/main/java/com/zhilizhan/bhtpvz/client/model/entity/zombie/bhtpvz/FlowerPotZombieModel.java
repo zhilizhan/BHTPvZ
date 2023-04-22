@@ -159,12 +159,12 @@ public class FlowerPotZombieModel extends PVZZombieModel<FlowerPotZombieEntity> 
 	@Override
 	public void updateFreeParts(FlowerPotZombieEntity entity) {
 		super.updateFreeParts(entity);
-		final boolean isPaperDestroyed = entity.isAngry();
-		this.isLeftHandFree = isPaperDestroyed;
-		this.isRightHandFree = isPaperDestroyed;
-		this.red_eyes.visible = isPaperDestroyed;
-		this.normal_eyes.visible = ! isPaperDestroyed;
-		this.flower_pot.visible = ! isPaperDestroyed;
+		final boolean isPaperDestroyed = true;
+		//this.isLeftHandFree = isPaperDestroyed;
+		//this.isRightHandFree = isPaperDestroyed;
+		//this.red_eyes.visible = isPaperDestroyed;
+		this.normal_eyes.visible = isPaperDestroyed;
+		this.flower_pot.visible = isPaperDestroyed;
 	}
 
 	@Override
@@ -173,10 +173,7 @@ public class FlowerPotZombieModel extends PVZZombieModel<FlowerPotZombieEntity> 
 		this.getZombieRightHand().xRot = -1.0472f;
 	}
 
-	@Override
-	protected boolean isZombieAngry(FlowerPotZombieEntity entity) {
-		return entity.isAngry() || super.isZombieAngry(entity);
-	}
+
 
 	@Override
 	public Optional<ModelPart> getHandDefence() {

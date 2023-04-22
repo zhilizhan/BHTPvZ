@@ -3,7 +3,7 @@
   "package": "com.zhilizhan.bhtpvz.common.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "SnowPeaEntityMixin",
+    "PlantCardItemMixin",
     "PVZPlantEntityMixin"
   ],
   "client": [
