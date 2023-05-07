@@ -1,9 +1,9 @@
 {
-  "itemGroup.better_hung_teen_s_plants_vs_zombies": "Better Hung_Teen's Plants vs Zombies  MOD",
+  "itemGroup.better_hung_teen_plants_vs_zombies": "Better Hung_Teen's Plants vs Zombies  MOD",
 
   "biome.bhtpvz.night_biome": "night biome",
 
-  "item.bhtpvz.better_hung_teen_s_plants_vs_zombies": "Better Hung_Teen's Plants vs Zombies",
+  "item.bhtpvz.better_hung_teen_plants_vs_zombies": "Better Hung_Teen's Plants vs Zombies",
   "item.bhtpvz.cherry": "cherry",
   "item.bhtpvz.starfruit": "starfruit",
   "item.bhtpvz.angel_starfruit": "angel starfruit",
@@ -65,6 +65,7 @@
   "block.bhtpvz.decomposition_stage": "decomposition stage",
   "block.bhtpvz.steel_pumpkin": "steel pumpkin",
   "block.bhtpvz.water_pot": "WaterPot",
+  "block.bhtpvz.wisdom_log": "Wisdom log",
 
 
   "effect.bhtpvz.halitosis": "halitosis",
@@ -72,7 +73,8 @@
   "tooltip.bhtpvz.xp_sapling.use": "Eat to gain experience",
   "tooltip.bhtpvz.token.use": "Use to summon dave",
   "tooltip.bhtpvz.sun_token.use": "Use to summon sunDave",
-
+  "tooltip.bhtpvz.steel_coin.use": "Use to chance number+3",
+  "tooltip.bhtpvz.chlorophyll.use": "Eat to gain energy",
   "entity.bhtpvz.ice_cabbage_pult":"ice cabbage pult",
   "entity.bhtpvz.steel_pumpkin":"steel pumpkin",
   "entity.bhtpvz.fire_peashooter": "fire peashooter",
@@ -89,5 +91,9 @@
   "challenge.bhttpvz.extra.msg1": "Additional challenges of bhttpvz",
   "challenge.pvz.roof_extra.name": "Roof Extra",
   "challenge.pvz.grass_add.name": "Grass Add",
-  "challenge.pvz.pool_add.name": "Pool Add"
+  "challenge.pvz.pool_add.name": "Pool Add",
+
+  "block.bhtpvz.wisdom_log_say_1": "...",
+  "block.bhtpvz.wisdom_log_say_2": "...",
+  "block.bhtpvz.wisdom_log_say_3": "..."
 }

@@ -1,9 +1,9 @@
 {
-  "itemGroup.better_hung_teen_s_plants_vs_zombies": "更好的HTPVZ MOD",
+  "itemGroup.better_hung_teen_plants_vs_zombies": "更好的HTPVZ MOD",
 
   "biome.bhtpvz.night_biome": "黑夜群系",
 
-  "item.bhtpvz.better_hung_teen_s_plants_vs_zombies": "更好的HTPVZ",
+  "item.bhtpvz.better_hung_teen_plants_vs_zombies": "更好的HTPVZ",
   "item.bhtpvz.cherry": "樱桃",
   "item.bhtpvz.starfruit": "杨桃",
   "item.bhtpvz.angel_starfruit": "天使杨桃",
@@ -65,12 +65,16 @@
   "block.bhtpvz.decomposition_stage": "分解台",
   "block.bhtpvz.steel_pumpkin": "钢南瓜",
   "block.bhtpvz.water_pot": "水盆",
+  "block.bhtpvz.wisdom_log": "智慧木",
+
 
   "effect.bhtpvz.halitosis": "口臭",
 
   "tooltip.bhtpvz.xp_sapling.use": "食用以获得经验",
+  "tooltip.bhtpvz.steel_coin.use": "使用后抽奖次数+3",
   "tooltip.bhtpvz.token.use": "使用以召唤戴夫",
   "tooltip.bhtpvz.sun_token.use": "使用以召唤阳光戴夫",
+  "tooltip.bhtpvz.chlorophyll.use": "食用以获得能量",
 
   "entity.bhtpvz.ice_cabbage_pult": "冰卷心菜投手",
   "entity.bhtpvz.steel_pumpkin": "钢南瓜",
@@ -88,5 +92,9 @@
   "challenge.bhttpvz.extra.msg1": "BHtpvz的附加挑战",
   "challenge.pvz.roof_extra.name": "屋顶附加",
   "challenge.pvz.grass_add.name": "草坪附加",
-  "challenge.pvz.pool_add.name": "屋顶附加"
+  "challenge.pvz.pool_add.name": "屋顶附加",
+
+  "block.bhtpvz.wisdom_log_say_1": "曾经有一个照顾我的人",
+  "block.bhtpvz.wisdom_log_say_2": "但后来不知道怎么的离开了",
+  "block.bhtpvz.wisdom_log_say_3": "之后就再也没有见过他"
 }

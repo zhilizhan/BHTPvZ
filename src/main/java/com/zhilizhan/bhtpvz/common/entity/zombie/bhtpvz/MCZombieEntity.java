@@ -1,10 +1,8 @@
 package com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz;
 
-import com.zhilizhan.bhtpvz.common.impl.zombie.BHTPvZZombies;
-
 import com.hungteen.pvz.common.entity.zombie.grass.NormalZombieEntity;
 import com.hungteen.pvz.common.impl.zombie.ZombieType;
-
+import com.zhilizhan.bhtpvz.common.impl.zombie.BHTPvZZombies;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -31,7 +29,6 @@ public class MCZombieEntity extends NormalZombieEntity {
     public ZombieType getZombieType() {
         return BHTPvZZombies.MC_ZOMBIE;
     }
-
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes().add(Attributes.ARMOR, 2.0);
     }

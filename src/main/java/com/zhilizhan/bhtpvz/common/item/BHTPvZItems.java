@@ -1,6 +1,7 @@
 package com.zhilizhan.bhtpvz.common.item;
 
 import com.hungteen.pvz.api.types.IPlantType;
+import com.hungteen.pvz.common.item.PVZItemGroups;
 import com.hungteen.pvz.common.item.spawn.card.PlantCardItem;
 import com.hungteen.pvz.utils.enums.Colors;
 import com.mojang.datafixers.util.Pair;
@@ -22,7 +23,7 @@ public class BHTPvZItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BHTPvZ.MOD_ID);
 
     // 普通物品
-    public static final RegistryObject<Item> ORIGIN_SPORE = ITEMS.register("origin_spore", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 原始孢子
+    public static final RegistryObject<Item> ORIGIN_SPORE = ITEMS.register("origin_spore", ()-> new Item(new Item.Properties().tab(PVZItemGroups.PVZ_ENVELOPE))); // 原始孢子
     public static final RegistryObject<Item> MORION_INGOT = ITEMS.register("morion_ingot", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 黑晶锭
     public static final RegistryObject<Item> DAMSON_CRYSTAL_INGOT = ITEMS.register("damson_crystal_ingot", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合晶锭
     public static final RegistryObject<Item> BUTTER = ITEMS.register("butter", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 黄油
@@ -41,7 +42,8 @@ public class BHTPvZItems {
     // 功能性食物
     public static final RegistryObject<Item> XP_SAPLING = ITEMS.register("xp_sapling", ()-> new XpSapling(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.LUCK, 1000, 1), 1.0F).build()))); //经验树苗
     public static final RegistryObject<Item> WISDOM_SAPLING = ITEMS.register("wisdom_sapling", ()-> new WisdomSapling(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(6).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.LUCK, 2000, 3), 1.0F).build()))); //智慧树苗
-
+    public static final RegistryObject<Item> STEEL_COIN = ITEMS.register("steel_coin", ()-> new SteelCoin(new Item.Properties().tab(BHTPvZ.BHTPVZ))); //钢镚
+    public static final RegistryObject<Item> CHLOROPHYLL = ITEMS.register("chlorophyll", ()-> new Chlorophyll(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.LUCK, 1000, 1), 1.0F).build()))); //钢镚
     // 工具
     public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", ()-> new Hammer(new Item.Properties().tab(BHTPvZ.BHTPVZ).durability(300))); //锤子
     public static final RegistryObject<Item> DAMSON_CRYSTAL_SWORD = ITEMS.register("damson_crystal_sword", ()-> new SwordItem(BHTPvZTiers.DAMSON_CRYSTAL, 3, -2.4f, new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合金剑
@@ -59,7 +61,6 @@ public class BHTPvZItems {
     public static final RegistryObject<Item> DAMSON_CRYSTAL_CHESTPLATE = ITEMS.register("damson_crystal_chestplate", ()-> new ArmorItem(BHTPvZArmorMaterials.DAMSON_CRYSTAL, EquipmentSlot.CHEST, new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合晶胸甲
     public static final RegistryObject<Item> DAMSON_CRYSTAL_LEGGINGS = ITEMS.register("damson_crystal_leggings", ()-> new ArmorItem(BHTPvZArmorMaterials.DAMSON_CRYSTAL, EquipmentSlot.LEGS, new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合晶护腿
     public static final RegistryObject<Item> DAMSON_CRYSTAL_BOOTS = ITEMS.register("damson_crystal_boots", ()-> new ArmorItem(BHTPvZArmorMaterials.DAMSON_CRYSTAL, EquipmentSlot.FEET, new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合晶靴子
-
     // 刷怪蛋
     public static final RegistryObject<BHTPvZSpawnEggItem> EDGAR_090547_SPAWN_EGG = registerSpawnEgg("edgar_090547_spawn_egg", BHTPvZEntityTypes.EDGAR_090547, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ)); // 埃德加-090547刷怪蛋
     public static final RegistryObject<BHTPvZSpawnEggItem> FLOWER_POT_ZOMBIE_SPAWN_EGG = registerSpawnEgg("flower_pot_zombie_spawn_egg", BHTPvZEntityTypes.FLOWER_POT_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ)); // 花盆僵尸刷怪蛋
@@ -67,8 +68,9 @@ public class BHTPvZItems {
     public static final RegistryObject<BHTPvZSpawnEggItem> MC_ZOMBIE_SPAWN_EGG = registerSpawnEgg("mc_zombie_spawn_egg", BHTPvZEntityTypes.MC_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ)); // MC僵尸刷怪蛋
     public static final RegistryObject<BHTPvZSpawnEggItem> STEEL_PUMPKIN_ZOMBIE_SPAWN_EGG = registerSpawnEgg("steel_pumpkin_zombie_spawn_egg", BHTPvZEntityTypes.STEEL_PUMPKIN_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ)); // 钢南瓜僵尸刷怪蛋
     public static final RegistryObject<BHTPvZSpawnEggItem> TARGET_ARROW_ZOMBIE_SPAWN_EGG = registerSpawnEgg("target_arrow_zombie_spawn_egg", BHTPvZEntityTypes.TARGET_ARROW_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ)); // 箭靶僵尸刷怪蛋
-    public static final RegistryObject<BHTPvZSpawnEggItem> RED_EDGE_ZOMBIE_SPAWN_EGG = registerSpawnEgg("red_edge_zombie_spawn_egg", BHTPvZEntityTypes.RED_EDGE_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ)); // 箭靶僵尸刷怪蛋
-
+    public static final RegistryObject<BHTPvZSpawnEggItem> RED_EDGE_ZOMBIE_SPAWN_EGG = registerSpawnEgg("red_edge_zombie_spawn_egg", BHTPvZEntityTypes.RED_EDGE_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ)); // 红刀僵尸刷怪蛋
+    public static final RegistryObject<BHTPvZSpawnEggItem> MJ_ZOMBIE_SPAWN_EGG = registerSpawnEgg("mj_zombie_spawn_egg", BHTPvZEntityTypes.MJ_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ)); // 舞王僵尸刷怪蛋
+    public static final RegistryObject<BHTPvZSpawnEggItem> DANCER_BACKUP_ZOMBIE_SPAWN_EGG = registerSpawnEgg("dancer_backup_zombie_spawn_egg", BHTPvZEntityTypes.DANCER_BACKUP_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ)); // 伴舞舞僵尸刷怪蛋
 
     // 戴夫生成工具
     public static final RegistryObject<Item> DAVE_TOKEN = ITEMS.register("dave_token", () -> new DaveToken(new Item.Properties().tab(BHTPvZ.BHTPVZ).stacksTo(1))); // 戴夫标志
@@ -85,6 +87,10 @@ public class BHTPvZItems {
     public static final RegistryObject<PlantCardItem> NUT_BOWLING_ENJOY_CARD = registerCard(BHTPvZPlants.NUT_BOWLING, true); // 坚果体验卡
     public static final RegistryObject<PlantCardItem> WATER_POT_CARD = registerCard(BHTPvZPlants.WATER_POT, false); // 水盆卡
     public static final RegistryObject<PlantCardItem> WATER_POT_ENJOY_CARD = registerCard(BHTPvZPlants.WATER_POT, true); // 水盆体验卡
+    public static final RegistryObject<PlantCardItem> CHORUS_FRUIT_PULT_CARD = registerCard(BHTPvZPlants.CHORUS_FRUIT_PULT, false); // 紫颂果投手卡
+    public static final RegistryObject<PlantCardItem> CHORUS_FRUIT_PULT_ENJOY_CARD = registerCard(BHTPvZPlants.CHORUS_FRUIT_PULT, true); // 紫颂果投手体验卡
+    public static final RegistryObject<PlantCardItem> ROTATE_RADISH_CARD = registerCard(BHTPvZPlants.ROTATE_RADISH, false); // 转转萝卜卡
+    public static final RegistryObject<PlantCardItem> ROTATE_RADISH_ENJOY_CARD = registerCard(BHTPvZPlants.ROTATE_RADISH, true); // 转转萝卜体验卡
 
     // 方块物品
     public static final RegistryObject<Item> CHERRY_TREE_LEAVES = ITEMS.register("cherry_leaves", ()-> new BlockItem(BHTPvZBlocks.CHERRY_LEAVES.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 樱桃树树叶
@@ -102,7 +108,9 @@ public class BHTPvZItems {
     public static final RegistryObject<Item> MORION_BLOCK = ITEMS.register("morion_block", ()-> new BlockItem(BHTPvZBlocks.MORION_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 黑晶块
     public static final RegistryObject<Item> DAMSON_CRYSTAL_BLOCK = ITEMS.register("damson_crystal_block", ()-> new BlockItem(BHTPvZBlocks.DAMSON_CRYSTAL_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合晶块
     public static final RegistryObject<Item> DECOMPOSITION_STAGE = ITEMS.register("decomposition_stage", ()-> new BlockItem(BHTPvZBlocks.DECOMPOSITION_STAGE.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 分解台
-    public static final RegistryObject<BlockItem> STEEL_PUMPKIN = ITEMS.register("steel_pumpkin",() -> new BlockItem(BHTPvZBlocks.STEEL_PUMPKIN.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));  //  钢南瓜
+    public static final RegistryObject<Item> STEEL_PUMPKIN = ITEMS.register("steel_pumpkin",() -> new BlockItem(BHTPvZBlocks.STEEL_PUMPKIN.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));  //  钢南瓜
+    public static final RegistryObject<Item> WISDOM_LOG = ITEMS.register("wisdom_log",() -> new BlockItem(BHTPvZBlocks.WISDOM_LOG.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));  //  智慧原木
+    public static final RegistryObject<BlockItem> SCREEN_DOOR = ITEMS.register("screen_door",() -> new BlockItem(BHTPvZBlocks.SCREEN_DOOR.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));  // 铁网门
 
 
     // 刷怪蛋注册方法

@@ -41,6 +41,9 @@ dependencies {
     forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
 
     modImplementation "curse.maven:pvz-${project.pvz_id}:${project.pvz_file_id}"
+    modRuntimeOnly("curse.maven:suggestionproviderfix-469647:3271407")//指令补全
+    modCompileOnly("curse.maven:dynamictrees-252818:4457951")//动态的树
+
 }
 
 processResources {

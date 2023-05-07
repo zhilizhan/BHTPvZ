@@ -28,6 +28,10 @@ public final class BHTPvZZombies extends ZombieType {
 
 	public static final ZombieType RED_EDGE_ZOMBIE = new BHTPvZZombies("red_edge_zombie", new ZombieFeatures().rank(RankTypes.RED).xp(74).entityType(BHTPvZEntityTypes.RED_EDGE_ZOMBIE::get).zombieModel(() -> RedEdgeZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
 
+	public static final ZombieType MJ_ZOMBIE = new BHTPvZZombies("mj_zombie", new ZombieFeatures().rank(RankTypes.RED).xp(80).entityType(BHTPvZEntityTypes.MJ_ZOMBIE::get).zombieModel(() -> MJZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
+
+	public static final ZombieType DANCER_BACKUP_ZOMBIE = new BHTPvZZombies("dancer_backup_zombie", new ZombieFeatures().rank(RankTypes.WHITE).xp(8).entityType(BHTPvZEntityTypes.DANCER_BACKUP_ZOMBIE::get).zombieModel(() -> DancerBackupModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
+
 	public static void register() {
 		registerZombies(LIST);
 	}

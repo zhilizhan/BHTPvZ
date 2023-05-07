@@ -1,5 +1,7 @@
 package com.zhilizhan.bhtpvz.client.model.entity.plant.defence;
 
+import com.hungteen.pvz.client.model.entity.ComponentModel;
+import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.defence.SteelPumpkinEntity;
 
 import com.hungteen.pvz.client.model.entity.plant.PVZPlantModel;
@@ -44,5 +46,24 @@ public class SteelPumpkinModel extends PVZPlantModel<SteelPumpkinEntity> {
 	@Override
 	public ModelPart getPlantWholeBody() {
 		return this.total;
+	}
+	public static class SteelPumpkinArmorModel<T extends PVZPlantEntity> extends ComponentModel<T> {
+		private final ModelPart total;
+
+		public SteelPumpkinArmorModel() {
+			texWidth = 128;
+			texHeight = 128;
+
+			total = new ModelPart(this);
+			total.setPos(0.0f, 24.0f, 0.0f);
+			setRotationAngle(total, 0.0f, 1.5708f, 0.0f);
+			total.texOffs(0, 0).addBox(-8.5f, -10.0f, -8.5f, 17.0f, 10.0f, 17.0f, 0.0f, false);
+			total.texOffs(2, 27).addBox(8.0f, -6.0f, -8.5f, 1.0f, 6.0f, 17.0f, 0.0f, false);
+			total.texOffs(0, 86).addBox(-8.75f, -26.0f, -8.0f, 1.0f, 26.0f, 16.0f, 0.0f, false);
+			total.texOffs(34, 97).addBox(-8.75f, -15.0f, -8.0f, 1.0f, 15.0f, 16.0f, 0.1f, false);}
+
+		public ModelPart getTotalModel() {
+			return this.total;
+		}
 	}
 }

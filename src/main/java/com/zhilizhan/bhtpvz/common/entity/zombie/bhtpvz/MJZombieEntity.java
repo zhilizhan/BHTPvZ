@@ -1,0 +1,292 @@
+package com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz;
+
+import com.hungteen.pvz.common.entity.zombie.PVZZombieEntity;
+import com.hungteen.pvz.common.impl.zombie.ZombieType;
+import com.hungteen.pvz.utils.EntityUtil;
+import com.hungteen.pvz.utils.MathUtil;
+import com.hungteen.pvz.utils.WorldUtil;
+import com.hungteen.pvz.utils.ZombieUtil;
+import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
+import com.zhilizhan.bhtpvz.common.impl.zombie.BHTPvZZombies;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.level.Level;
+
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Optional;
+
+public class MJZombieEntity extends PVZZombieEntity {
+    private static final EntityDataAccessor<Integer> SUMMON_TIME;
+    public static final int MAX_DANCER_NUM = 4;
+    private static final float[][] POS_OFFSET;
+    public static final int SUMMON_CD = 10;
+    public static final int DANCE_CD = 100;
+    private static final int MIN_REST_CD = 60;
+    private static final int MAX_REST_CD = 300;
+    private final List<Optional<DancerBackupEntity>> Dancers = new ArrayList<>(4);
+    private int summonCnt = 0;
+    private int restTick = 0;
+
+    public MJZombieEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
+        super(type, worldIn);
+        this.canCollideWithZombie = false;
+        this.setRestTick();
+
+        for (int i = 0; i < 4; ++i) {
+            this.Dancers.add(Optional.empty());
+        }
+
+        this.clearDancers();
+    }
+
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(SUMMON_TIME, 0);
+    }
+
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(0, new MJZombieEntity.ZombieDanceGoal(this));
+        this.goalSelector.addGoal(0, new MJZombieEntity.SummonDancerGoal(this));
+    }
+
+    public void tickDance() {
+        for (int i = 0; i < 4; ++i) {
+            ((Optional) this.Dancers.get(i)).ifPresent((dancer) -> {
+            });
+        }
+
+    }
+
+    public void summonEmptyDancers() {
+        for (int i = 0; i < 4; ++i) {
+            if (!((Optional) this.Dancers.get(i)).isPresent() && this.summonCnt < this.getMaxSummonCnt()) {
+                DancerBackupEntity dancer = (DancerBackupEntity) ((EntityType) BHTPvZEntityTypes.DANCER_BACKUP_ZOMBIE.get()).create(this.level);
+                BlockPos pos = WorldUtil.getSuitableHeightPos(this.level, this.blockPosition().offset((double) POS_OFFSET[i][0], 0.0, (double) POS_OFFSET[i][1]));
+                dancer.setDancingOwner(this);
+                dancer.setZombieRising();
+                ZombieUtil.copySummonZombieData(this, dancer);
+                this.setDancer(i, dancer);
+                ++this.summonCnt;
+                EntityUtil.onEntitySpawn(this.level, dancer, pos);
+                this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 5, false, false));
+            }
+        }
+
+    }
+
+    protected void setRestTick() {
+        this.restTick = MathUtil.getRandomMinMax(this.random, 60, 300);
+    }
+
+    protected void updateSpeed() {
+        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.getAttackTime() > 0 ? 0.0 : (double) this.getWalkSpeed());
+    }
+
+    public float getWalkSpeed() {
+        return 0.19F;
+    }
+
+    protected boolean hasEmptyPlace() {
+        for (int i = 0; i < 4; ++i) {
+            if (!((Optional) this.Dancers.get(i)).isPresent()) {
+                return true;
+            }
+
+            if (!EntityUtil.isEntityValid((Entity) ((Optional) this.Dancers.get(i)).get())) {
+                this.Dancers.set(i, Optional.empty());
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void clearDancers() {
+        for (int i = 0; i < 4; ++i) {
+            this.Dancers.set(i, Optional.empty());
+        }
+
+    }
+
+    private void setDancer(int pos, Entity entity) {
+        if (EntityUtil.isEntityValid(entity) && entity instanceof DancerBackupEntity) {
+            this.Dancers.set(pos, Optional.ofNullable((DancerBackupEntity) entity));
+        }
+
+    }
+
+    public boolean isDancing() {
+        return this.getAttackTime() > 0;
+    }
+
+    public int getMaxSummonCnt() {
+        return 20;
+    }
+
+    public float getLife() {
+        return 50.0F;
+    }
+
+    public int getArmorToughness() {
+        return 10;
+    }
+
+    public void readAdditionalSaveData(CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        if (compound.contains("zombie_summon_tick")) {
+            this.setSummonTime(compound.getInt("zombie_summon_tick"));
+        }
+
+        if (compound.contains("zombie_rest_tick")) {
+            this.restTick = compound.getInt("zombie_rest_tick");
+        }
+
+        if (compound.contains("dancer_ids")) {
+            CompoundTag nbt = compound.getCompound("dancer_ids");
+
+            for (int i = 0; i < 4; ++i) {
+                if (nbt.contains("dancer_" + i)) {
+                    this.setDancer(i, this.level.getEntity(nbt.getInt("dancer_" + i)));
+                }
+            }
+        }
+
+    }
+
+    public void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putInt("zombie_summon_tick", this.getSummonTime());
+        compound.putInt("zombie_rest_tick", this.restTick);
+        CompoundTag nbt = new CompoundTag();
+
+        for (int i = 0; i < 4; ++i) {
+            if (((Optional) this.Dancers.get(i)).isPresent()) {
+                DancerBackupEntity dancer = (DancerBackupEntity) ((Optional) this.Dancers.get(i)).get();
+                if (EntityUtil.isEntityValid(dancer)) {
+                    nbt.putInt("dancer_" + i, dancer.getId());
+                }
+            }
+        }
+
+        compound.put("dancer_ids", nbt);
+    }
+
+    public int getSummonTime() {
+        return (Integer) this.entityData.get(SUMMON_TIME);
+    }
+
+    public void setSummonTime(int time) {
+        this.entityData.set(SUMMON_TIME, time);
+    }
+
+
+
+    static {
+        SUMMON_TIME = SynchedEntityData.defineId(MJZombieEntity.class, EntityDataSerializers.INT);
+        POS_OFFSET = new float[][]{{2.0F, 0.0F}, {-2.0F, 0.0F}, {0.0F, 2.0F}, {0.0F, -2.0F}};
+    }
+
+    static class SummonDancerGoal extends Goal {
+        private final MJZombieEntity dancer;
+
+        public SummonDancerGoal(MJZombieEntity dancer) {
+            this.dancer = dancer;
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+        public boolean canUse() {
+            if (this.dancer.summonCnt >= this.dancer.getMaxSummonCnt()) {
+                return false;
+            } else if (this.dancer.getSummonTime() > 0) {
+                return true;
+            } else if (this.dancer.restTick > 0 && this.dancer.hasEmptyPlace() && this.dancer.getRandom().nextFloat() < 0.05F) {
+                this.dancer.setSummonTime(10);
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public void start() {
+            this.dancer.updateSpeed();
+        }
+
+        public boolean canContinueToUse() {
+            return this.dancer.getSummonTime() > 0;
+        }
+
+        public void tick() {
+            int tick = this.dancer.getSummonTime();
+            if (tick == 5) {
+                this.dancer.summonEmptyDancers();
+            }
+
+            this.dancer.setSummonTime(Math.max(0, tick - 1));
+        }
+
+        public void stop() {
+            this.dancer.updateSpeed();
+        }
+    }
+
+    static class ZombieDanceGoal extends Goal {
+        private final MJZombieEntity dancer;
+
+        public ZombieDanceGoal(MJZombieEntity dancer) {
+            this.dancer = dancer;
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+        public boolean canUse() {
+            if (this.dancer.getAttackTime() > 0) {
+                return true;
+            } else if (this.dancer.restTick > 0) {
+                --this.dancer.restTick;
+                return false;
+            } else if (this.dancer.getRandom().nextFloat() < 0.05F) {
+                this.dancer.setAttackTime(100);
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public void start() {
+            this.dancer.updateSpeed();
+        }
+
+        public boolean canContinueToUse() {
+            return this.dancer.getAttackTime() > 0;
+        }
+
+        public void tick() {
+            int tick = this.dancer.getAttackTime();
+            if (tick == 1) {
+                this.dancer.setRestTick();
+            }
+
+            this.dancer.tickDance();
+            this.dancer.setAttackTime(Math.max(0, tick - 1));
+        }
+
+        public void stop() {
+            this.dancer.updateSpeed();
+        }
+    }
+    public ZombieType getZombieType() {
+        return BHTPvZZombies.MJ_ZOMBIE;
+    }
+}

@@ -5,17 +5,25 @@ import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.hungteen.pvz.common.entity.zombie.PVZZombieEntity;
 import com.hungteen.pvz.utils.StringUtil;
 import com.zhilizhan.bhtpvz.BHTPvZ;
+import com.zhilizhan.bhtpvz.client.render.entity.bullet.ChorusFruitRender;
 import com.zhilizhan.bhtpvz.client.render.entity.bullet.IceCabbageRender;
+import com.zhilizhan.bhtpvz.client.render.entity.bullet.PoppedChorusFruitRender;
+import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.ChorusFruitPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.assist.WaterPotRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.defence.SteelPumpkinRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.enforce.NutBowlingRender;
+import com.zhilizhan.bhtpvz.client.render.entity.plant.enforce.RotateRadishRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.fire.FirePeashooterRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.ice.IceCabbagePultRender;
-import com.zhilizhan.bhtpvz.client.render.entity.zombie.add.*;
+import com.zhilizhan.bhtpvz.client.render.entity.zombie.bhtpvz.*;
+import com.zhilizhan.bhtpvz.common.entity.bullet.ChorusFruitEntity;
+import com.zhilizhan.bhtpvz.common.entity.bullet.PoppedChorusFruitEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.IceCabbageEntity;
+import com.zhilizhan.bhtpvz.common.entity.plant.arma.ChorusFruitPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.assist.WaterPotEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.defence.SteelPumpkinEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.enforce.NutBowlingEntity;
+import com.zhilizhan.bhtpvz.common.entity.plant.enforce.RotateRadishEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.fire.FirePeashooterEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.ice.IceCabbagePultEntity;
 import com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz.*;
@@ -41,9 +49,16 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<FirePeashooterEntity>> FIRE_PEASHOOTER = registerPlantEntityType(FirePeashooterEntity::new, "fire_peashooter"); // 火焰豌豆
 	public static final RegistryObject<EntityType<NutBowlingEntity>> NUT_BOWLING = registerPlantEntityType(NutBowlingEntity::new, "nut_bowling"); // 保龄球坚果
 	public static final RegistryObject<EntityType<WaterPotEntity>> WATER_POT = registerPlantEntityType(WaterPotEntity::new, "water_pot"); // 水盆
+	public static final RegistryObject<EntityType<ChorusFruitPultEntity>> CHORUS_FRUIT_PULT = registerPlantEntityType(ChorusFruitPultEntity::new, "chorus_fruit_pult"); // 紫颂果投手
+
+	public static final RegistryObject<EntityType<RotateRadishEntity>> ROTATE_RADISH = registerPlantEntityType(RotateRadishEntity::new, "rotate_radish"); // 转转萝卜
 
 	// 子弹
 	public static final RegistryObject<EntityType<IceCabbageEntity>> ICE_CABBAGE = registerEntityType(IceCabbageEntity::new, "ice_cabbage", MobCategory.MISC); // 冰卷心菜子弹
+	public static final RegistryObject<EntityType<PoppedChorusFruitEntity>> POPPED_CHORUS_FRUIT = registerEntityType(PoppedChorusFruitEntity::new, "popped_chorus_fruit", MobCategory.MISC); // 爆裂紫颂果子弹
+	public static final RegistryObject<EntityType<ChorusFruitEntity>> CHORUS_FRUIT = registerEntityType(ChorusFruitEntity::new, "chorus_fruit", MobCategory.MISC); // 紫颂果子弹
+
+
 	// 僵尸
 	public static final RegistryObject<EntityType<Edgar090547Entity>> EDGAR_090547 = registerZombieEntityType(Edgar090547Entity::new, "edgar_090547"); // 埃德加-090547
 	public static final RegistryObject<EntityType<FlowerPotZombieEntity>> FLOWER_POT_ZOMBIE = registerZombieEntityType(FlowerPotZombieEntity::new, "flower_pot_zombie"); // 花盆僵尸
@@ -52,6 +67,8 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<SteelPumpkinZombieEntity>> STEEL_PUMPKIN_ZOMBIE = registerZombieEntityType(SteelPumpkinZombieEntity::new, "steel_pumpkin_zombie"); // 钢南瓜僵尸
 	public static final RegistryObject<EntityType<TargetArrowZombieEntity>> TARGET_ARROW_ZOMBIE = registerZombieEntityType(TargetArrowZombieEntity::new, "target_arrow_zombie"); // 箭靶僵尸
 	public static final RegistryObject<EntityType<RedEdgeZombieEntity>> RED_EDGE_ZOMBIE = registerZombieEntityType(RedEdgeZombieEntity::new, "red_edge_zombie"); // 红刀僵尸
+	public static final RegistryObject<EntityType<MJZombieEntity>> MJ_ZOMBIE = registerZombieEntityType(MJZombieEntity::new, "mj_zombie"); // 舞王僵尸
+	public static final RegistryObject<EntityType<DancerBackupEntity>> DANCER_BACKUP_ZOMBIE = registerZombieEntityType(DancerBackupEntity::new, "dancer_backup_zombie"); // 伴舞僵尸
 
 	// 普通生物
 
@@ -64,9 +81,14 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(FIRE_PEASHOOTER.get(), FirePeashooterRender::new); // 火焰豌豆
 		RenderingRegistry.registerEntityRenderingHandler(NUT_BOWLING.get(), NutBowlingRender::new); // 保龄球坚果
 		RenderingRegistry.registerEntityRenderingHandler(WATER_POT.get(), WaterPotRender::new); // 水盆
+		RenderingRegistry.registerEntityRenderingHandler(CHORUS_FRUIT_PULT.get(), ChorusFruitPultRender::new); // 紫颂果投手
+		RenderingRegistry.registerEntityRenderingHandler(ROTATE_RADISH.get(), RotateRadishRender::new); // 转转萝卜
 
 		// 子弹
 		RenderingRegistry.registerEntityRenderingHandler(ICE_CABBAGE.get(), IceCabbageRender::new); // 冰卷心菜子弹
+		RenderingRegistry.registerEntityRenderingHandler(POPPED_CHORUS_FRUIT.get(), PoppedChorusFruitRender::new); // 爆裂紫颂果子弹
+		RenderingRegistry.registerEntityRenderingHandler(CHORUS_FRUIT.get(), ChorusFruitRender::new); // 紫颂果子弹
+
 		// 僵尸
 		RenderingRegistry.registerEntityRenderingHandler(EDGAR_090547.get(), Edgar090547Render::new); // 埃德加-090547
 		RenderingRegistry.registerEntityRenderingHandler(FLOWER_POT_ZOMBIE.get(), FlowerPotZombieRender::new); // 花盆僵尸
@@ -75,6 +97,9 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(STEEL_PUMPKIN_ZOMBIE.get(), SteelPumpkinZombieRender::new); // 钢南瓜僵尸
 		RenderingRegistry.registerEntityRenderingHandler(TARGET_ARROW_ZOMBIE.get(), TargetArrowZombieRender::new); // 箭靶僵尸
 		RenderingRegistry.registerEntityRenderingHandler(RED_EDGE_ZOMBIE.get(), RedEdgeZombieRender::new); // 红刀僵尸
+		RenderingRegistry.registerEntityRenderingHandler(MJ_ZOMBIE.get(), MJZombieRender::new); // 舞王僵尸
+		RenderingRegistry.registerEntityRenderingHandler(DANCER_BACKUP_ZOMBIE.get(), DancerBackupRender::new); // 伴舞僵尸
+
 		// 普通生物
 	}
 

@@ -53,7 +53,7 @@ public class Edgar090547Entity extends GargantuarEntity {
      @Override
     protected void dropAllDeathLoot(DamageSource damageSourceIn) {
         Explosion.BlockInteraction mode = ForgeEventFactory.getMobGriefingEvent(this.level, this) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE;
-        this.level.explode(this, getX(), getY(), getZ(), 4.5f, Explosion.BlockInteraction.NONE);
+        this.level.explode(this, getX(), getY(), getZ(), 3.5f, Explosion.BlockInteraction.NONE);
         super.dropAllDeathLoot(damageSourceIn);
     }
 }

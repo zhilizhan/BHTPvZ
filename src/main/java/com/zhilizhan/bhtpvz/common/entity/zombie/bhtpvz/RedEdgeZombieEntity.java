@@ -1,7 +1,7 @@
 package com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz;
 
-import com.hungteen.pvz.api.types.IZombieType;
 import com.hungteen.pvz.common.entity.zombie.PVZZombieEntity;
+import com.hungteen.pvz.common.impl.zombie.ZombieType;
 import com.hungteen.pvz.utils.EffectUtil;
 import com.zhilizhan.bhtpvz.common.impl.zombie.BHTPvZZombies;
 import net.minecraft.world.effect.MobEffects;
@@ -39,9 +39,11 @@ public class RedEdgeZombieEntity extends PVZZombieEntity {
         }
     }
 
-
+    public int getArmorToughness() {
+        return 10;
+    }
     @Override
-    public IZombieType getZombieType() {
+    public ZombieType getZombieType() {
         return BHTPvZZombies.RED_EDGE_ZOMBIE;
     }
 

@@ -1,0 +1,7 @@
+{
+  "common_leaves": "bhtpvz:dt_starfruit",
+  "common_species": "bhtpvz:dt_starfruit",
+  "primitive_log": "minecraft:oak_log",
+  "primitive_stripped_log": "minecraft:oak_log",
+  "max_branch_radius": 8
+}

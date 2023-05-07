@@ -1,41 +1,36 @@
 package com.zhilizhan.bhtpvz.common.entity.plant.defence;
 
 
-import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-
+import com.hungteen.pvz.api.paz.IPlantEntity;
 import com.hungteen.pvz.api.types.IPlantType;
-
 import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
+import com.hungteen.pvz.common.entity.plant.PlantInfo;
 import com.hungteen.pvz.common.entity.plant.base.PlantDefenderEntity;
 import com.hungteen.pvz.common.misc.sound.SoundRegister;
+import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
-public class SteelPumpkinEntity extends PlantDefenderEntity {
+public class SteelPumpkinEntity extends PlantDefenderEntity{
 	private static final EntityDataAccessor<Boolean> IS_SOLID = SynchedEntityData.defineId(SteelPumpkinEntity.class, EntityDataSerializers.BOOLEAN);
 
 	public SteelPumpkinEntity(EntityType<? extends PathfinderMob> type, Level level) {
 		super(type, level);
 		this.canCollideWithPlant = false;
 	}
-
 	@Override
 	public float getLife() {
 		return 500;
@@ -144,4 +139,34 @@ public class SteelPumpkinEntity extends PlantDefenderEntity {
 	public boolean isSolid() {
 		return this.entityData.get(IS_SOLID);
 	}
+	public PVZPlantEntity plantEntity;
+
+
+
+
+	public static class SteelPumpkinInfo extends PlantInfo  {
+			private static final float NORMAL_PUMPKIN_LIFE = 400.0F;
+			private static final float SUPER_PUMPKIN_LIFE = 800.0F;
+
+			public SteelPumpkinInfo() {
+			}
+
+			public void onSuper(IPlantEntity plantEntity) {
+				super.onSuper(plantEntity);
+				plantEntity.setPumpkin(true);
+				plantEntity.setOuterDefenceLife(1200.0);
+			}
+
+			public void placeOn(IPlantEntity plantEntity, int sunCost) {
+				super.placeOn(plantEntity, sunCost);
+				plantEntity.setPumpkin(true);
+				plantEntity.setOuterDefenceLife(900.0);
+			}
+
+			public void onHeal(IPlantEntity plantEntity, float percent) {
+				float max = plantEntity.getOuterDefenceLife() > 900 ? 1200F : 900F;
+				plantEntity.setOuterDefenceLife(Mth.clamp(plantEntity.getOuterDefenceLife() * (double)(1.0F + percent), 0.0, (double)max));
+			}
+		}
+
 }

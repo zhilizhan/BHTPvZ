@@ -3,22 +3,13 @@ package com.zhilizhan.bhtpvz.common.block;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.common.block.grower.CherryTreeGrower;
 import com.zhilizhan.bhtpvz.common.block.grower.StarfruitTreeGrower;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.MelonBlock;
-import net.minecraft.world.level.block.MushroomBlock;
-import net.minecraft.world.level.block.OreBlock;
-import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -45,8 +36,13 @@ public class BHTPvZBlocks {
     public static final RegistryObject<Block> GARLIC = BLOCKS.register("garlic", ()-> new GarlicBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP))); // 大蒜作物
     public static final RegistryObject<Block> DECOMPOSITION_STAGE = BLOCKS.register("decomposition_stage", ()-> new Block(BlockBehaviour.Properties.of(Material.STONE).harvestLevel(2).strength(2.0f, 6.0f).sound(SoundType.STONE))); // 分解台
     public static final RegistryObject<Block> STEEL_PUMPKIN  = BLOCKS.register("steel_pumpkin", () -> new SteelPumpkinBlock((BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.METAL).harvestTool(ToolType.PICKAXE).harvestLevel(2).strength(15.0f, 15.0f).sound(SoundType.METAL).requiresCorrectToolForDrops()))); // 钢南瓜
+    public static final RegistryObject<Block> WISDOM_LOG  = BLOCKS.register("wisdom_log", () -> new WisdomLog((BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.PLANT).harvestTool(ToolType.AXE).harvestLevel(2).strength(15.0f, 15.0f).sound(SoundType.METAL).requiresCorrectToolForDrops()))); // 智慧原木
+
+    public static final RegistryObject<DoorBlock> SCREEN_DOOR  = BLOCKS.register("screen_door", () -> new ScreenDoorBlock((BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(25.0f, 25.0f).sound(SoundType.METAL).requiresCorrectToolForDrops()))); //铁网门
 
     private static Boolean always(BlockState state, BlockGetter blockGetter, BlockPos pos) {
         return true;
     }
+
+
 }
