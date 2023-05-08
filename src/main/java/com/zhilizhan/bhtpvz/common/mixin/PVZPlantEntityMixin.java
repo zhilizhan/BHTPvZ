@@ -54,7 +54,7 @@ public abstract  class PVZPlantEntityMixin extends AbstractPAZEntity implements 
     }
    @Overwrite
     public boolean canBeTargetBy(LivingEntity living) {
-        return !(this.getOuterDefenceLife() > 800.0)||this.hasMetal();
+        return !(this.getOuterDefenceLife() > 800.0) && !this.hasMetal();
     }
 
 

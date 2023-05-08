@@ -31,6 +31,7 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 		super(type, level);
 		this.canCollideWithPlant = false;
 	}
+
 	@Override
 	public float getLife() {
 		return 500;

@@ -9,6 +9,7 @@ import com.hungteen.pvz.common.impl.RankTypes;
 import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.common.impl.plant.PlantType;
 import com.zhilizhan.bhtpvz.BHTPvZ;
+import com.zhilizhan.bhtpvz.client.model.entity.plant.arma.BurstKernelPultModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.arma.ChorusFruitPultModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.defence.SteelPumpkinModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.enforce.RotateRadishModel;
@@ -40,9 +41,11 @@ public final class BHTPvZPlants extends PlantType {
     //水盆
     public static final IPlantType WATER_POT = new BHTPvZPlants("water_pot", new PlantFeatures().cost(25).requiredLevel(9).cd(CoolDowns.HUGE_FAST).rank(RankTypes.GREEN).essence(EssenceTypes.ASSIST).summonCard(BHTPvZItems.WATER_POT_CARD).enjoyCard(BHTPvZItems.WATER_POT_ENJOY_CARD).entityType(BHTPvZEntityTypes.WATER_POT::get).plantBlock(BHTPvZBlocks.WATER_POT::get));
     //紫颂果
-    public static final IPlantType CHORUS_FRUIT_PULT = new BHTPvZPlants("chorus_fruit_pult", new PlantFeatures().cost(175).requiredLevel(17).cd(CoolDowns.VERY_FAST).rank(RankTypes.PURPLE).essence(EssenceTypes.ARMA).entityType(BHTPvZEntityTypes.CHORUS_FRUIT_PULT::get).summonCard(BHTPvZItems.CHORUS_FRUIT_PULT_CARD).enjoyCard(BHTPvZItems.CHORUS_FRUIT_PULT_ENJOY_CARD).plantModel(() -> ChorusFruitPultModel::new).scale(0.95f).commonSkill(Collections.singletonList(SkillTypes.MORE_CABBAGE_DAMAGE)));
+    public static final IPlantType CHORUS_FRUIT_PULT = new BHTPvZPlants("chorus_fruit_pult", new PlantFeatures().cost(175).requiredLevel(17).cd(CoolDowns.VERY_FAST).rank(RankTypes.PURPLE).essence(EssenceTypes.ARMA).entityType(BHTPvZEntityTypes.CHORUS_FRUIT_PULT::get).summonCard(BHTPvZItems.CHORUS_FRUIT_PULT_CARD).enjoyCard(BHTPvZItems.CHORUS_FRUIT_PULT_ENJOY_CARD).plantModel(() -> ChorusFruitPultModel::new).scale(0.95f).commonSkill(Collections.singletonList(SkillTypes.MORE_KERNEL_DAMAGE)));
     //转转萝卜
     public static final IPlantType ROTATE_RADISH = new BHTPvZPlants("rotate_radish", new PlantFeatures().cost(150).requiredLevel(15).cd(CoolDowns.FAST).rank(RankTypes.GREEN).essence(EssenceTypes.ENFORCE).entityType(BHTPvZEntityTypes.ROTATE_RADISH::get).summonCard(BHTPvZItems.ROTATE_RADISH_CARD).enjoyCard(BHTPvZItems.ROTATE_RADISH_ENJOY_CARD).plantModel(() -> RotateRadishModel::new).scale(0.95f).commonSkill(Collections.singletonList(SkillTypes.MORE_SWING_DAMAGE)));
+    //爆裂玉米投手
+    public static final IPlantType BURST_KERNEL_PULT = new BHTPvZPlants("burst_kernel_pult", new PlantFeatures().cost(125).requiredLevel(15).cd(CoolDowns.VERY_FAST).rank(RankTypes.GREEN).essence(EssenceTypes.ARMA).entityType(BHTPvZEntityTypes.BURST_KERNEL_PULT::get).summonCard(BHTPvZItems.BURST_KERNEL_PULT_CARD).enjoyCard(BHTPvZItems.BURST_KERNEL_PULT_ENJOY_CARD).plantModel(() -> BurstKernelPultModel::new).scale(0.95f).commonSkill(Collections.singletonList(SkillTypes.MORE_KERNEL_DAMAGE)));
 
     public static void register() {
         PVZAPI.get().registerPlantTypes(LIST);

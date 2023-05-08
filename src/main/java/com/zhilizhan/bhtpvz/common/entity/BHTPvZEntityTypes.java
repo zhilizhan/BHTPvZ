@@ -5,9 +5,8 @@ import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.hungteen.pvz.common.entity.zombie.PVZZombieEntity;
 import com.hungteen.pvz.utils.StringUtil;
 import com.zhilizhan.bhtpvz.BHTPvZ;
-import com.zhilizhan.bhtpvz.client.render.entity.bullet.ChorusFruitRender;
-import com.zhilizhan.bhtpvz.client.render.entity.bullet.IceCabbageRender;
-import com.zhilizhan.bhtpvz.client.render.entity.bullet.PoppedChorusFruitRender;
+import com.zhilizhan.bhtpvz.client.render.entity.bullet.*;
+import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.BurstKernelPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.ChorusFruitPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.assist.WaterPotRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.defence.SteelPumpkinRender;
@@ -16,9 +15,13 @@ import com.zhilizhan.bhtpvz.client.render.entity.plant.enforce.RotateRadishRende
 import com.zhilizhan.bhtpvz.client.render.entity.plant.fire.FirePeashooterRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.ice.IceCabbagePultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.zombie.bhtpvz.*;
+import com.zhilizhan.bhtpvz.common.entity.bullet.BurstCornEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.ChorusFruitEntity;
+import com.zhilizhan.bhtpvz.common.entity.bullet.CornEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.PoppedChorusFruitEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.IceCabbageEntity;
+import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.PopCornEntity;
+import com.zhilizhan.bhtpvz.common.entity.plant.arma.BurstKernelPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.ChorusFruitPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.assist.WaterPotEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.defence.SteelPumpkinEntity;
@@ -50,13 +53,16 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<NutBowlingEntity>> NUT_BOWLING = registerPlantEntityType(NutBowlingEntity::new, "nut_bowling"); // 保龄球坚果
 	public static final RegistryObject<EntityType<WaterPotEntity>> WATER_POT = registerPlantEntityType(WaterPotEntity::new, "water_pot"); // 水盆
 	public static final RegistryObject<EntityType<ChorusFruitPultEntity>> CHORUS_FRUIT_PULT = registerPlantEntityType(ChorusFruitPultEntity::new, "chorus_fruit_pult"); // 紫颂果投手
-
 	public static final RegistryObject<EntityType<RotateRadishEntity>> ROTATE_RADISH = registerPlantEntityType(RotateRadishEntity::new, "rotate_radish"); // 转转萝卜
+	public static final RegistryObject<EntityType<BurstKernelPultEntity>> BURST_KERNEL_PULT = registerPlantEntityType(BurstKernelPultEntity::new, "burst_kernel_pult"); // 爆裂玉米投手
 
 	// 子弹
 	public static final RegistryObject<EntityType<IceCabbageEntity>> ICE_CABBAGE = registerEntityType(IceCabbageEntity::new, "ice_cabbage", MobCategory.MISC); // 冰卷心菜子弹
 	public static final RegistryObject<EntityType<PoppedChorusFruitEntity>> POPPED_CHORUS_FRUIT = registerEntityType(PoppedChorusFruitEntity::new, "popped_chorus_fruit", MobCategory.MISC); // 爆裂紫颂果子弹
 	public static final RegistryObject<EntityType<ChorusFruitEntity>> CHORUS_FRUIT = registerEntityType(ChorusFruitEntity::new, "chorus_fruit", MobCategory.MISC); // 紫颂果子弹
+	public static final RegistryObject<EntityType<CornEntity>> CORN = registerEntityType(CornEntity::new, "corn", MobCategory.MISC); // 玉米子弹
+	public static final RegistryObject<EntityType<BurstCornEntity>> BURST_CORN = registerEntityType(BurstCornEntity::new, "burst_corn", MobCategory.MISC); // 炸裂玉米子弹
+	public static final RegistryObject<EntityType<PopCornEntity>> POP_CORN = registerEntityType(PopCornEntity::new, "pop_corn", MobCategory.MISC); // 爆米花子弹
 
 
 	// 僵尸
@@ -83,11 +89,15 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(WATER_POT.get(), WaterPotRender::new); // 水盆
 		RenderingRegistry.registerEntityRenderingHandler(CHORUS_FRUIT_PULT.get(), ChorusFruitPultRender::new); // 紫颂果投手
 		RenderingRegistry.registerEntityRenderingHandler(ROTATE_RADISH.get(), RotateRadishRender::new); // 转转萝卜
+		RenderingRegistry.registerEntityRenderingHandler(BURST_KERNEL_PULT.get(), BurstKernelPultRender::new); // 爆裂玉米投手
 
 		// 子弹
 		RenderingRegistry.registerEntityRenderingHandler(ICE_CABBAGE.get(), IceCabbageRender::new); // 冰卷心菜子弹
 		RenderingRegistry.registerEntityRenderingHandler(POPPED_CHORUS_FRUIT.get(), PoppedChorusFruitRender::new); // 爆裂紫颂果子弹
 		RenderingRegistry.registerEntityRenderingHandler(CHORUS_FRUIT.get(), ChorusFruitRender::new); // 紫颂果子弹
+		RenderingRegistry.registerEntityRenderingHandler(CORN.get(), CornRender::new); // 玉米子弹
+		RenderingRegistry.registerEntityRenderingHandler(BURST_CORN.get(), BurstCornRender::new); // 爆裂玉米子弹
+		RenderingRegistry.registerEntityRenderingHandler(POP_CORN.get(), PopCornRender::new); // 爆米花子弹
 
 		// 僵尸
 		RenderingRegistry.registerEntityRenderingHandler(EDGAR_090547.get(), Edgar090547Render::new); // 埃德加-090547

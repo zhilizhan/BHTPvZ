@@ -2,10 +2,8 @@ package com.zhilizhan.bhtpvz.common.entity.plant.arma;
 
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.entity.bullet.PultBulletEntity;
-import com.hungteen.pvz.common.entity.plant.arma.KernelPultEntity;
 import com.hungteen.pvz.common.entity.plant.base.PlantPultEntity;
 import com.hungteen.pvz.common.impl.SkillTypes;
-import com.hungteen.pvz.common.impl.plant.PVZPlants;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.entity.bullet.ChorusFruitEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.PoppedChorusFruitEntity;
@@ -32,7 +30,7 @@ public class ChorusFruitPultEntity extends PlantPultEntity {
 
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(CURRENT_BULLET, KernelPultEntity.CornTypes.KERNEL.ordinal());
+        this.entityData.define(CURRENT_BULLET, ChorusFruitTypes.POPPED.ordinal());
     }
 
 
@@ -41,7 +39,7 @@ public class ChorusFruitPultEntity extends PlantPultEntity {
     private ChorusFruitPultEntity getNearByPult(Player player) {
         float range = 1.5F;
         List<ChorusFruitPultEntity> list = this.level.getEntitiesOfClass(ChorusFruitPultEntity.class, EntityUtil.getEntityAABB(this, 1.5, 1.5), (pult) -> {
-            return !pult.is(this) && pult.getPlantType() == PVZPlants.KERNEL_PULT && !EntityUtil.canAttackEntity(pult, player);
+            return !pult.is(this) && pult.getPlantType() == BHTPvZPlants.CHORUS_FRUIT_PULT && !EntityUtil.canAttackEntity(pult, player);
         });
         return list.size() == 0 ? null : (ChorusFruitPultEntity)list.get(0);
     }
