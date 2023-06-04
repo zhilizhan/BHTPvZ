@@ -5,9 +5,6 @@ import com.hungteen.pvz.common.impl.zombie.ZombieType;
 import com.zhilizhan.bhtpvz.common.impl.zombie.BHTPvZZombies;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 
 public class MCZombieEntity extends NormalZombieEntity {
@@ -29,7 +26,7 @@ public class MCZombieEntity extends NormalZombieEntity {
     public ZombieType getZombieType() {
         return BHTPvZZombies.MC_ZOMBIE;
     }
-    public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.ARMOR, 2.0);
+    public int getArmorToughness() {
+        return 2;
     }
 }

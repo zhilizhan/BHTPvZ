@@ -2,7 +2,7 @@ package com.zhilizhan.bhtpvz.common.entity.plant.enforce;
 
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.advancement.trigger.EntityEffectAmountTrigger;
-import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
+import com.hungteen.pvz.common.entity.plant.base.PlantCloserEntity;
 import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
 import com.hungteen.pvz.common.misc.sound.SoundRegister;
 import com.hungteen.pvz.utils.EntityUtil;
@@ -32,7 +32,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class NutBowlingEntity extends PVZPlantEntity {
+public class NutBowlingEntity extends PlantCloserEntity {
 
 
     protected IntOpenHashSet hitEntities;
@@ -53,7 +53,10 @@ public class NutBowlingEntity extends PVZPlantEntity {
         this.pushthrough = 1.0F;
     }
 
+    @Override
+    public void performAttack(LivingEntity livingEntity) {
 
+    }
 
 
     public void tick() {
@@ -63,9 +66,11 @@ public class NutBowlingEntity extends PVZPlantEntity {
                 EntityUtil.playSound(this, SoundRegister.BOWLING.get());
                 this.playSpawnSound = true;
                 this.ownerPlayer = this.level.getPlayerByUUID((UUID)this.getOwnerUUID().get());
+                if(this.ownerPlayer!=null){
                 Direction direction = ownerPlayer.getDirection();
                 this.setDirection(direction);
                 this.yRot = direction.toYRot();
+            }
             }
 
             if (this.tickCount >= this.getMaxLiveTick()) {
@@ -78,8 +83,7 @@ public class NutBowlingEntity extends PVZPlantEntity {
         double angle = (double)this.yRot * Math.PI / 180.0;
         double dx = -Math.sin(angle);
         double dz = Math.cos(angle);
-        double speed = this.getBowlingSpeed();
-        this.setDeltaMovement(dx * speed, this.getDeltaMovement().y(), dz * speed);
+        this.setDeltaMovement(dx , this.getDeltaMovement().y, dz );
         this.tickRayTrace();
         this.tickMove();
         this.tickCollision();
@@ -114,15 +118,15 @@ public class NutBowlingEntity extends PVZPlantEntity {
                 this.level.addParticle(ParticleTypes.BUBBLE, d0 - vec3d.x * 0.25, d1 - vec3d.y * 0.25, d2 - vec3d.z * 0.25, vec3d.x, vec3d.y, vec3d.z);
             }
 
-            f1 = 0.8F;
+            f1 = 0.4F;
         } else {
-            f1 = 1.0F;
+            f1 = 0.6F;
         }
 
         this.setDeltaMovement(vec3d.scale((double)f1));
         if (!this.isNoGravity()) {
             Vec3 vec3d1 = this.getDeltaMovement();
-            this.setDeltaMovement(vec3d1.x, vec3d1.y - 0.05f, vec3d1.z);
+            this.setDeltaMovement(vec3d1.x, vec3d1.y, vec3d1.z);
         }
 
         this.move(MoverType.SELF, this.getDeltaMovement());
@@ -154,6 +158,7 @@ public class NutBowlingEntity extends PVZPlantEntity {
         if (player != null && player instanceof ServerPlayer) {
             EntityEffectAmountTrigger.INSTANCE.trigger((ServerPlayer)player, this, this.hitCount);
         }
+
 
     }
     private void tickRayTrace() {
@@ -188,7 +193,7 @@ public class NutBowlingEntity extends PVZPlantEntity {
             this.setBowlingFacing(NutBowlingEntity.BowlingFacings.LEFT);
         }
 
-        this.bowlingTick = 10;
+        this.bowlingTick = 15;
     }
 
 
@@ -198,11 +203,6 @@ public class NutBowlingEntity extends PVZPlantEntity {
         this.setDirection(direction);
         this.yRot = direction.toYRot();
     }
-
-    public double getBowlingSpeed() {
-        return 0.36;
-    }
-
     protected void addHitEntity(Entity entity) {
         this.hitEntities.addAll(EntityUtil.getOwnerAndPartsID(entity));
     }
@@ -224,7 +224,7 @@ public class NutBowlingEntity extends PVZPlantEntity {
 
 
     protected int getMaxLiveTick() {
-        return 600;
+        return 400;
     }
 
 

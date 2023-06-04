@@ -37,13 +37,13 @@ public class PopCornEntity extends PultBulletEntity implements ItemSupplier {
         float range = 2.5F;
         EntityUtil.getTargetableEntities(this.getOwnerOrSelf(), EntityUtil.getEntityAABB(this, range, range)).forEach((entity) -> {
             if (!entity.is(this.attackEntity) && this.shouldHit(entity)) {
-                PVZEntityDamageSource source;
-
-                source = BHTPvZEntityDamageSource.popCorn(this, this.getThrower());
-                entity.hurt(source, this.getAttackDamage() / 3.0F);
+                PVZEntityDamageSource source = BHTPvZEntityDamageSource.popCorn(this, this.getThrower());
+                entity.hurt(source, this.getAttackDamage() / 2.0F);
 
             }
-
+            for(int i = 0; i < 10; ++i) {
+                EntityUtil.spawnParticle(this,9);
+            }
 
             EntityUtil.playSound(this, (SoundEvent) SoundRegister.SWING.get());
         });

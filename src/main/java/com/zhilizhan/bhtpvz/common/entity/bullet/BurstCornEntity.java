@@ -1,12 +1,15 @@
 package com.zhilizhan.bhtpvz.common.entity.bullet;
 
 import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
+import com.hungteen.pvz.common.potion.EffectRegister;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.BurstKernelPultEntity;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
 
@@ -14,7 +17,7 @@ import java.util.Random;
 
 public class BurstCornEntity extends CornEntity {
 
-    private Random random;
+    protected Random random;
     private Entity attackEntity = null;
 
     public BurstCornEntity(EntityType<?> type, Level worldIn) {
@@ -44,15 +47,16 @@ public class BurstCornEntity extends CornEntity {
         float range = 3.0F;
         EntityUtil.getTargetableEntities(this.getOwnerOrSelf(), EntityUtil.getEntityAABB(this, range, range)).forEach((entity) -> {
             if (!entity.is(this.attackEntity) && this.shouldHit(entity)) {
-                PVZEntityDamageSource source;
-                  source = BHTPvZEntityDamageSource.burst_corn(this, this.getThrower());
-                   entity.setSecondsOnFire(3);
-                    entity.hurt(source, this.getAttackDamage() / 1.5F);
+                PVZEntityDamageSource source = BHTPvZEntityDamageSource.burst_corn(this, this.getThrower());
+                source.addEffect(new MobEffectInstance((MobEffect) EffectRegister.BUTTER_EFFECT.get(), 60, 1, false, false));
+                    entity.setSecondsOnFire(3);
+
+                    entity.hurt(source, this.getAttackDamage());
             }
 
         });
         for(int i = 0; i < 10; ++i) {
-            EntityUtil.spawnParticle(this,1);
+            EntityUtil.spawnParticle(this,0);
         }
 
         EntityUtil.playSound(this, (SoundEvent) SoundEvents.GENERIC_EXPLODE);

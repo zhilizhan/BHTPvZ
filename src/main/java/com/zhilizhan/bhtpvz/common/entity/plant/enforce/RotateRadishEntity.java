@@ -3,7 +3,7 @@ package com.zhilizhan.bhtpvz.common.entity.plant.enforce;
 import com.hungteen.pvz.api.interfaces.IAlmanacEntry;
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.entity.ai.goal.target.PVZNearestTargetGoal;
-import com.hungteen.pvz.common.entity.plant.base.PlantCloserEntity;
+import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
 import com.hungteen.pvz.common.misc.sound.SoundRegister;
@@ -15,12 +15,14 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.level.Level;
 
 import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.List;
 
-public class RotateRadishEntity extends PlantCloserEntity {
+public class RotateRadishEntity extends PVZPlantEntity {
 
     public RotateRadishEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
         super(type, worldIn);
@@ -28,42 +30,29 @@ public class RotateRadishEntity extends PlantCloserEntity {
 
     protected void registerGoals() {
         super.registerGoals();
-       this.targetSelector.addGoal(0, new PVZNearestTargetGoal(this, false, false, 3.0F, 3.0F));
+        this.goalSelector.addGoal(0, new RotateRadishEntity.RotateAttackGoal(this));
+        this.targetSelector.addGoal(0, new PVZNearestTargetGoal(this, false, false, 3.0F, 3.0F));
+
     }
     @Override
     public float getLife() {
         return 80;
     }
 
-    public void focusOnTarget(LivingEntity target1) {
-        super.focusOnTarget(target1);
-        if (this.getAttackTime() == 1) {
-            float range = 2.0F;
-            EntityUtil.getTargetableEntities(this, EntityUtil.getEntityAABB(this, range, range)).forEach((target) -> {
-                target.setDeltaMovement(target.getDeltaMovement().add(0.0, 0.0, -2.0));
-            });
-            for(int i = 0; i < 3; ++i) {
-                EntityUtil.spawnParticle(this, 7);
-            }
 
-            EntityUtil.playSound(this, (SoundEvent)SoundRegister.SWING.get());
-        }
-
-    }
 
     public void performAttack(LivingEntity target1) {
-        for(int i = 0; i < 3; ++i) {
+        for (int i = 0; i < 5; ++i) {
             EntityUtil.spawnParticle(this, 7);
         }
 
-        float range = 3.0F;
+        float range = 2.0F;
         EntityUtil.getTargetableEntities(this, EntityUtil.getEntityAABB(this, range, range)).forEach((target) -> {
-            target.hurt(PVZEntityDamageSource.normal(this), this.getAttackDamage());
-            target.setDeltaMovement(target.getDeltaMovement().add(0.0, 0.0, -2.0));
+             target.hurt(PVZEntityDamageSource.normal(this), this.getAttackDamage());
+            target.setDeltaMovement(target.getDeltaMovement().add(0.0, 0.0, -0.5));
         });
-        EntityUtil.playSound(this, (SoundEvent)SoundRegister.SWING.get());
+        EntityUtil.playSound(this, (SoundEvent) SoundRegister.SWING.get());
     }
-
     //大招
     protected void normalPlantTick() {
         super.normalPlantTick();
@@ -85,12 +74,70 @@ public class RotateRadishEntity extends PlantCloserEntity {
     }
 
     public int getAttackCD() {
-        return 40;
+        return 30;
     }
     public float getAttackDamage() {
         return this.getSkillValue(SkillTypes.MORE_SWING_DAMAGE)/1.5F;
     }
 
+    private final class RotateAttackGoal extends Goal {
+        private final RotateRadishEntity attacker;
+
+        public RotateAttackGoal(RotateRadishEntity attacker) {
+            this.attacker = attacker;
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+        public boolean canUse() {
+            LivingEntity living = this.attacker.getTarget();
+            if (!EntityUtil.isEntityValid(living)) {
+                return false;
+            } else {
+                return this.attacker.canSee(living) && EntityUtil.getAttackRange(this.attacker, living, 3.0) >= EntityUtil.getNearestDistance(this.attacker, living);
+            }
+        }
+
+        public boolean canContinueToUse() {
+            LivingEntity living = this.attacker.getTarget();
+            if (!EntityUtil.isEntityValid(living)) {
+                return false;
+            } else {
+                return this.attacker.canSee(living) && EntityUtil.getAttackRange(this.attacker, living, 3.0) >= EntityUtil.getNearestDistance(this.attacker, living);
+            }
+        }
+
+        public void stop() {
+            this.attacker.setTarget((LivingEntity)null);
+            this.attacker.setAttackTime(0);
+        }
+
+        public void tick() {
+            LivingEntity target = this.attacker.getTarget();
+            this.attacker.getLookControl().setLookAt(target, 30.0F, 30.0F);
+            if (this.attacker.getAttackTime() == 0) {
+                if (this.attacker.getAttackDamage() >= EntityUtil.getCurrentHealth(target)) {
+                    this.attacker.setAttackTime(1);
+                } else {
+                    this.attacker.setAttackTime(-1);
+                }
+            } else if (this.attacker.getAttackTime() > 0) {
+                this.attacker.setAttackTime(this.attacker.getAttackTime() + 1);
+                if (this.attacker.getAttackTime() == this.attacker.getAttackCD() * 4 / 5) {
+                    this.attacker.performAttack(target);
+                } else if (this.attacker.getAttackTime() >= this.attacker.getAttackCD()) {
+                    this.attacker.setAttackTime(0);
+                }
+            } else {
+                this.attacker.setAttackTime(this.attacker.getAttackTime() - 1);
+                if (-this.attacker.getAttackTime() == this.attacker.getAttackCD() * 4 / 5) {
+                    this.attacker.performAttack(target);
+                } else if (-this.attacker.getAttackTime() >= this.attacker.getAttackCD()) {
+                    this.attacker.setAttackTime(0);
+                }
+            }
+
+        }
+    }
     public int getSuperTimeLength() {
         return 120;
     }

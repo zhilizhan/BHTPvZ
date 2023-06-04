@@ -4,7 +4,7 @@ license = "MPL-2.0"
 issueTrackerURL = "https://github.com/zhilizhan/BHTPvZ/issues"
 
 [[mods]]
-modId = "${mod_id}"
+modId = "bhtpvz"
 version = "${version}"
 displayName = "${mod_name}"
 authors = "${mod_authors}"

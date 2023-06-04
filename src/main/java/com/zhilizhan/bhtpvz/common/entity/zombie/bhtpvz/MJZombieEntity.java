@@ -29,12 +29,9 @@ import java.util.Optional;
 
 public class MJZombieEntity extends PVZZombieEntity {
     private static final EntityDataAccessor<Integer> SUMMON_TIME;
-    public static final int MAX_DANCER_NUM = 4;
+
     private static final float[][] POS_OFFSET;
-    public static final int SUMMON_CD = 10;
-    public static final int DANCE_CD = 100;
-    private static final int MIN_REST_CD = 60;
-    private static final int MAX_REST_CD = 300;
+
     private final List<Optional<DancerBackupEntity>> Dancers = new ArrayList<>(4);
     private int summonCnt = 0;
     private int restTick = 0;
@@ -133,7 +130,7 @@ public class MJZombieEntity extends PVZZombieEntity {
     }
 
     public int getMaxSummonCnt() {
-        return 20;
+        return 25;
     }
 
     public float getLife() {
@@ -141,7 +138,7 @@ public class MJZombieEntity extends PVZZombieEntity {
     }
 
     public int getArmorToughness() {
-        return 10;
+        return 15;
     }
 
     public void readAdditionalSaveData(CompoundTag compound) {

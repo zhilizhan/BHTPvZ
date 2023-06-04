@@ -2,14 +2,10 @@ package com.zhilizhan.bhtpvz.client;
 
 import com.hungteen.pvz.client.model.baked.PVZBakedModel;
 import com.mojang.datafixers.util.Pair;
-import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -27,8 +23,8 @@ public class BHTPvZClientRegister {
 
     @SubscribeEvent
     public static void reigsterRenderType(FMLClientSetupEvent ev) {
-       // ItemBlockRenderTypes.setRenderLayer((Block) BHTPvZBlocks.STEEL_PUMPKIN.get(), RenderType.translucent());//有bug
-        ItemBlockRenderTypes.setRenderLayer((Block) BHTPvZBlocks.SCREEN_DOOR.get(), RenderType.translucent());//半透明
+        // ItemBlockRenderTypes.setRenderLayer((Block) BHTPvZBlocks.STEEL_PUMPKIN.get(), RenderType.translucent());//有bug
+        // ItemBlockRenderTypes.setRenderLayer((Block) BHTPvZBlocks.SCREEN_DOOR.get(), RenderType.translucent());//半透明
     }
 
     private static Pair<BakedModel, ModelResourceLocation> getBakedModel(ModelBakeEvent ev, Item item) {

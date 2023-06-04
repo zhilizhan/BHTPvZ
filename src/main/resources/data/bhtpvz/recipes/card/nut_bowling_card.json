@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "ABA",
+    "ACA"
+  ],
+  "key": {
+    "A": {
+      "item": "pvz:enforce_essence"
+    },
+    "B": {
+      "tag": "forge:crops/nut"
+    },
+    "C": {
+      "tag": "pvz:card/blue_cards"
+    }
+  },
+  "result": {
+    "item": "bhtpvz:nut_bowling_card"
+  }
+}

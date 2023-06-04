@@ -12,6 +12,7 @@ import com.zhilizhan.bhtpvz.client.render.entity.plant.assist.WaterPotRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.defence.SteelPumpkinRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.enforce.NutBowlingRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.enforce.RotateRadishRender;
+import com.zhilizhan.bhtpvz.client.render.entity.plant.fire.BlazeWartRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.fire.FirePeashooterRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.ice.IceCabbagePultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.zombie.bhtpvz.*;
@@ -27,6 +28,7 @@ import com.zhilizhan.bhtpvz.common.entity.plant.assist.WaterPotEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.defence.SteelPumpkinEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.enforce.NutBowlingEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.enforce.RotateRadishEntity;
+import com.zhilizhan.bhtpvz.common.entity.plant.fire.BlazeWartEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.fire.FirePeashooterEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.ice.IceCabbagePultEntity;
 import com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz.*;
@@ -55,6 +57,7 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<ChorusFruitPultEntity>> CHORUS_FRUIT_PULT = registerPlantEntityType(ChorusFruitPultEntity::new, "chorus_fruit_pult"); // 紫颂果投手
 	public static final RegistryObject<EntityType<RotateRadishEntity>> ROTATE_RADISH = registerPlantEntityType(RotateRadishEntity::new, "rotate_radish"); // 转转萝卜
 	public static final RegistryObject<EntityType<BurstKernelPultEntity>> BURST_KERNEL_PULT = registerPlantEntityType(BurstKernelPultEntity::new, "burst_kernel_pult"); // 爆裂玉米投手
+	public static final RegistryObject<EntityType<BlazeWartEntity>> BLAZE_WART = registerPlantEntityType(BlazeWartEntity::new, "blaze_wart"); // 烈焰庞
 
 	// 子弹
 	public static final RegistryObject<EntityType<IceCabbageEntity>> ICE_CABBAGE = registerEntityType(IceCabbageEntity::new, "ice_cabbage", MobCategory.MISC); // 冰卷心菜子弹
@@ -90,6 +93,7 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(CHORUS_FRUIT_PULT.get(), ChorusFruitPultRender::new); // 紫颂果投手
 		RenderingRegistry.registerEntityRenderingHandler(ROTATE_RADISH.get(), RotateRadishRender::new); // 转转萝卜
 		RenderingRegistry.registerEntityRenderingHandler(BURST_KERNEL_PULT.get(), BurstKernelPultRender::new); // 爆裂玉米投手
+		RenderingRegistry.registerEntityRenderingHandler(BLAZE_WART.get(), BlazeWartRender::new); // 烈焰庞
 
 		// 子弹
 		RenderingRegistry.registerEntityRenderingHandler(ICE_CABBAGE.get(), IceCabbageRender::new); // 冰卷心菜子弹

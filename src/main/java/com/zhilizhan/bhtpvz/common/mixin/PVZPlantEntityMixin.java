@@ -46,7 +46,7 @@ public abstract  class PVZPlantEntityMixin extends AbstractPAZEntity implements 
                 }
             } else {
                 BlockPos pos = Math.abs(this.getY() - (double) this.blockPosition().getY()) <= 0.01 ? this.blockPosition().below() : this.blockPosition();
-                return !this.isOnGround() && !this.level.getBlockState(pos).is(BHTPvZBlocks.WATER_POT.get());
+                return this.isOnGround() && !isInWater() &&!this.level.getBlockState(pos).is(BHTPvZBlocks.WATER_POT.get());
             }
         } else {
             return false;

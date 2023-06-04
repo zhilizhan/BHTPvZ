@@ -7,6 +7,7 @@ import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.block.BlockRegister;
 import com.hungteen.pvz.common.block.plants.LilyPadBlock;
 import com.hungteen.pvz.common.block.special.FlowerPotBlock;
+import com.hungteen.pvz.common.enchantment.card.plantcard.SoillessPlantEnchantment;
 import com.hungteen.pvz.common.impl.plant.PVZPlants;
 import com.hungteen.pvz.common.item.spawn.card.ImitaterCardItem;
 import com.hungteen.pvz.common.item.spawn.card.PlantCardItem;
@@ -22,9 +23,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -146,7 +150,7 @@ public abstract class PlantCardItemMixin extends SummonCardItem{
                 BlockHitResult raytraceResult = result.withPosition(result.getBlockPos().above());
                 BlockPos pos = raytraceResult.getBlockPos();
                 if (world.getFluidState(pos.below()).getType() == Fluids.WATER && raytraceResult.getDirection() == Direction.UP && world.isEmptyBlock(pos)||world.getBlockState(pos.below()).is(BHTPvZBlocks.WATER_POT.get())&& raytraceResult.getDirection() == Direction.UP && world.isEmptyBlock(pos)) {
-                    if (!plantType.isWaterPlant()|| plantType == PVZPlants.CAT_TAIL) {
+                    if (!plantType.isWaterPlant()) {
                         this.notifyPlayerAndCD(player, heldStack, PlacementErrors.GROUND_ERROR);
                         return InteractionResultHolder.fail(heldStack);
                     } else {
@@ -164,6 +168,73 @@ public abstract class PlantCardItemMixin extends SummonCardItem{
                 } else {
                     return InteractionResultHolder.pass(heldStack);
                 }
+            }
+        }
+
+    }
+    @Overwrite
+    public InteractionResult useOn(UseOnContext context) {
+        Level world = context.getLevel();
+        Player player = context.getPlayer();
+        InteractionHand hand = context.getHand();
+        ItemStack heldStack = context.getItemInHand();
+        ItemStack plantStack = getPlantStack(context.getItemInHand());
+        PlantCardItem cardItem = (PlantCardItem)plantStack.getItem();
+        IPlantType plantType = cardItem.plantType;
+        BlockPos pos = context.getClickedPos();
+        boolean isSoilless = SoillessPlantEnchantment.isSoilless(plantStack);
+        if (world.isClientSide) {
+            return InteractionResult.SUCCESS;
+        } else if (plantType == null) {
+            PVZMod.LOGGER.error("Plant Card Use : Error Card !");
+            return InteractionResult.FAIL;
+        } else if (player.getCooldowns().isOnCooldown(heldStack.getItem())) {
+            this.notifyPlayerAndCD(player, heldStack, PlacementErrors.CD_ERROR);
+            return InteractionResult.FAIL;
+        } else if (plantType.isOuterPlant()) {
+            this.notifyPlayerAndCD(player, heldStack, PlacementErrors.OUTER_ERROR);
+            return InteractionResult.FAIL;
+        }
+         else {
+            if (plantType.isWaterPlant()) {
+                  return this.use(world, player, hand).getResult();
+
+            }
+            if (context.getClickedFace() == Direction.UP && world.isEmptyBlock(pos.above())) {
+                if (!isSoilless && plantType.getUpgradeFrom().isPresent()) {
+                    this.notifyPlayerAndCD(player, heldStack, PlacementErrors.UPGRADE_ERROR);
+                    return InteractionResult.FAIL;
+                } else if (!isSoilless && !plantType.getPlacement().canPlaceOnBlock(world.getBlockState(pos).getBlock())) {
+                    this.notifyPlayerAndCD(player, heldStack, PlacementErrors.GROUND_ERROR);
+                    return InteractionResult.FAIL;
+                } else {
+                    if (plantType.getPlantBlock().isPresent()) {
+                        if (world.getBlockState(pos).canBeReplaced(new BlockPlaceContext(context))) {
+                            checkSunAndPlaceBlock(player, heldStack, plantStack, cardItem, pos);
+                            return InteractionResult.SUCCESS;
+                        }
+
+                        if (world.isEmptyBlock(pos.above()) && world.getBlockState(pos).canOcclude()) {
+                            checkSunAndPlaceBlock(player, heldStack, plantStack, cardItem, pos.above());
+                            return InteractionResult.SUCCESS;
+                        }
+                    } else {
+                        BlockPos spawnPos = pos;
+                        if (!world.getBlockState(pos).getCollisionShape(world, pos).isEmpty()) {
+                            spawnPos = pos.relative(context.getClickedFace());
+                        }
+
+                        if (checkSunAndSummonPlant(player, heldStack, plantStack, cardItem, spawnPos, (l) -> {
+                        })) {
+                            return InteractionResult.SUCCESS;
+                        }
+                    }
+
+                    return InteractionResult.FAIL;
+                }
+            } else {
+                this.notifyPlayerAndCD(player, heldStack, PlacementErrors.GROUND_ERROR);
+                return InteractionResult.FAIL;
             }
         }
     }

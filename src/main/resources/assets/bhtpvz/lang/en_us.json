@@ -40,6 +40,16 @@
   "item.bhtpvz.fire_peashooter_enjoy_card": "fire peashooter enjoy card",
   "item.bhtpvz.nut_bowling_card": "nut bowling card",
   "item.bhtpvz.nut_bowling_enjoy_card": "nut bowling enjoy card",
+  "item.bhtpvz.water_pot_card": "water pot card",
+  "item.bhtpvz.water_pot_enjoy_card": "water pot enjoy card",
+  "item.bhtpvz.chorus_fruit_pult_card": "chorusfruit pult card",
+  "item.bhtpvz.chorus_fruit_pult_enjoy_card": "chorusfruit pult enjoy card",
+  "item.bhtpvz.burst_kernel_pult_card": "burst kernel pult card",
+  "item.bhtpvz.burst_kernel_pult_enjoy_card": "burst kernel pult enjoy card",
+  "item.bhtpvz.blaze_wart_pult_card": "blaze wart pult card",
+  "item.bhtpvz.blaze_wart_enjoy_card": "blaze wart pult enjoy card",
+
+
 
   "item.bhtpvz.edgar_090547_spawn_egg": "edgar 090547 spawn egg",
   "item.bhtpvz.flower_pot_zombie_spawn_egg": "flower pot zombie spawn egg",
@@ -47,6 +57,9 @@
   "item.bhtpvz.mc_zombie_spawn_egg": "mc zombie spawn egg",
   "item.bhtpvz.steel_pumpkin_zombie_spawn_egg": "steel pumpkin zombie spawn egg",
   "item.bhtpvz.target_arrow_zombie_spawn_egg": "target arrow zombie spawn egg",
+  "item.bhtpvz.red_edge_zombie_spawn_egg": "red edge zombie spawn egg",
+  "item.bhtpvz.mj_zombie_spawn_egg": "mj zombie spawn egg",
+  "item.bhtpvz.dancer_backup_zombie_spawn_egg": "dancer backup spawn egg",
 
   "block.bhtpvz.cherry_leaves": "cherry leaves",
   "block.bhtpvz.starfruit_leaves": "starfruit leaves",
@@ -65,6 +78,7 @@
   "block.bhtpvz.decomposition_stage": "decomposition stage",
   "block.bhtpvz.steel_pumpkin": "steel pumpkin",
   "block.bhtpvz.water_pot": "WaterPot",
+  "block.bhtpvz.screen_door": "ScreenDoor",
   "block.bhtpvz.wisdom_log": "Wisdom log",
 
 
@@ -80,6 +94,10 @@
   "entity.bhtpvz.fire_peashooter": "fire peashooter",
   "entity.bhtpvz.nut_bowling": "nut bowling",
   "entity.bhtpvz.water_pot": "water pot",
+  "entity.bhtpvz.chorus_fruit_pult": "chorus fruit pult",
+  "entity.bhtpvz.burst_kernel_pult": "burst kernel",
+  "entity.bhtpvz.blaze_wart": "blaze_wart",
+
 
   "entity.bhtpvz.edgar_090547": "edgar-090547",
   "entity.bhtpvz.flower_pot_zombie": "flower pot zombie",
@@ -87,13 +105,17 @@
   "entity.bhtpvz.mc_zombie": "mc zombie",
   "entity.bhtpvz.steel_pumpkin_zombie": "steel pumpkin zombie",
   "entity.bhtpvz.target_arrow_zombie": "target arrow zombie",
-  
+  "entity.bhtpvz.red_edge_zombie": "red edge zombie",
+  "entity.bhtpvz.mj_zombie": "mj zombie",
+  "entity.bhtpvz.dancer_backup_zombie": "dancer backup zombie",
+
+
   "challenge.bhttpvz.extra.msg1": "Additional challenges of bhttpvz",
   "challenge.pvz.roof_extra.name": "Roof Extra",
   "challenge.pvz.grass_add.name": "Grass Add",
   "challenge.pvz.pool_add.name": "Pool Add",
 
-  "block.bhtpvz.wisdom_log_say_1": "...",
-  "block.bhtpvz.wisdom_log_say_2": "...",
-  "block.bhtpvz.wisdom_log_say_3": "..."
+  "block.bhtpvz.wisdom_log_say_1": "There was once someone who took care of me",
+  "block.bhtpvz.wisdom_log_say_2": "But then I don't know how to leave",
+  "block.bhtpvz.wisdom_log_say_3": "He was never seen since"
 }
