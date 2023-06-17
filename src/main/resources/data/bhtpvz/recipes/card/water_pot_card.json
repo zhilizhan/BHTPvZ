@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "ABA",
+    "ACA"
+  ],
+  "key": {
+    "A": {
+      "item": "pvz:assist_essence"
+    },
+    "B": {
+      "item": "bhtpvz:water_pot"
+    },
+    "C": {
+      "tag": "pvz:card/green_cards"
+    }
+  },
+  "result": {
+    "item": "bhtpvz:water_pot_card"
+  }
+}
