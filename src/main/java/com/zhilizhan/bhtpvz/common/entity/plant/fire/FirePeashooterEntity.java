@@ -3,7 +3,7 @@ package com.zhilizhan.bhtpvz.common.entity.plant.fire;
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.entity.bullet.AbstractBulletEntity;
 import com.hungteen.pvz.common.entity.bullet.itembullet.PeaEntity;
-import com.hungteen.pvz.common.entity.plant.base.PlantShooterEntity;
+import com.hungteen.pvz.common.entity.plant.appease.PeaShooterEntity;
 import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.utils.MathUtil;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
@@ -11,7 +11,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.level.Level;
 
-public class FirePeashooterEntity extends PlantShooterEntity {
+public class FirePeashooterEntity extends PeaShooterEntity {
     public FirePeashooterEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
         super(type, worldIn);
     }
@@ -24,7 +24,7 @@ public class FirePeashooterEntity extends PlantShooterEntity {
 
     @Override
     public float getAttackDamage() {
-        return this.getSkillValue(SkillTypes.PEA_DAMAGE);
+        return this.getSkillValue(SkillTypes.PEA_DAMAGE)*1.5f;
     }
 
     @Override

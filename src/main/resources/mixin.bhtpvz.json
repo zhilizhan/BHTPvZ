@@ -7,7 +7,6 @@
     "PlantCardItemMixin",
     "PVZPlantEntityMixin",
     "PVZPlantRenderMixin"
-
   ],
   "client": [
 

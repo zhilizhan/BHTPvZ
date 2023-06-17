@@ -14,7 +14,10 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class NetherWartLayer extends ComponentLayer<BlazeWartEntity> {
 
     public NetherWartLayer(RenderLayerParent<BlazeWartEntity, EntityModel<BlazeWartEntity>> entityRendererIn) {

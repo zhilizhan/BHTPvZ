@@ -10,6 +10,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class ChorusFruitPultRender extends PVZPlantRender<ChorusFruitPultEntity> {
     public ChorusFruitPultRender(EntityRenderDispatcher rendererManager) {
-        super(rendererManager, new ChorusFruitPultModel(), 0.5f);
+        super(rendererManager, new ChorusFruitPultModel(), 0.4f);
     }
 }

@@ -2,9 +2,7 @@ package com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz;
 
 import com.hungteen.pvz.common.entity.zombie.PVZZombieEntity;
 import com.hungteen.pvz.common.impl.zombie.ZombieType;
-import com.hungteen.pvz.utils.EffectUtil;
 import com.zhilizhan.bhtpvz.common.impl.zombie.BHTPvZZombies;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -31,14 +29,16 @@ public class RedEdgeZombieEntity extends PVZZombieEntity {
         } else {
             if (target instanceof LivingEntity) {
                if(this.onFire()){
-                   this.addEffect(EffectUtil.effect(MobEffects.DAMAGE_BOOST, 120000, 6));
-                   ((LivingEntity)target).setSecondsOnFire(5);
+                  ((LivingEntity)target).setSecondsOnFire(5);
             }}
 
             return true;
         }
     }
 
+    protected float getModifyAttackDamage(Entity entity, float f) {
+        return this.onFire() ? 25 : 5;
+    }
     public int getArmorToughness() {
         return 10;
     }

@@ -150,8 +150,6 @@ public class NutBowlingEntity extends PlantCloserEntity {
     protected void dealDamageTo(Entity entity) {
         ++this.hitCount;
 
-       
-
         entity.hurt(PVZEntityDamageSource.normal(this, this.ownerPlayer).setCount(this.hitCount), 30.0F);
         EntityUtil.playSound(this, (SoundEvent)SoundRegister.BOWLING_HIT.get());
         Player player = this.ownerPlayer;

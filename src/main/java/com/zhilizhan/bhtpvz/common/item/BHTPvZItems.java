@@ -1,7 +1,6 @@
 package com.zhilizhan.bhtpvz.common.item;
 
 import com.hungteen.pvz.api.types.IPlantType;
-import com.hungteen.pvz.common.item.PVZItemGroups;
 import com.hungteen.pvz.common.item.spawn.card.PlantCardItem;
 import com.hungteen.pvz.utils.enums.Colors;
 import com.mojang.datafixers.util.Pair;
@@ -23,7 +22,7 @@ public class BHTPvZItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BHTPvZ.MOD_ID);
 
     // 普通物品
-    public static final RegistryObject<Item> ORIGIN_SPORE = ITEMS.register("origin_spore", ()-> new Item(new Item.Properties().tab(PVZItemGroups.PVZ_ENVELOPE))); // 原始孢子
+    public static final RegistryObject<Item> ORIGIN_SPORE = ITEMS.register("origin_spore", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 原始孢子
     public static final RegistryObject<Item> MORION_INGOT = ITEMS.register("morion_ingot", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 黑晶锭
     public static final RegistryObject<Item> DAMSON_CRYSTAL_INGOT = ITEMS.register("damson_crystal_ingot", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合晶锭
     public static final RegistryObject<Item> BUTTER = ITEMS.register("butter", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 黄油
@@ -71,6 +70,10 @@ public class BHTPvZItems {
     public static final RegistryObject<BHTPvZSpawnEggItem> RED_EDGE_ZOMBIE_SPAWN_EGG = registerSpawnEgg("red_edge_zombie_spawn_egg", BHTPvZEntityTypes.RED_EDGE_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ)); // 红刀僵尸刷怪蛋
     public static final RegistryObject<BHTPvZSpawnEggItem> MJ_ZOMBIE_SPAWN_EGG = registerSpawnEgg("mj_zombie_spawn_egg", BHTPvZEntityTypes.MJ_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ)); // 舞王僵尸刷怪蛋
     public static final RegistryObject<BHTPvZSpawnEggItem> DANCER_BACKUP_ZOMBIE_SPAWN_EGG = registerSpawnEgg("dancer_backup_zombie_spawn_egg", BHTPvZEntityTypes.DANCER_BACKUP_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ)); // 伴舞舞僵尸刷怪蛋
+    public static final RegistryObject<BHTPvZSpawnEggItem> RED_FLOWER_ZOMBIE_SPAWN_EGG = registerSpawnEgg("sun_flower_zombie_spawn_egg", BHTPvZEntityTypes.SUN_FLOWER_ZOMBIE, Colors.ZOMBIE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ)); // 向日葵僵尸刷怪蛋
+
+    //普通生物刷怪蛋
+    public static final RegistryObject<BHTPvZSpawnEggItem> ORIGIN_MOOB_SPAWN_EGG = registerSpawnEgg("origin_moob_spawn_egg", BHTPvZEntityTypes.ORIGIN_MOOB, Colors.APPEASE_COLOR, new Item.Properties().tab(BHTPvZ.BHTPVZ)); // 蘑菇牛刷怪蛋
 
     // 戴夫生成工具
     public static final RegistryObject<Item> DAVE_TOKEN = ITEMS.register("dave_token", () -> new DaveToken(new Item.Properties().tab(BHTPvZ.BHTPVZ).stacksTo(1))); // 戴夫标志
@@ -94,7 +97,8 @@ public class BHTPvZItems {
     public static final RegistryObject<PlantCardItem> BURST_KERNEL_PULT_CARD = registerCard(BHTPvZPlants.BURST_KERNEL_PULT, false); // 爆裂玉米投手卡
     public static final RegistryObject<PlantCardItem> BURST_KERNEL_PULT_ENJOY_CARD = registerCard(BHTPvZPlants.BURST_KERNEL_PULT, true); // 爆裂玉米投手体验卡
     public static final RegistryObject<PlantCardItem> BLAZE_WART_CARD = registerCard(BHTPvZPlants.BLAZE_WART, false); // 烈焰庞卡
-    public static final RegistryObject<PlantCardItem> BLAZE_WART__ENJOY_CARD = registerCard(BHTPvZPlants.BLAZE_WART, true); // 烈焰庞体验卡
+    public static final RegistryObject<PlantCardItem> BLAZE_WART_ENJOY_CARD = registerCard(BHTPvZPlants.BLAZE_WART, true); // 烈焰庞体验卡
+   // public static final RegistryObject<PlantCardItem> SOLID_STEEL_PUMPKIN_ENJOY_CARD = registerCard(BHTPvZPlants.SOLID_STEEL_PUMPKIN, true); // 实心钢南瓜（另一种可能
 
     // 方块物品
     public static final RegistryObject<Item> CHERRY_TREE_LEAVES = ITEMS.register("cherry_leaves", ()-> new BlockItem(BHTPvZBlocks.CHERRY_LEAVES.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 樱桃树树叶

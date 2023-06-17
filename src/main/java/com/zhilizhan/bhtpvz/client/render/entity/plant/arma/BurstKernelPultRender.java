@@ -10,6 +10,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class BurstKernelPultRender extends PVZPlantRender<BurstKernelPultEntity> {
     public BurstKernelPultRender(EntityRenderDispatcher rendererManager) {
-        super(rendererManager, new BurstKernelPultModel(), 0.5f);
+        super(rendererManager, new BurstKernelPultModel(), 0.7f);
     }
 }

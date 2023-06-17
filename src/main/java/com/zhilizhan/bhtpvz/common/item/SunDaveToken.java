@@ -4,7 +4,6 @@ import com.hungteen.pvz.common.entity.EntityRegister;
 import com.hungteen.pvz.common.entity.npc.AbstractDaveEntity;
 import com.hungteen.pvz.common.entity.npc.SunDaveEntity;
 import com.hungteen.pvz.utils.EntityUtil;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,7 +16,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -34,14 +32,13 @@ public class SunDaveToken extends Item {
         BlockPos pos = context.getClickedPos();
         ItemStack stack = context.getItemInHand();
         if (!level.isClientSide && !player.getCooldowns().isOnCooldown(this) && context.getClickedFace() == Direction.UP) {
-
             if (getDaveCount(player) < 1) {
                 SunDaveEntity dave = EntityRegister.SUN_DAVE.get().create(level);
                 EntityUtil.onEntitySpawn(level, dave, pos.above());
                 stack.shrink(1);
             }
         }
-        return super.useOn(context);
+        return InteractionResult.CONSUME;
     }
 
     public int getDaveCount(Player player) {

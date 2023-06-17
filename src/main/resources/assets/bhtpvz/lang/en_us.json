@@ -31,6 +31,8 @@
   "item.bhtpvz.wisdom_sapling": "wisdom sapling",
   "item.bhtpvz.dave_token": "dave token",
   "item.bhtpvz.sun_dave_token": "sun dave token",
+  "item.bhtpvz.steel_coin": "steel coin",
+  "item.bhtpvz.chlorophyll": "chlorophyll",
 
   "item.bhtpvz.ice_cabbage_pult_card":"ice cabbage pult card",
   "item.bhtpvz.ice_cabbage_pult_enjoy_card":"ice cabbage pult enjoy card",
@@ -46,7 +48,9 @@
   "item.bhtpvz.chorus_fruit_pult_enjoy_card": "chorusfruit pult enjoy card",
   "item.bhtpvz.burst_kernel_pult_card": "burst kernel pult card",
   "item.bhtpvz.burst_kernel_pult_enjoy_card": "burst kernel pult enjoy card",
-  "item.bhtpvz.blaze_wart_pult_card": "blaze wart pult card",
+  "item.bhtpvz.rotate_radish_card": "rotate radish card",
+  "item.bhtpvz.rotate_radish_enjoy_card": "rotate radish enjoy card",
+  "item.bhtpvz.blaze_wart_card": "blaze wart pult card",
   "item.bhtpvz.blaze_wart_enjoy_card": "blaze wart pult enjoy card",
 
 
@@ -96,6 +100,7 @@
   "entity.bhtpvz.water_pot": "water pot",
   "entity.bhtpvz.chorus_fruit_pult": "chorus fruit pult",
   "entity.bhtpvz.burst_kernel_pult": "burst kernel",
+  "entity.bhtpvz.rotate_radish": "rotate radish",
   "entity.bhtpvz.blaze_wart": "blaze_wart",
 
 

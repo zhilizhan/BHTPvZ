@@ -31,6 +31,8 @@
   "item.bhtpvz.wisdom_sapling": "智慧树苗",
   "item.bhtpvz.dave_token": "戴夫标志",
   "item.bhtpvz.sun_dave_token": "阳光戴夫标志",
+  "item.bhtpvz.steel_coin": "钢蹦",
+  "item.bhtpvz.chlorophyll": "叶绿素",
 
   "item.bhtpvz.ice_cabbage_pult_card": "冰卷心菜投手卡",
   "item.bhtpvz.ice_cabbage_pult_enjoy_card": "冰卷心菜投手体验卡",
@@ -46,7 +48,9 @@
   "item.bhtpvz.chorus_fruit_pult_enjoy_card": "紫颂果投手体验卡",
   "item.bhtpvz.burst_kernel_pult_card": "爆裂玉米投手卡",
   "item.bhtpvz.burst_kernel_pult_enjoy_card": "爆裂玉米投手体验卡",
-  "item.bhtpvz.blaze_wart_pult_card": "地狱庞卡",
+  "item.bhtpvz.rotate_radish_card": "旋转萝卜卡",
+  "item.bhtpvz.rotate_radish_enjoy_card": "旋转萝卜体验卡",
+  "item.bhtpvz.blaze_wart_card": "地狱庞卡",
   "item.bhtpvz.blaze_wart_enjoy_card": "地狱庞体验卡",
 
   "item.bhtpvz.edgar_090547_spawn_egg": "埃德加-090547刷怪蛋",
@@ -95,6 +99,7 @@
   "entity.bhtpvz.water_pot": "水盆",
   "entity.bhtpvz.chorus_fruit_pult": "紫颂果投手",
   "entity.bhtpvz.burst_kernel_pult": "爆裂玉米投手",
+  "entity.bhtpvz.rotate_radish": "旋转萝卜",
   "entity.bhtpvz.blaze_wart": "烈焰庞",
 
   "entity.bhtpvz.edgar_090547": "埃德加-090547",
