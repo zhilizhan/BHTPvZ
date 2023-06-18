@@ -10,6 +10,7 @@ import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
@@ -23,6 +24,10 @@ public class GrassCarpEntity extends PeaShooterEntity {
         this.setCharmed(true);
     }
 
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(2, new FloatGoal(this));
+    }
     //修改射击高度
     @Override
     public void performShoot(double forwardOffset, double rightOffset, double heightOffset, boolean needSound, double angleOffset) {
