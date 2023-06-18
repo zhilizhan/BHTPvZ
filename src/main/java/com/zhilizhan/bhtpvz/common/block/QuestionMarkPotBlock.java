@@ -13,7 +13,11 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class QuestionMarkPotBlock extends AbstractFacingBlock {
-    private static final VoxelShape SHAPE = Shapes.or(Block.box(4.0,0.0,4.0,12.0,1.0,12.0), Block.box(3.0,1.0,3.0,13.0,10.0,13.0), Block.box(4.0,10.0,4.0,12.0,12.0,12.0), Block.box(3.0,12.0,3.0,13.0,14.0,13.0));
+    private static final VoxelShape SHAPE = Shapes.or(
+            Block.box(4.0,0.0,4.0,12.0,1.0,12.0),
+            Block.box(3.0,1.0,3.0,13.0,10.0,13.0),
+            Block.box(4.0,10.0,4.0,12.0,12.0,12.0),
+            Block.box(3.0,12.0,3.0,13.0,14.0,13.0));
 
     public QuestionMarkPotBlock(Properties properties) {
         super(properties);

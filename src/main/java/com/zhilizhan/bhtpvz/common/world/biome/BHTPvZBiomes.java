@@ -21,15 +21,12 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class BHTPvZBiomes {
+
     public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, BHTPvZ.MOD_ID);
-
     public static final RegistryObject<Biome> NIGHT = BIOMES.register("night", BHTPvZBiomes::nightBiome);
-
     public static final RegistryObject<Biome> BEWILDER_GARDEN = BIOMES.register("bewilder_garden", BHTPvZBiomes::BewilderGardenBiome);
-
     public static final ResourceKey<Biome> NIGHT_KEY = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(BHTPvZ.MOD_ID, "night"));
-
-        public static final ResourceKey<Biome> BEWILDER_GARDEN_KEY = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(BHTPvZ.MOD_ID, "bewilder_garden"));
+    public static final ResourceKey<Biome> BEWILDER_GARDEN_KEY = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(BHTPvZ.MOD_ID, "bewilder_garden"));
 
     private static Biome biome(Biome.BiomeCategory category, Biome.Precipitation rainType, float depth, float scale, float temperature, float downFall, BiomeSpecialEffects effect, MobSpawnSettings spawnSettings, BiomeGenerationSettings generateSettings) {
         return new Biome.BiomeBuilder().biomeCategory(category).precipitation(rainType).depth(depth).scale(scale).temperature(temperature).downfall(downFall).specialEffects(effect).mobSpawnSettings(spawnSettings).generationSettings(generateSettings).build();
@@ -46,7 +43,7 @@ public class BHTPvZBiomes {
     }
 
     public static Biome nightBiome() {
-        BiomeSpecialEffects.Builder effects = new BiomeSpecialEffects.Builder().waterColor(4159204).waterFogColor(329011).fogColor(12638463).skyColor(BiomeUtil.getSkyColor(0.8F)).foliageColorOverride(4159204).grassColorOverride(4159204).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS);
+        BiomeSpecialEffects.Builder effects = new BiomeSpecialEffects.Builder().waterColor(4159204).waterFogColor(2630949).fogColor(2630949).skyColor(2630949).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS);
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         spawnSettings.setPlayerCanSpawn();
         spawnSettings.addMobCharge(EntityRegister.GIGA_TOMB_STONE.get(),1,0);//把墓碑Ban了

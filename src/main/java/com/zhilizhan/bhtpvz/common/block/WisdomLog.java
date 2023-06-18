@@ -16,13 +16,9 @@ public class WisdomLog extends RotatedPillarBlock {
 
     public WisdomLog(Properties properties) {
         super(properties);
-
-
     }
 
-
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-
         if (!worldIn.isClientSide && handIn == InteractionHand.MAIN_HAND && worldIn.random.nextInt(21) == 0) {
             player.sendMessage(new TranslatableComponent( "block.bhtpvz.wisdom_log").withStyle(ChatFormatting.YELLOW).append(":") , Util.NIL_UUID);
             player.sendMessage(new TranslatableComponent( "block.bhtpvz.wisdom_log_say_1").withStyle(ChatFormatting.GREEN) , Util.NIL_UUID);
@@ -30,7 +26,6 @@ public class WisdomLog extends RotatedPillarBlock {
             player.sendMessage(new TranslatableComponent("block.bhtpvz.wisdom_log_say_3").withStyle(ChatFormatting.GREEN) , Util.NIL_UUID);
             return InteractionResult.SUCCESS;
         }
-
         return InteractionResult.PASS;
     }
 

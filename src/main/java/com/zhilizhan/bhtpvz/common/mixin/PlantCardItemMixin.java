@@ -53,22 +53,22 @@ public abstract class PlantCardItemMixin extends SummonCardItem{
     }
 
     private static ItemStack getHeldStack(ItemStack stack) {
-        return (ItemStack)ImitaterCardItem.getDoubleStack(stack).getFirst();
+        return ImitaterCardItem.getDoubleStack(stack).getFirst();
     }
     @Shadow
     private static ItemStack getPlantStack(ItemStack stack) {
-        return (ItemStack)ImitaterCardItem.getDoubleStack(stack).getSecond();
+        return ImitaterCardItem.getDoubleStack(stack).getSecond();
     }
     @Nullable
     @Overwrite
     public static BlockState getBlockState(Player player, IPlantType plant) {
-        return plant == PVZPlants.LILY_PAD ? ((LilyPadBlock)BlockRegister.LILY_PAD.get()).getStateForPlacement(player) : (plant == PVZPlants.FLOWER_POT ? ((FlowerPotBlock)BlockRegister.FLOWER_POT.get()).getStateForPlacement(player) : (plant == BHTPvZPlants.WATER_POT ? ((WaterPotBlock)BHTPvZBlocks.WATER_POT.get()).getStateForPlacement(player): null));
+        return plant == PVZPlants.LILY_PAD ? BlockRegister.LILY_PAD.get().getStateForPlacement(player) : (plant == PVZPlants.FLOWER_POT ? BlockRegister.FLOWER_POT.get().getStateForPlacement(player) : (plant == BHTPvZPlants.WATER_POT ? ((WaterPotBlock)BHTPvZBlocks.WATER_POT.get()).getStateForPlacement(player): null));
     }
 
     @Nullable
     @Overwrite
     public static BlockState getBlockState(Direction direction, IPlantType plant) {
-        return plant == PVZPlants.LILY_PAD ? ((LilyPadBlock)BlockRegister.LILY_PAD.get()).getStateForPlacement(direction) : (plant == PVZPlants.FLOWER_POT ? ((FlowerPotBlock)BlockRegister.FLOWER_POT.get()).getStateForPlacement(direction) : (plant == BHTPvZPlants.WATER_POT ? ((WaterPotBlock)BHTPvZBlocks.WATER_POT.get()).getStateForPlacement(direction):null));
+        return plant == PVZPlants.LILY_PAD ? BlockRegister.LILY_PAD.get().getStateForPlacement(direction) : (plant == PVZPlants.FLOWER_POT ? BlockRegister.FLOWER_POT.get().getStateForPlacement(direction) : (plant == BHTPvZPlants.WATER_POT ? ((WaterPotBlock)BHTPvZBlocks.WATER_POT.get()).getStateForPlacement(direction):null));
     }
     @Shadow
     public static boolean checkSunAndPlaceBlock(Player player, ItemStack plantStack, ItemStack heldStack, PlantCardItem cardItem, BlockPos pos) {

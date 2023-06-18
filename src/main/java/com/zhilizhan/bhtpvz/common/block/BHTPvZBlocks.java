@@ -27,7 +27,6 @@ public class BHTPvZBlocks {
     public static final RegistryObject<Block> QUESTION_MARK_POT = BLOCKS.register("question_mark_pot", ()-> new QuestionMarkPotBlock(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE))); // 问号罐
     public static final RegistryObject<Block> PLANT_POT = BLOCKS.register("plant_pot", ()-> new PlantPotBlock(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE))); // 植物罐
     public static final RegistryObject<Block> WATER_POT = BLOCKS.register("water_pot", ()->new WaterPotBlock(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE))); // 水盆
-
     public static final RegistryObject<Block> SQUASH = BLOCKS.register("squash", ()-> new MelonBlock(BlockBehaviour.Properties.of(Material.VEGETABLE, MaterialColor.COLOR_GREEN).strength(1.0f).sound(SoundType.WOOD))); // 倭瓜
     public static final RegistryObject<Block> MORION_ORE = BLOCKS.register("morion_ore", ()-> new OreBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(3.0f, 3.0f))); // 黑晶矿
     public static final RegistryObject<Block> MORION_BLOCK = BLOCKS.register("morion_block", ()-> new Block(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(5.0f, 6.0f).sound(SoundType.METAL))); // 黑晶块
@@ -37,8 +36,7 @@ public class BHTPvZBlocks {
     public static final RegistryObject<Block> DECOMPOSITION_STAGE = BLOCKS.register("decomposition_stage", ()-> new Block(BlockBehaviour.Properties.of(Material.STONE).harvestLevel(2).strength(2.0f, 6.0f).sound(SoundType.STONE))); // 分解台
     public static final RegistryObject<Block> STEEL_PUMPKIN  = BLOCKS.register("steel_pumpkin", () -> new SteelPumpkinBlock((BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.METAL).harvestTool(ToolType.PICKAXE).harvestLevel(2).strength(15.0f, 15.0f).sound(SoundType.METAL).requiresCorrectToolForDrops()))); // 钢南瓜
     public static final RegistryObject<Block> WISDOM_LOG  = BLOCKS.register("wisdom_log", () -> new WisdomLog((BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.PLANT).harvestTool(ToolType.AXE).harvestLevel(2).strength(15.0f, 15.0f).sound(SoundType.METAL).requiresCorrectToolForDrops()))); // 智慧原木
-
-    public static final RegistryObject<DoorBlock> SCREEN_DOOR  = BLOCKS.register("screen_door", () -> new ScreenDoorBlock((BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(25.0f, 25.0f).sound(SoundType.METAL).requiresCorrectToolForDrops()))); //铁网门
+    public static final RegistryObject<DoorBlock> SCREEN_DOOR  = BLOCKS.register("screen_door", () -> new ScreenDoorBlock((BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(25.0f, 25.0f).sound(SoundType.METAL).requiresCorrectToolForDrops()))); // 铁网门
 
     private static Boolean always(BlockState state, BlockGetter blockGetter, BlockPos pos) {
         return true;

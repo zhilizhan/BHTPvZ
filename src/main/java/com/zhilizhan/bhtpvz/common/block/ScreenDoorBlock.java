@@ -13,7 +13,6 @@ import net.minecraft.world.phys.BlockHitResult;
 
 public class ScreenDoorBlock extends DoorBlock {
 
-
     public ScreenDoorBlock(BlockBehaviour.Properties arg) {
         super(arg);
     }
@@ -28,9 +27,9 @@ public class ScreenDoorBlock extends DoorBlock {
 
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         {
-            state = (BlockState) state.cycle(OPEN);
+            state = state.cycle(OPEN);
             level.setBlock(pos, state, 10);
-            level.levelEvent(player, (Boolean) state.getValue(OPEN) ? this.getOpenSound() : this.getCloseSound(), pos, 0);
+            level.levelEvent(player, state.getValue(OPEN) ? this.getOpenSound() : this.getCloseSound(), pos, 0);
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
     }

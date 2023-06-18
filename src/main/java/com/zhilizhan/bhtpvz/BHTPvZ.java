@@ -39,7 +39,10 @@ public class BHTPvZ {
 
     // 事件总线
     public BHTPvZ() {
+
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus bus2 = MinecraftForge.EVENT_BUS;
+
         BHTPvZItems.ITEMS.register(bus);
         BHTPvZBlocks.BLOCKS.register(bus);
         BHTPvZMobEffects.MOB_EFFECTS.register(bus);
@@ -48,14 +51,15 @@ public class BHTPvZ {
         BHTPvZPlants.register();
         BHTPvZZombies.register();
         bus.addListener(this::commonSetup);
-        IEventBus bus2 = MinecraftForge.EVENT_BUS;
-        // 为原始蘑菇牛注册属性
+
+        //为原始蘑菇牛注册属性
         bus.addListener((EntityAttributeCreationEvent e) -> e.put(BHTPvZEntityTypes.ORIGIN_MOOB.get(), OriginMoobEntity.createAttributes().build()));
         bus.addListener((EntityAttributeCreationEvent e) -> e.put(BHTPvZEntityTypes.RED_SUN.get(), RedSunEntity.createAttributes().build()));
 
         bus2.addListener(EventPriority.HIGH, DecorationGenerate::addOresToBiomes);
         bus2.addListener(EventPriority.HIGH, DecorationGenerate::addTreesToBiomes);
         bus2.addListener(EventPriority.HIGH, DecorationGenerate::addBlocksToBiomes);
+
         //动态的树
         if(ModList.get().isLoaded("dynamictrees")){
         RegistryHandler.setup(MOD_ID);
@@ -63,19 +67,19 @@ public class BHTPvZ {
     }
 
     // 创造物品栏
-
-
     public static final CreativeModeTab BHTPVZ = new CreativeModeTab("better_hung_teen_plants_vs_zombies") {
         @OnlyIn(Dist.CLIENT)
         public ItemStack makeIcon() {
             return new ItemStack((ItemLike) BHTPvZItems.CHERRY.get());
         }
     };
+
     //动态的树
     private void gatherData(final GatherDataEvent event) {
         GatherDataHelper.gatherTagData(MOD_ID, event);
         //GatherDataHelper.gatherLootData(MOD_ID, event);
     }
+
     //初始化刷怪蛋（颜色）
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onPostRegisterEntities(final RegistryEvent.Register<EntityType<?>> event) {
@@ -90,5 +94,4 @@ public class BHTPvZ {
             BHTPvZBiomes.addBiomesToGeneration();
         });
     }
-
 }
