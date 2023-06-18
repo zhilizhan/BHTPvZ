@@ -1,14 +1,12 @@
 package com.zhilizhan.bhtpvz.common.impl.zombie;
 
-import com.zhilizhan.bhtpvz.BHTPvZ;
-import com.zhilizhan.bhtpvz.client.model.entity.zombie.bhtpvz.*;
-import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
-
 import com.hungteen.pvz.api.types.IZombieType;
 import com.hungteen.pvz.client.model.entity.zombie.roof.EdgarRobotModel;
 import com.hungteen.pvz.common.impl.RankTypes;
 import com.hungteen.pvz.common.impl.zombie.ZombieType;
-
+import com.zhilizhan.bhtpvz.BHTPvZ;
+import com.zhilizhan.bhtpvz.client.model.entity.zombie.bhtpvz.*;
+import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
@@ -31,6 +29,7 @@ public final class BHTPvZZombies extends ZombieType {
 	public static final ZombieType MJ_ZOMBIE = new BHTPvZZombies("mj_zombie", new ZombieFeatures().rank(RankTypes.RED).xp(80).entityType(BHTPvZEntityTypes.MJ_ZOMBIE::get).zombieModel(() -> MJZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
 
 	public static final ZombieType DANCER_BACKUP_ZOMBIE = new BHTPvZZombies("dancer_backup_zombie", new ZombieFeatures().rank(RankTypes.WHITE).xp(8).entityType(BHTPvZEntityTypes.DANCER_BACKUP_ZOMBIE::get).zombieModel(() -> DancerBackupModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
+	public static final ZombieType SUN_FLOWER_ZOMBIE = new BHTPvZZombies("sun_flower_zombie", new ZombieFeatures().rank(RankTypes.RED).xp(22).entityType(BHTPvZEntityTypes.SUN_FLOWER_ZOMBIE::get).zombieModel(() -> SunFlowerZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
 
 	public static void register() {
 		registerZombies(LIST);

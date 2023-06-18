@@ -8,7 +8,6 @@ import com.hungteen.pvz.common.entity.plant.PlantInfo;
 import com.hungteen.pvz.common.entity.plant.base.PlantDefenderEntity;
 import com.hungteen.pvz.common.misc.sound.SoundRegister;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -30,6 +29,7 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 	public SteelPumpkinEntity(EntityType<? extends PathfinderMob> type, Level level) {
 		super(type, level);
 		this.canCollideWithPlant = false;
+		this.isImmuneToWeak =true;
 	}
 
 	@Override

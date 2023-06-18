@@ -6,6 +6,8 @@ import com.hungteen.pvz.common.entity.zombie.PVZZombieEntity;
 import com.hungteen.pvz.utils.StringUtil;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.client.render.entity.bullet.*;
+import com.zhilizhan.bhtpvz.client.render.entity.misc.RedSunRender;
+import com.zhilizhan.bhtpvz.client.render.entity.normal.OriginMoobRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.BurstKernelPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.ChorusFruitPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.assist.WaterPotRender;
@@ -22,6 +24,8 @@ import com.zhilizhan.bhtpvz.common.entity.bullet.CornEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.PoppedChorusFruitEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.IceCabbageEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.PopCornEntity;
+import com.zhilizhan.bhtpvz.common.entity.misc.RedSunEntity;
+import com.zhilizhan.bhtpvz.common.entity.normal.OriginMoobEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.BurstKernelPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.ChorusFruitPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.assist.WaterPotEntity;
@@ -78,8 +82,14 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<RedEdgeZombieEntity>> RED_EDGE_ZOMBIE = registerZombieEntityType(RedEdgeZombieEntity::new, "red_edge_zombie"); // 红刀僵尸
 	public static final RegistryObject<EntityType<MJZombieEntity>> MJ_ZOMBIE = registerZombieEntityType(MJZombieEntity::new, "mj_zombie"); // 舞王僵尸
 	public static final RegistryObject<EntityType<DancerBackupEntity>> DANCER_BACKUP_ZOMBIE = registerZombieEntityType(DancerBackupEntity::new, "dancer_backup_zombie"); // 伴舞僵尸
+	public static final RegistryObject<EntityType<SunFlowerZombieEntity>> SUN_FLOWER_ZOMBIE = registerZombieEntityType(SunFlowerZombieEntity::new, "sun_flower_zombie"); // 太阳花僵尸
 
 	// 普通生物
+	public static final RegistryObject<EntityType<OriginMoobEntity>> ORIGIN_MOOB = registerEntityType(OriginMoobEntity::new, "origin_moob",MobCategory.CREATURE);//起源蘑菇牛
+
+	//杂项
+	public static final RegistryObject<EntityType<RedSunEntity>> RED_SUN = registerEntityType(RedSunEntity::new, "red_sun",MobCategory.MISC);//红色阳光
+
 
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
@@ -113,8 +123,14 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(RED_EDGE_ZOMBIE.get(), RedEdgeZombieRender::new); // 红刀僵尸
 		RenderingRegistry.registerEntityRenderingHandler(MJ_ZOMBIE.get(), MJZombieRender::new); // 舞王僵尸
 		RenderingRegistry.registerEntityRenderingHandler(DANCER_BACKUP_ZOMBIE.get(), DancerBackupRender::new); // 伴舞僵尸
+		RenderingRegistry.registerEntityRenderingHandler(SUN_FLOWER_ZOMBIE.get(), SunFlowerZombieRender::new); // 太阳花僵尸
 
 		// 普通生物
+		RenderingRegistry.registerEntityRenderingHandler(ORIGIN_MOOB.get(), OriginMoobRender::new); // 起源蘑菇牛
+
+		//杂项
+		RenderingRegistry.registerEntityRenderingHandler(RED_SUN.get(), RedSunRender::new); // 起源蘑菇牛
+
 	}
 
 	private static <T extends PVZPlantEntity> RegistryObject<EntityType<T>> registerPlantEntityType(EntityType.EntityFactory<T> factory, String name){
@@ -128,11 +144,6 @@ public class BHTPvZEntityTypes {
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntityType(EntityType.EntityFactory<T> factory, String name, MobCategory category){
 		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(factory, category).build(StringUtil.prefix(name).toString()));
 	}
-
-	private static <T extends Entity> RegistryObject<EntityType<T>> registerImmuneFireEntityType(EntityType.EntityFactory<T> factory, String name, MobCategory category){
-		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(factory, category).fireImmune().build(StringUtil.prefix(name).toString()));
-	}
-
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntityType(EntityType.EntityFactory<T> factory, String name, MobCategory category, float w, float h){
 		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(factory, category).sized(w, h).build(StringUtil.prefix(name).toString()));
 	}

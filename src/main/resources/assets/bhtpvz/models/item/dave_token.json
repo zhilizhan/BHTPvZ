@@ -1,44 +1,6 @@
 {
-	"credit": "Made with Blockbench",
-	"texture_size": [6, 6],
+	"parent": "item/handheld",
 	"textures": {
-		"0": "bhtpvz:item/dave_token",
-		"particle": "bhtpvz:item/dave_token"
-	},
-	"elements": [
-		{
-			"name": "hat",
-			"from": [-3, 8, 6],
-			"to": [4, 10, 9],
-			"faces": {
-				"north": {"uv": [0.125, 6.25, 1.375, 6.625], "texture": "#0"},
-				"east": {"uv": [3.125, 6.25, 3.625, 6.625], "texture": "#0"},
-				"south": {"uv": [1.875, 6.25, 3.125, 6.625], "texture": "#0"},
-				"west": {"uv": [1.375, 6.25, 1.875, 6.625], "texture": "#0"},
-				"up": {"uv": [1.875, 6.25, 1.375, 5], "rotation": 270, "texture": "#0"},
-				"down": {"uv": [2.375, 5, 1.875, 6.25], "rotation": 90, "texture": "#0"}
-			}
-		},
-		{
-			"name": "hat",
-			"from": [4, 6, 2],
-			"to": [16, 14, 14],
-			"faces": {
-				"north": {"uv": [2.375, 9.625, 4.375, 11], "texture": "#0"},
-				"east": {"uv": [0.375, 9.625, 2.375, 11], "texture": "#0"},
-				"south": {"uv": [6.375, 9.625, 8.375, 11], "texture": "#0"},
-				"west": {"uv": [4.375, 9.625, 6.375, 11], "texture": "#0"},
-				"up": {"uv": [4.375, 9.625, 2.375, 7.625], "texture": "#0"},
-				"down": {"uv": [6.375, 7.625, 4.375, 9.625], "texture": "#0"}
-			}
-		}
-	],
-	"groups": [
-		{
-			"name": "hat",
-			"origin": [0, 66, 0],
-			"color": 0,
-			"children": [0, 1]
-		}
-	]
+		"layer0": "bhtpvz:item/dave_token"
+	}
 }
