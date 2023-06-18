@@ -52,7 +52,11 @@ public class RotateRadishModel extends PVZPlantModel<RotateRadishEntity> {
     public void renderToBuffer(PoseStack matrixStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         total.render(matrixStack, buffer, packedLight, packedOverlay);
     }
-
+    public void setRotationAngle(ModelPart modelRenderer, float x, float y, float z) {
+        modelRenderer.xRot = x;
+        modelRenderer.yRot = y;
+        modelRenderer.zRot = z;
+    }
     @Override
     public ModelPart getPlantWholeBody() {
         return this.total;

@@ -5,8 +5,6 @@ import com.hungteen.pvz.PVZMod;
 import com.hungteen.pvz.api.types.IPAZType;
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.block.BlockRegister;
-import com.hungteen.pvz.common.block.plants.LilyPadBlock;
-import com.hungteen.pvz.common.block.special.FlowerPotBlock;
 import com.hungteen.pvz.common.enchantment.card.plantcard.SoillessPlantEnchantment;
 import com.hungteen.pvz.common.impl.plant.PVZPlants;
 import com.hungteen.pvz.common.item.spawn.card.ImitaterCardItem;

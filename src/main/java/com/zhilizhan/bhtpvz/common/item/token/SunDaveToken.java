@@ -1,4 +1,4 @@
-package com.zhilizhan.bhtpvz.common.item;
+package com.zhilizhan.bhtpvz.common.item.token;
 
 import com.hungteen.pvz.common.entity.EntityRegister;
 import com.hungteen.pvz.common.entity.npc.AbstractDaveEntity;
