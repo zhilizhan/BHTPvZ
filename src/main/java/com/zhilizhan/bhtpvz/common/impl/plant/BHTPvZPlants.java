@@ -48,7 +48,7 @@ public final class BHTPvZPlants extends PlantType {
     //烈焰庞
     public static final IPlantType BLAZE_WART = new BHTPvZPlants("blaze_wart", new PlantFeatures().cost(175).requiredLevel(18).cd(CoolDowns.FAST).rank(RankTypes.RED).essence(EssenceTypes.FLAME).entityType(BHTPvZEntityTypes.BLAZE_WART::get).summonCard(BHTPvZItems.BLAZE_WART_CARD).enjoyCard(BHTPvZItems.BLAZE_WART_ENJOY_CARD).plantModel(() -> BlazeWartModel::new).scale(0.95f).commonSkill(Collections.singletonList(SkillTypes.MORE_SWING_DAMAGE)));
     //草鱼
-    public static final IPlantType GRASS_CARP = new BHTPvZPlants("grass_carp", new PlantFeatures().cost(150).requiredLevel(23).cd(CoolDowns.FAST).rank(RankTypes.GREEN).essence(EssenceTypes.APPEASE).entityType(BHTPvZEntityTypes.GRASS_CARP::get).summonCard(BHTPvZItems.GRASS_CARP_CARD).enjoyCard(BHTPvZItems.GRASS_CARP_ENJOY_CARD).plantModel(() -> GrassCarpModel::new).scale(1.5f).isWaterPlant().commonSkill(Collections.singletonList(SkillTypes.PEA_DAMAGE)));
+    public static final IPlantType GRASS_CARP = new BHTPvZPlants("grass_carp", new PlantFeatures().cost(225).requiredLevel(23).cd(CoolDowns.FAST).rank(RankTypes.GREEN).essence(EssenceTypes.APPEASE).entityType(BHTPvZEntityTypes.GRASS_CARP::get).summonCard(BHTPvZItems.GRASS_CARP_CARD).enjoyCard(BHTPvZItems.GRASS_CARP_ENJOY_CARD).plantModel(() -> GrassCarpModel::new).scale(1.5f).isWaterPlant().commonSkill(Collections.singletonList(SkillTypes.PEA_DAMAGE)));
 
     public static void register() {
         PVZAPI.get().registerPlantTypes(LIST);

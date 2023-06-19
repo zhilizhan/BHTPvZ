@@ -81,21 +81,21 @@ public class OriginMoobEntity extends Cow implements Shearable, IForgeShearable 
         if (!this.level.isClientSide()) {
             ((ServerLevel)this.level).sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(0.5), this.getZ(), 1, 0.0, 0.0, 0.0, 0.0);
             this.remove();
-            Cow cowentity = (Cow)EntityType.COW.create(this.level);
-            cowentity.moveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
-            cowentity.setHealth(this.getHealth());
-            cowentity.yBodyRot = this.yBodyRot;
+            Cow cow = (Cow)EntityType.COW.create(this.level);
+            cow.moveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
+            cow.setHealth(this.getHealth());
+            cow.yBodyRot = this.yBodyRot;
             if (this.hasCustomName()) {
-                cowentity.setCustomName(this.getCustomName());
-                cowentity.setCustomNameVisible(this.isCustomNameVisible());
+                cow.setCustomName(this.getCustomName());
+                cow.setCustomNameVisible(this.isCustomNameVisible());
             }
 
             if (this.isPersistenceRequired()) {
-                cowentity.setPersistenceRequired();
+                cow.setPersistenceRequired();
             }
 
-            cowentity.setInvulnerable(this.isInvulnerable());
-            this.level.addFreshEntity(cowentity);
+            cow.setInvulnerable(this.isInvulnerable());
+            this.level.addFreshEntity(cow);
 
             for(int i = 0; i < 5; ++i) {
                 this.level.addFreshEntity(new ItemEntity(this.level, this.getX(), this.getY(1.0), this.getZ(), new ItemStack(BHTPvZItems.ORIGIN_MUSHROOM.get())));
