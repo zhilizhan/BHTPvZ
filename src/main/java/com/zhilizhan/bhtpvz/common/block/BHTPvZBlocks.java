@@ -26,6 +26,7 @@ public class BHTPvZBlocks {
     public static final RegistryObject<Block> ORIGIN_MUSHROOM_BLOCK = BLOCKS.register("origin_mushroom_block", ()-> new Block(BlockBehaviour.Properties.of(Material.STONE).harvestLevel(2).strength(2.0f, 6.0f).sound(SoundType.STONE))); // 原始蘑菇块
     public static final RegistryObject<Block> QUESTION_MARK_POT = BLOCKS.register("question_mark_pot", ()-> new QuestionMarkPotBlock(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE))); // 问号罐
     public static final RegistryObject<Block> PLANT_POT = BLOCKS.register("plant_pot", ()-> new PlantPotBlock(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE))); // 植物罐
+    public static final RegistryObject<Block> POT_GRASS = BLOCKS.register("pot_grass", ()-> new PotGrassBlock(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE))); // 罐子草
     public static final RegistryObject<Block> WATER_POT = BLOCKS.register("water_pot", ()->new WaterPotBlock(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE))); // 水盆
     public static final RegistryObject<Block> SQUASH = BLOCKS.register("squash", ()-> new MelonBlock(BlockBehaviour.Properties.of(Material.VEGETABLE, MaterialColor.COLOR_GREEN).strength(1.0f).sound(SoundType.WOOD))); // 倭瓜
     public static final RegistryObject<Block> MORION_ORE = BLOCKS.register("morion_ore", ()-> new OreBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(3.0f, 3.0f))); // 黑晶矿

@@ -14,6 +14,7 @@ import com.hungteen.pvz.utils.ConfigUtil;
 import com.hungteen.pvz.utils.PlayerUtil;
 import com.hungteen.pvz.utils.enums.Resources;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
+import com.zhilizhan.bhtpvz.common.block.PotGrassBlock;
 import com.zhilizhan.bhtpvz.common.block.WaterPotBlock;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -60,13 +61,19 @@ public abstract class PlantCardItemMixin extends SummonCardItem{
     @Nullable
     @Overwrite
     public static BlockState getBlockState(Player player, IPlantType plant) {
-        return plant == PVZPlants.LILY_PAD ? BlockRegister.LILY_PAD.get().getStateForPlacement(player) : (plant == PVZPlants.FLOWER_POT ? BlockRegister.FLOWER_POT.get().getStateForPlacement(player) : (plant == BHTPvZPlants.WATER_POT ? ((WaterPotBlock)BHTPvZBlocks.WATER_POT.get()).getStateForPlacement(player): null));
+        return plant == PVZPlants.LILY_PAD ? BlockRegister.LILY_PAD.get().getStateForPlacement(player) :
+                (plant == PVZPlants.FLOWER_POT ? BlockRegister.FLOWER_POT.get().getStateForPlacement(player) :
+                        (plant == BHTPvZPlants.WATER_POT ? ((WaterPotBlock)BHTPvZBlocks.WATER_POT.get()).getStateForPlacement(player):
+                                (plant == BHTPvZPlants.POT_GRASS ? ((PotGrassBlock)BHTPvZBlocks.POT_GRASS.get()).getStateForPlacement(player):null)));
     }
 
     @Nullable
     @Overwrite
     public static BlockState getBlockState(Direction direction, IPlantType plant) {
-        return plant == PVZPlants.LILY_PAD ? BlockRegister.LILY_PAD.get().getStateForPlacement(direction) : (plant == PVZPlants.FLOWER_POT ? BlockRegister.FLOWER_POT.get().getStateForPlacement(direction) : (plant == BHTPvZPlants.WATER_POT ? ((WaterPotBlock)BHTPvZBlocks.WATER_POT.get()).getStateForPlacement(direction):null));
+        return plant == PVZPlants.LILY_PAD ? BlockRegister.LILY_PAD.get().getStateForPlacement(direction) :
+                (plant == PVZPlants.FLOWER_POT ? BlockRegister.FLOWER_POT.get().getStateForPlacement(direction) :
+                        (plant == BHTPvZPlants.WATER_POT ? ((WaterPotBlock)BHTPvZBlocks.WATER_POT.get()).getStateForPlacement(direction):
+                                (plant == BHTPvZPlants.POT_GRASS ? ((PotGrassBlock)BHTPvZBlocks.POT_GRASS.get()).getStateForPlacement(direction):null)));
     }
     @Shadow
     public static boolean checkSunAndPlaceBlock(Player player, ItemStack plantStack, ItemStack heldStack, PlantCardItem cardItem, BlockPos pos) {

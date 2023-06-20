@@ -38,7 +38,7 @@ public final class BHTPvZPlants extends PlantType {
     //火焰豌豆
     public static final IPlantType FIRE_PEASHOOTER = new BHTPvZPlants("fire_peashooter", new PlantFeatures().cost(175).requiredLevel(17).cd(CoolDowns.VERY_FAST).rank(RankTypes.GREEN).essence(EssenceTypes.FLAME).entityType(BHTPvZEntityTypes.FIRE_PEASHOOTER::get).summonCard(BHTPvZItems.FIRE_PEASHOOTER_CARD).enjoyCard(BHTPvZItems.FIRE_PEASHOOTER_ENJOY_CARD).plantModel(() -> FirePeashooterModel::new).scale(1.0f).commonSkill(Collections.singletonList(SkillTypes.PEA_DAMAGE)));
     //水盆
-    public static final IPlantType WATER_POT = new BHTPvZPlants("water_pot", new PlantFeatures().cost(25).requiredLevel(9).cd(CoolDowns.HUGE_FAST).rank(RankTypes.GREEN).essence(EssenceTypes.ASSIST).summonCard(BHTPvZItems.WATER_POT_CARD).enjoyCard(BHTPvZItems.WATER_POT_ENJOY_CARD).entityType(BHTPvZEntityTypes.WATER_POT::get).plantBlock(BHTPvZBlocks.WATER_POT::get));
+    public static final IPlantType WATER_POT = new BHTPvZPlants("water_pot", new PlantFeatures().cost(25).requiredLevel(9).cd(CoolDowns.HUGE_FAST).rank(RankTypes.GREEN).essence(EssenceTypes.ASSIST).summonCard(BHTPvZItems.WATER_POT_CARD).enjoyCard(BHTPvZItems.WATER_POT_ENJOY_CARD).plantBlock(BHTPvZBlocks.WATER_POT::get));
     //紫颂果
     public static final IPlantType CHORUS_FRUIT_PULT = new BHTPvZPlants("chorus_fruit_pult", new PlantFeatures().cost(175).requiredLevel(17).cd(CoolDowns.VERY_FAST).rank(RankTypes.PURPLE).essence(EssenceTypes.ARMA).entityType(BHTPvZEntityTypes.CHORUS_FRUIT_PULT::get).summonCard(BHTPvZItems.CHORUS_FRUIT_PULT_CARD).enjoyCard(BHTPvZItems.CHORUS_FRUIT_PULT_ENJOY_CARD).plantModel(() -> ChorusFruitPultModel::new).scale(0.95f).commonSkill(Collections.singletonList(SkillTypes.MORE_KERNEL_DAMAGE)));
     //转转萝卜
@@ -49,6 +49,8 @@ public final class BHTPvZPlants extends PlantType {
     public static final IPlantType BLAZE_WART = new BHTPvZPlants("blaze_wart", new PlantFeatures().cost(175).requiredLevel(18).cd(CoolDowns.FAST).rank(RankTypes.RED).essence(EssenceTypes.FLAME).entityType(BHTPvZEntityTypes.BLAZE_WART::get).summonCard(BHTPvZItems.BLAZE_WART_CARD).enjoyCard(BHTPvZItems.BLAZE_WART_ENJOY_CARD).plantModel(() -> BlazeWartModel::new).scale(0.95f).commonSkill(Collections.singletonList(SkillTypes.MORE_SWING_DAMAGE)));
     //草鱼
     public static final IPlantType GRASS_CARP = new BHTPvZPlants("grass_carp", new PlantFeatures().cost(225).requiredLevel(23).cd(CoolDowns.FAST).rank(RankTypes.GREEN).essence(EssenceTypes.APPEASE).entityType(BHTPvZEntityTypes.GRASS_CARP::get).summonCard(BHTPvZItems.GRASS_CARP_CARD).enjoyCard(BHTPvZItems.GRASS_CARP_ENJOY_CARD).plantModel(() -> GrassCarpModel::new).scale(1.5f).isWaterPlant().commonSkill(Collections.singletonList(SkillTypes.PEA_DAMAGE)));
+    //罐子草
+    public static final IPlantType POT_GRASS = new BHTPvZPlants("pot_grass", new PlantFeatures().cost(75).requiredLevel(9).cd(CoolDowns.VERY_SLOW).rank(RankTypes.GREEN).essence(EssenceTypes.ASSIST).summonCard(BHTPvZItems.POT_GRASS_CARD).enjoyCard(BHTPvZItems.POT_GRASS_ENJOY_CARD).plantBlock(BHTPvZBlocks.POT_GRASS::get));
 
     public static void register() {
         PVZAPI.get().registerPlantTypes(LIST);

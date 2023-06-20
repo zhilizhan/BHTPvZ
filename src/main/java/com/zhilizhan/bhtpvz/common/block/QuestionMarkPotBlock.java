@@ -23,14 +23,13 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
-import static com.zhilizhan.bhtpvz.common.list.PlantItemList.PLANT;
+import static com.zhilizhan.bhtpvz.common.list.PlantItemList.PLANT_ITEM;
 import static com.zhilizhan.bhtpvz.common.list.ZombieList.ZOMBIE;
 
 public class QuestionMarkPotBlock extends AbstractFacingBlock {
 
-    protected final Random random = new Random();
+
 
     private static final VoxelShape SHAPE = Shapes.or(
             Block.box(4.0, 0.0, 4.0, 12.0, 1.0, 12.0),
@@ -42,20 +41,15 @@ public class QuestionMarkPotBlock extends AbstractFacingBlock {
         super(properties);
     }
 
-
-
-
-
-
     public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
         super.playerDestroy(level, player, pos, state, blockEntity, tool);
-        IZombieType zombieType = (IZombieType) ZOMBIE.getRandomItem(this.random).get();
-        ItemStack plant = PLANT.getRandomItem(this.random).get().getDefaultInstance();
+        IZombieType zombieType = (IZombieType) ZOMBIE.getRandomItem(RANDOM).get();
+        ItemStack plant = PLANT_ITEM.getRandomItem(RANDOM).get().getDefaultInstance();
         if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, tool) == 0 && ItemStack.isSameIgnoreDurability(BHTPvZItems.HAMMER.get().getDefaultInstance(), tool)) {
             level.removeBlock(pos, false);
             //僵尸
             PathfinderMob zombie = zombieType.getEntityType().get().create(level);
-            if (random.nextInt(2) == 0) {
+            if (RANDOM.nextInt(2) == 0) {
                 EntityUtil.onEntitySpawn(level, zombie, pos);
             } else {
                 level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(plant.getItem())));

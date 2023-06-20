@@ -102,8 +102,10 @@ public class BHTPvZItems {
     public static final RegistryObject<PlantCardItem> BURST_KERNEL_PULT_ENJOY_CARD = registerCard(BHTPvZPlants.BURST_KERNEL_PULT, true); // 爆裂玉米投手体验卡
     public static final RegistryObject<PlantCardItem> BLAZE_WART_CARD = registerCard(BHTPvZPlants.BLAZE_WART, false); // 烈焰庞卡
     public static final RegistryObject<PlantCardItem> BLAZE_WART_ENJOY_CARD = registerCard(BHTPvZPlants.BLAZE_WART, true); // 烈焰庞体验卡
-    public static final RegistryObject<PlantCardItem> GRASS_CARP_CARD = registerCard(BHTPvZPlants.GRASS_CARP, false); // 草鱼
-    public static final RegistryObject<PlantCardItem> GRASS_CARP_ENJOY_CARD = registerCard(BHTPvZPlants.GRASS_CARP, true); // 草鱼
+    public static final RegistryObject<PlantCardItem> GRASS_CARP_CARD = registerCard(BHTPvZPlants.GRASS_CARP, false); // 草鱼卡
+    public static final RegistryObject<PlantCardItem> GRASS_CARP_ENJOY_CARD = registerCard(BHTPvZPlants.GRASS_CARP, true); // 草鱼体验卡
+    public static final RegistryObject<PlantCardItem> POT_GRASS_CARD = registerCard(BHTPvZPlants.POT_GRASS, false); // 罐子草卡
+    public static final RegistryObject<PlantCardItem> POT_GRASS_ENJOY_CARD = registerCard(BHTPvZPlants.POT_GRASS, true); // 罐子草体验卡
 
     // 方块物品
     public static final RegistryObject<Item> CHERRY_TREE_LEAVES = ITEMS.register("cherry_leaves", ()-> new BlockItem(BHTPvZBlocks.CHERRY_LEAVES.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 樱桃树树叶
@@ -114,6 +116,8 @@ public class BHTPvZItems {
     public static final RegistryObject<Item> ORIGIN_MUSHROOM_BLOCK = ITEMS.register("origin_mushroom_block", ()-> new BlockItem(BHTPvZBlocks.ORIGIN_MUSHROOM_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 原始蘑菇块
     public static final RegistryObject<Item> QUESTION_MARK_POT = ITEMS.register("question_mark_pot", ()-> new BlockItem(BHTPvZBlocks.QUESTION_MARK_POT.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 问号罐
     public static final RegistryObject<Item> PLANT_POT = ITEMS.register("plant_pot", ()-> new BlockItem(BHTPvZBlocks.PLANT_POT.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 植物罐
+    public static final RegistryObject<Item> POT_GRASS = ITEMS.register("pot_grass", ()-> new BlockItem(BHTPvZBlocks.POT_GRASS.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 罐子草
+
     public static final RegistryObject<Item> WATER_POT = ITEMS.register("water_pot", ()-> new BlockItem(BHTPvZBlocks.WATER_POT.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 水盆
 
     public static final RegistryObject<Item> SQUASH = ITEMS.register("squash", ()-> new BlockItem(BHTPvZBlocks.SQUASH.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 倭瓜
