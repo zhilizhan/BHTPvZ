@@ -112,6 +112,8 @@
   "entity.bhtpvz.burst_kernel_pult": "爆裂玉米投手",
   "entity.bhtpvz.rotate_radish": "旋转萝卜",
   "entity.bhtpvz.blaze_wart": "烈焰庞",
+  "entity.bhtpvz.grass_carp": "草鱼",
+  "entity.bhtpvz.pot_grass": "罐子草",
 
   "entity.bhtpvz.edgar_090547": "埃德加-090547",
   "entity.bhtpvz.flower_pot_zombie": "花盆僵尸",
@@ -125,6 +127,8 @@
   "entity.bhtpvz.sun_flower_zombie": "向日葵僵尸",
 
   "entity.bhtpvz.origin_moob": "起源蘑菇牛",
+  "entity.bhtpvz.red_sun": "红太阳",
+
 
   "challenge.bhttpvz.extra.msg1": "BHtpvz的附加挑战",
   "challenge.pvz.roof_extra.name": "屋顶附加",
@@ -133,5 +137,6 @@
 
   "block.bhtpvz.wisdom_log_say_1": "曾经有一个照顾我的人",
   "block.bhtpvz.wisdom_log_say_2": "但后来不知道怎么的离开了",
-  "block.bhtpvz.wisdom_log_say_3": "之后就再也没有见过他"
+  "block.bhtpvz.wisdom_log_say_3": "之后就再也没有见过他",
+
 }

@@ -112,7 +112,8 @@
   "entity.bhtpvz.burst_kernel_pult": "burst kernel",
   "entity.bhtpvz.rotate_radish": "rotate radish",
   "entity.bhtpvz.blaze_wart": "blaze_wart",
-
+  "entity.bhtpvz.grass_carp": "grass carp",
+  "entity.bhtpvz.pot_grass": "pot grass",
 
   "entity.bhtpvz.edgar_090547": "edgar-090547",
   "entity.bhtpvz.flower_pot_zombie": "flower pot zombie",
@@ -126,6 +127,7 @@
   "entity.bhtpvz.sun_flower_zombie": "sunflower zombie",
 
   "entity.bhtpvz.origin_moob": "origin_moob",
+  "entity.bhtpvz.red_sun": "red sun",
 
 
   "challenge.bhttpvz.extra.msg1": "Additional challenges of bhttpvz",
