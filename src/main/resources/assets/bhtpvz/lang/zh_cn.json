@@ -2,6 +2,7 @@
   "itemGroup.better_hung_teen_plants_vs_zombies": "更好的HTPVZ MOD",
 
   "biome.bhtpvz.night_biome": "黑夜群系",
+  "biome.bhtpvz.bewilder_garden": "迷境花园群系",
 
   "item.bhtpvz.better_hung_teen_plants_vs_zombies": "更好的HTPVZ",
   "item.bhtpvz.cherry": "樱桃",
@@ -31,6 +32,7 @@
   "item.bhtpvz.wisdom_sapling": "智慧树苗",
   "item.bhtpvz.dave_token": "戴夫标志",
   "item.bhtpvz.sun_dave_token": "阳光戴夫标志",
+  "item.bhtpvz.steel_pumpkin_token": "钢南瓜标志",
   "item.bhtpvz.steel_coin": "钢蹦",
   "item.bhtpvz.chlorophyll": "叶绿素",
 
@@ -52,6 +54,13 @@
   "item.bhtpvz.rotate_radish_enjoy_card": "旋转萝卜体验卡",
   "item.bhtpvz.blaze_wart_card": "地狱庞卡",
   "item.bhtpvz.blaze_wart_enjoy_card": "地狱庞体验卡",
+  "item.bhtpvz.grass_carp_card": "草鱼卡",
+  "item.bhtpvz.grass_carp_enjoy_card": "草鱼体验卡",
+  "item.bhtpvz.pot_grass_card": "罐子草卡",
+  "item.bhtpvz.pot_grass_enjoy_card": "罐子草体验卡",
+
+
+  "item.bhtpvz.origin_moob_spawn_egg": "起源蘑菇牛刷怪蛋",
 
   "item.bhtpvz.edgar_090547_spawn_egg": "埃德加-090547刷怪蛋",
   "item.bhtpvz.flower_pot_zombie_spawn_egg": "花盆僵尸刷怪蛋",
@@ -62,6 +71,7 @@
   "item.bhtpvz.red_edge_zombie_spawn_egg": "红刀僵尸刷怪蛋",
   "item.bhtpvz.mj_zombie_spawn_egg": "舞王僵尸刷怪蛋",
   "item.bhtpvz.dancer_backup_zombie_spawn_egg": "舞伴僵尸刷怪蛋",
+  "item.bhtpvz.sun_flower_zombie_spawn_egg": "向日葵僵尸刷怪蛋",
 
   "block.bhtpvz.cherry_leaves": "樱桃树树叶",
   "block.bhtpvz.starfruit_leaves":"杨桃树树叶",
@@ -82,7 +92,7 @@
   "block.bhtpvz.water_pot": "水盆",
   "block.bhtpvz.screen_door": "钢门",
   "block.bhtpvz.wisdom_log": "智慧木",
-
+  "block.bhtpvz.pot_grass": "罐子草",
 
   "effect.bhtpvz.halitosis": "口臭",
 
@@ -90,6 +100,7 @@
   "tooltip.bhtpvz.steel_coin.use": "使用后抽奖次数+3",
   "tooltip.bhtpvz.token.use": "使用以召唤戴夫",
   "tooltip.bhtpvz.sun_token.use": "使用以召唤阳光戴夫",
+  "tooltip.bhtpvz.steel_pumpkin_token.use": "使用以召唤钢南瓜",
   "tooltip.bhtpvz.chlorophyll.use": "食用以获得能量",
 
   "entity.bhtpvz.ice_cabbage_pult": "冰卷心菜投手",
@@ -111,6 +122,9 @@
   "entity.bhtpvz.red_edge_zombie": "红刀僵尸",
   "entity.bhtpvz.mj_zombie": "舞王僵尸",
   "entity.bhtpvz.dancer_backup_zombie": "舞伴僵尸",
+  "entity.bhtpvz.sun_flower_zombie": "向日葵僵尸",
+
+  "entity.bhtpvz.origin_moob": "起源蘑菇牛",
 
   "challenge.bhttpvz.extra.msg1": "BHtpvz的附加挑战",
   "challenge.pvz.roof_extra.name": "屋顶附加",

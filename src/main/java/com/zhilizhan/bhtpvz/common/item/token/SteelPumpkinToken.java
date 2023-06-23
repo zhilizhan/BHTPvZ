@@ -56,6 +56,6 @@ public class SteelPumpkinToken extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
-        tooltipComponents.add(new TranslatableComponent("tooltip.bhtpvz.token.use").withStyle(ChatFormatting.GREEN));
+        tooltipComponents.add(new TranslatableComponent("tooltip.bhtpvz.steel_pumpkin_token.use").withStyle(ChatFormatting.GOLD));
     }
 }

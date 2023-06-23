@@ -1,17 +1,19 @@
 package com.zhilizhan.bhtpvz.common.list;
 
+import com.hungteen.pvz.common.item.ItemRegister;
 import com.hungteen.pvz.common.item.spawn.card.PlantCardItem;
 import com.hungteen.pvz.utils.others.WeightList;
-import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
 
 public class PlantItemList {
     public static final WeightList<PlantCardItem> PLANT_ITEM = new WeightList<>();
     static {
-        PLANT_ITEM.addItem(BHTPvZItems.BLAZE_WART_ENJOY_CARD.get(),100);
-        PLANT_ITEM.addItem(BHTPvZItems.ICE_CABBAGE_PULT_ENJOY_CARD.get(),90);
-        PLANT_ITEM.addItem(BHTPvZItems.BURST_KERNEL_PULT_ENJOY_CARD.get(),100);
-        PLANT_ITEM.addItem(BHTPvZItems.NUT_BOWLING_ENJOY_CARD.get(),90);
-        PLANT_ITEM.addItem(BHTPvZItems.GRASS_CARP_ENJOY_CARD.get(),100);
-        PLANT_ITEM.addItem(BHTPvZItems.CHORUS_FRUIT_PULT_ENJOY_CARD.get(),90);
+        PLANT_ITEM.addItem(ItemRegister.PEA_SHOOTER_ENJOY_CARD.get(),100);
+        PLANT_ITEM.addItem(ItemRegister.ICE_SHROOM_ENJOY_CARD.get(),90);
+        PLANT_ITEM.addItem(ItemRegister.WALL_NUT_ENJOY_CARD.get(),80);
+        PLANT_ITEM.addItem(ItemRegister.POTATO_MINE_ENJOY_CARD.get(),90);
+        PLANT_ITEM.addItem(ItemRegister.SQUASH_ENJOY_CARD.get(),100);
+        PLANT_ITEM.addItem(ItemRegister.THREE_PEATER_ENJOY_CARD.get(),70);
+        PLANT_ITEM.addItem(ItemRegister.PLANTERN_ENJOY_CARD.get(),70);
+        PLANT_ITEM.addItem(ItemRegister.CHERRY_BOMB_ENJOY_CARD.get(),80);
     }
 }

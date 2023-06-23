@@ -5,6 +5,7 @@ import com.hungteen.pvz.common.impl.zombie.PoolZombies;
 import com.hungteen.pvz.common.impl.zombie.RoofZombies;
 import com.hungteen.pvz.common.impl.zombie.ZombieType;
 import com.hungteen.pvz.utils.others.WeightList;
+import com.zhilizhan.bhtpvz.common.impl.zombie.BHTPvZZombies;
 
 public class ZombieList {
     public static final WeightList<ZombieType> ZOMBIE = new WeightList<>();
@@ -22,5 +23,7 @@ public class ZombieList {
         ZOMBIE.addItem(PoolZombies.JACK_IN_BOX_ZOMBIE, 85);
         ZOMBIE.addItem(PoolZombies.DIGGER_ZOMBIE, 70);
         ZOMBIE.addItem(PoolZombies.POGO_ZOMBIE, 85);
+        ZOMBIE.addItem(BHTPvZZombies.RED_EDGE_ZOMBIE, 75);
+        ZOMBIE.addItem(BHTPvZZombies.SUN_FLOWER_ZOMBIE, 85);
     }
 }

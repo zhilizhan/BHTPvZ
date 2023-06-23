@@ -26,7 +26,6 @@ public class PlantList {
         PLANT.addItem(PVZPlants.JALAPENO, 85);
         //水生植物
         WATER_PLANT.addItem(PVZPlants.CAT_TAIL, 70);
-        WATER_PLANT.addItem(PVZPlants.LILY_PAD, 100);
         WATER_PLANT.addItem(CustomPlants.WATER_GUARD, 90);
         WATER_PLANT.addItem(BHTPvZPlants.GRASS_CARP, 70);
     }

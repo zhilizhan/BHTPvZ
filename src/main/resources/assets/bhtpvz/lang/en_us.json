@@ -2,6 +2,7 @@
   "itemGroup.better_hung_teen_plants_vs_zombies": "Better Hung_Teen's Plants vs Zombies  MOD",
 
   "biome.bhtpvz.night_biome": "night biome",
+  "biome.bhtpvz.bewilder_garden": "bewilder garden biome",
 
   "item.bhtpvz.better_hung_teen_plants_vs_zombies": "Better Hung_Teen's Plants vs Zombies",
   "item.bhtpvz.cherry": "cherry",
@@ -31,6 +32,7 @@
   "item.bhtpvz.wisdom_sapling": "wisdom sapling",
   "item.bhtpvz.dave_token": "dave token",
   "item.bhtpvz.sun_dave_token": "sun dave token",
+  "item.bhtpvz.steel_pumpkin_token": "steel pumpkin token",
   "item.bhtpvz.steel_coin": "steel coin",
   "item.bhtpvz.chlorophyll": "chlorophyll",
 
@@ -52,7 +54,13 @@
   "item.bhtpvz.rotate_radish_enjoy_card": "rotate radish enjoy card",
   "item.bhtpvz.blaze_wart_card": "blaze wart pult card",
   "item.bhtpvz.blaze_wart_enjoy_card": "blaze wart pult enjoy card",
+  "item.bhtpvz.grass_carp_card": "grass carp pult card",
+  "item.bhtpvz.grass_carp_enjoy_card": "grass carp pult enjoy card",
+  "item.bhtpvz.pot_grass_card": "pot grass pult card",
+  "item.bhtpvz.pot_grass_enjoy_card": "pot grass pult enjoy card",
 
+
+  "item.bhtpvz.origin_moob_spawn_egg": "origin moob spawn egg",
 
 
   "item.bhtpvz.edgar_090547_spawn_egg": "edgar 090547 spawn egg",
@@ -64,6 +72,7 @@
   "item.bhtpvz.red_edge_zombie_spawn_egg": "red edge zombie spawn egg",
   "item.bhtpvz.mj_zombie_spawn_egg": "mj zombie spawn egg",
   "item.bhtpvz.dancer_backup_zombie_spawn_egg": "dancer backup spawn egg",
+  "item.bhtpvz.sun_flower_zombie_spawn_egg": "sun flower spawn egg",
 
   "block.bhtpvz.cherry_leaves": "cherry leaves",
   "block.bhtpvz.starfruit_leaves": "starfruit leaves",
@@ -81,16 +90,17 @@
   "block.bhtpvz.garlic": "garlic",
   "block.bhtpvz.decomposition_stage": "decomposition stage",
   "block.bhtpvz.steel_pumpkin": "steel pumpkin",
-  "block.bhtpvz.water_pot": "WaterPot",
-  "block.bhtpvz.screen_door": "ScreenDoor",
-  "block.bhtpvz.wisdom_log": "Wisdom log",
-
+  "block.bhtpvz.water_pot": "waterPot",
+  "block.bhtpvz.screen_door": "screenDoor",
+  "block.bhtpvz.wisdom_log": "wisdomLog",
+  "block.bhtpvz.pot_grass": "potGrass",
 
   "effect.bhtpvz.halitosis": "halitosis",
 
   "tooltip.bhtpvz.xp_sapling.use": "Eat to gain experience",
   "tooltip.bhtpvz.token.use": "Use to summon dave",
   "tooltip.bhtpvz.sun_token.use": "Use to summon sunDave",
+  "tooltip.bhtpvz.steel_pumpkin_token.use": "Use to summon steelPumpkin",
   "tooltip.bhtpvz.steel_coin.use": "Use to chance number+3",
   "tooltip.bhtpvz.chlorophyll.use": "Eat to gain energy",
   "entity.bhtpvz.ice_cabbage_pult":"ice cabbage pult",
@@ -113,6 +123,9 @@
   "entity.bhtpvz.red_edge_zombie": "red edge zombie",
   "entity.bhtpvz.mj_zombie": "mj zombie",
   "entity.bhtpvz.dancer_backup_zombie": "dancer backup zombie",
+  "entity.bhtpvz.sun_flower_zombie": "sunflower zombie",
+
+  "entity.bhtpvz.origin_moob": "origin_moob",
 
 
   "challenge.bhttpvz.extra.msg1": "Additional challenges of bhttpvz",
