@@ -100,8 +100,8 @@ public class BHTPvZItems {
     public static final RegistryObject<PlantCardItem> ROTATE_RADISH_ENJOY_CARD = registerCard(BHTPvZPlants.ROTATE_RADISH, true); // 转转萝卜体验卡
     public static final RegistryObject<PlantCardItem> BURST_KERNEL_PULT_CARD = registerCard(BHTPvZPlants.BURST_KERNEL_PULT, false); // 爆裂玉米投手卡
     public static final RegistryObject<PlantCardItem> BURST_KERNEL_PULT_ENJOY_CARD = registerCard(BHTPvZPlants.BURST_KERNEL_PULT, true); // 爆裂玉米投手体验卡
-    public static final RegistryObject<PlantCardItem> BLAZE_WART_CARD = registerCard(BHTPvZPlants.BLAZE_WART, false); // 烈焰庞卡
-    public static final RegistryObject<PlantCardItem> BLAZE_WART_ENJOY_CARD = registerCard(BHTPvZPlants.BLAZE_WART, true); // 烈焰庞体验卡
+    public static final RegistryObject<PlantCardItem> BLAZE_WART_CARD = registerCard(BHTPvZPlants.BLAZE_WART, false); // 烈焰疣卡
+    public static final RegistryObject<PlantCardItem> BLAZE_WART_ENJOY_CARD = registerCard(BHTPvZPlants.BLAZE_WART, true); // 烈焰疣体验卡
     public static final RegistryObject<PlantCardItem> GRASS_CARP_CARD = registerCard(BHTPvZPlants.GRASS_CARP, false); // 草鱼卡
     public static final RegistryObject<PlantCardItem> GRASS_CARP_ENJOY_CARD = registerCard(BHTPvZPlants.GRASS_CARP, true); // 草鱼体验卡
     public static final RegistryObject<PlantCardItem> POT_GRASS_CARD = registerCard(BHTPvZPlants.POT_GRASS, false); // 罐子草卡

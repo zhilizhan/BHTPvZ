@@ -12,7 +12,6 @@ import com.hungteen.pvz.utils.EntityUtil;
 import com.hungteen.pvz.utils.enums.PAZAlmanacs;
 import com.mojang.datafixers.util.Pair;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -41,7 +40,7 @@ public class BlazeWartEntity extends PVZPlantEntity {
             float range = 5.0F;
             EntityUtil.getTargetableEntities(this, EntityUtil.getEntityAABB(this, range, range)).forEach((target) -> {
                 target.hurt(PVZEntityDamageSource.normal(this), this.getAttackDamage() * 5.0F);
-                EntityUtil.playSound(this, (SoundEvent) SoundRegister.SWING.get());
+                EntityUtil.playSound(this, SoundRegister.SWING.get());
                 target.setSecondsOnFire(5);
             });
         }
@@ -49,7 +48,7 @@ public class BlazeWartEntity extends PVZPlantEntity {
     }
 
     public void attackTarget(LivingEntity target) {
-        EntityUtil.playSound(this, (SoundEvent)SoundRegister.SWING.get());
+        EntityUtil.playSound(this, SoundRegister.SWING.get());
         target.hurt(PVZEntityDamageSource.normal(this), this.getAttackDamage());
         target.setSecondsOnFire(3);
     }
@@ -109,7 +108,7 @@ public class BlazeWartEntity extends PVZPlantEntity {
         }
 
         public void stop() {
-            this.attacker.setTarget((LivingEntity)null);
+            this.attacker.setTarget(null);
             this.attacker.setAttackTime(0);
         }
 

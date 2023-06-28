@@ -60,7 +60,7 @@ public class GrassCarpEntity extends PeaShooterEntity {
         }
     }
     protected AbstractBulletEntity createBullet() {
-        return new FishPeaEntity(this.level,this);
+        return new FishPeaEntity(this.level);
     }
     public void startShootAttack() {
         this.setAttackTime(1);

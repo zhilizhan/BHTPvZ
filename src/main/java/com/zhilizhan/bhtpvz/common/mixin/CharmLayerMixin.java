@@ -27,7 +27,7 @@ public abstract class CharmLayerMixin <T extends LivingEntity, M extends EntityM
         } else if (entity instanceof PVZZombieEntity) {
             return ((PVZZombieEntity)entity).isCharmed();
         } else {
-            return entity instanceof PVZPlantEntity ? ((PVZPlantEntity)entity).isCharmed() : false;
+            return entity instanceof PVZPlantEntity && ((PVZPlantEntity) entity).isCharmed();
         }
     }
 }

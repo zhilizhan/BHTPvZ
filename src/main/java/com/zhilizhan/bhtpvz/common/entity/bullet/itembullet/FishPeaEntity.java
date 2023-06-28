@@ -6,7 +6,6 @@ import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -18,8 +17,8 @@ public class FishPeaEntity extends PeaEntity implements ItemSupplier {
     public FishPeaEntity(EntityType<?> type, Level worldIn) {
         super(type, worldIn);
     }
-    public FishPeaEntity(Level worldIn, LivingEntity shooter) {
-        super((EntityType) BHTPvZEntityTypes.FISH_PEA.get(), worldIn);
+    public FishPeaEntity(Level worldIn) {
+        super(BHTPvZEntityTypes.FISH_PEA.get(), worldIn);
     }
 
     protected void onImpact(HitResult result) {
@@ -58,6 +57,6 @@ public class FishPeaEntity extends PeaEntity implements ItemSupplier {
 
     @Override
     public ItemStack getItem() {
-        return new ItemStack((ItemLike) ItemRegister.PEA.get());
+        return new ItemStack(ItemRegister.PEA.get());
     }
 }

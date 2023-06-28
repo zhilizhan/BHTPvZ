@@ -52,8 +52,8 @@
   "item.bhtpvz.burst_kernel_pult_enjoy_card": "爆裂玉米投手体验卡",
   "item.bhtpvz.rotate_radish_card": "旋转萝卜卡",
   "item.bhtpvz.rotate_radish_enjoy_card": "旋转萝卜体验卡",
-  "item.bhtpvz.blaze_wart_card": "地狱庞卡",
-  "item.bhtpvz.blaze_wart_enjoy_card": "地狱庞体验卡",
+  "item.bhtpvz.blaze_wart_card": "烈焰疣卡",
+  "item.bhtpvz.blaze_wart_enjoy_card": "烈焰疣体验卡",
   "item.bhtpvz.grass_carp_card": "草鱼卡",
   "item.bhtpvz.grass_carp_enjoy_card": "草鱼体验卡",
   "item.bhtpvz.pot_grass_card": "罐子草卡",
@@ -111,7 +111,7 @@
   "entity.bhtpvz.chorus_fruit_pult": "紫颂果投手",
   "entity.bhtpvz.burst_kernel_pult": "爆裂玉米投手",
   "entity.bhtpvz.rotate_radish": "旋转萝卜",
-  "entity.bhtpvz.blaze_wart": "烈焰庞",
+  "entity.bhtpvz.blaze_wart": "烈焰疣",
   "entity.bhtpvz.grass_carp": "草鱼",
   "entity.bhtpvz.pot_grass": "罐子草",
 
@@ -137,6 +137,6 @@
 
   "block.bhtpvz.wisdom_log_say_1": "曾经有一个照顾我的人",
   "block.bhtpvz.wisdom_log_say_2": "但后来不知道怎么的离开了",
-  "block.bhtpvz.wisdom_log_say_3": "之后就再也没有见过他",
+  "block.bhtpvz.wisdom_log_say_3": "之后就再也没有见过他"
 
 }

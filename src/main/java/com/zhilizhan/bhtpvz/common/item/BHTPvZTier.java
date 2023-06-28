@@ -6,7 +6,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
 
-public class BHTPvZTier implements Tier {
+public class
+BHTPvZTier implements Tier {
     private final int level;
     private final int uses;
     private final float speed;

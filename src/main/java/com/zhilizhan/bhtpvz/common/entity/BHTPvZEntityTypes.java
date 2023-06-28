@@ -11,7 +11,6 @@ import com.zhilizhan.bhtpvz.client.render.entity.normal.OriginMoobRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.GrassCrapRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.BurstKernelPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.ChorusFruitPultRender;
-import com.zhilizhan.bhtpvz.client.render.entity.plant.assist.WaterPotRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.defence.SteelPumpkinRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.enforce.NutBowlingRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.enforce.RotateRadishRender;
@@ -31,7 +30,6 @@ import com.zhilizhan.bhtpvz.common.entity.normal.OriginMoobEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.appease.GrassCarpEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.BurstKernelPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.ChorusFruitPultEntity;
-import com.zhilizhan.bhtpvz.common.entity.plant.assist.WaterPotEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.defence.SteelPumpkinEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.enforce.NutBowlingEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.enforce.RotateRadishEntity;
@@ -60,7 +58,6 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<IceCabbagePultEntity>> ICE_CABBAGE_PULT = registerPlantEntityType(IceCabbagePultEntity::new, "ice_cabbage_pult"); // 冰卷心菜投手
 	public static final RegistryObject<EntityType<FirePeashooterEntity>> FIRE_PEASHOOTER = registerPlantEntityType(FirePeashooterEntity::new, "fire_peashooter"); // 火焰豌豆
 	public static final RegistryObject<EntityType<NutBowlingEntity>> NUT_BOWLING = registerPlantEntityType(NutBowlingEntity::new, "nut_bowling"); // 保龄球坚果
-	public static final RegistryObject<EntityType<WaterPotEntity>> WATER_POT = registerPlantEntityType(WaterPotEntity::new, "water_pot"); // 水盆
 	public static final RegistryObject<EntityType<ChorusFruitPultEntity>> CHORUS_FRUIT_PULT = registerPlantEntityType(ChorusFruitPultEntity::new, "chorus_fruit_pult"); // 紫颂果投手
 	public static final RegistryObject<EntityType<RotateRadishEntity>> ROTATE_RADISH = registerPlantEntityType(RotateRadishEntity::new, "rotate_radish"); // 转转萝卜
 	public static final RegistryObject<EntityType<BurstKernelPultEntity>> BURST_KERNEL_PULT = registerPlantEntityType(BurstKernelPultEntity::new, "burst_kernel_pult"); // 爆裂玉米投手
@@ -75,7 +72,6 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<BurstCornEntity>> BURST_CORN = registerEntityType(BurstCornEntity::new, "burst_corn", MobCategory.MISC); // 炸裂玉米子弹
 	public static final RegistryObject<EntityType<PopCornEntity>> POP_CORN = registerEntityType(PopCornEntity::new, "pop_corn", MobCategory.MISC); // 爆米花子弹
 	public static final RegistryObject<EntityType<FishPeaEntity>> FISH_PEA = registerEntityType(FishPeaEntity::new, "fish_pea",MobCategory.MISC);//草鱼生的（豌豆
-
 	// 僵尸
 	public static final RegistryObject<EntityType<Edgar090547Entity>> EDGAR_090547 = registerZombieEntityType(Edgar090547Entity::new, "edgar_090547"); // 埃德加-090547
 	public static final RegistryObject<EntityType<FlowerPotZombieEntity>> FLOWER_POT_ZOMBIE = registerZombieEntityType(FlowerPotZombieEntity::new, "flower_pot_zombie"); // 花盆僵尸
@@ -103,7 +99,6 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(ICE_CABBAGE_PULT.get(), IceCabbagePultRender::new); // 冰卷心菜投手
 		RenderingRegistry.registerEntityRenderingHandler(FIRE_PEASHOOTER.get(), FirePeashooterRender::new); // 火焰豌豆
 		RenderingRegistry.registerEntityRenderingHandler(NUT_BOWLING.get(), NutBowlingRender::new); // 保龄球坚果
-		RenderingRegistry.registerEntityRenderingHandler(WATER_POT.get(), WaterPotRender::new); // 水盆
 		RenderingRegistry.registerEntityRenderingHandler(CHORUS_FRUIT_PULT.get(), ChorusFruitPultRender::new); // 紫颂果投手
 		RenderingRegistry.registerEntityRenderingHandler(ROTATE_RADISH.get(), RotateRadishRender::new); // 转转萝卜
 		RenderingRegistry.registerEntityRenderingHandler(BURST_KERNEL_PULT.get(), BurstKernelPultRender::new); // 爆裂玉米投手
@@ -137,7 +132,6 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(RED_SUN.get(), RedSunRender::new); // 红太阳
 
 	}
-
 	private static <T extends PVZPlantEntity> RegistryObject<EntityType<T>> registerPlantEntityType(EntityType.EntityFactory<T> factory, String name){
 		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(factory, PVZEntityClassifications.PVZ_PLANT).build(StringUtil.prefix(name).toString()));
 	}
@@ -148,8 +142,5 @@ public class BHTPvZEntityTypes {
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntityType(EntityType.EntityFactory<T> factory, String name, MobCategory category){
 		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(factory, category).build(StringUtil.prefix(name).toString()));
-	}
-	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntityType(EntityType.EntityFactory<T> factory, String name, MobCategory category, float w, float h){
-		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(factory, category).sized(w, h).build(StringUtil.prefix(name).toString()));
 	}
 }

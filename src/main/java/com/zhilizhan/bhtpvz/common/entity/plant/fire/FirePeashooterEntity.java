@@ -18,8 +18,7 @@ public class FirePeashooterEntity extends PeaShooterEntity {
 
     @Override
     protected AbstractBulletEntity createBullet() {
-        PeaEntity pea = new PeaEntity(this.level, this, this.getShootType(), this.getShootState());
-        return pea;
+        return new PeaEntity(this.level, this, this.getShootType(), this.getShootState());
     }
 
     @Override
