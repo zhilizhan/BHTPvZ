@@ -7,7 +7,10 @@
     "CharmLayerMixin",
     "PlantCardItemMixin",
     "PVZPlantEntityMixin",
-    "PVZPlantRenderMixin"
+    "PVZPlantRenderMixin",
+    "optional.PuffshroomEntityMixin",
+    "optional.PuffShroomRenderMixin",
+    "optional.ScaredyShroomEntityMixin"
   ],
   "client": [
 

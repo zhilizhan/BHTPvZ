@@ -55,7 +55,7 @@ public abstract class PlantCardItemMixin extends SummonCardItem{
         return ImitaterCardItem.getDoubleStack(stack).getFirst();
     }
     @Shadow
-    private static ItemStack getPlantStack(ItemStack stack) {
+    private  static ItemStack getPlantStack(ItemStack stack) {
         return ImitaterCardItem.getDoubleStack(stack).getSecond();
     }
     @Nullable
