@@ -12,6 +12,7 @@ import com.hungteen.pvz.utils.enums.PAZAlmanacs;
 import com.mojang.datafixers.util.Pair;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
@@ -48,8 +49,17 @@ public class RotateRadishEntity extends PVZPlantEntity {
 
         float range = 2.0F;
         EntityUtil.getTargetableEntities(this, EntityUtil.getEntityAABB(this, range, range)).forEach((target) -> {
+            double d1 = target.getX() - this.getX();
+
+            double d0;
+            for(d0 = target.getZ() - this.getZ(); d1 * d1 + d0 * d0 < 1.0E-4; d0 = (Math.random() - Math.random()) * 0.01) {
+                d1 = (Math.random() - Math.random()) * 0.01;
+            }
+
+            ((LivingEntity)target).hurtDir = (float)(Mth.atan2(d0, d1) * 57.2957763671875 - (double)this.yRot);
+
              target.hurt(PVZEntityDamageSource.normal(this), this.getAttackDamage());
-            target.setDeltaMovement(target.getDeltaMovement().add(0.0, 0.0, -0.5));
+            ((LivingEntity)target).knockback(2, d1, d0);
         });
         EntityUtil.playSound(this, (SoundEvent) SoundRegister.SWING.get());
     }

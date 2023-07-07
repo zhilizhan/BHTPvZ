@@ -16,14 +16,10 @@ public class FlowerPotZombieEntity extends PVZZombieEntity {
     }
 
 
-
-
-
     @Override
     public boolean canLostHand() {
         return super.canLostHand();
     }
-
 
 
     @Override
@@ -43,9 +39,6 @@ public class FlowerPotZombieEntity extends PVZZombieEntity {
     public float getLife() {
         return 34;
     }
-
-
-
 
 
     @Override

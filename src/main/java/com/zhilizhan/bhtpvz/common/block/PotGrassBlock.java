@@ -54,6 +54,7 @@ public class PotGrassBlock extends AbstractFacingBlock {
     }
 
     private void trySpawnWaterPlant(Level level, BlockPos pos) {
+
         IPlantType plantType = (IPlantType) WATER_PLANT.getRandomItem(RANDOM).get();
         level.removeBlock(pos, false);
         PathfinderMob plant = plantType.getEntityType().get().create(level);

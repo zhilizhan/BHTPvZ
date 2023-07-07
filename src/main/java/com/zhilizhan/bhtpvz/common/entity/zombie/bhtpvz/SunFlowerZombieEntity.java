@@ -2,7 +2,6 @@ package com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz;
 
 import com.hungteen.pvz.api.interfaces.IAlmanacEntry;
 import com.hungteen.pvz.api.types.IZombieType;
-import com.hungteen.pvz.common.entity.bullet.itembullet.PeaEntity;
 import com.hungteen.pvz.common.entity.zombie.zombotany.AbstractZombotanyEntity;
 import com.hungteen.pvz.common.potion.EffectRegister;
 import com.hungteen.pvz.utils.EntityUtil;
@@ -15,7 +14,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
@@ -50,18 +48,6 @@ public class SunFlowerZombieEntity extends AbstractZombotanyEntity {
 
     }
 
-    private void shootPea() {
-        LivingEntity target = this.getTarget();
-        if (target != null && !this.isAlive()) {
-            PeaEntity pea = new PeaEntity(this.level, this, PeaEntity.Type.NORMAL, PeaEntity.State.NORMAL);
-            pea.setPos(this.getX(), this.getY() + (double)this.getEyeHeight(), this.getZ());
-            pea.shootToTarget(target, 1.5);
-            pea.summonByOwner(this);
-            pea.setAttackDamage(this.getAttackDamage());
-            this.level.addFreshEntity(pea);
-            EntityUtil.playSound(this, SoundEvents.SNOW_GOLEM_SHOOT);
-        }
-    }
 
     public float getAttackDamage() {
         return 2.0F;

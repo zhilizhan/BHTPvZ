@@ -7,6 +7,7 @@ import com.zhilizhan.bhtpvz.common.effect.BHTPvZMobEffects;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import com.zhilizhan.bhtpvz.common.entity.misc.RedSunEntity;
 import com.zhilizhan.bhtpvz.common.entity.normal.OriginMoobEntity;
+import com.zhilizhan.bhtpvz.common.event.LivingEvents;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
 import com.zhilizhan.bhtpvz.common.impl.zombie.BHTPvZZombies;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
@@ -38,7 +39,6 @@ public class BHTPvZ {
 
     // 事件总线
     public BHTPvZ() {
-
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus bus2 = MinecraftForge.EVENT_BUS;
 
@@ -47,10 +47,11 @@ public class BHTPvZ {
         BHTPvZMobEffects.MOB_EFFECTS.register(bus);
         BHTPvZEntityTypes.ENTITY_TYPES.register(bus);
         BHTPvZBiomes.BIOMES.register(bus);
+        MinecraftForge.EVENT_BUS.register(LivingEvents.class);
         BHTPvZPlants.register();
         BHTPvZZombies.register();
         bus.addListener(this::commonSetup);
-
+        MinecraftForge.EVENT_BUS.register(bus);
         //为原始蘑菇牛注册属性
         bus.addListener((EntityAttributeCreationEvent e) -> e.put(BHTPvZEntityTypes.ORIGIN_MOOB.get(), OriginMoobEntity.createAttributes().build()));
         bus.addListener((EntityAttributeCreationEvent e) -> e.put(BHTPvZEntityTypes.RED_SUN.get(), RedSunEntity.createAttributes().build()));

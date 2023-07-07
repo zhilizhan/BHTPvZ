@@ -21,7 +21,7 @@ import java.util.Iterator;
 @Mixin(value = PuffShroomEntity.class,remap = false)
 public abstract class PuffshroomEntityMixin extends PlantShooterEntity {
 
-     int   growTime = 1000;
+     int  growTime = 1000;
     @Shadow protected abstract boolean canSuperTogether(PuffShroomEntity entity);
 
     @Shadow public abstract int getMaxSuperCnt();
@@ -43,8 +43,7 @@ public abstract class PuffshroomEntityMixin extends PlantShooterEntity {
     }
     @Overwrite
     public float getAttackDamage() {
-        return this.getSkillValue(SkillTypes.SPORE_DAMAGE)+getCurrentDamage();
-
+        return this.getSkillValue(SkillTypes.SPORE_DAMAGE) + getCurrentDamage();
     }
     protected int getCurrentDamage() {
         return this.isInGrowStage(3) ? this.getDamageInStage(3) : (this.isInGrowStage(2) ? this.getDamageInStage(2) : this.getDamageInStage(1));

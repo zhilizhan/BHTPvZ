@@ -18,7 +18,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.EnumSet;
 
@@ -58,7 +57,6 @@ public class Edgar090547Entity extends PVZZombieEntity {
                     this.attacker.doHurtTarget(this.attacker.getTarget());
                 }
             }
-
         }
     }
     protected void registerAttackGoals() {
@@ -129,7 +127,6 @@ public class Edgar090547Entity extends PVZZombieEntity {
     // Explosion
     @Override
     protected void dropAllDeathLoot(DamageSource damageSourceIn) {
-        Explosion.BlockInteraction mode = ForgeEventFactory.getMobGriefingEvent(this.level, this) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE;
         this.level.explode(this, getX(), getY(), getZ(), 2.5f, Explosion.BlockInteraction.NONE);
         EntityUtil.playSound(this, (SoundEvent) SoundRegister.IMP_HAPPY.get());
         ImpEntity imp = (ImpEntity)((EntityType) EntityRegister.IMP.get()).create(this.level);

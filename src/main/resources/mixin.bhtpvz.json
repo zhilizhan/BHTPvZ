@@ -10,7 +10,7 @@
     "PVZPlantRenderMixin",
     "optional.PuffshroomEntityMixin",
     "optional.PuffShroomRenderMixin",
-    "optional.ScaredyShroomEntityMixin"
+    "optional.ScaredyShroomEntityMixin",
   ],
   "client": [
 

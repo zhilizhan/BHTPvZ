@@ -86,7 +86,7 @@ public final class BHTPvZPlants extends PlantType {
     //转转萝卜
     public static final IPlantType ROTATE_RADISH = new BHTPvZPlants("rotate_radish", new PlantFeatures()
             .cost(150).requiredLevel(20)
-            .cd(CoolDowns.FAST).rank(RankTypes.GREEN).essence(EssenceTypes.ENFORCE)
+            .cd(CoolDowns.FAST).rank(RankTypes.BLUE).essence(EssenceTypes.ENFORCE)
             .entityType(() -> BHTPvZEntityTypes.ROTATE_RADISH.get())
             .summonCard(() -> BHTPvZItems.ROTATE_RADISH_CARD.get())
             .enjoyCard(() -> BHTPvZItems.ROTATE_RADISH_ENJOY_CARD.get())
