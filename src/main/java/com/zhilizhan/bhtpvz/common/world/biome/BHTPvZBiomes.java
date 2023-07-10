@@ -1,8 +1,8 @@
 package com.zhilizhan.bhtpvz.common.world.biome;
 
 import com.hungteen.pvz.common.entity.EntityRegister;
-import com.hungteen.pvz.utils.BiomeUtil;
 import com.zhilizhan.bhtpvz.BHTPvZ;
+import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import com.zhilizhan.bhtpvz.common.world.BHTPvZFeatures;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
@@ -64,6 +64,7 @@ public class BHTPvZBiomes {
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         spawnSettings.setPlayerCanSpawn();
         spawnSettings.addMobCharge(EntityRegister.GIGA_TOMB_STONE.get(),1,0);//把墓碑Ban了
+        spawnSettings.addMobCharge(BHTPvZEntityTypes.ORIGIN_MOOB.get(),5,3);//蘑菇牛
         BiomeGenerationSettings.Builder biomeGenerationSettings = (new BiomeGenerationSettings.Builder()).surfaceBuilder(SurfaceBuilders.GRASS);
         biomeGenerationSettings.addStructureStart(StructureFeatures.STRONGHOLD); //生成末地传送门
         BiomeDefaultFeatures.addBadlandGrass(biomeGenerationSettings); //杂草

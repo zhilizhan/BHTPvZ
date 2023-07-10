@@ -1,15 +1,13 @@
 package com.zhilizhan.bhtpvz.common.entity.plant.ice;
 
-import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.IceCabbageEntity;
-import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-
 import com.hungteen.pvz.api.interfaces.IIceEffect;
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.entity.bullet.PultBulletEntity;
 import com.hungteen.pvz.common.entity.plant.arma.CabbagePultEntity;
 import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.common.potion.EffectRegister;
-
+import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.IceCabbageEntity;
+import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
@@ -20,7 +18,7 @@ import net.minecraft.world.level.Level;
 import java.util.Optional;
 
 public class IceCabbagePultEntity extends CabbagePultEntity implements IIceEffect {
-	private static final int FROZEN_TICK = 35;
+	private static final int FROZEN_TICK = 25;
 
 	public IceCabbagePultEntity(EntityType<? extends PathfinderMob> type, Level level) {
 		super(type, level);
@@ -47,7 +45,7 @@ public class IceCabbagePultEntity extends CabbagePultEntity implements IIceEffec
 
 	@Override
 	public Optional<MobEffectInstance> getFrozenEffect() {
-		return Optional.of(new MobEffectInstance(EffectRegister.FROZEN_EFFECT.get(), FROZEN_TICK, 1, false, false));
+		return Optional.of(new MobEffectInstance(EffectRegister.FROZEN_EFFECT.get(), FROZEN_TICK, 2, false, false));
 	}
 
 	@Override

@@ -47,13 +47,10 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 		return EntityDimensions.scalable(1.1f, 1.4f);
 	}
 
-	@Override
-	public IPlantType getPlantType() {
-		return BHTPvZPlants.STEEL_PUMPKIN;
-	}
+
 
 	@Override
-	public void aiStep() {
+	public void normalPlantTick() {
 		if (!this.level.isClientSide) {
 			if (this.hasMetal()) {
 				this.decreaseMetal();
@@ -169,5 +166,9 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 				plantEntity.setOuterDefenceLife(Mth.clamp(plantEntity.getOuterDefenceLife() * (double)(1.0F + percent), 0.0, (double)max));
 			}
 		}
+	@Override
+	public IPlantType getPlantType() {
+		return BHTPvZPlants.STEEL_PUMPKIN;
+	}
 
 }

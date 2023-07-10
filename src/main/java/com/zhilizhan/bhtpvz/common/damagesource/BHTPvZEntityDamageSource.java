@@ -7,6 +7,7 @@ import com.zhilizhan.bhtpvz.common.entity.bullet.ChorusFruitEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.CornEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.PoppedChorusFruitEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.IceCabbageEntity;
+import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.IcePeaEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.PopCornEntity;
 import net.minecraft.world.entity.Entity;
 
@@ -14,7 +15,7 @@ public class BHTPvZEntityDamageSource {
 
     //冰卷心菜投手伤害
     public static PVZEntityDamageSource iceCabbage(IceCabbageEntity iceCabbage, Entity indirectEntity) {
-        return (new PVZEntityDamageSource("ice_cabbage", iceCabbage, indirectEntity).setIceDamage());
+        return (new PVZEntityDamageSource("ice_cabbage", iceCabbage, indirectEntity).setParabola().setIceDamage());
     }
     //火焰豌豆伤害
     public static PVZEntityDamageSource firePea(PeaEntity pea, Entity indirectEntity) {
@@ -39,5 +40,9 @@ public class BHTPvZEntityDamageSource {
     //爆米花伤害
     public static PVZEntityDamageSource popCorn(PopCornEntity pea, Entity shooter) {
         return (PVZEntityDamageSource)(new PVZEntityDamageSource("pop_corn", pea, shooter)).setParabola().setExplosion();
+    }
+    //冰结豌豆
+    public static PVZEntityDamageSource icePea(IcePeaEntity pea, Entity shooter) {
+        return (PVZEntityDamageSource)(new PVZEntityDamageSource("ice_pea", pea, shooter)).setIceDamage();
     }
 }

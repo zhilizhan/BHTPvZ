@@ -59,8 +59,8 @@ public class NutBowlingEntity extends PlantCloserEntity {
     }
 
 
-    public void tick() {
-        super.tick();
+    public void normalPlantTick() {
+        super.normalPlantTick();
         if (!this.level.isClientSide) {
             if (this.tickCount <= 1 && !this.playSpawnSound) {
                 EntityUtil.playSound(this, SoundRegister.BOWLING.get());

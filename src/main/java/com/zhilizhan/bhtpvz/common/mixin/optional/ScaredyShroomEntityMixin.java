@@ -4,6 +4,7 @@ import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.entity.plant.base.PlantShooterEntity;
 import com.hungteen.pvz.common.entity.plant.toxic.ScaredyShroomEntity;
 import com.hungteen.pvz.common.impl.plant.PVZPlants;
+import com.zhilizhan.bhtpvz.config.BHTPvZConfig;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
@@ -19,9 +20,14 @@ public abstract class ScaredyShroomEntityMixin extends PlantShooterEntity {
 	}
 	@Shadow public abstract boolean canShoot();
 
+	@Shadow public abstract boolean isScared();
+
 	@Override
 	public boolean canBeTargetBy(LivingEntity living) {
-		return canShoot() && !hasMetal();
+		if(this.isScared()&& BHTPvZConfig.COMMON_CONFIG.EntitySettings.PlantSetting.ScaredyShroomSurrender.get() || this.hasMetal()){
+		return  false;
+	}
+		return true;
 	}
 
 	@Override

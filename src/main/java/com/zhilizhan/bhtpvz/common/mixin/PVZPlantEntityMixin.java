@@ -5,6 +5,7 @@ import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.entity.AbstractPAZEntity;
 import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
+import com.zhilizhan.bhtpvz.config.BHTPvZConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -33,7 +34,8 @@ public abstract  class PVZPlantEntityMixin extends AbstractPAZEntity implements 
     @Shadow
     public abstract IPlantType getPlantType();
 
-    @Shadow public abstract boolean hasMetal();
+    @Shadow
+    public abstract boolean hasMetal();
 
     @Overwrite
     public boolean shouldWilt() {
@@ -47,16 +49,20 @@ public abstract  class PVZPlantEntityMixin extends AbstractPAZEntity implements 
                 }
             } else {
                 BlockPos pos = Math.abs(this.getY() - (double) this.blockPosition().getY()) <= 0.01 ? this.blockPosition().below() : this.blockPosition();
-                return this.isOnGround() && !isInWater() &&!this.level.getBlockState(pos).is(BHTPvZBlocks.WATER_POT.get());
+                return this.isOnGround() && !isInWater() && !this.level.getBlockState(pos).is(BHTPvZBlocks.WATER_POT.get());
             }
         } else {
             return false;
         }
     }
-   @Overwrite
+
+    @Overwrite
     public boolean canBeTargetBy(LivingEntity living) {
-        return !(this.getOuterDefenceLife() > 800.0) && !this.hasMetal();
-    }
+        if (this.getOuterDefenceLife() > 800.0 && BHTPvZConfig.COMMON_CONFIG.EntitySettings.PlantSetting.SteelPumpkinPeace.get() || this.hasMetal()) {
+            return false;
+        }
+        return true;
+}
 
     /**
      * @author SuSen36
@@ -65,7 +71,7 @@ public abstract  class PVZPlantEntityMixin extends AbstractPAZEntity implements 
      */
     @Overwrite
     protected boolean shouldPlantRegularSleep() {
-        return this.getPlantType().isShroomPlant() && this.level.isDay() && this.level.getBlockState(blockPosition().below())!= Blocks.MYCELIUM.defaultBlockState();
+        return this.getPlantType().isShroomPlant() && this.level.isDay() && this.level.getBlockState(blockPosition().below())!= Blocks.MYCELIUM.defaultBlockState()&&BHTPvZConfig.COMMON_CONFIG.EntitySettings.PlantSetting.MyceliumSleep.get();
     }
 
 }

@@ -19,7 +19,7 @@ public abstract class CharmLayerMixin <T extends LivingEntity, M extends EntityM
     }
 
     @Overwrite
-    protected boolean canRender(T entity) {
+    protected boolean  canRender(T entity) {
         if (entity.isInvisible()||entity instanceof GrassCarpEntity) {
             return false;
         } else if (entity instanceof HypnoShroomEntity) {

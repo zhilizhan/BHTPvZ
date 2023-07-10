@@ -3,14 +3,17 @@ package com.zhilizhan.bhtpvz.common.impl.plant;
 import com.hungteen.pvz.api.PVZAPI;
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.client.model.entity.plant.defence.WallNutModel;
+import com.hungteen.pvz.client.model.entity.plant.ice.SnowPeaModel;
 import com.hungteen.pvz.common.impl.CoolDowns;
 import com.hungteen.pvz.common.impl.EssenceTypes;
 import com.hungteen.pvz.common.impl.RankTypes;
 import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.common.impl.plant.PlantType;
 import com.zhilizhan.bhtpvz.BHTPvZ;
+import com.zhilizhan.bhtpvz.client.model.entity.plant.appease.GrassCarpModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.arma.BurstKernelPultModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.arma.ChorusFruitPultModel;
+import com.zhilizhan.bhtpvz.client.model.entity.plant.defence.SelfImitaterModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.defence.SteelPumpkinModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.enforce.RotateRadishModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.fire.BlazeWartModel;
@@ -34,7 +37,7 @@ public final class BHTPvZPlants extends PlantType {
             .cd(CoolDowns.VERY_SLOW).rank(RankTypes.BLUE).essence(EssenceTypes.DEFENCE)
             .entityType(() -> BHTPvZEntityTypes.STEEL_PUMPKIN.get())
             .summonCard(() -> BHTPvZItems.STEEL_PUMPKIN_CARD.get())
-            .enjoyCard(() -> BHTPvZItems.STEEL_PUMPKIN_CARD.get())
+            .enjoyCard(() -> BHTPvZItems.STEEL_PUMPKIN_ENJOY_CARD.get())
             .plantModel(() -> SteelPumpkinModel::new).scale(1F)
             .outerPlant(SteelPumpkinEntity.SteelPumpkinInfo::new)
             .commonSkill(Collections.emptyList())
@@ -120,7 +123,7 @@ public final class BHTPvZPlants extends PlantType {
             .entityType(() -> BHTPvZEntityTypes.GRASS_CARP.get()).isWaterPlant()
             .summonCard(() -> BHTPvZItems.GRASS_CARP_CARD.get())
             .enjoyCard(() -> BHTPvZItems.GRASS_CARP_ENJOY_CARD.get())
-            .plantModel(() -> BlazeWartModel::new).scale(1.4f)
+            .plantModel(() -> GrassCarpModel::new).scale(1.4f)
             .commonSkill(Collections.singletonList(SkillTypes.PEA_DAMAGE)));
     //罐子草
 
@@ -130,6 +133,23 @@ public final class BHTPvZPlants extends PlantType {
             .summonCard(() -> BHTPvZItems.POT_GRASS_CARD.get())
             .enjoyCard(() -> BHTPvZItems.POT_GRASS_ENJOY_CARD.get())
             .plantBlock(BHTPvZBlocks.POT_GRASS));
+    //自己模仿者
+    public static final IPlantType SELF_IMITATER = new BHTPvZPlants("self_imitater", new PlantFeatures()
+            .cost(125).requiredLevel(16)
+            .cd(CoolDowns.SLOW).rank(RankTypes.PURPLE).essence(EssenceTypes.DEFENCE)
+            .entityType(() -> BHTPvZEntityTypes.SELF_IMITATER.get())
+            .summonCard(() -> BHTPvZItems.SELF_IMITATER_CARD.get())
+            .enjoyCard(() -> BHTPvZItems.SELF_IMITATER_ENJOY_CARD.get())
+            .plantModel(() -> SelfImitaterModel::new).scale(1.1f).commonSkill(Collections.singletonList(SkillTypes.MORE_GARLIC_LIFE)));
+
+    public static final IPlantType RE_ICEPEA = new BHTPvZPlants("re_icepea", new PlantFeatures()
+            .cost(275).requiredLevel(22)
+            .cd(CoolDowns.SLOW).rank(RankTypes.BLUE).essence(EssenceTypes.ICE)
+            .entityType(() -> BHTPvZEntityTypes.RE_ICEPEA.get())
+            .summonCard(() -> BHTPvZItems.RE_ICEPEA_CARD.get())
+            .enjoyCard(() -> BHTPvZItems.RE_ICEPEA_ENJOY_CARD.get())
+            .plantModel(() -> SnowPeaModel::new).scale(1.1f).commonSkill(Collections.singletonList(SkillTypes.PEA_DAMAGE)));
+
 
     public static void register() {
         PVZAPI.get().registerPlantTypes(LIST);

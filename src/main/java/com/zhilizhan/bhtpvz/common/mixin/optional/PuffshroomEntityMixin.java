@@ -6,6 +6,7 @@ import com.hungteen.pvz.common.entity.plant.toxic.PuffShroomEntity;
 import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.common.misc.sound.SoundRegister;
 import com.hungteen.pvz.utils.EntityUtil;
+import com.zhilizhan.bhtpvz.config.BHTPvZConfig;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EntityType;
@@ -43,7 +44,9 @@ public abstract class PuffshroomEntityMixin extends PlantShooterEntity {
     }
     @Overwrite
     public float getAttackDamage() {
-        return this.getSkillValue(SkillTypes.SPORE_DAMAGE) + getCurrentDamage();
+        if(BHTPvZConfig.COMMON_CONFIG.EntitySettings.PlantSetting.PuffShroomGrow.get()){
+        return this.getSkillValue(SkillTypes.SPORE_DAMAGE) + getCurrentDamage();}
+        return this.getSkillValue(SkillTypes.SPORE_DAMAGE);
     }
     protected int getCurrentDamage() {
         return this.isInGrowStage(3) ? this.getDamageInStage(3) : (this.isInGrowStage(2) ? this.getDamageInStage(2) : this.getDamageInStage(1));

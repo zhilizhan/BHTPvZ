@@ -10,6 +10,7 @@ import com.hungteen.pvz.utils.EntityUtil;
 import com.hungteen.pvz.utils.PlayerUtil;
 import com.hungteen.pvz.utils.enums.Resources;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
+import com.zhilizhan.bhtpvz.config.BHTPvZConfig;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -30,14 +31,14 @@ public class LivingEvents {
 	public static void onLivingHurt(LivingHurtEvent event) {
 		if(event.getSource().getEntity() instanceof AbstractPAZEntity &&!(event.getEntity() instanceof AbstractPAZEntity)) {
 			if (!(event.getEntityLiving() instanceof Player)) {
-				event.setAmount((float) (event.getAmount() * 0.5f));
+				event.setAmount((float) (event.getAmount() * BHTPvZConfig.COMMON_CONFIG.EntitySettings.EntityLiveTick.PVZDamageAmount.get()));
 			}
 		}
 	}
 	@SubscribeEvent
 	public static void onZombieHurt(LivingHurtEvent event) {
 		if((event.getEntity() instanceof PVZZombieEntity)) {
-				event.setAmount((float) (event.getAmount() *1.5f));
+				event.setAmount((float) (event.getAmount() * BHTPvZConfig.COMMON_CONFIG.EntitySettings.ZombieSetting.ZombieHurtAmount.get()));
 		}
 	}
 	@SubscribeEvent

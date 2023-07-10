@@ -36,6 +36,7 @@ public class PotGrassBlock extends AbstractFacingBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
+
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
         if (!oldState.is(state.getBlock())) {
             if (level.getBlockState(pos.below()).getBlock() == Blocks.GRASS_BLOCK) {
@@ -54,7 +55,6 @@ public class PotGrassBlock extends AbstractFacingBlock {
     }
 
     private void trySpawnWaterPlant(Level level, BlockPos pos) {
-
         IPlantType plantType = (IPlantType) WATER_PLANT.getRandomItem(RANDOM).get();
         level.removeBlock(pos, false);
         PathfinderMob plant = plantType.getEntityType().get().create(level);

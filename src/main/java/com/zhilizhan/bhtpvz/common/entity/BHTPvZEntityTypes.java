@@ -1,5 +1,6 @@
 package com.zhilizhan.bhtpvz.common.entity;
 
+import com.hungteen.pvz.client.render.entity.plant.ice.SnowPeaRender;
 import com.hungteen.pvz.common.entity.PVZEntityClassifications;
 import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.hungteen.pvz.common.entity.zombie.PVZZombieEntity;
@@ -11,6 +12,7 @@ import com.zhilizhan.bhtpvz.client.render.entity.normal.OriginMoobRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.GrassCrapRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.BurstKernelPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.ChorusFruitPultRender;
+import com.zhilizhan.bhtpvz.client.render.entity.plant.defence.SelfImitaterRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.defence.SteelPumpkinRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.enforce.NutBowlingRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.enforce.RotateRadishRender;
@@ -24,18 +26,21 @@ import com.zhilizhan.bhtpvz.common.entity.bullet.CornEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.PoppedChorusFruitEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.FishPeaEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.IceCabbageEntity;
+import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.IcePeaEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.PopCornEntity;
 import com.zhilizhan.bhtpvz.common.entity.misc.RedSunEntity;
 import com.zhilizhan.bhtpvz.common.entity.normal.OriginMoobEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.appease.GrassCarpEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.BurstKernelPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.ChorusFruitPultEntity;
+import com.zhilizhan.bhtpvz.common.entity.plant.defence.SelfImitaterEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.defence.SteelPumpkinEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.enforce.NutBowlingEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.enforce.RotateRadishEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.fire.BlazeWartEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.fire.FirePeashooterEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.ice.IceCabbagePultEntity;
+import com.zhilizhan.bhtpvz.common.entity.plant.ice.ReIcePeaEntity;
 import com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz.*;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -63,6 +68,8 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<BurstKernelPultEntity>> BURST_KERNEL_PULT = registerPlantEntityType(BurstKernelPultEntity::new, "burst_kernel_pult"); // 爆裂玉米投手
 	public static final RegistryObject<EntityType<BlazeWartEntity>> BLAZE_WART = registerPlantEntityType(BlazeWartEntity::new, "blaze_wart"); // 烈焰庞
 	public static final RegistryObject<EntityType<GrassCarpEntity>> GRASS_CARP = registerPlantEntityType(GrassCarpEntity::new, "grass_carp");//草鱼
+	public static final RegistryObject<EntityType<SelfImitaterEntity>> SELF_IMITATER = registerPlantEntityType(SelfImitaterEntity::new, "self_imitater");//自己模仿者
+	public static final RegistryObject<EntityType<ReIcePeaEntity>> RE_ICEPEA = registerPlantEntityType(ReIcePeaEntity::new, "re_icepea");//双发寒冰
 
 	// 子弹
 	public static final RegistryObject<EntityType<IceCabbageEntity>> ICE_CABBAGE = registerEntityType(IceCabbageEntity::new, "ice_cabbage", MobCategory.MISC); // 冰卷心菜子弹
@@ -72,6 +79,8 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<BurstCornEntity>> BURST_CORN = registerEntityType(BurstCornEntity::new, "burst_corn", MobCategory.MISC); // 炸裂玉米子弹
 	public static final RegistryObject<EntityType<PopCornEntity>> POP_CORN = registerEntityType(PopCornEntity::new, "pop_corn", MobCategory.MISC); // 爆米花子弹
 	public static final RegistryObject<EntityType<FishPeaEntity>> FISH_PEA = registerEntityType(FishPeaEntity::new, "fish_pea",MobCategory.MISC);//草鱼生的（豌豆
+	public static final RegistryObject<EntityType<IcePeaEntity>> ICE_PEA = registerEntityType(IcePeaEntity::new, "ice_pea",MobCategory.MISC);//冰结豌豆
+
 	// 僵尸
 	public static final RegistryObject<EntityType<Edgar090547Entity>> EDGAR_090547 = registerZombieEntityType(Edgar090547Entity::new, "edgar_090547"); // 埃德加-090547
 	public static final RegistryObject<EntityType<FlowerPotZombieEntity>> FLOWER_POT_ZOMBIE = registerZombieEntityType(FlowerPotZombieEntity::new, "flower_pot_zombie"); // 花盆僵尸
@@ -103,6 +112,9 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(ROTATE_RADISH.get(), RotateRadishRender::new); // 转转萝卜
 		RenderingRegistry.registerEntityRenderingHandler(BURST_KERNEL_PULT.get(), BurstKernelPultRender::new); // 爆裂玉米投手
 		RenderingRegistry.registerEntityRenderingHandler(BLAZE_WART.get(), BlazeWartRender::new); // 烈焰庞
+		RenderingRegistry.registerEntityRenderingHandler(SELF_IMITATER.get(), SelfImitaterRender::new); // 自己模仿者
+		RenderingRegistry.registerEntityRenderingHandler(RE_ICEPEA.get(), SnowPeaRender::new); // 双发寒冰
+
 		// 子弹
 		RenderingRegistry.registerEntityRenderingHandler(ICE_CABBAGE.get(), IceCabbageRender::new); // 冰卷心菜子弹
 		RenderingRegistry.registerEntityRenderingHandler(POPPED_CHORUS_FRUIT.get(), PoppedChorusFruitRender::new); // 爆裂紫颂果子弹
@@ -110,7 +122,8 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(CORN.get(), CornRender::new); // 玉米子弹
 		RenderingRegistry.registerEntityRenderingHandler(BURST_CORN.get(), BurstCornRender::new); // 爆裂玉米子弹
 		RenderingRegistry.registerEntityRenderingHandler(POP_CORN.get(), PopCornRender::new); // 爆米花子弹
-		RenderingRegistry.registerEntityRenderingHandler(FISH_PEA.get(), FishPeRender::new); // 爆米花子弹
+		RenderingRegistry.registerEntityRenderingHandler(FISH_PEA.get(), FishPeRender::new); // 鱼豌豆
+		RenderingRegistry.registerEntityRenderingHandler(ICE_PEA.get(), IcePeaRender::new); // 冰结豌豆
 
 		// 僵尸
 		RenderingRegistry.registerEntityRenderingHandler(EDGAR_090547.get(), Edgar090547Render::new); // 埃德加-090547

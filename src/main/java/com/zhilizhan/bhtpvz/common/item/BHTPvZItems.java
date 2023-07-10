@@ -40,6 +40,7 @@ public class BHTPvZItems {
     public static final RegistryObject<Item> ANGEL_STARFRUIT = ITEMS.register("angel_starfruit", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(8).saturationMod(1.2F).effect(new MobEffectInstance(MobEffects.REGENERATION, 200, 1), 1.0F).build()))); // 天使杨桃
     public static final RegistryObject<Item> SQUASH_SLICE = ITEMS.register("squash_slice", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(3).saturationMod(0.3F).build()))); //倭瓜片
     public static final RegistryObject<Item> ICE_CABBAGE = ITEMS.register("ice_cabbage", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80, 1), 1.0F).build()))); // 冰卷心菜
+    public static final RegistryObject<Item> ICE_PEA = ITEMS.register("ice_pea", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(3).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 1), 1.0F).build()))); // 冰结豌豆
 
     // 功能性食物
     public static final RegistryObject<Item> XP_SAPLING = ITEMS.register("xp_sapling", ()-> new XpSapling(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.LUCK, 1000, 1), 1.0F).build()))); //经验树苗
@@ -106,6 +107,10 @@ public class BHTPvZItems {
     public static final RegistryObject<PlantCardItem> GRASS_CARP_ENJOY_CARD = registerCard(BHTPvZPlants.GRASS_CARP, true); // 草鱼体验卡
     public static final RegistryObject<PlantCardItem> POT_GRASS_CARD = registerCard(BHTPvZPlants.POT_GRASS, false); // 罐子草卡
     public static final RegistryObject<PlantCardItem> POT_GRASS_ENJOY_CARD = registerCard(BHTPvZPlants.POT_GRASS, true); // 罐子草体验卡
+    public static final RegistryObject<PlantCardItem> SELF_IMITATER_CARD = registerCard(BHTPvZPlants.SELF_IMITATER, false); // 自己模仿者卡
+    public static final RegistryObject<PlantCardItem> SELF_IMITATER_ENJOY_CARD = registerCard(BHTPvZPlants.SELF_IMITATER, true); // 自己模仿者体验卡
+    public static final RegistryObject<PlantCardItem> RE_ICEPEA_CARD = registerCard(BHTPvZPlants.RE_ICEPEA, false); // 双发寒冰卡
+    public static final RegistryObject<PlantCardItem> RE_ICEPEA_ENJOY_CARD = registerCard(BHTPvZPlants.RE_ICEPEA, true); // 双发寒冰体验卡
 
     // 方块物品
     public static final RegistryObject<Item> CHERRY_TREE_LEAVES = ITEMS.register("cherry_leaves", ()-> new BlockItem(BHTPvZBlocks.CHERRY_LEAVES.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 樱桃树树叶

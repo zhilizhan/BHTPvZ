@@ -1,0 +1,199 @@
+{
+	"authors": [
+	  "susen36"
+	],
+	"tags": [
+	  "overworld"
+	],
+	"bar_color": "red",
+	"trade_price": 350,
+	"trade_weight": 70,
+	"recommend_level": 45,
+	"placement": {
+	  "center": {
+		"radius": 10,
+		"ground": true
+	  }
+	},
+	"waves": [
+	  {
+		"spawns": [
+			{
+			  "entity_type": "pvz:normal_zombie",
+			  "spawn_tick": 20,
+			  "spawn_amount": {
+				"random": {
+				  "min": 20,
+				  "max": 20
+				}
+			  }
+			}
+		  ],
+		  "duration": 1000
+		},
+		{
+		  "spawns": [
+			{
+			  "entity_type": "pvz:normal_zombie",
+			  "spawn_tick": 60,
+			  "spawn_amount": {
+				"random": {
+				  "min": 15,
+				  "max": 25
+				}
+			  }
+			},
+			{
+			  "entity_type": "pvz:conehead_zombie",
+			  "spawn_tick": 20,
+			  "spawn_amount": {
+				"random": {
+				  "min": 15,
+				  "max": 20
+				}
+			  }
+			}
+		  ],
+		  "duration": 3000
+		},
+		{
+		  "spawns": [
+			{
+			  "entity_type": "pvz:normal_zombie",
+			  "spawn_tick": 20,
+			  "spawn_amount": {
+				"random": {
+				  "min": 10,
+				  "max": 20
+				}
+			  }
+			},
+			{
+			  "entity_type": "pvz:screendoor_zombie",
+			  "spawn_tick": 100,
+			  "spawn_amount": {
+				"random": {
+				  "min": 20,
+				  "max": 26
+				}
+			  }
+			},
+			{
+			  "entity_type": "pvz:digger_zombie",
+			  "spawn_tick": 200,
+			  "spawn_amount": {
+				"random": {
+				  "min": 15,
+				  "max": 25
+				}
+			  }
+			}
+		  ],
+		  "duration": 8000
+		},
+		{
+		  "spawns": [
+			{
+			  "entity_type": "pvz:normal_zombie",
+			  "spawn_tick": 20,
+			  "spawn_amount": {
+				"random": {
+				  "min": 10,
+				  "max": 20
+				}
+			  }
+			},
+			{
+			  "entity_type": "pvz:conehead_zombie",
+			  "spawn_tick": 40,
+			  "spawn_amount": {
+				"random": {
+				  "min": 20,
+				  "max": 35
+				}
+			  }
+			}
+		  ],
+		  "duration": 800
+		},
+		{
+		  "spawns": [
+			{
+			  "entity_type": "pvz:screendoor_zombie",
+			  "spawn_tick": 20,
+			  "spawn_amount": {
+				"random": {
+				  "min": 15,
+				  "max": 15
+				}
+			  }
+			},
+			{
+			  "entity_type": "pvz:digger_zombie",
+			  "spawn_tick": 100,
+			  "spawn_amount": {
+				"random": {
+				  "min": 15,
+				  "max": 15
+				}
+			  }
+			},
+			{
+			  "entity_type": "pvz:giga_football_zombie",
+			  "spawn_tick": 200,
+			  "spawn_amount": {
+				"random": {
+				  "min": 4,
+				  "max": 4
+				}
+			  }
+			}
+		  ],
+		  "duration": 9000
+	  }
+	],
+  
+	"rewards": {
+	  "unlocks": [
+		"pvz:doom_shroom",
+		"pvz:hypno_shroom"
+	  ],
+	  "items": [
+		{
+		  "item": "pvz:spore",
+		  "amount": {
+			"count": 2
+		  }
+		},
+  
+		{
+		  "item": "minecraft:mycelium",
+		  "amount": {
+			"random": {
+			  "min": 2,
+			  "max": 5
+			}
+		  }
+		},
+  
+		{
+		  "item": "pvz:tacos",
+		  "amount": {
+			"random": {
+			  "min": 5,
+			  "max": 9
+			}
+		  }
+		},
+		{
+		  "item": "pvz:hypno_shroom_enjoy_card",
+		  "amount": {
+			"random": {
+			  "min": 1,
+			  "max": 2
+			}
+		  }
+		}
+	  ]
+	}
+  }

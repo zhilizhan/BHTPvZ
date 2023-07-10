@@ -39,13 +39,9 @@ public class RotateRadishModel extends PVZPlantModel<RotateRadishEntity> {
 
     @Override
     public void setupAnim(RotateRadishEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (entity.isAlive()) {
-            this.total.yRot = ageInTicks / 10.0F;
-        } else {
-            this.total.yRot = 0.0F;
+        if (entity.isAlive()&&entity.getAttackTime()>0) {
+            this.total.yRot = ageInTicks / 5.0F;
         }
-        this.total.xRot = 0.0F;
-        this.total.zRot = 0.0F;
     }
 
     @Override

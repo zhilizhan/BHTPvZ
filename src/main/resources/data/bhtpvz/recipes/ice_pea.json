@@ -10,11 +10,11 @@
       "item": "pvz:ice_essence"
     },
     "X": {
-      "tag": "forge:crops/cabbage"
+      "tag": "forge:crops/pea"
     }
   },
   "result": {
-    "item": "bhtpvz:ice_cabbage",
+    "item": "bhtpvz:ice_pea",
     "count": 8
   }
 

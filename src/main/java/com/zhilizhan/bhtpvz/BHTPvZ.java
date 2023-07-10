@@ -14,12 +14,14 @@ import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZSpawnEggItem;
 import com.zhilizhan.bhtpvz.common.world.DecorationGenerate;
 import com.zhilizhan.bhtpvz.common.world.biome.BHTPvZBiomes;
+import com.zhilizhan.bhtpvz.config.BHTPvZConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -27,10 +29,13 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.commons.lang3.tuple.Pair;
 
 @Mod(BHTPvZ.MOD_ID)
 @Mod.EventBusSubscriber(modid = BHTPvZ.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -39,6 +44,10 @@ public class BHTPvZ {
 
     // 事件总线
     public BHTPvZ() {
+        Pair<BHTPvZConfig.Common, ForgeConfigSpec> specPair = (new ForgeConfigSpec.Builder()).configure(BHTPvZConfig.Common::new);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, specPair.getRight());
+        BHTPvZConfig.COMMON_CONFIG = specPair.getLeft();
+
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus bus2 = MinecraftForge.EVENT_BUS;
 

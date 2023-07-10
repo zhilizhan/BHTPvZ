@@ -37,7 +37,7 @@
   "item.bhtpvz.chlorophyll": "chlorophyll",
   "item.bhtpvz.dt_cherry_speed": "cherry speed",
   "item.bhtpvz.dt_starfruit_speed": "starfruit speed",
-
+  "item.bhtpvz.ice_pea": "ice pea",
 
 
   "item.bhtpvz.ice_cabbage_pult_card":"ice cabbage pult card",
@@ -62,6 +62,10 @@
   "item.bhtpvz.grass_carp_enjoy_card": "grass carp pult enjoy card",
   "item.bhtpvz.pot_grass_card": "pot grass pult card",
   "item.bhtpvz.pot_grass_enjoy_card": "pot grass pult enjoy card",
+  "item.bhtpvz.self_imitater_card": "self imitater card",
+  "item.bhtpvz.self_imitater_enjoy_card": "self imitater enjoy card",
+  "item.bhtpvz.re_icepea_card": "re icepea card",
+  "item.bhtpvz.re_icepea_enjoy_card": "re icepea enjoy card",
 
 
   "item.bhtpvz.origin_moob_spawn_egg": "origin moob spawn egg",
@@ -117,7 +121,9 @@
   "entity.bhtpvz.rotate_radish": "rotate radish",
   "entity.bhtpvz.blaze_wart": "blaze_wart",
   "entity.bhtpvz.grass_carp": "grass carp",
-  "entity.bhtpvz.pot_grass": "pot grass",
+  "entity.bhtpvz.self_imitater": "self imitater",
+  "entity.bhtpvz.re_icepea": "re icepea",
+
 
   "entity.bhtpvz.edgar_090547": "edgar-090547",
   "entity.bhtpvz.flower_pot_zombie": "flower pot zombie",

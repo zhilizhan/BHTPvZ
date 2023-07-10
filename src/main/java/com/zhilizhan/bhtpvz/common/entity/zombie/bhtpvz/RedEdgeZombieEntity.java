@@ -35,7 +35,6 @@ public class RedEdgeZombieEntity extends PVZZombieEntity {
             return true;
         }
     }
-
     protected float getModifyAttackDamage(Entity entity, float f) {
         return this.onFire() ? 25 : 5;
     }
@@ -46,6 +45,4 @@ public class RedEdgeZombieEntity extends PVZZombieEntity {
     public ZombieType getZombieType() {
         return BHTPvZZombies.RED_EDGE_ZOMBIE;
     }
-
-
 }
