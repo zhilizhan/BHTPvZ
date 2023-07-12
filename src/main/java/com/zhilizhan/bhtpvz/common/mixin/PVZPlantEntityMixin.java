@@ -22,7 +22,6 @@ public abstract  class PVZPlantEntityMixin extends AbstractPAZEntity implements 
     public PVZPlantEntityMixin(EntityType<?> arg, Level arg2) {
         super((EntityType<? extends PathfinderMob>) arg, arg2);
     }
-
     @Shadow
     protected boolean isImmuneToWeak = false;
 

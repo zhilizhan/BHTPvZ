@@ -51,14 +51,14 @@ public class BHTPvZ {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus bus2 = MinecraftForge.EVENT_BUS;
 
+        BHTPvZEntityTypes.ENTITY_TYPES.register(bus);
         BHTPvZItems.ITEMS.register(bus);
         BHTPvZBlocks.BLOCKS.register(bus);
         BHTPvZMobEffects.MOB_EFFECTS.register(bus);
-        BHTPvZEntityTypes.ENTITY_TYPES.register(bus);
-        BHTPvZBiomes.BIOMES.register(bus);
-        MinecraftForge.EVENT_BUS.register(LivingEvents.class);
+       BHTPvZBiomes.BIOMES.register(bus);
         BHTPvZPlants.register();
         BHTPvZZombies.register();
+        MinecraftForge.EVENT_BUS.register(LivingEvents.class);
         bus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(bus);
         //为原始蘑菇牛注册属性
@@ -86,7 +86,7 @@ public class BHTPvZ {
     //动态的树
     private void gatherData(final GatherDataEvent event) {
         GatherDataHelper.gatherTagData(MOD_ID, event);
-        //GatherDataHelper.gatherLootData(MOD_ID, event);
+        GatherDataHelper.gatherLootData(MOD_ID, event);
     }
 
     //初始化刷怪蛋（颜色）
