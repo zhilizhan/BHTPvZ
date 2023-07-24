@@ -1,0 +1,38 @@
+{
+  "isAssistInvasion": false,
+  "triggerChance": 80,
+  "bonus": "pvz:roof",
+  "display_color": "red",
+  "spawns": [
+    {
+      "entity_type": "pvz:normal_zombie",
+      "invasion_level": 1,
+      "spawn_weight": 100
+    },
+    {
+      "entity_type": "bhtpvz:steel_pumpkin_zombie",
+      "invasion_level": 30,
+      "spawn_weight": 15
+    },
+    {
+      "entity_type": "bhtpvz:edgar_090547",
+      "invasion_level": 25,
+      "spawn_weight": 25
+    },
+    {
+      "entity_type": "bhtpvz:airborne_zombie",
+      "invasion_level": 10,
+      "spawn_weight": 30
+    },
+    {
+      "entity_type": "bhtpvz:flower_pot_zombie",
+      "invasion_level": 10,
+      "spawn_weight": 25
+    },
+    {
+      "entity_type": "bhtpvz:mc_zombie",
+      "invasion_level": 10,
+      "spawn_weight": 50
+    }
+  ]
+}

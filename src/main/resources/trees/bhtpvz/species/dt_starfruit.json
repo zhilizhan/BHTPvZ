@@ -1,0 +1,45 @@
+{
+  "family": "bhtpvz:dt_starfruit",
+  "tapering": 0.3,
+  "signal_energy": 12.0,
+  "up_probability": 10,
+  "growth_rate": 0.8,
+  "always_show_on_waila": true,
+  "leaves_properties": "bhtpvz:dt_starfruit",
+  "environment_factors" : {
+    "cold": 0.75,
+    "hot": 0.5,
+    "dry": 0.5,
+    "forest": 1.05
+  },
+  "perfect_biomes": { "types": [ "forest", "overworld" ] },
+  "primitive_saplings": [
+    {
+      "sapling_block": "bhtpvz:starfruit_sapling"
+    },
+    {
+      "sapling_item": "bhtpvz:starfruit",
+      "can_craft_seed_to_sapling": false
+    }
+  ],
+  "drop_creators": [
+    "log",
+    "stick",
+    {
+      "name": "normal",
+      "properties": {
+        "drops": {
+          "harvest": {
+            "id": "weighted",
+            "properties": {
+              "fruit_item": {
+                "bhtpvz:dt_starfruit": 1
+              },
+              "rarity": 40
+            }
+          }
+        }
+      }
+    }
+  ]
+}

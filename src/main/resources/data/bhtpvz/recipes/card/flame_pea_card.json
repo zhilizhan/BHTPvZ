@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "ABA",
+    "ACA"
+  ],
+  "key": {
+    "A": {
+      "item": "pvz:flame_essence"
+    },
+    "B": {
+      "item": "pvz:flame_pea"
+    },
+    "C": {
+      "tag": "pvz:card/green_cards"
+    }
+  },
+  "result": {
+    "item": "bhtpvz:fire_peashooter_card"
+  }
+}

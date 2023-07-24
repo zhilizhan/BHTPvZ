@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAB",
+    "DEB",
+    "CCC"
+  ],
+  "key": {
+    "A": {
+      "item":"pvz:pepper"
+    },
+    "B": {
+      "item": "minecraft:cooked_beef"
+    },
+    "C": {
+      "item":"minecraft:bread"
+    },
+    "D": {
+      "item": "pvz:cabbage"
+    },
+    "E": {
+      "item":"bhtpvz:butter"
+    }
+  },
+  "result": {
+    "item": "bhtpvz:taco",
+    "count": 1
+  }
+}

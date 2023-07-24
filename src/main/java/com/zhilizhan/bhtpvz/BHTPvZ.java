@@ -1,59 +1,92 @@
 package com.zhilizhan.bhtpvz;
 
-import com.zhilizhan.bhtpvz.common.item.ItemRegistry;
-import com.zhilizhan.bhtpvz.common.block.BlockRegistry;
-import com.zhilizhan.bhtpvz.common.entity.EntityRegister;
-import com.zhilizhan.bhtpvz.common.impl.plant.AddPlants;
-import com.zhilizhan.bhtpvz.common.impl.zombie.add.AddZombies;
-import com.zhilizhan.bhtpvz.common.potion.EffectRegistry;
-import com.zhilizhan.bhtpvz.common.utils.BiomeUtil;
-import com.zhilizhan.bhtpvz.common.world.biome.BiomeRegistry;
-import com.zhilizhan.bhtpvz.common.world.biome.DecorationGenerate;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import com.ferreusveritas.dynamictrees.api.GatherDataHelper;
+import com.ferreusveritas.dynamictrees.api.registry.RegistryHandler;
+import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
+import com.zhilizhan.bhtpvz.common.effect.BHTPvZMobEffects;
+import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
+import com.zhilizhan.bhtpvz.common.entity.normal.OriginMoobEntity;
+import com.zhilizhan.bhtpvz.common.event.LivingEvents;
+import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
+import com.zhilizhan.bhtpvz.common.item.BHTPvZSpawnEggItem;
+import com.zhilizhan.bhtpvz.common.world.DecorationGenerate;
+import com.zhilizhan.bhtpvz.common.world.biome.BHTPvZBiomes;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-@Mod.EventBusSubscriber(modid = BHTPvZ.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @Mod(BHTPvZ.MOD_ID)
+@Mod.EventBusSubscriber(modid = BHTPvZ.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BHTPvZ {
     public static final String MOD_ID = "bhtpvz";
-    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
-    //事件总线
+    // 事件总线
     public BHTPvZ() {
-        IEventBus bus = MinecraftForge.EVENT_BUS;
 
-        ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        BlockRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        EntityRegister.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-        BiomeRegistry.BIOMES.register(FMLJavaModLoadingContext.get().getModEventBus());
-        BiomeRegistry.BIOMES.register(bus);
-        EffectRegistry.EFFECTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        bus.addListener(EventPriority.HIGH, DecorationGenerate::addOresToBiomes);
-        bus.addListener(EventPriority.HIGH, DecorationGenerate::addTreesToBiomes);
-        bus.addListener(EventPriority.HIGH, DecorationGenerate::addBlocksToBiomes);
-        bus.addListener(EventPriority.HIGH, BiomeRegistry::biomeModification);
-        AddPlants.register();
-        AddZombies.register();
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus bus2 = MinecraftForge.EVENT_BUS;
+
+        BHTPvZEntityTypes.ENTITY_TYPES.register(bus);
+        BHTPvZItems.ITEMS.register(bus);
+        BHTPvZBlocks.BLOCKS.register(bus);
+        BHTPvZMobEffects.MOB_EFFECTS.register(bus);
+        BHTPvZBiomes.BIOMES.register(bus);
+
+        MinecraftForge.EVENT_BUS.register(LivingEvents.class);
+        bus.addListener(this::commonSetup);
+        MinecraftForge.EVENT_BUS.register(bus);
+        //为原始蘑菇牛注册属性
+        bus.addListener((EntityAttributeCreationEvent e) -> e.put(BHTPvZEntityTypes.ORIGIN_MOOB.get(), OriginMoobEntity.createAttributes().build()));
+        bus2.addListener(EventPriority.HIGH, DecorationGenerate::addOresToBiomes);
+        bus2.addListener(EventPriority.HIGH, DecorationGenerate::addTreesToBiomes);
+        bus2.addListener(EventPriority.HIGH, DecorationGenerate::addBlocksToBiomes);
+
+        //动态的树
+        if(ModList.get().isLoaded("dynamictrees")){
+        RegistryHandler.setup(MOD_ID);
+        bus.addListener(this::gatherData);}
     }
 
-    //注册创造物品栏
-    public static final ItemGroup BHTPVZ = new ItemGroup("better_hung_teen_s_plants_vs_zombies") {
-        @Override
-        public ItemStack makeIcon() {return new ItemStack(ItemRegistry.BETTER_HUNG_TEEN_S_PLANTS_VS_ZONBIES.get());}
+    // 创造物品栏
+    public static final CreativeModeTab BHTPVZ = new CreativeModeTab("better_hung_teen_plants_vs_zombies") {
+        @OnlyIn(Dist.CLIENT)
+        public ItemStack makeIcon() {
+            return new ItemStack(BHTPvZItems.CHERRY.get());
+        }
     };
 
-    @SubscribeEvent
-    public static void setUp(FMLCommonSetupEvent ev){
-        BiomeRegistry.registerBiomes(ev);
-        BiomeUtil.initBiomeSet();
+    //动态的树
+    private void gatherData(final GatherDataEvent event) {
+        GatherDataHelper.gatherTagData(MOD_ID, event);
+        GatherDataHelper.gatherLootData(MOD_ID, event);
+    }
+
+    //初始化刷怪蛋（颜色）
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onPostRegisterEntities(final RegistryEvent.Register<EntityType<?>> event) {
+        BHTPvZSpawnEggItem.initUnaddedEggs();
+    }
+    public static ResourceLocation prefix(String a) {
+        return new ResourceLocation("bhtpvz", a);
+    }
+    private void commonSetup(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            BHTPvZBiomes.addBiomeTypes();
+            BHTPvZBiomes.addBiomesToGeneration();
+        });
     }
 }

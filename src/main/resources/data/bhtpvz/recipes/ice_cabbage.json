@@ -10,7 +10,7 @@
       "item": "pvz:ice_essence"
     },
     "X": {
-      "item": "pvz:cabbage"
+      "tag": "forge:crops/cabbage"
     }
   },
   "result": {
