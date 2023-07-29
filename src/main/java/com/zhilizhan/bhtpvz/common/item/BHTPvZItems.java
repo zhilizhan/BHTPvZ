@@ -1,7 +1,5 @@
 package com.zhilizhan.bhtpvz.common.item;
 
-import com.hungteen.pvz.api.types.IPlantType;
-import com.hungteen.pvz.common.item.spawn.card.PlantCardItem;
 import com.hungteen.pvz.utils.enums.Colors;
 import com.mojang.datafixers.util.Pair;
 import com.zhilizhan.bhtpvz.BHTPvZ;
@@ -98,12 +96,4 @@ public class BHTPvZItems {
         return ITEMS.register(name, () -> new BHTPvZSpawnEggItem(entityType, color.getFirst(), color.getSecond(), tab));
     }
 
-    private static RegistryObject<PlantCardItem> registerCard(IPlantType plant, boolean is){
-        String name = plant.toString();
-        if(is) {
-            name = name + "_enjoy";
-        }
-        name = name + "_card";
-        return ITEMS.register(name, () -> new PlantCardItem(plant, is));
-    }
 }

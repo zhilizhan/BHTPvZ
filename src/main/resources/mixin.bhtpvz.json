@@ -1,16 +1,9 @@
 {
   "required": true,
-  "package": "com.zhilizhan.bhtpvz.common.mixin",
+
   "compatibilityLevel": "JAVA_8",
   "refmap": "bhtpvz.refmap.json",
   "mixins": [
-    "CharmLayerMixin",
-    "PlantCardItemMixin",
-    "PVZPlantEntityMixin",
-    "PVZPlantRenderMixin",
-    "optional.PuffshroomEntityMixin",
-    "optional.PuffShroomRenderMixin",
-    "optional.ScaredyShroomEntityMixin",
   ],
   "client": [
 
