@@ -1,15 +1,15 @@
 {
   "required": true,
-
+  "package": "com.zhilizhan.bhtpvz.common.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "bhtpvz.refmap.json",
   "mixins": [
+    "PlayerEventHandlerMixin"
   ],
   "client": [
-
   ],
   "injectors": {
-  "defaultRequire": 1
-},
+    "defaultRequire": 1
+  },
   "minVersion": "0.8"
 }

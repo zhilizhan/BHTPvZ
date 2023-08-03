@@ -45,8 +45,8 @@ public class BHTPvZItems {
     public static final RegistryObject<Item> CHLOROPHYLL = ITEMS.register("chlorophyll", ()-> new Chlorophyll(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.LUCK, 1000, 1), 1.0F).build()))); //钢镚
     // 工具
     public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", ()-> new Hammer(new Item.Properties().tab(BHTPvZ.BHTPVZ).durability(300))); //锤子
-    public static final RegistryObject<Item> DAMSON_CRYSTAL_SWORD = ITEMS.register("damson_crystal_sword", ()-> new SwordItem(BHTPvZTiers.DAMSON_CRYSTAL, 3, -2.4f, new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合金剑
-    public static final RegistryObject<Item> DAMSON_CRYSTAL_SHOVEL = ITEMS.register("damson_crystal_shovel", ()-> new ShovelItem(BHTPvZTiers.DAMSON_CRYSTAL,1.5f,-0.3f, new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合金铲
+    public static final RegistryObject<Item> DAMSON_CRYSTAL_SWORD = ITEMS.register("damson_crystal_sword", DamsonCrystalSword::new); // 暗紫合金剑
+    public static final RegistryObject<Item> DAMSON_CRYSTAL_SHOVEL = ITEMS.register("damson_crystal_shovel", DamsonCrystalShove::new); // 暗紫合金铲
     public static final RegistryObject<Item> DAMSON_CRYSTAL_PICKAXE = ITEMS.register("damson_crystal_pickaxe", ()-> new PickaxeItem(BHTPvZTiers.DAMSON_CRYSTAL, 1, -2.8f, new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合金镐
     public static final RegistryObject<Item> DAMSON_CRYSTAL_AXE = ITEMS.register("damson_crystal_axe", ()-> new AxeItem(BHTPvZTiers.DAMSON_CRYSTAL, 5.0f, -3.0f, new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合金斧
     public static final RegistryObject<Item> DAMSON_CRYSTAL_HOE = ITEMS.register("damson_crystal_hoe", ()-> new HoeItem(BHTPvZTiers.DAMSON_CRYSTAL, -4, 0.0f, new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合金锄

@@ -73,6 +73,7 @@
   "tooltip.bhtpvz.steel_pumpkin_token.use": "Use to summon steelPumpkin",
   "tooltip.bhtpvz.steel_coin.use": "Use to chance number+3",
   "tooltip.bhtpvz.chlorophyll.use": "Eat to gain energy",
+  "tooltip.bhtpvz.hammer.use": "Right hammer zombies or pot",
 
 
   "entity.bhtpvz.origin_moob": "origin_moob",
