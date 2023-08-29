@@ -15,14 +15,12 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import static com.zhilizhan.bhtpvz.common.list.PlantList.PLANT;
-import static com.zhilizhan.bhtpvz.common.list.PlantList.WATER_PLANT;
 
 public class PotGrassBlock extends AbstractFacingBlock {
     private static final VoxelShape SHAPE = Shapes.or(
@@ -41,8 +39,6 @@ public class PotGrassBlock extends AbstractFacingBlock {
         if (!oldState.is(state.getBlock())) {
             if (level.getBlockState(pos.below()).getBlock() == Blocks.GRASS_BLOCK) {
                 this.trySpawnPlant(level, pos);
-            }else if(level.getFluidState(pos.below()).getType() == Fluids.WATER){
-                trySpawnWaterPlant(level,pos);
             }
         }
     }
@@ -54,12 +50,6 @@ public class PotGrassBlock extends AbstractFacingBlock {
         EntityUtil.onEntitySpawn(level, plant, pos);
     }
 
-    private void trySpawnWaterPlant(Level level, BlockPos pos) {
-        IPlantType plantType = (IPlantType) WATER_PLANT.getRandomItem(RANDOM).get();
-        level.removeBlock(pos, false);
-        PathfinderMob plant = plantType.getEntityType().get().create(level);
-        EntityUtil.onEntitySpawn(level, plant, pos);
-    }
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE;
