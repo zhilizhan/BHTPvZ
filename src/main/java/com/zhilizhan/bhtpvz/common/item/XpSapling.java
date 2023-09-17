@@ -19,7 +19,9 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class XpSapling extends Item {
+public class
+
+XpSapling extends Item {
     public XpSapling(Properties properties) {
         super(properties);
     }

@@ -8,11 +8,11 @@ public class PlantList {
     public static final WeightList<IPlantType> PLANT = new WeightList<>();
 
     static {
-        PLANT.addItem(PVZPlants.SUN_FLOWER, 90);
+        PLANT.addItem(PVZPlants.SUN_FLOWER, 60);
         PLANT.addItem(PVZPlants.WALL_NUT, 70);
         PLANT.addItem(PVZPlants.SNOW_PEA, 80);
-        PLANT.addItem(PVZPlants.CHERRY_BOMB, 85);
-        PLANT.addItem(PVZPlants.MELON_PULT, 70);
-        PLANT.addItem(PVZPlants.JALAPENO, 85);
+        PLANT.addItem(PVZPlants.CHERRY_BOMB, 75);
+        PLANT.addItem(PVZPlants.MELON_PULT, 60);
+        PLANT.addItem(PVZPlants.JALAPENO, 75);
     }
 }

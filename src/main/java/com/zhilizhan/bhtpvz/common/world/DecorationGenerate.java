@@ -1,7 +1,6 @@
 package com.zhilizhan.bhtpvz.common.world;
 
 import com.hungteen.pvz.common.world.biome.BiomeRegister;
-import com.zhilizhan.bhtpvz.common.world.biome.BHTPvZBiomes;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -24,9 +23,7 @@ public class DecorationGenerate {
                 event.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BHTPvZFeatures.TREES_CHERRY); // 樱桃树生成
                 event.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BHTPvZFeatures.TREES_STARFRUIT); // 杨桃树生成
                   }
-            if (biome.equals(BHTPvZBiomes.BEWILDER_GARDEN.get())){
-                event.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BHTPvZFeatures.TREES_WISDOM); // 智慧树生成
-            }
+
         }
     }
 

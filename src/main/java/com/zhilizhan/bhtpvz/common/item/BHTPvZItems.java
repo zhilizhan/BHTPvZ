@@ -36,13 +36,12 @@ public class BHTPvZItems {
     public static final RegistryObject<Item> ANGEL_STARFRUIT = ITEMS.register("angel_starfruit", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(8).saturationMod(1.2F).effect(new MobEffectInstance(MobEffects.REGENERATION, 200, 1), 1.0F).build()))); // 天使杨桃
     public static final RegistryObject<Item> SQUASH_SLICE = ITEMS.register("squash_slice", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(3).saturationMod(0.3F).build()))); //倭瓜片
     public static final RegistryObject<Item> ICE_CABBAGE = ITEMS.register("ice_cabbage", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80, 1), 1.0F).build()))); // 冰卷心菜
-    public static final RegistryObject<Item> ICE_PEA = ITEMS.register("ice_pea", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(3).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 1), 1.0F).build()))); // 冰结豌豆
 
     // 功能性食物
-    public static final RegistryObject<Item> XP_SAPLING = ITEMS.register("xp_sapling", ()-> new XpSapling(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.LUCK, 1000, 1), 1.0F).build()))); //经验树苗
-    public static final RegistryObject<Item> WISDOM_SAPLING = ITEMS.register("wisdom_sapling", ()-> new WisdomSapling(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(6).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.LUCK, 2000, 3), 1.0F).build()))); //智慧树苗
+    public static final RegistryObject<Item> XP_SAPLING = ITEMS.register("xp_sapling", ()-> new XpSapling(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(0).saturationMod(0.0F).effect(new MobEffectInstance(MobEffects.LUCK, 1000, 1), 1.0F).build()))); //经验树苗
+    public static final RegistryObject<Item> WISDOM_SAPLING = ITEMS.register("wisdom_sapling", ()-> new WisdomSapling(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(0).saturationMod(0.0F).effect(new MobEffectInstance(MobEffects.LUCK, 2000, 3), 1.0F).build()))); //智慧树苗
     public static final RegistryObject<Item> STEEL_COIN = ITEMS.register("steel_coin", ()-> new SteelCoin(new Item.Properties().tab(BHTPvZ.BHTPVZ))); //钢镚
-    public static final RegistryObject<Item> CHLOROPHYLL = ITEMS.register("chlorophyll", ()-> new Chlorophyll(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.LUCK, 1000, 1), 1.0F).build()))); //钢镚
+    public static final RegistryObject<Item> CHLOROPHYLL = ITEMS.register("chlorophyll", ()-> new Chlorophyll(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(0).saturationMod(0.0F).effect(new MobEffectInstance(MobEffects.LUCK, 1000, 1), 1.0F).build()))); //钢镚
     // 工具
     public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", ()-> new Hammer(new Item.Properties().tab(BHTPvZ.BHTPVZ).durability(300))); //锤子
     public static final RegistryObject<Item> DAMSON_CRYSTAL_SWORD = ITEMS.register("damson_crystal_sword", DamsonCrystalSword::new); // 暗紫合金剑
@@ -86,9 +85,6 @@ public class BHTPvZItems {
     public static final RegistryObject<Item> MORION_BLOCK = ITEMS.register("morion_block", ()-> new BlockItem(BHTPvZBlocks.MORION_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 黑晶块
     public static final RegistryObject<Item> DAMSON_CRYSTAL_BLOCK = ITEMS.register("damson_crystal_block", ()-> new BlockItem(BHTPvZBlocks.DAMSON_CRYSTAL_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合晶块
     public static final RegistryObject<Item> DECOMPOSITION_STAGE = ITEMS.register("decomposition_stage", ()-> new BlockItem(BHTPvZBlocks.DECOMPOSITION_STAGE.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 分解台
-    public static final RegistryObject<Item> STEEL_PUMPKIN = ITEMS.register("steel_pumpkin",() -> new BlockItem(BHTPvZBlocks.STEEL_PUMPKIN.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));  //  钢南瓜
-    public static final RegistryObject<Item> WISDOM_LOG = ITEMS.register("wisdom_log",() -> new BlockItem(BHTPvZBlocks.WISDOM_LOG.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));  //  智慧原木
-    public static final RegistryObject<BlockItem> SCREEN_DOOR = ITEMS.register("screen_door",() -> new BlockItem(BHTPvZBlocks.SCREEN_DOOR.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));  // 铁网门
 
 
     // 刷怪蛋注册方法
