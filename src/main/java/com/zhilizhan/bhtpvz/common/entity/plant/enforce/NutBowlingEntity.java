@@ -15,7 +15,6 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
@@ -26,14 +25,12 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
 public class NutBowlingEntity extends PlantCloserEntity {
-
 
     protected IntOpenHashSet hitEntities;
     private static final EntityDataAccessor<Integer> FACING;
@@ -51,6 +48,8 @@ public class NutBowlingEntity extends PlantCloserEntity {
         this.playSpawnSound = false;
         this.hitCount = 0;
         this.pushthrough = 1.0F;
+        this.isImmuneToWeak =true;
+        this.canCollideWithPlant = false;
     }
 
     @Override
@@ -112,21 +111,17 @@ public class NutBowlingEntity extends PlantCloserEntity {
         double d0 = this.getX() + vec3d.x;
         double d1 = this.getY() + vec3d.y;
         double d2 = this.getZ() + vec3d.z;
-        float f1;
         if (this.isInWater()) {
             for(int i = 0; i < 4; ++i) {
                 this.level.addParticle(ParticleTypes.BUBBLE, d0 - vec3d.x * 0.25, d1 - vec3d.y * 0.25, d2 - vec3d.z * 0.25, vec3d.x, vec3d.y, vec3d.z);
             }
 
-            f1 = 0.4F;
-        } else {
-            f1 = 0.6F;
         }
 
-        this.setDeltaMovement(vec3d.scale((double)f1));
+        // this.setDeltaMovement(vec3d.scale((double)f1));
         if (!this.isNoGravity()) {
             Vec3 vec3d1 = this.getDeltaMovement();
-            this.setDeltaMovement(vec3d1.x, vec3d1.y, vec3d1.z);
+            this.setDeltaMovement(vec3d1.x/2.5, vec3d1.y, vec3d1.z/2.5);
         }
 
         this.move(MoverType.SELF, this.getDeltaMovement());
@@ -151,7 +146,7 @@ public class NutBowlingEntity extends PlantCloserEntity {
         ++this.hitCount;
 
         entity.hurt(PVZEntityDamageSource.normal(this, this.ownerPlayer).setCount(this.hitCount), 30.0F);
-        EntityUtil.playSound(this, (SoundEvent)SoundRegister.BOWLING_HIT.get());
+        EntityUtil.playSound(this, SoundRegister.BOWLING_HIT.get());
         Player player = this.ownerPlayer;
         if (player != null && player instanceof ServerPlayer) {
             EntityEffectAmountTrigger.INSTANCE.trigger((ServerPlayer)player, this, this.hitCount);
@@ -171,14 +166,7 @@ public class NutBowlingEntity extends PlantCloserEntity {
             end = result.getLocation();
         }
 
-        EntityHitResult entityRay = this.rayTraceEntities(start, end);
-        if (entityRay != null) {
-            result = entityRay;
-        }
-
-        if (result != null && result.getType() != HitResult.Type.MISS && !ForgeEventFactory.onProjectileImpact(this, result)) {
-            this.onImpact(result);
-        }
+        this.rayTraceEntities(start, end);
 
     }
 
@@ -195,14 +183,10 @@ public class NutBowlingEntity extends PlantCloserEntity {
     }
 
 
-
     public void shoot(Player player) {
         Direction direction = player.getDirection();
         this.setDirection(direction);
         this.yRot = direction.toYRot();
-    }
-    protected void addHitEntity(Entity entity) {
-        this.hitEntities.addAll(EntityUtil.getOwnerAndPartsID(entity));
     }
 
     protected boolean shouldHit(Entity target) {
@@ -215,10 +199,6 @@ public class NutBowlingEntity extends PlantCloserEntity {
             return entity.isPickable() && this.shouldHit(entity) && (this.hitEntities == null || !this.hitEntities.contains(entity.getId()));
         });
     }
-
-    protected void onImpact(HitResult result) {
-    }
-
 
 
     protected int getMaxLiveTick() {
@@ -296,6 +276,9 @@ public class NutBowlingEntity extends PlantCloserEntity {
     public boolean isAttackable() {
         return false;
     }
+   // protected float getStandingEyeHeight(Pose pose, EntityDimensions dimension) {
+   //     return 0.1f;
+   // }
 
     static {
         FACING = SynchedEntityData.defineId(NutBowlingEntity.class, EntityDataSerializers.INT);

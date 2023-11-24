@@ -46,7 +46,6 @@ import static com.hungteen.pvz.common.item.spawn.card.PlantCardItem.*;
 @Mixin(value = PlantCardItem.class,remap = false)
 public abstract class PlantCardItemMixin extends SummonCardItem{
 
-
     public PlantCardItemMixin(IPAZType type, boolean isEnjoyCard) {
         super(type, isEnjoyCard);
     }

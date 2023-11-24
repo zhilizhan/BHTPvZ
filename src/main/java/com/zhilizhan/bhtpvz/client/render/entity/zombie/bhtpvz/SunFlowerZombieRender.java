@@ -4,7 +4,10 @@ import com.hungteen.pvz.client.render.entity.zombie.zombotany.AbstractZombotanyR
 import com.zhilizhan.bhtpvz.client.model.entity.zombie.bhtpvz.SunFlowerZombieModel;
 import com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz.SunFlowerZombieEntity;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class SunFlowerZombieRender extends AbstractZombotanyRender<SunFlowerZombieEntity> {
     public SunFlowerZombieRender(EntityRenderDispatcher rendererManager) {
         super(rendererManager, new SunFlowerZombieModel(), 0.4F);

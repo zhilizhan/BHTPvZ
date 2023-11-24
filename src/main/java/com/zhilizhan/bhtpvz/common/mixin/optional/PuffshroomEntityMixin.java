@@ -21,8 +21,7 @@ import java.util.Iterator;
 
 @Mixin(value = PuffShroomEntity.class,remap = false)
 public abstract class PuffshroomEntityMixin extends PlantShooterEntity {
-
-     int  growTime = 1000;
+     int  growTime = 8000;
     @Shadow protected abstract boolean canSuperTogether(PuffShroomEntity entity);
 
     @Shadow public abstract int getMaxSuperCnt();
@@ -42,6 +41,10 @@ public abstract class PuffshroomEntityMixin extends PlantShooterEntity {
     public boolean isInGrowStage(int stage) {
         return this.getExistTick() > growTime * (stage - 1);
     }
+    /**
+     * @author SuSen36
+     * @reason 胆小菇长大加攻击
+     */
     @Overwrite
     public float getAttackDamage() {
         if(BHTPvZConfig.COMMON_CONFIG.EntitySettings.PlantSetting.PuffShroomGrow.get()){
@@ -59,7 +62,6 @@ public abstract class PuffshroomEntityMixin extends PlantShooterEntity {
             this.performShoot(0.1, 0.0, -0.20000000298023224, this.getAttackTime() == 1, 0.0);
             this.refreshDimensions();
         }
-
     }
     @Overwrite
     public void startSuperMode(boolean first) {

@@ -36,7 +36,6 @@ public class SelfImitaterEntity extends PlantDefenderEntity {
         }
         return 300;
     }
-
     @Override
     public float getSuperLife() {
         return this.getLife();

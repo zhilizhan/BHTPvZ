@@ -22,7 +22,6 @@ public class PoppedChorusFruitEntity extends PultBulletEntity {
         super((EntityType) BHTPvZEntityTypes.POPPED_CHORUS_FRUIT.get(), worldIn, shooter);
     }
 
-
     protected void dealDamage(Entity target) {
 
         target.hurt(BHTPvZEntityDamageSource.poppedChorusFruit(this, this.getThrower()), this.getAttackDamage());
@@ -46,12 +45,9 @@ public class PoppedChorusFruitEntity extends PultBulletEntity {
 
             }
 
-
         EntityUtil.playSound(this, (SoundEvent) SoundEvents.CHORUS_FLOWER_DEATH);
     });
     }
-
-
 
     public EntityDimensions getDimensions(Pose poseIn) {
         return EntityDimensions.scalable(0.6F, 0.6F);

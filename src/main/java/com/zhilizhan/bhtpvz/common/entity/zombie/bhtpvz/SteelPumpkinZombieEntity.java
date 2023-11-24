@@ -1,18 +1,15 @@
 package com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz;
 
-import com.zhilizhan.bhtpvz.common.impl.zombie.BHTPvZZombies;
-
 import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.hungteen.pvz.common.entity.plant.base.PlantDefenderEntity;
-import com.hungteen.pvz.common.entity.zombie.base.DefenceZombieEntity;
 import com.hungteen.pvz.common.entity.zombie.body.ZombieDropBodyEntity;
-import com.hungteen.pvz.common.entity.zombie.part.PVZHealthPartEntity;
+import com.hungteen.pvz.common.entity.zombie.zombotany.AbstractZombotanyEntity;
 import com.hungteen.pvz.common.impl.zombie.ZombieType;
 import com.hungteen.pvz.common.misc.sound.SoundRegister;
 import com.hungteen.pvz.remove.MetalTypes;
 import com.hungteen.pvz.utils.ZombieUtil;
 import com.hungteen.pvz.utils.interfaces.IHasMetal;
-
+import com.zhilizhan.bhtpvz.common.impl.zombie.BHTPvZZombies;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -21,17 +18,12 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
 
-public class SteelPumpkinZombieEntity extends DefenceZombieEntity implements IHasMetal {
+public class SteelPumpkinZombieEntity extends AbstractZombotanyEntity implements IHasMetal {
     public SteelPumpkinZombieEntity(EntityType<? extends PathfinderMob> type, Level level) {
         super(type, level);
     }
 
-    @Override
-    public void resetParts() {
-        removeParts();
-        this.part = new PVZHealthPartEntity(this, 1f, 1.7f);
-        this.part.setOwner(this);
-    }
+
 
     @Override
     protected void initAttributes() {
@@ -109,7 +101,6 @@ public class SteelPumpkinZombieEntity extends DefenceZombieEntity implements IHa
     @Override
     public void increaseMetal() {
         this.setOuterDefenceLife(this.getOuterLife());
-        this.resetParts();
     }
 
     @Override

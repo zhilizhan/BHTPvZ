@@ -1,0 +1,26 @@
+{
+  "type": "pvz:card_fusion",
+  "ingredients": [
+    {
+      "item": "pvz:pea_shooter_card"
+    },
+    {
+      "item": "pvz:pea_shooter_card"
+    },
+    {
+      "item": "pvz:pea_shooter_card"
+    },
+    {
+      "item": "pvz:pea_shooter_card"
+    },
+    {
+      "item": "pvz:pea_shooter_card"
+    },
+    {
+      "tag": "pvz:card/green_cards"
+    }
+  ],
+  "result": {
+    "item": "bhtpvz:peapod_card"
+  }
+}

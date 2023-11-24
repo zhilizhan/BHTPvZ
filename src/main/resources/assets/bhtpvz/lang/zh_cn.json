@@ -65,7 +65,16 @@
   "item.bhtpvz.self_imitater_enjoy_card": "自己模仿者体验卡",
   "item.bhtpvz.re_icepea_card": "冰结射手卡",
   "item.bhtpvz.re_icepea_enjoy_card": "冰结射手体验卡",
-
+  "item.bhtpvz.peapod_card": "豌豆荚卡",
+  "item.bhtpvz.peapod_enjoy_card": "豌豆荚体验卡",
+  "item.bhtpvz.sculk_shroom_card": "音爆菇卡",
+  "item.bhtpvz.sculk_shroom_enjoy_card": "音爆菇体验卡",
+  "item.bhtpvz.origin_shroom_card": "原始蘑菇卡",
+  "item.bhtpvz.origin_shroom_enjoy_card": "原始蘑菇体验卡",
+  "item.bhtpvz.bee_shooter_card": "蜜蜂射手卡",
+  "item.bhtpvz.bee_shooter_enjoy_card": "蜜蜂射手体验卡",
+  "item.bhtpvz.fodder_bush_card": "饲料灌卡",
+  "item.bhtpvz.fodder_bush_enjoy_card": "饲料灌体验卡",
 
   "item.bhtpvz.origin_moob_spawn_egg": "起源蘑菇牛刷怪蛋",
 
@@ -79,6 +88,7 @@
   "item.bhtpvz.mj_zombie_spawn_egg": "舞王僵尸刷怪蛋",
   "item.bhtpvz.dancer_backup_zombie_spawn_egg": "舞伴僵尸刷怪蛋",
   "item.bhtpvz.sun_flower_zombie_spawn_egg": "向日葵僵尸刷怪蛋",
+  "item.bhtpvz.chomper_zombie_spawn_egg": "大嘴花僵尸刷怪蛋",
 
   "block.bhtpvz.cherry_leaves": "樱桃树树叶",
   "block.bhtpvz.starfruit_leaves":"杨桃树树叶",
@@ -109,6 +119,8 @@
   "tooltip.bhtpvz.sun_token.use": "使用以召唤阳光戴夫",
   "tooltip.bhtpvz.steel_pumpkin_token.use": "使用以召唤钢南瓜",
   "tooltip.bhtpvz.chlorophyll.use": "食用以获得能量",
+  "tooltip.bhtpvz.hammer.use": "右击锤僵尸或罐子",
+
 
   "entity.bhtpvz.ice_cabbage_pult": "冰卷心菜投手",
   "entity.bhtpvz.steel_pumpkin": "钢南瓜",
@@ -122,6 +134,11 @@
   "entity.bhtpvz.grass_carp": "草鱼",
   "entity.bhtpvz.self_imitater": "自己模仿者",
   "entity.bhtpvz.re_icepea": "冰结射手",
+  "entity.bhtpvz.peapod": "豌豆荚",
+  "entity.bhtpvz.sculk_shroom": "音爆菇",
+  "entity.bhtpvz.origin_shroom": "原始蘑菇",
+  "entity.bhtpvz.bee_shooter": "蜜蜂射手",
+  "entity.bhtpvz.fodder_bush": "饲料灌",
 
   "entity.bhtpvz.edgar_090547": "埃德加-090547",
   "entity.bhtpvz.flower_pot_zombie": "花盆僵尸",
@@ -133,10 +150,11 @@
   "entity.bhtpvz.mj_zombie": "舞王僵尸",
   "entity.bhtpvz.dancer_backup_zombie": "舞伴僵尸",
   "entity.bhtpvz.sun_flower_zombie": "向日葵僵尸",
+  "entity.bhtpvz.chomper_zombie": "大嘴花僵尸",
 
   "entity.bhtpvz.origin_moob": "起源蘑菇牛",
   "entity.bhtpvz.red_sun": "红太阳",
-
+  "entity.bhtpvz.bee": "蜜蜂",
 
   "challenge.bhttpvz.extra.msg1": "BHtpvz的附加挑战",
   "challenge.pvz.roof_extra.name": "屋顶附加",
@@ -146,5 +164,4 @@
   "block.bhtpvz.wisdom_log_say_1": "曾经有一个照顾我的人",
   "block.bhtpvz.wisdom_log_say_2": "但后来不知道怎么的离开了",
   "block.bhtpvz.wisdom_log_say_3": "之后就再也没有见过他"
-
 }

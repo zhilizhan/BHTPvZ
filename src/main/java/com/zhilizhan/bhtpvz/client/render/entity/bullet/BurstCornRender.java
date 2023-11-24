@@ -28,7 +28,7 @@ public class BurstCornRender  extends PVZEntityRender<CornEntity> {
     }
 
     protected float getScaleByEntity(CornEntity entity) {
-        return 1F;
+        return 0.75F;
     }
 
     public ResourceLocation getTextureLocation(CornEntity entity) {

@@ -16,7 +16,10 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class RedSunRender extends EntityRenderer<RedSunEntity> {
     private static final ResourceLocation RED_SUN_LOCATION = BHTPvZ.prefix("textures/entity/misc/red_sun.png");
     private static final RenderType RENDER_TYPE;
@@ -26,8 +29,6 @@ public class RedSunRender extends EntityRenderer<RedSunEntity> {
         this.shadowRadius = 0.15F;
         this.shadowStrength = 0.75F;
     }
-
-
 
     protected int getBlockLightLevel(SunEntity p_114606_, BlockPos p_114607_) {
         return Mth.clamp(super.getBlockLightLevel((RedSunEntity) p_114606_, p_114607_) + 7, 0, 15);

@@ -3,20 +3,20 @@
   "pattern": [
     "AAA",
     "ABA",
-    "BCB"
+    "ACA"
   ],
   "key": {
     "A": {
       "item": "pvz:appease_essence"
     },
     "B": {
-      "tag": "forge:crops/pea"
+      "item": "minecraft:honeycomb"
     },
     "C": {
       "tag": "pvz:card/green_cards"
     }
   },
   "result": {
-    "item": "bhtpvz:grass_carp_card"
+    "item": "bhtpvz:bee_shooter_card"
   }
 }

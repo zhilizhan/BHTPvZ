@@ -1,0 +1,38 @@
+{
+  "isAssistInvasion": false,
+  "triggerChance": 40,
+  "bonus": "pvz:roof",
+  "display_color": "dark_red",
+  "spawns": [
+    {
+      "entity_type": "pvz:normal_zombie",
+      "nbt":"{ActiveEffects:[{Id:14,Amplifier:3,Duration:2000000,ShowParticles:0b},{Id:10,Amplifier:1,Duration:2000000,ShowParticles:0b}]}",
+      "invasion_level": 12,
+      "spawn_weight": 90
+    },
+    {
+      "entity_type": "pvz:conehead_zombie",
+      "nbt":"{ActiveEffects:[{Id:14,Amplifier:3,Duration:2000000,ShowParticles:0b},{Id:10,Amplifier:1,Duration:2000000,ShowParticles:0b}]}",
+      "invasion_level": 14,
+      "spawn_weight": 60
+    },
+    {
+      "entity_type": "pvz:buckethead_zombie",
+      "nbt":"{ActiveEffects:[{Id:14,Amplifier:3,Duration:2000000,ShowParticles:0b},{Id:10,Amplifier:1,Duration:2000000,ShowParticles:0b}]}",
+      "invasion_level": 16,
+      "spawn_weight": 40
+    },
+    {
+      "entity_type": "pvz:zomboni",
+      "nbt":"{ActiveEffects:[{Id:14,Amplifier:3,Duration:2000000,ShowParticles:0b},{Id:10,Amplifier:1,Duration:2000000,ShowParticles:0b}]}",
+      "invasion_level": 18,
+      "spawn_weight": 20
+    },
+    {
+      "entity_type": "pvz:dolphin_rider",
+      "nbt":"{ActiveEffects:[{Id:14,Amplifier:3,Duration:2000000,ShowParticles:0b},{Id:10,Amplifier:1,Duration:2000000,ShowParticles:0b}]}",
+      "invasion_level": 12,
+      "spawn_weight": 15
+    }
+  ]
+}

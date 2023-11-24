@@ -4,19 +4,19 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "bhtpvz.refmap.json",
   "mixins": [
-    "CharmLayerMixin",
     "PlantCardItemMixin",
+    "PlayerEventHandlerMixin",
     "PVZPlantEntityMixin",
-    "PVZPlantRenderMixin",
+    "TorchWoodEntityMixin",
     "optional.PuffshroomEntityMixin",
-    "optional.PuffShroomRenderMixin",
-    "optional.ScaredyShroomEntityMixin",
+    "optional.ScaredyShroomEntityMixin"
   ],
   "client": [
-
+    "PVZPlantRenderMixin",
+    "optional.PuffShroomRenderMixin"
   ],
   "injectors": {
-  "defaultRequire": 1
-},
+    "defaultRequire": 1
+  },
   "minVersion": "0.8"
 }

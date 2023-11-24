@@ -31,7 +31,6 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 		this.canCollideWithPlant = false;
 		this.isImmuneToWeak =true;
 	}
-
 	@Override
 	public float getLife() {
 		return 500;
@@ -46,7 +45,6 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 	public EntityDimensions getDimensions(Pose poseIn) {
 		return EntityDimensions.scalable(1.1f, 1.4f);
 	}
-
 
 
 	@Override
@@ -75,7 +73,7 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 				}
 			}
 		}
-		super.aiStep();
+		super.normalPlantTick();
 	}
 
 	public void positionRider(Entity p_184232_1_) {
@@ -137,9 +135,6 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 	public boolean isSolid() {
 		return this.entityData.get(IS_SOLID);
 	}
-	public PVZPlantEntity plantEntity;
-
-
 
 
 	public static class SteelPumpkinInfo extends PlantInfo  {

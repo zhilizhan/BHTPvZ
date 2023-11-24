@@ -30,12 +30,12 @@ public abstract class PVZPlantRenderMixin<T extends PVZPlantEntity> extends MobR
     }*/
     @Overwrite
         protected void addPlantLayers() {
-       this.addLayer(new EnergyLayer(this));
-       this.addLayer(new CharmLayer(this));
-       this.addLayer(new PumpkinArmorLayer(this));
-       this.addLayer(new SunLightLayer(this));
-       this.addLayer(new HealLightLayer(this));
-       this.addLayer(new PlantLadderLayer(this));
+       this.addLayer(new EnergyLayer<>(this));
+       this.addLayer(new CharmLayer<>(this));
+       this.addLayer(new PumpkinArmorLayer<>(this));
+       this.addLayer(new SunLightLayer<>(this));
+       this.addLayer(new HealLightLayer<>(this));
+       this.addLayer(new PlantLadderLayer<>(this));
        this.addLayer(new SteelPumpkinArmorLayer<>(this));
 }
 }

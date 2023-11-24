@@ -36,6 +36,10 @@ public abstract  class PVZPlantEntityMixin extends AbstractPAZEntity implements 
     @Shadow
     public abstract boolean hasMetal();
 
+    /**
+     * @author SuSen36
+     * @reason 水盆
+     */
     @Overwrite
     public boolean shouldWilt() {
         if (!this.isImmuneToWeak() && this.getVehicle() == null) {
@@ -55,6 +59,10 @@ public abstract  class PVZPlantEntityMixin extends AbstractPAZEntity implements 
         }
     }
 
+    /**
+     * @author SuSen36
+     * @reason 钢南瓜的血大于800
+     */
     @Overwrite
     public boolean canBeTargetBy(LivingEntity living) {
         if (this.getOuterDefenceLife() > 800.0 && BHTPvZConfig.COMMON_CONFIG.EntitySettings.PlantSetting.SteelPumpkinPeace.get() || this.hasMetal()) {

@@ -6,10 +6,7 @@ import com.hungteen.pvz.common.entity.plant.appease.PeaShooterEntity;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.FishPeaEntity;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -17,17 +14,15 @@ import net.minecraft.world.phys.Vec3;
 import java.util.Optional;
 
 public class GrassCarpEntity extends PeaShooterEntity {
-
-
+    private static final int EFFECT_CD = 120;
     public GrassCarpEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
         super(type, worldIn);
-        this.setCharmed(true);
     }
 
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(2, new FloatGoal(this));
-    }
+      }
     //修改射击高度
     @Override
     public void performShoot(double forwardOffset, double rightOffset, double heightOffset, boolean needSound, double angleOffset) {
@@ -58,12 +53,39 @@ public class GrassCarpEntity extends PeaShooterEntity {
         if (this.getAttackTime() > 0) {
             this.setAttackTime(this.getAttackTime() - 1);
         }
+        if (!this.level.isClientSide && this.getExistTick() % EFFECT_CD == 10) {
+            this.giveHealToFriendly();
+        }
+    }
+    private void giveHealToFriendly() {
+        float range = this.getEffectRange();
+        EntityUtil.getFriendlyLivings(this, EntityUtil.getEntityAABB(this, (double)range, (double)range)).forEach((entity) -> {
+           
+            if (entity.getHealth()<entity.getMaxHealth()) {
+                entity.heal(this.getAttackDamage());
+            }
+
+        });
+    }
+    public float getEffectRange() {
+        return 5;
     }
     protected AbstractBulletEntity createBullet() {
         return new FishPeaEntity(this.level);
     }
     public void startShootAttack() {
         this.setAttackTime(1);
+    }
+
+    public boolean canShoot() {
+        return super.canShoot()&&this.getTarget()!=null&& this.getTarget().getHealth()<this.getTarget().getMaxHealth();
+    }
+    @Override
+    public boolean checkY(Entity target) {
+        return true;
+    }
+    public boolean canBeTargetBy(LivingEntity living) {
+     return false;
     }
     public EntityDimensions getDimensions(Pose poseIn) {
         return EntityDimensions.scalable(0.8F, 0.8F);

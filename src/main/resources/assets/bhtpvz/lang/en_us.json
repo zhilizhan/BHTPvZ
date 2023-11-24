@@ -66,6 +66,16 @@
   "item.bhtpvz.self_imitater_enjoy_card": "self imitater enjoy card",
   "item.bhtpvz.re_icepea_card": "re icepea card",
   "item.bhtpvz.re_icepea_enjoy_card": "re icepea enjoy card",
+  "item.bhtpvz.peapod_card": "peapod card",
+  "item.bhtpvz.peapod_enjoy_card": "peapod enjoy card",
+  "item.bhtpvz.sculk_shroom_card": "sculk shroom card",
+  "item.bhtpvz.sculk_shroom_enjoy_card": "sculk shroom enjoy card",
+  "item.bhtpvz.origin_shroom_card": "origin shroom card",
+  "item.bhtpvz.origin_shroom_enjoy_card": "origin shroom enjoy card",
+  "item.bhtpvz.bee_shooter_card": "bee shooter card",
+  "item.bhtpvz.bee_shooter_enjoy_card": "bee shooter enjoy card",
+  "item.bhtpvz.fodder_bush_card": "fodder bush card",
+  "item.bhtpvz.fodder_bush_enjoy_card": "fodder bush enjoy card",
 
 
   "item.bhtpvz.origin_moob_spawn_egg": "origin moob spawn egg",
@@ -79,8 +89,10 @@
   "item.bhtpvz.target_arrow_zombie_spawn_egg": "target arrow zombie spawn egg",
   "item.bhtpvz.red_edge_zombie_spawn_egg": "red edge zombie spawn egg",
   "item.bhtpvz.mj_zombie_spawn_egg": "mj zombie spawn egg",
-  "item.bhtpvz.dancer_backup_zombie_spawn_egg": "dancer backup spawn egg",
-  "item.bhtpvz.sun_flower_zombie_spawn_egg": "sun flower spawn egg",
+  "item.bhtpvz.dancer_backup_zombie_spawn_egg": "dancer backup zombie spawn egg",
+  "item.bhtpvz.sun_flower_zombie_spawn_egg": "sun flower zombie spawn egg",
+  "item.bhtpvz.chomper_zombie_spawn_egg": "chomper zombie spawn egg",
+
 
   "block.bhtpvz.cherry_leaves": "cherry leaves",
   "block.bhtpvz.starfruit_leaves": "starfruit leaves",
@@ -111,6 +123,9 @@
   "tooltip.bhtpvz.steel_pumpkin_token.use": "Use to summon steelPumpkin",
   "tooltip.bhtpvz.steel_coin.use": "Use to chance number+3",
   "tooltip.bhtpvz.chlorophyll.use": "Eat to gain energy",
+  "tooltip.bhtpvz.hammer.use": "Right hammer zombies or pot",
+
+
   "entity.bhtpvz.ice_cabbage_pult":"ice cabbage pult",
   "entity.bhtpvz.steel_pumpkin":"steel pumpkin",
   "entity.bhtpvz.fire_peashooter": "fire peashooter",
@@ -123,6 +138,11 @@
   "entity.bhtpvz.grass_carp": "grass carp",
   "entity.bhtpvz.self_imitater": "self imitater",
   "entity.bhtpvz.re_icepea": "re icepea",
+  "entity.bhtpvz.peapod": "peapod",
+  "entity.bhtpvz.sculk_shroom": "sculk shroom",
+  "entity.bhtpvz.origin_shroom": "origin shroom",
+  "entity.bhtpvz.bee_shooter": "bee shooter",
+  "entity.bhtpvz.fodder_bush": "fodder bush",
 
 
   "entity.bhtpvz.edgar_090547": "edgar-090547",
@@ -135,6 +155,9 @@
   "entity.bhtpvz.mj_zombie": "mj zombie",
   "entity.bhtpvz.dancer_backup_zombie": "dancer backup zombie",
   "entity.bhtpvz.sun_flower_zombie": "sunflower zombie",
+  "entity.bhtpvz.chomper_zombie": "chomper zombie",
+  "entity.bhtpvz.bee": "bee",
+
 
   "entity.bhtpvz.origin_moob": "origin_moob",
   "entity.bhtpvz.red_sun": "red sun",

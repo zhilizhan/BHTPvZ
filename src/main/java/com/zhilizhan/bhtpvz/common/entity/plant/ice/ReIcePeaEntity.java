@@ -11,8 +11,8 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.level.Level;
 
 public class ReIcePeaEntity extends SnowPeaEntity {
-     public ReIcePeaEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
-        super(type, worldIn);
+    public ReIcePeaEntity(EntityType<? extends PathfinderMob> type, Level level) {
+        super(type, level);
     }
     @Override
     public void startShootAttack() {
@@ -24,6 +24,12 @@ public class ReIcePeaEntity extends SnowPeaEntity {
            return  new PeaEntity(this.level, this, this.getShootType(), this.getShootState());
          }
          return new IcePeaEntity(this.level,this);
+    }
+    public int getShootCD() {
+        return 40;
+    }
+    protected PeaEntity.State getShootState() {
+        return PeaEntity.State.ICE;
     }
     public IPlantType getPlantType() {
         return BHTPvZPlants.RE_ICEPEA;

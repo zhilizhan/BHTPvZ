@@ -36,7 +36,10 @@ public class RedEdgeZombieEntity extends PVZZombieEntity {
         }
     }
     protected float getModifyAttackDamage(Entity entity, float f) {
-        return this.onFire() ? 25 : 5;
+        return this.onFire() ? this.getEatDamage()*5 : this.getEatDamage();
+    }
+    public float getEatDamage() {
+        return 5.0F;
     }
     public int getArmorToughness() {
         return 10;

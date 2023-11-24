@@ -6,9 +6,11 @@ import com.hungteen.pvz.common.entity.plant.toxic.PuffShroomEntity;
 import com.hungteen.pvz.utils.AnimationUtil;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-
+@OnlyIn(Dist.CLIENT)
 @Mixin(value = PuffShroomRender.class,remap = false)
 public abstract class PuffShroomRenderMixin extends PVZPlantRender<PuffShroomEntity> {
     public PuffShroomRenderMixin(EntityRenderDispatcher rendererManager, EntityModel<PuffShroomEntity> entityModelIn, float shadowSizeIn) {

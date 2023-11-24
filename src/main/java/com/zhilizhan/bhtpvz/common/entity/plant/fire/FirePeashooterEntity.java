@@ -23,7 +23,7 @@ public class FirePeashooterEntity extends PeaShooterEntity {
 
     @Override
     public float getAttackDamage() {
-        return this.getSkillValue(SkillTypes.PEA_DAMAGE)*1.5f;
+        return this.getSkillValue(SkillTypes.PEA_DAMAGE);
     }
 
     @Override

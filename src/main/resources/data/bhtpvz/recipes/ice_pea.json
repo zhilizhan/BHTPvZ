@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
+    "BXB",
     "XXX",
-    "XBX",
-    "XXX"
+    "BXB"
   ],
   "key": {
     "B": {
@@ -15,7 +15,7 @@
   },
   "result": {
     "item": "bhtpvz:ice_pea",
-    "count": 8
+    "count": 5
   }
 
 }

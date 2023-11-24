@@ -10,7 +10,10 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class CornRender extends PVZEntityRender<CornEntity> {
 
     private static final ResourceLocation CORN_TEX = StringUtil.prefix("textures/entity/misc/corn.png");

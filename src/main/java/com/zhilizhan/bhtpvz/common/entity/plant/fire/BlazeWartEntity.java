@@ -30,7 +30,7 @@ public class BlazeWartEntity extends PVZPlantEntity {
 
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new BlazeWartEntity.BlazeWartAttackGoal(this));
+        this.goalSelector.addGoal(0, new BlazeWartAttackGoal(this));
         this.targetSelector.addGoal(0, new PVZNearestTargetGoal(this, true, false, 3.0F, 3.0F));
     }
 
@@ -57,7 +57,7 @@ public class BlazeWartEntity extends PVZPlantEntity {
         return 80;
     }
     public boolean canPAZTarget(Entity entity) {
-        return entity instanceof BalloonZombieEntity ? true : super.canPAZTarget(entity);
+        return entity instanceof BalloonZombieEntity ? false : super.canPAZTarget(entity);
     }
 
     public void addAlmanacEntries(List<Pair<IAlmanacEntry, Number>> list) {
@@ -81,7 +81,7 @@ public class BlazeWartEntity extends PVZPlantEntity {
         return  BHTPvZPlants. BLAZE_WART;
     }
 
-    private final class BlazeWartAttackGoal extends Goal {
+    private static final class BlazeWartAttackGoal extends Goal {
         private final BlazeWartEntity attacker;
 
         public BlazeWartAttackGoal(BlazeWartEntity attacker) {

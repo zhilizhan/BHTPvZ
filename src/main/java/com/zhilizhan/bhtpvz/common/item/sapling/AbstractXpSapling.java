@@ -1,9 +1,8 @@
-package com.zhilizhan.bhtpvz.common.item;
+package com.zhilizhan.bhtpvz.common.item.sapling;
 
 import com.hungteen.pvz.common.capability.CapabilityHandler;
 import com.hungteen.pvz.utils.PlayerUtil;
 import com.hungteen.pvz.utils.enums.Resources;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -20,9 +19,9 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class XpSapling extends Item {
-    public XpSapling(Properties properties) {
-        super(properties);
+public abstract class AbstractXpSapling extends Item {
+    public AbstractXpSapling(Properties arg) {
+        super(arg);
     }
 
     @Override
@@ -37,16 +36,20 @@ public class XpSapling extends Item {
             Player player = (Player) livingEntity;
             if(!level.isClientSide) {
                 player.getCapability(CapabilityHandler.PLAYER_DATA_CAPABILITY).ifPresent((l) -> {
-                    int amount = 200;
+                    int amount = amount();
                     {
                         l.getPlayerData().addResource(Resources.TREE_XP, amount);
                         PlayerUtil.playClientSound(player, SoundEvents.EXPERIENCE_BOTTLE_THROW);
-                        stack.shrink(1);
-                    }
+                        if(!player.isCreative()) {
+                            stack.shrink(1);
+                        }}
                 });
             }
         }
         return stack;
+    }
+    protected int amount(){
+        return 200;
     }
 
     @Override
@@ -58,7 +61,6 @@ public class XpSapling extends Item {
     public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.EAT;
     }
-
     @Override
     public int getUseDuration(ItemStack stack) {
         return 50;

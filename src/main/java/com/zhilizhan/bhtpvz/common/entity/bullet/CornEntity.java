@@ -41,7 +41,6 @@ public class CornEntity extends PultBulletEntity {
             if (!entity.is(this.attackEntity) && this.shouldHit(entity)) {
                 PVZEntityDamageSource source = BHTPvZEntityDamageSource.corn(this, this.getThrower());
                     entity.hurt(source, this.getAttackDamage()*1.5f);
-
             }
 
         });

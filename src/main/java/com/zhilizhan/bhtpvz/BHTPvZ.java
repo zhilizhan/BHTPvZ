@@ -2,12 +2,12 @@ package com.zhilizhan.bhtpvz;
 
 import com.ferreusveritas.dynamictrees.api.GatherDataHelper;
 import com.ferreusveritas.dynamictrees.api.registry.RegistryHandler;
+import com.zhilizhan.bhtpvz.client.particle.BHTPvZParticle;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
 import com.zhilizhan.bhtpvz.common.effect.BHTPvZMobEffects;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
-import com.zhilizhan.bhtpvz.common.entity.misc.RedSunEntity;
-import com.zhilizhan.bhtpvz.common.entity.normal.OriginMoobEntity;
 import com.zhilizhan.bhtpvz.common.event.LivingEvents;
+import com.zhilizhan.bhtpvz.common.impl.BHTPvZSkill;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
 import com.zhilizhan.bhtpvz.common.impl.zombie.BHTPvZZombies;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
@@ -24,7 +24,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -55,15 +54,14 @@ public class BHTPvZ {
         BHTPvZItems.ITEMS.register(bus);
         BHTPvZBlocks.BLOCKS.register(bus);
         BHTPvZMobEffects.MOB_EFFECTS.register(bus);
-       BHTPvZBiomes.BIOMES.register(bus);
+        BHTPvZBiomes.BIOMES.register(bus);
+        BHTPvZParticle.PARTICLE_TYPES.register(bus);
         BHTPvZPlants.register();
         BHTPvZZombies.register();
+        BHTPvZSkill.SkillType.register();
         MinecraftForge.EVENT_BUS.register(LivingEvents.class);
         bus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(bus);
-        //为原始蘑菇牛注册属性
-        bus.addListener((EntityAttributeCreationEvent e) -> e.put(BHTPvZEntityTypes.ORIGIN_MOOB.get(), OriginMoobEntity.createAttributes().build()));
-        bus.addListener((EntityAttributeCreationEvent e) -> e.put(BHTPvZEntityTypes.RED_SUN.get(), RedSunEntity.createAttributes().build()));
 
         bus2.addListener(EventPriority.HIGH, DecorationGenerate::addOresToBiomes);
         bus2.addListener(EventPriority.HIGH, DecorationGenerate::addTreesToBiomes);

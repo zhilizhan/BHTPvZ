@@ -13,9 +13,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Optional;
-
+@OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
 public class IcePeaEntity extends AbstractShootBulletEntity implements ItemSupplier {
     public IcePeaEntity(EntityType<?> type, Level worldIn) {
         super(type, worldIn);

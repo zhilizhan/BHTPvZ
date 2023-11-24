@@ -4,7 +4,6 @@ import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.entity.bullet.PultBulletEntity;
 import com.hungteen.pvz.common.entity.plant.base.PlantPultEntity;
 import com.hungteen.pvz.common.impl.SkillTypes;
-import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.entity.bullet.ChorusFruitEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.PoppedChorusFruitEntity;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
@@ -13,15 +12,11 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-
-import java.util.List;
 
 public class ChorusFruitPultEntity extends PlantPultEntity {
 
     private static final EntityDataAccessor<Integer> CURRENT_BULLET;
-    private static final int BUTTER_CHANCE = 10;
 
 
     public ChorusFruitPultEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
@@ -33,16 +28,6 @@ public class ChorusFruitPultEntity extends PlantPultEntity {
         this.entityData.define(CURRENT_BULLET, ChorusFruitTypes.POPPED.ordinal());
     }
 
-
-
-
-    private ChorusFruitPultEntity getNearByPult(Player player) {
-        float range = 1.5F;
-        List<ChorusFruitPultEntity> list = this.level.getEntitiesOfClass(ChorusFruitPultEntity.class, EntityUtil.getEntityAABB(this, 1.5, 1.5), (pult) -> {
-            return !pult.is(this) && pult.getPlantType() == BHTPvZPlants.CHORUS_FRUIT_PULT && !EntityUtil.canAttackEntity(pult, player);
-        });
-        return list.size() == 0 ? null : (ChorusFruitPultEntity)list.get(0);
-    }
 
     public void startPultAttack() {
         super.startPultAttack();
@@ -74,11 +59,6 @@ public class ChorusFruitPultEntity extends PlantPultEntity {
         return this.getSkillValue(SkillTypes.MORE_KERNEL_DAMAGE);
     }
 
-
-
-    public int getButterDuration() {
-        return 100;
-    }
 
     public EntityDimensions getDimensions(Pose poseIn) {
         return EntityDimensions.scalable(0.8F, 1.0F);

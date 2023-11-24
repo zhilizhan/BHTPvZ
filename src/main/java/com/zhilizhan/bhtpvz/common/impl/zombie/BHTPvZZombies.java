@@ -34,8 +34,10 @@ public final class BHTPvZZombies extends ZombieType {
 	public static final ZombieType MJ_ZOMBIE = new BHTPvZZombies("mj_zombie", new ZombieFeatures().rank(RankTypes.RED).xp(80).entityType(BHTPvZEntityTypes.MJ_ZOMBIE::get).zombieModel(() -> MJZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
 	//伴舞僵尸
 	public static final ZombieType DANCER_BACKUP_ZOMBIE = new BHTPvZZombies("dancer_backup_zombie", new ZombieFeatures().rank(RankTypes.WHITE).xp(8).entityType(BHTPvZEntityTypes.DANCER_BACKUP_ZOMBIE::get).zombieModel(() -> DancerBackupModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
-	//太阳花僵尸
-	public static final ZombieType SUN_FLOWER_ZOMBIE = new BHTPvZZombies("sun_flower_zombie", new ZombieFeatures().rank(RankTypes.RED).xp(22).entityType(BHTPvZEntityTypes.SUN_FLOWER_ZOMBIE::get).zombieModel(() -> SunFlowerZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
+	//向日葵僵尸
+	public static final ZombieType SUN_FLOWER_ZOMBIE = new BHTPvZZombies("sun_flower_zombie", new ZombieFeatures().rank(RankTypes.GREEN).xp(22).entityType(BHTPvZEntityTypes.SUN_FLOWER_ZOMBIE::get).zombieModel(() -> SunFlowerZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
+	//大嘴花僵尸
+	public static final ZombieType CHOMPER_ZOMBIE = new BHTPvZZombies("chomper_zombie", new ZombieFeatures().rank(RankTypes.PURPLE).xp(22).entityType(BHTPvZEntityTypes.CHOMPER_ZOMBIE::get).zombieModel(() -> SunFlowerZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
 
 	public static void register() {
 		registerZombies(LIST);

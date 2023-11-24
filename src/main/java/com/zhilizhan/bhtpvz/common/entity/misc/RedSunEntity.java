@@ -20,9 +20,6 @@ public class RedSunEntity extends SunEntity {
         this.setNoGravity(true);
 
     }
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes();
-    }
     public Vec3 ColorBase = new Vec3(240.0, 24.0, 24.0);
     @Override
     protected int getDefaultAmount() {
@@ -83,5 +80,9 @@ public class RedSunEntity extends SunEntity {
         }
 
     }
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes();
+    }
+
 
 }

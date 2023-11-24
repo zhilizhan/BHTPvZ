@@ -54,9 +54,8 @@ public class LivingEvents {
 			((PVZPlantEntity)entity).startSuperMode(true);
 			int treeLevel = PlayerUtil.getResource(player, Resources.TREE_LVL);
 			player.addEffect(new MobEffectInstance((MobEffect) EffectRegister.ENERGETIC_EFFECT.get(), 100 + (treeLevel + 1) / 2, 0));
+			}
 		}
-
-	}
 	}
 
 }

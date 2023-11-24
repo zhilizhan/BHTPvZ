@@ -15,7 +15,7 @@ public class ChorusFruitRender extends EntityBlockRender<ChorusFruitEntity> {
     }
 
     public float getScaleByEntity(ChorusFruitEntity entity) {
-        return 0.8F;
+        return 0.75F;
     }
 
     public BlockState getBlockByEntity(ChorusFruitEntity entity) {

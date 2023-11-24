@@ -16,7 +16,7 @@ public class MJZombieRender extends PVZZombieRender<MJZombieEntity> {
 
     protected void addZombieLayers() {
         super.addZombieLayers();
-        this.addLayer(new DancerLightLayer(this));
+        this.addLayer(new DancerLightLayer<>(this));
     }
 }
 
