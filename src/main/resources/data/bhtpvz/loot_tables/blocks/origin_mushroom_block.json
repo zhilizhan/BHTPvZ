@@ -32,7 +32,7 @@
                 {
                   "function": "minecraft:set_count",
                   "count": {
-                    "min": -6.0,
+                    "min": -4.0,
                     "max": 2.0,
                     "type": "minecraft:uniform"
                   }
@@ -47,7 +47,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "bhtpvz:origin_mushroom"
+              "name": "bhtpvz:origin_spore"
             }
           ]
         }

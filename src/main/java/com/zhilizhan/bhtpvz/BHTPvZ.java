@@ -1,7 +1,5 @@
 package com.zhilizhan.bhtpvz;
 
-import com.ferreusveritas.dynamictrees.api.GatherDataHelper;
-import com.ferreusveritas.dynamictrees.api.registry.RegistryHandler;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
 import com.zhilizhan.bhtpvz.common.effect.BHTPvZMobEffects;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
@@ -23,10 +21,8 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(BHTPvZ.MOD_ID)
@@ -55,10 +51,6 @@ public class BHTPvZ {
         bus2.addListener(EventPriority.HIGH, DecorationGenerate::addTreesToBiomes);
         bus2.addListener(EventPriority.HIGH, DecorationGenerate::addBlocksToBiomes);
 
-        //动态的树
-        if(ModList.get().isLoaded("dynamictrees")){
-        RegistryHandler.setup(MOD_ID);
-        bus.addListener(this::gatherData);}
     }
 
     // 创造物品栏
@@ -68,12 +60,6 @@ public class BHTPvZ {
             return new ItemStack(BHTPvZItems.CHERRY.get());
         }
     };
-
-    //动态的树
-    private void gatherData(final GatherDataEvent event) {
-        GatherDataHelper.gatherTagData(MOD_ID, event);
-        GatherDataHelper.gatherLootData(MOD_ID, event);
-    }
 
     //初始化刷怪蛋（颜色）
     @SubscribeEvent(priority = EventPriority.LOWEST)

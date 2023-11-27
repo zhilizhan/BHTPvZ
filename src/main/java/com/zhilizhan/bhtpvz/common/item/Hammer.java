@@ -32,7 +32,7 @@ public class Hammer extends TieredItem {
         } else if (interactionTarget instanceof PVZZombieEntity) {
             //如果没有CD就执行一下语句
             //对PVZ僵尸照成20点伤害
-            interactionTarget.hurt(DamageSource.MAGIC, 20.0F);
+            interactionTarget.hurt(DamageSource.playerAttack(player), 20.0F);
             //减少锤子5点耐久
             stack.hurtAndBreak(5, interactionTarget, (arg) -> arg.broadcastBreakEvent(player.getUsedItemHand()));
             //如果是生存模式添加30tick的CD

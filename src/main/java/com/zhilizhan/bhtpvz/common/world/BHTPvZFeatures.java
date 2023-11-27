@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableSet;
 import com.hungteen.pvz.common.block.BlockRegister;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
+import com.zhilizhan.bhtpvz.common.world.feature.HugeOriginMushroomFeature;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.Features;
@@ -30,6 +31,11 @@ public class BHTPvZFeatures {
     // 树木生成
     public static final ConfiguredFeature<?, ?> TREES_CHERRY = register("trees_cherry", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(ImmutableList.of(CHERRY.weighted(1.0F)), CHERRY)).decorated(Features.Decorators.HEIGHTMAP_SQUARE).decorated(FeatureDecorator.COUNT_EXTRA.configured(new FrequencyWithExtraChanceDecoratorConfiguration(1, 0.02f, 1)))); // 樱桃树生成
     public static final ConfiguredFeature<?, ?> TREES_STARFRUIT = register("trees_starfruit", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(ImmutableList.of(STARFRUIT.weighted(1.0F)), STARFRUIT)).decorated(Features.Decorators.HEIGHTMAP_SQUARE).decorated(FeatureDecorator.COUNT_EXTRA.configured(new FrequencyWithExtraChanceDecoratorConfiguration(1, 0.02f, 1)))); // 杨桃树生成
+
+    //原始蘑菇
+    public static final ConfiguredFeature<HugeMushroomFeatureConfiguration, ?> MUSHROOM = register(
+            "mushroom",  new HugeOriginMushroomFeature(HugeMushroomFeatureConfiguration.CODEC).configured(new HugeMushroomFeatureConfiguration(new SimpleStateProvider(BHTPvZBlocks.ORIGIN_MUSHROOM_BLOCK.get().defaultBlockState()), new SimpleStateProvider(Blocks.MUSHROOM_STEM.defaultBlockState()), 3)));
+    public static final ConfiguredFeature<?, ?> HUGE_ORIGIN_MUSHROOM = register("huge_origin_mushroom", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(ImmutableList.of(MUSHROOM.weighted(1.0F)), MUSHROOM)).decorated(Features.Decorators.HEIGHTMAP_SQUARE)); // 杨桃树生成
 
     // 其他生成
     public static final ConfiguredFeature<?, ?> ORE_MORION = register("ore_morion", Feature.ORE.configured(new OreConfiguration(OreConfiguration.Predicates.NETHERRACK, BHTPvZBlocks.MORION_ORE.get().defaultBlockState(), 10)).decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(32, 10, 80)).squared().count(7))); // 黑晶矿生成
