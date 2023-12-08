@@ -13,7 +13,7 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.level.Level;
 
 public class GrassCarpEntity extends PVZPlantEntity {
-    private static final int EFFECT_CD = 200;
+    private final float EFFECT_CD = this.getHealSpeed();
     public GrassCarpEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
         super(type, worldIn);
     }
@@ -32,10 +32,10 @@ public class GrassCarpEntity extends PVZPlantEntity {
     }
     private void giveHealToFriendly() {
         float range = this.getEffectRange();
-        EntityUtil.getFriendlyLivings(this, EntityUtil.getEntityAABB(this, range, range)).forEach((entity) -> {
+        EntityUtil.getFriendlyLivings(this, EntityUtil.getEntityAABB(this, range, 2.5F)).forEach((entity) -> {
            
             if (entity.getHealth()<entity.getMaxHealth()) {
-                entity.heal(this.getAttackDamage());
+                entity.heal(1);
             }
             if (entity instanceof GrassCarpEntity && entity!=this) {
                 entity.kill();
@@ -44,13 +44,17 @@ public class GrassCarpEntity extends PVZPlantEntity {
         });
     }
 
-    public float getAttackDamage() {
-        return this.getSkillValue(BHTPvZSkill.GRASS_CARP_DAMAGE);
+    public float getHealSpeed() {
+        return (this.getSkillValue(BHTPvZSkill.GRASS_CARP_HEAL_SPEED)*20);
     }
 
     public float getEffectRange() {
         return this.getSkillValue(BHTPvZSkill.GRASS_CARP_HEAL_RANGE);
     }
+    protected float getLife() {
+        return this.getSkillValue(BHTPvZSkill.GRASS_CARP_MORE_HEALTH);
+    }
+
     public EntityDimensions getDimensions(Pose poseIn) {
         return EntityDimensions.scalable(0.8F, 0.8F);
     }

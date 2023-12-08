@@ -85,10 +85,13 @@
   "entity.bhtpvz.grass_carp": "草鱼",
 
 
-  "skill.pvz.grass_carp_damage": "更多治疗量",
-  "skill.pvz.grass_carp_damage.desc": "植物会有更多的治疗量",
-  "skill.pvz.grass_carp_heal_rage": "更大范围",
-  "skill.pvz.grass_carp_heal_rage.desc": "植物会有更大的治疗范围",
+  "skill.pvz.grass_carp_heal_speed": "更快疗愈",
+  "skill.pvz.grass_carp_heal_speed.desc": "缩短释放治愈气体的时间间隔",
+  "skill.pvz.grass_carp_heal_rage": "吐息扩散",
+  "skill.pvz.grass_carp_heal_rage.desc": "增加治愈气体的喷吐范围",
+  "skill.pvz.grass_carp_more_health": "生生不息",
+  "skill.pvz.grass_carp_more_health.desc": "增加草鱼的生命值",
+
 
   "challenge.bhttpvz.extra.msg1": "BHtpvz的附加挑战",
   "challenge.pvz.roof_extra.name": "屋顶附加",

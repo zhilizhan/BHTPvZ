@@ -82,10 +82,12 @@
 
   "entity.bhtpvz.grass_carp": "grass carp",
 
-  "skill.pvz.grass_carp_damage": "more heal amount",
-  "skill.pvz.grass_carp_damage.desc": "Plants will have more heal amount",
+  "skill.pvz.grass_carp_heal_speed": "faster heal amount",
+  "skill.pvz.grass_carp_heal_speed.desc": "Plants will have more heal amount",
   "skill.pvz.grass_carp_heal_rage": "bigger heal rage",
   "skill.pvz.grass_carp_heal_rage.desc": "Plants will have bigger heal rage",
+  "skill.pvz.grass_carp_more_health": "more health",
+  "skill.pvz.grass_carp_more_health.desc": "Plants will have more health",
 
 
   "challenge.bhttpvz.extra.msg1": "Additional challenges of bhttpvz",

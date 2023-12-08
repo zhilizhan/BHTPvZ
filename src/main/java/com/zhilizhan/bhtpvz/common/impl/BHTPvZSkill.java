@@ -14,8 +14,10 @@ public class BHTPvZSkill extends SkillTypes {
     private static final Map<String, ISkillType> SKILL_MAP = new HashMap<>();
     public static final String SKILL_TAG = "paz_skill_tag";
     public static final int COOL_DOWN_LEVEL = 5;
-    public static final ISkillType GRASS_CARP_DAMAGE = new SkillType("grass_carp_damage", ArrayUtil.getAverageArray(4, 1.0F, 2.0F), Arrays.asList(2, 3, 4, 5, 6));
-    public static final ISkillType GRASS_CARP_HEAL_RANGE = new SkillType("grass_carp_heal_rage", ArrayUtil.getAverageArray(5, 9.0F, 15.0F), Arrays.asList(2, 4, 5, 6));
+    public static final ISkillType GRASS_CARP_HEAL_SPEED = new SkillType("grass_carp_heal_speed", ArrayUtil.getAverageArray(3, 10.0F, 6.0F), Arrays.asList(5,7));
+    public static final ISkillType GRASS_CARP_HEAL_RANGE = new SkillType("grass_carp_heal_rage", ArrayUtil.getAverageArray(4, 9.0F, 15.0F), Arrays.asList(4, 6, 8));
+    public static final ISkillType GRASS_CARP_MORE_HEALTH = new SkillType("grass_carp_more_health", ArrayUtil.getAverageArray(3, 30.0F, 50.0F), Arrays.asList(2, 3));
+
     public BHTPvZSkill() {
     }
 
