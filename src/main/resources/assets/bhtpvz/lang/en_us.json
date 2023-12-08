@@ -37,8 +37,9 @@
   "item.bhtpvz.chlorophyll": "chlorophyll",
   "item.bhtpvz.dt_cherry_speed": "cherry speed",
   "item.bhtpvz.dt_starfruit_speed": "starfruit speed",
-  "item.bhtpvz.ice_pea": "ice pea",
 
+  "item.bhtpvz.grass_carp_card": "grass carp pult card",
+  "item.bhtpvz.grass_carp_enjoy_card": "grass carp pult enjoy card",
 
 
   "item.bhtpvz.origin_moob_spawn_egg": "origin moob spawn egg",
@@ -76,16 +77,20 @@
   "tooltip.bhtpvz.hammer.use": "Right hammer zombies or pot",
 
 
-  "entity.bhtpvz.origin_moob": "origin_moob",
+  "entity.bhtpvz.origin_moob": "origin moob",
 
+
+  "entity.bhtpvz.grass_carp": "grass carp",
+
+  "skill.pvz.grass_carp_damage": "more heal amount",
+  "skill.pvz.grass_carp_damage.desc": "Plants will have more heal amount",
+  "skill.pvz.grass_carp_heal_rage": "bigger heal rage",
+  "skill.pvz.grass_carp_heal_rage.desc": "Plants will have bigger heal rage",
 
 
   "challenge.bhttpvz.extra.msg1": "Additional challenges of bhttpvz",
   "challenge.pvz.roof_extra.name": "Roof Extra",
   "challenge.pvz.grass_add.name": "Grass Add",
-  "challenge.pvz.pool_add.name": "Pool Add",
+  "challenge.pvz.pool_add.name": "Pool Add"
 
-  "block.bhtpvz.wisdom_log_say_1": "There was once someone who took care of me",
-  "block.bhtpvz.wisdom_log_say_2": "But then I don't know how to leave",
-  "block.bhtpvz.wisdom_log_say_3": "He was never seen since"
 }

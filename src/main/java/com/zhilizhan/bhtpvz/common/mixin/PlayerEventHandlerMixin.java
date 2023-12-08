@@ -23,6 +23,10 @@ import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(PlayerEventHandler.class)
 public class PlayerEventHandlerMixin {
+    /**
+     * @author
+     * @reason
+     */
     @Overwrite
     public static void quickRemoveByPlayer(Player player, Entity entity, ItemStack stack) {
         if (!PlayerUtil.isPlayerSurvival(player) || entity instanceof AbstractPAZEntity && ((AbstractPAZEntity)entity).getOwnerUUID().isPresent() && player.getUUID().equals(((AbstractPAZEntity)entity).getOwnerUUID().get())) {

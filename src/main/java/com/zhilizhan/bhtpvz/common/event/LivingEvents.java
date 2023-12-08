@@ -20,7 +20,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = PVZMod.MOD_ID)
+@Mod.EventBusSubscriber(modid = PVZMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class LivingEvents {
 
 	@SubscribeEvent
@@ -38,7 +38,6 @@ public class LivingEvents {
 			player.addEffect(new MobEffectInstance((MobEffect) EffectRegister.ENERGETIC_EFFECT.get(), 100 + (treeLevel + 1) / 2, 0));
 		}
 
-	}
-	}
+	}}
 
 }

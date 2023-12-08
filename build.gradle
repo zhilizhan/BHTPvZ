@@ -42,7 +42,12 @@ dependencies {
 
     modImplementation "curse.maven:pvz-${project.pvz_id}:${project.pvz_file_id}"
     modRuntimeOnly("curse.maven:suggestionproviderfix-469647:3271407")//指令补全
-    modCompileOnly("curse.maven:dynamictrees-252818:4457951")//动态的树
+    modImplementation("curse.maven:mowziesmobs-250498:4120133")//Mowzie's Mobs
+    modImplementation("curse.maven:gek-388172:4182600")//壁虎库
+    modRuntimeOnly("curse.maven:suggestionproviderfix-469647:3271407")//指令补全
+    modRuntimeOnly ("curse.maven:jei-238222:${jei_version}")
+    modRuntimeOnly ("curse.maven:jade-324717:${jade_version}")
+    modRuntimeOnly ("curse.maven:configured-457570:${configured_version}")
 }
 
 processResources {

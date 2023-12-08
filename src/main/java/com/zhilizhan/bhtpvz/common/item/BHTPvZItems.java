@@ -1,10 +1,13 @@
 package com.zhilizhan.bhtpvz.common.item;
 
+import com.hungteen.pvz.api.types.IPlantType;
+import com.hungteen.pvz.common.item.spawn.card.PlantCardItem;
 import com.hungteen.pvz.utils.enums.Colors;
 import com.mojang.datafixers.util.Pair;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
+import com.zhilizhan.bhtpvz.common.impl.BHTPvZPlants;
 import com.zhilizhan.bhtpvz.common.item.token.DaveToken;
 import com.zhilizhan.bhtpvz.common.item.token.SunDaveToken;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -85,8 +88,18 @@ public class BHTPvZItems {
     public static final RegistryObject<Item> MORION_BLOCK = ITEMS.register("morion_block", ()-> new BlockItem(BHTPvZBlocks.MORION_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 黑晶块
     public static final RegistryObject<Item> DAMSON_CRYSTAL_BLOCK = ITEMS.register("damson_crystal_block", ()-> new BlockItem(BHTPvZBlocks.DAMSON_CRYSTAL_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合晶块
     public static final RegistryObject<Item> DECOMPOSITION_STAGE = ITEMS.register("decomposition_stage", ()-> new BlockItem(BHTPvZBlocks.DECOMPOSITION_STAGE.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 分解台
+    //植物卡
+    public static final RegistryObject<PlantCardItem> GRASS_CARP_CARD = registerCard(BHTPvZPlants.GRASS_CARP, false); // 草鱼卡
+    public static final RegistryObject<PlantCardItem> GRASS_CARP_ENJOY_CARD = registerCard(BHTPvZPlants.GRASS_CARP, true); // 草鱼体验卡
 
-
+    private static RegistryObject<PlantCardItem> registerCard(IPlantType plant, boolean is){
+        String name = plant.toString();
+        if(is) {
+            name = name + "_enjoy";
+        }
+        name = name + "_card";
+        return ITEMS.register(name, () -> new PlantCardItem(plant, is));
+    }
     // 刷怪蛋注册方法
     private static RegistryObject<BHTPvZSpawnEggItem> registerSpawnEgg(String name, RegistryObject<? extends EntityType<?>> entityType, Pair<Integer, Integer> color, Item.Properties tab) {
         return ITEMS.register(name, () -> new BHTPvZSpawnEggItem(entityType, color.getFirst(), color.getSecond(), tab));

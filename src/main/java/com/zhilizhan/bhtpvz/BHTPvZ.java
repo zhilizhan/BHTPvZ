@@ -5,6 +5,8 @@ import com.zhilizhan.bhtpvz.common.effect.BHTPvZMobEffects;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import com.zhilizhan.bhtpvz.common.entity.normal.OriginMoobEntity;
 import com.zhilizhan.bhtpvz.common.event.LivingEvents;
+import com.zhilizhan.bhtpvz.common.impl.BHTPvZPlants;
+import com.zhilizhan.bhtpvz.common.impl.BHTPvZSkill;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZSpawnEggItem;
 import com.zhilizhan.bhtpvz.common.world.DecorationGenerate;
@@ -41,7 +43,8 @@ public class BHTPvZ {
         BHTPvZBlocks.BLOCKS.register(bus);
         BHTPvZMobEffects.MOB_EFFECTS.register(bus);
         BHTPvZBiomes.BIOMES.register(bus);
-
+        BHTPvZPlants.register();
+        BHTPvZSkill.SkillType.register();
         MinecraftForge.EVENT_BUS.register(LivingEvents.class);
         bus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(bus);

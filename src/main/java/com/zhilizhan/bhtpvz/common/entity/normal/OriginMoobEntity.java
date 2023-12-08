@@ -18,6 +18,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -42,10 +43,16 @@ public class OriginMoobEntity extends Cow implements IForgeShearable {
     public OriginMoobEntity(EntityType<? extends Cow> arg, Level arg2) {
         super(arg, arg2);
     }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0).add(Attributes.MOVEMENT_SPEED, 0.20000000298023224);
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 2.0));
+        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25));
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
+        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
     }
+
+
 
     public List<ItemStack> onSheared(@Nullable Player player, @Nonnull ItemStack item, Level world, BlockPos pos, int fortune) {
         world.playSound((Player)null, this, SoundEvents.MOOSHROOM_SHEAR, player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
@@ -54,7 +61,7 @@ public class OriginMoobEntity extends Cow implements IForgeShearable {
         } else {
             ((ServerLevel)this.level).sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(0.5), this.getZ(), 1, 0.0, 0.0, 0.0, 0.0);
             this.remove();
-            Cow cowentity = (Cow)EntityType.COW.create(this.level);
+            Cow cowentity = EntityType.COW.create(this.level);
             cowentity.moveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
             cowentity.setHealth(this.getHealth());
             cowentity.yBodyRot = this.yBodyRot;
@@ -69,11 +76,11 @@ public class OriginMoobEntity extends Cow implements IForgeShearable {
 
             cowentity.setInvulnerable(this.isInvulnerable());
             this.level.addFreshEntity(cowentity);
-            List<ItemStack> items = new ArrayList();
+            List<ItemStack> items = new ArrayList<>();
 
             for(int i = 0; i < 3; ++i) {
                 items.add(new ItemStack(BHTPvZItems.ORIGIN_MUSHROOM.get()));
-                if(Math.random()<0.2f)items.add(new ItemStack(BHTPvZItems.CHLOROPHYLL.get()));
+                if(Math.random()<0.02f)items.add(new ItemStack(BHTPvZItems.CHLOROPHYLL.get()));
             }
 
             return items;
@@ -116,7 +123,7 @@ public class OriginMoobEntity extends Cow implements IForgeShearable {
                     return InteractionResult.PASS;
                 }
 
-                Pair<MobEffect, Integer> pair = (Pair)optional.get();
+                Pair<MobEffect, Integer> pair = optional.get();
                 if (!player.abilities.instabuild) {
                     itemstack.shrink(1);
                 }
@@ -170,5 +177,8 @@ public class OriginMoobEntity extends Cow implements IForgeShearable {
         }
 
         return Optional.empty();
+    }
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0).add(Attributes.MOVEMENT_SPEED, 0.20000000298023224);
     }
 }
