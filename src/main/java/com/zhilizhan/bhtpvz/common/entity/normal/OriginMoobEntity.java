@@ -12,6 +12,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -113,6 +114,7 @@ public class OriginMoobEntity extends Cow implements IForgeShearable {
     }
     private int getEffectDuration(MobEffect mobEffect) {
         if(mobEffect.isBeneficial()){
+            if(mobEffect == MobEffects.SATURATION)return 10;
             return 1200;
         }else {
             return 260;
