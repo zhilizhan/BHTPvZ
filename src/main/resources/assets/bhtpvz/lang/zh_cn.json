@@ -70,7 +70,8 @@
 
   "effect.bhtpvz.halitosis": "口臭",
 
-  "tooltip.bhtpvz.xp_sapling.use": "食用以获得经验",
+  "tooltip.bhtpvz.xp_sapling.use": "食用后获得少量经验",
+  "tooltip.bhtpvz.wisdom_sapling.use": "食用后获得大量经验",
   "tooltip.bhtpvz.steel_coin.use": "使用后抽奖次数+3",
   "tooltip.bhtpvz.token.use": "使用以召唤戴夫",
   "tooltip.bhtpvz.sun_token.use": "使用以召唤阳光戴夫",

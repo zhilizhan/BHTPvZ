@@ -68,7 +68,8 @@
 
   "effect.bhtpvz.halitosis": "halitosis",
 
-  "tooltip.bhtpvz.xp_sapling.use": "Eat to gain experience",
+  "tooltip.bhtpvz.xp_sapling.use": "Eat to gain little experience",
+  "tooltip.bhtpvz.wisdom_sapling.use": "Eat to gain many experience",
   "tooltip.bhtpvz.token.use": "Use to summon dave",
   "tooltip.bhtpvz.sun_token.use": "Use to summon sunDave",
   "tooltip.bhtpvz.steel_pumpkin_token.use": "Use to summon steelPumpkin",
