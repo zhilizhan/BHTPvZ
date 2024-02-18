@@ -54,7 +54,8 @@ public class QuestionMarkPotBlock extends AbstractFacingBlock {
                 level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(plant.getItem())));
             }
         }
-
+        //扣除耐久
+        player.getMainHandItem().hurtAndBreak(2, player, (arg) -> arg.broadcastBreakEvent(player.getUsedItemHand()));
         return InteractionResult.SUCCESS;
     }
 

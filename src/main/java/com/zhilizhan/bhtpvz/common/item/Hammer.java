@@ -35,7 +35,7 @@ public class Hammer extends TieredItem {
             //对PVZ僵尸照成20点伤害
             interactionTarget.hurt(DamageSource.MAGIC, 20.0F);
             //减少锤子5点耐久
-            stack.hurtAndBreak(5, interactionTarget, (arg) -> arg.broadcastBreakEvent(player.getUsedItemHand()));
+            stack.hurtAndBreak(5, player, (arg) -> arg.broadcastBreakEvent(player.getUsedItemHand()));
             //如果是生存模式添加30tick的CD
             if (!player.isCreative()) {
                 player.getCooldowns().addCooldown(BHTPvZItems.HAMMER.get(), 30);
