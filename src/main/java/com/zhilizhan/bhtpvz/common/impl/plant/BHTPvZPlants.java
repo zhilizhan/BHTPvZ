@@ -140,7 +140,7 @@ public final class BHTPvZPlants extends PlantType {
             .commonSkill(Collections.singletonList(SkillTypes.PEA_DAMAGE)));
     //罐子草
     public static final IPlantType POT_GRASS = new BHTPvZPlants("pot_grass", new PlantFeatures()
-            .cost(75).requiredLevel(9)
+            .cost(100).requiredLevel(9)
             .cd(CoolDowns.SLOW).rank(RankTypes.GREEN).essence(EssenceTypes.ASSIST)
             .summonCard(() -> BHTPvZItems.POT_GRASS_CARD.get())
             .enjoyCard(() -> BHTPvZItems.POT_GRASS_ENJOY_CARD.get())
