@@ -1,15 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "ABA",
+    "ABA"
+  ],
   "key": {
-    "#": {
-      "item": "minecraft:iron_nugget"
+    "A": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "minecraft:chain"
     }
   },
-  "pattern": [
-    " ##",
-    " ##",
-    " ##"
-  ],
   "result": {
     "item": "bhtpvz:screen_door",
     "count": 1

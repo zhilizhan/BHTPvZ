@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:shield"
+  },
+  "addition": {
+    "item": "bhtpvz:screen_door"
+  },
+  "result": {
+    "item": "pvz:screen_door"
+  }
+}

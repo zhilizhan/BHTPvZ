@@ -1,3 +1,6 @@
 {
-  "parent": "bhtpvz:block/pot_grass_m"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "bhtpvz:item/pot_grass"
+  }
 }
