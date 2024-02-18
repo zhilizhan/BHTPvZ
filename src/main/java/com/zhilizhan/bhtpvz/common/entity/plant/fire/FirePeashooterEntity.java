@@ -7,8 +7,10 @@ import com.hungteen.pvz.common.entity.plant.appease.PeaShooterEntity;
 import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.utils.MathUtil;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.level.Level;
 
 public class FirePeashooterEntity extends PeaShooterEntity {
@@ -16,22 +18,6 @@ public class FirePeashooterEntity extends PeaShooterEntity {
         super(type, worldIn);
     }
 
-    @Override
-    protected AbstractBulletEntity createBullet() {
-        return new PeaEntity(this.level, this, this.getShootType(), this.getShootState());
-    }
-
-    @Override
-    public float getAttackDamage() {
-        return this.getSkillValue(SkillTypes.PEA_DAMAGE);
-    }
-
-    @Override
-    public IPlantType getPlantType() {
-        return BHTPvZPlants.FIRE_PEASHOOTER;
-    }
-
-    @Override
     public void shootBullet() {
         if (this.isPlantInSuperMode()) {
             int cnt = this.getSuperShootCount();
@@ -42,23 +28,45 @@ public class FirePeashooterEntity extends PeaShooterEntity {
                 this.performShoot(0.2, offset, offsetH, this.getExistTick() % 10 == 0, 0.0);
             }
         } else {
-            this.performShoot(0.2, 0.0, -0.5, this.getAttackTime() == 1, 0.0);
+            this.performShoot(0.2, 0.0, 0.0, this.getAttackTime() == 1, 0.0);
         }
+
     }
 
-    public void startShootAttack() {
-        this.setAttackTime(1);
+    protected AbstractBulletEntity createBullet() {
+        PeaEntity pea = new PeaEntity(this.level, this, this.getShootType(), this.getShootState());
+        return pea;
+    }
+
+    public float getAttackDamage() {
+        return this.getSkillValue(SkillTypes.PEA_DAMAGE);
     }
 
     public int getSuperShootCount() {
         return MathUtil.getRandomMinMax(this.getRandom(), 1, 2);
     }
 
+    protected PeaEntity.Type getShootType() {
+        return PeaEntity.Type.NORMAL;
+    }
+
     protected PeaEntity.State getShootState() {
         return PeaEntity.State.FIRE;
     }
 
-    protected PeaEntity.Type getShootType() {
-        return PeaEntity.Type.NORMAL;
+    public void startShootAttack() {
+        this.setAttackTime(1);
+    }
+
+    public int getSuperTimeLength() {
+        return 100;
+    }
+
+    public EntityDimensions getDimensions(Pose poseIn) {
+        return EntityDimensions.scalable(0.7F, 1.3F);
+    }
+
+    public IPlantType getPlantType() {
+        return BHTPvZPlants.FIRE_PEASHOOTER;
     }
 }
