@@ -48,6 +48,7 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
     @Override
     protected AbstractBulletEntity createBullet() {
         LightBeamEntity beam = new LightBeamEntity(this.level, this);
+        beam.setGlowing(true);
         return beam;
     }
     @Override
@@ -67,7 +68,7 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
             double deltaZ = forwardOffset * vec.z + rightOffset * vec.x;
             AbstractBulletEntity bullet = this.createBullet();
             bullet.setPos(this.getX() + deltaX, this.getY() + deltaY, this.getZ() + deltaZ);
-            bullet.shootPea(target.getX() - bullet.getX(), target.getY() + (double)target.getBbHeight() - bullet.getY(), target.getZ() - bullet.getZ(), (double)this.getBulletSpeed(), angleOffset);
+            bullet.shootPea(target.getX() - bullet.getX(), target.getY() + (double)target.getBbHeight() - bullet.getY(), target.getZ() - bullet.getZ(), this.getBulletSpeed(), angleOffset);
             if (needSound) {
                 EntityUtil.playSound(this, this.getShootSound());
             }
@@ -107,11 +108,9 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
         this.entityData.set(DATA_ID_ATTACK_TARGET, activeAttackTargetId);
     }
     public boolean hasActiveAttackTarget() {
-        return (Integer)this.entityData.get(DATA_ID_ATTACK_TARGET) != 0;
+        return this.entityData.get(DATA_ID_ATTACK_TARGET) != 0;
     }
-    public float getAttackAnimationScale(float partialTick) {
-        return ((float)this.clientSideAttackTime + partialTick) / (float)this.getAttackDuration();
-    }
+
    @Override
     public void normalPlantTick() {
         super.normalPlantTick();
@@ -127,7 +126,6 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
                 if (lv3 != null) {
                     this.getLookControl().setLookAt(lv3, 90.0F, 90.0F);
                     this.getLookControl().tick();
-                    this.getAttackAnimationScale(0.0F);
                 }
             }
 
@@ -141,7 +139,7 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
             if (this.clientSideCachedAttackTarget != null) {
                 return this.clientSideCachedAttackTarget;
             } else {
-                Entity lv = this.level.getEntity((Integer)this.entityData.get(DATA_ID_ATTACK_TARGET));
+                Entity lv = this.level.getEntity(this.entityData.get(DATA_ID_ATTACK_TARGET));
                 if (lv instanceof LivingEntity) {
                     this.clientSideCachedAttackTarget = (LivingEntity)lv;
                     return this.clientSideCachedAttackTarget;
@@ -195,17 +193,17 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
 
         public void stop() {
             this.grass.setActiveAttackTarget(0);
-            this.grass.setTarget((LivingEntity)null);
+            this.grass.setTarget(null);
         }
 
         public void tick() {
-            LivingEntity lv = this.grass.getTarget();
-            this.grass.getLookControl().setLookAt(lv, 90.0F, 90.0F);
-            if (!this.grass.canSee(lv)) {
-                this.grass.setTarget((LivingEntity)null);
+            LivingEntity living = this.grass.getTarget();
+            this.grass.getLookControl().setLookAt(living, 90.0F, 90.0F);
+            if (!this.grass.canSee(living)) {
+                this.grass.setTarget(null);
             } else {
                 ++this.attackTime;
-                if (this.attackTime == 0) {
+                if (this.attackTime == 0 && this.grass.getTarget()!=null) {
                     this.grass.setActiveAttackTarget(this.grass.getTarget().getId());
                     if (!this.grass.isSilent()) {
                         this.grass.level.broadcastEntityEvent(this.grass, (byte)21);
@@ -217,10 +215,10 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
                     List<SunFlowerEntity> sunFlower = this.grass.level.getEntitiesOfClass(SunFlowerEntity.class, entityAABB);
                     float finalDamage = baseDamage*sunFlower.size();
 
-                    if (lv != null) {
-                        lv.hurt(BHTPvZEntityDamageSource.magnifyingGrass(this.grass, this.grass), finalDamage);
+                    if (living != null) {
+                        living.hurt(BHTPvZEntityDamageSource.magnifyingGrass(this.grass, this.grass), finalDamage);
                     }
-                    this.grass.setTarget((LivingEntity)null);
+                    this.grass.setTarget(null);
                 }
 
                 super.tick();

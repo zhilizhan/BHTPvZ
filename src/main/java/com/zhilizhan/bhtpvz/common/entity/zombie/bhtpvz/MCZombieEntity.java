@@ -21,12 +21,13 @@ public class MCZombieEntity extends NormalZombieEntity {
     protected float getWaterSlowDown() {
         return 0.91f;
     }
-
+    @Override
+    public int getArmorToughness() {
+        return 2;
+    }
     @Override
     public ZombieType getZombieType() {
         return BHTPvZZombies.MC_ZOMBIE;
     }
-    public int getArmorToughness() {
-        return 2;
-    }
+
 }

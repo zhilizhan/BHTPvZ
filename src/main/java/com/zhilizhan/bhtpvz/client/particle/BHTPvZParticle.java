@@ -16,4 +16,7 @@ public class BHTPvZParticle {
     public static final RegistryObject<SimpleParticleType> ORIGINAL_FUME = PARTICLE_TYPES.register("original_fume", () -> {
         return new SimpleParticleType(false);
     });
+    public static final RegistryObject<SimpleParticleType> SONIC_BOOM = PARTICLE_TYPES.register("sonic_boom", () -> {
+        return new SimpleParticleType(false);
+    });
 }

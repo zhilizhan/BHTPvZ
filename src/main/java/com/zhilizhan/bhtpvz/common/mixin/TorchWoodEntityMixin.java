@@ -3,7 +3,7 @@ package com.zhilizhan.bhtpvz.common.mixin;
 import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.hungteen.pvz.common.entity.plant.flame.TorchWoodEntity;
 import com.hungteen.pvz.utils.EntityUtil;
-import com.zhilizhan.bhtpvz.common.entity.bullet.StonePeaEntity;
+import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.StonePeaEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.level.Level;
@@ -23,8 +23,6 @@ public abstract class TorchWoodEntityMixin extends PVZPlantEntity {
 
     @Inject(method = "heatPeas", at = @At("RETURN"))
     public void heatPeas(CallbackInfo ci) {
-        this.level.getEntitiesOfClass(StonePeaEntity.class, EntityUtil.getEntityAABB(this, (double)getHeatRange(), (double)getHeatRange())).forEach((pea) -> {
-            pea.heatBy(this);
-        });
+        this.level.getEntitiesOfClass(StonePeaEntity.class, EntityUtil.getEntityAABB(this, getHeatRange(), getHeatRange())).forEach((pea) -> pea.heatBy(this));
     }
 }

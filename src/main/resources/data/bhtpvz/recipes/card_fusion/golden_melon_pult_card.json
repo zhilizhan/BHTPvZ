@@ -1,0 +1,17 @@
+{
+  "type": "pvz:card_fusion",
+  "ingredients": [
+    {
+      "item": "pvz:melon_pult_card"
+    },
+    {
+      "item": "pvz:gold_magnet_card"
+    },
+    {
+      "tag": "pvz:card/gold_cards"
+    }
+  ],
+  "result": {
+    "item": "bhtpvz:golden_melon_pult_card"
+  }
+}

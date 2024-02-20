@@ -18,7 +18,7 @@ public class ChorusFruitEntity extends PultBulletEntity {
     }
 
     public ChorusFruitEntity(Level worldIn, LivingEntity shooter) {
-        super((EntityType) BHTPvZEntityTypes.CHORUS_FRUIT.get(), worldIn, shooter);
+        super(BHTPvZEntityTypes.CHORUS_FRUIT.get(), worldIn, shooter);
     }
 
     protected void dealDamage(Entity target) {

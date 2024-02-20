@@ -24,10 +24,7 @@ public abstract class ScaredyShroomEntityMixin extends PlantShooterEntity {
 
 	@Override
 	public boolean canBeTargetBy(LivingEntity living) {
-		if(this.isScared()&& BHTPvZConfig.COMMON_CONFIG.EntitySettings.PlantSetting.ScaredyShroomSurrender.get() || this.hasMetal()){
-		return  false;
-	}
-		return true;
+		return (!this.isScared() || !BHTPvZConfig.COMMON_CONFIG.EntitySettings.PlantSetting.ScaredyShroomSurrender.get()) && !this.hasMetal();
 	}
 
 	@Override

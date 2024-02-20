@@ -10,16 +10,15 @@ import com.zhilizhan.bhtpvz.client.render.entity.bullet.*;
 import com.zhilizhan.bhtpvz.client.render.entity.misc.RedSunRender;
 import com.zhilizhan.bhtpvz.client.render.entity.normal.OriginMoobRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.BeeShooterRender;
-import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.GrassCrapRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.PeaPodRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.PrimalPeaShooterRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.BurstKernelPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.ChorusFruitPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.GoldenMelonPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.assist.FodderBushRender;
+import com.zhilizhan.bhtpvz.client.render.entity.plant.assist.GrassCrapRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.defence.SelfImitaterRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.defence.SteelPumpkinRender;
-import com.zhilizhan.bhtpvz.client.render.entity.plant.electric.LightningReedRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.electric.MagnifyingGrassRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.enforce.NutBowlingRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.enforce.RotateRadishRender;
@@ -35,16 +34,15 @@ import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.*;
 import com.zhilizhan.bhtpvz.common.entity.misc.RedSunEntity;
 import com.zhilizhan.bhtpvz.common.entity.normal.OriginMoobEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.appease.BeeShooterEntity;
-import com.zhilizhan.bhtpvz.common.entity.plant.appease.GrassCarpEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.appease.PeaPodEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.appease.PrimalPeaShooterEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.BurstKernelPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.ChorusFruitPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.GoldenMelonPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.assist.FodderBushEntity;
+import com.zhilizhan.bhtpvz.common.entity.plant.assist.GrassCarpEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.defence.SelfImitaterEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.defence.SteelPumpkinEntity;
-import com.zhilizhan.bhtpvz.common.entity.plant.electric.LightningReedEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.electric.MagnifyingGrassEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.enforce.NutBowlingEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.enforce.RotateRadishEntity;
@@ -56,7 +54,6 @@ import com.zhilizhan.bhtpvz.common.entity.plant.toxic.GooPeaShooterEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.toxic.OriginShroomEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.toxic.SculkShroomEntity;
 import com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz.*;
-import net.minecraft.client.renderer.entity.LightningBoltRenderer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -94,9 +91,7 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<GoldenMelonPultEntity>> GOLDEN_MELON_PULT = registerPlantEntityType(GoldenMelonPultEntity::new, "golden_melon_pult");//金西瓜
 	public static final RegistryObject<EntityType<PrimalPeaShooterEntity>> PRIMAL_PEA_SHOOTER = registerPlantEntityType(PrimalPeaShooterEntity::new, "primal_pea_shooter");//原始豌豆
 	public static final RegistryObject<EntityType<GooPeaShooterEntity>> GOO_PEA_SHOOTER = registerPlantEntityType(GooPeaShooterEntity::new, "goo_pea_shooter");//毒液豌豆
-	public static final RegistryObject<EntityType<LightningReedEntity>> LIGHTNING_REED = registerPlantEntityType(LightningReedEntity::new, "lightning_reed");//闪电芦苇
 	public static final RegistryObject<EntityType<MagnifyingGrassEntity>> MAGNIFYING_GRASS = registerPlantEntityType(MagnifyingGrassEntity::new, "magnifying_grass");//棱镜草
-
 
 	// 子弹
 	public static final RegistryObject<EntityType<IceCabbageEntity>> ICE_CABBAGE = registerEntityType(IceCabbageEntity::new, "ice_cabbage", MobCategory.MISC); // 冰卷心菜子弹
@@ -105,15 +100,14 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<CornEntity>> CORN = registerEntityType(CornEntity::new, "corn", MobCategory.MISC); // 玉米子弹
 	public static final RegistryObject<EntityType<BurstCornEntity>> BURST_CORN = registerEntityType(BurstCornEntity::new, "burst_corn", MobCategory.MISC); // 炸裂玉米子弹
 	public static final RegistryObject<EntityType<PopCornEntity>> POP_CORN = registerEntityType(PopCornEntity::new, "pop_corn", MobCategory.MISC); // 爆米花子弹
-	public static final RegistryObject<EntityType<FishPeaEntity>> FISH_PEA = registerEntityType(FishPeaEntity::new, "fish_pea",MobCategory.MISC);//草鱼生的（豌豆
-	public static final RegistryObject<EntityType<IcePeaEntity>> ICE_PEA = registerEntityType(IcePeaEntity::new, "ice_pea",MobCategory.MISC);//冰结豌豆
 	public static final RegistryObject<EntityType<SonicEntity>> SONIC = registerEntityType(SonicEntity::new, "sonic",MobCategory.MISC);//音波
 	public static final RegistryObject<EntityType<OriginFumeEntity>> ORIGIN_FUME = registerEntityType(OriginFumeEntity::new, "origin_fume",MobCategory.MISC);//原始孢子
 	public static final RegistryObject<EntityType<BeeEntity>> BEE = registerEntityType(BeeEntity::new, "bee",MobCategory.MISC);//蜜蜂
 	public static final RegistryObject<EntityType<GoldenMelonEntity>> GOLDEN_MELON = registerEntityType(GoldenMelonEntity::new, "golden_melon", MobCategory.MISC); // 金西瓜子弹
-	public static final RegistryObject<EntityType<LightningBeamEntity>> LIGHTNING_BEAM = registerEntityType(LightningBeamEntity::new, "lightning_beam", MobCategory.MISC); // 闪电束
-	public static final RegistryObject<EntityType<LightBeamEntity>> LIGHT_BEAM = registerEntityType(LightBeamEntity::new, "light_beam", MobCategory.MISC); // 光束
 	public static final RegistryObject<EntityType<StonePeaEntity>> STONE_PEA = registerEntityType(StonePeaEntity::new, "stone_pea", MobCategory.MISC); // 原始豌豆
+	public static final RegistryObject<EntityType<GooPeaEntity>> GOO_PEA = registerEntityType(GooPeaEntity::new, "goo_pea", MobCategory.MISC); // 毒液豌豆
+	public static final RegistryObject<EntityType<LightBeamEntity>> LIGHT_BEAM = registerEntityType(LightBeamEntity::new, "light_beam", MobCategory.MISC); // 光束
+	public static final RegistryObject<EntityType<DragonFireEntity>> DRAGON_FIRE = registerEntityType(DragonFireEntity::new, "dragon_fire", MobCategory.MISC); // 龙火
 
 
 	// 僵尸
@@ -158,7 +152,6 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(GOLDEN_MELON_PULT.get(), GoldenMelonPultRender::new); // 金西瓜
 		RenderingRegistry.registerEntityRenderingHandler(PRIMAL_PEA_SHOOTER.get(), PrimalPeaShooterRender::new); // 原始豌豆
 		RenderingRegistry.registerEntityRenderingHandler(GOO_PEA_SHOOTER.get(), GooPeaShooterRender::new); // 毒液豌豆
-		RenderingRegistry.registerEntityRenderingHandler(LIGHTNING_REED.get(), LightningReedRender::new); // 闪电芦苇
 		RenderingRegistry.registerEntityRenderingHandler(MAGNIFYING_GRASS.get(), MagnifyingGrassRender::new); // 棱镜草
 
 
@@ -169,15 +162,14 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(CORN.get(), CornRender::new); // 玉米子弹
 		RenderingRegistry.registerEntityRenderingHandler(BURST_CORN.get(), BurstCornRender::new); // 爆裂玉米子弹
 		RenderingRegistry.registerEntityRenderingHandler(POP_CORN.get(), PopCornRender::new); // 爆米花子弹
-		RenderingRegistry.registerEntityRenderingHandler(FISH_PEA.get(), FishPeRender::new); // 鱼豌豆
-		RenderingRegistry.registerEntityRenderingHandler(ICE_PEA.get(), IcePeaRender::new); // 冰结豌豆
 		RenderingRegistry.registerEntityRenderingHandler(SONIC.get(), SonicRender::new); // 音波
 		RenderingRegistry.registerEntityRenderingHandler(ORIGIN_FUME.get(), OriginFumeRender::new); // 起源蘑菇孢子
 		RenderingRegistry.registerEntityRenderingHandler(BEE.get(), BeeEntityRender::new); // 蜜蜂
 		RenderingRegistry.registerEntityRenderingHandler(GOLDEN_MELON.get(), GoldenMelonRender::new); // 蜜蜂·
-		RenderingRegistry.registerEntityRenderingHandler(LIGHTNING_BEAM.get(), LightningBoltRenderer::new); // 闪电束
-		RenderingRegistry.registerEntityRenderingHandler(LIGHT_BEAM.get(), LightBeamRender::new); // 光束
-		RenderingRegistry.registerEntityRenderingHandler(STONE_PEA.get(), StonePeaRender::new); // 光束
+		RenderingRegistry.registerEntityRenderingHandler(STONE_PEA.get(), StonePeaRender::new); // 石豌豆
+		RenderingRegistry.registerEntityRenderingHandler(GOO_PEA.get(), GooPeaRender::new); // 毒液豌豆
+		RenderingRegistry.registerEntityRenderingHandler(LIGHT_BEAM.get(), LightBeamRender::new); // 毒液豌豆
+		RenderingRegistry.registerEntityRenderingHandler(DRAGON_FIRE.get(), DragonFireRender::new); // 毒液豌豆
 
 
 		// 僵尸

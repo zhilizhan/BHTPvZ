@@ -16,6 +16,12 @@
     "bhtpvz:sculk_shroom",
     "bhtpvz:origin_shroom",
     "bhtpvz:bee_shooter",
-    "bhtpvz:fodder_bush"
+    "bhtpvz:fodder_bush",
+
+    "bhtpvz:golden_melon_pult",
+    "bhtpvz:primal_pea_shooter",
+    "bhtpvz:goo_pea_shooter",
+    "bhtpvz:magnifying_grass",
+    "bhtpvz:bee"
   ]
 }

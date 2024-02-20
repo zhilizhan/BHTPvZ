@@ -38,16 +38,21 @@ public class QuestionMarkPotBlock extends AbstractFacingBlock {
     }
 
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        IZombieType zombieType = (IZombieType) ZOMBIE.getRandomItem(RANDOM).get();
+        IZombieType zombieType = ZOMBIE.getRandomItem(RANDOM).orElse(null);
         ItemStack plant = PLANT_ITEM.getRandomItem(RANDOM).get().getDefaultInstance();
         ItemStack pot = BHTPvZItems.POT_GRASS_CARD.get().getDefaultInstance();
 
         if (!level.isClientSide && player.getMainHandItem().getItem()==BHTPvZItems.HAMMER.get()) {
             level.removeBlock(pos, false);
             //僵尸
-            PathfinderMob zombie = zombieType.getEntityType().get().create(level);
+            PathfinderMob zombie = null;
+            if (zombieType != null) {
+                zombie = zombieType.getEntityType().get().create(level);
+            }
             if (RANDOM.nextInt(2) == 0) {
-                EntityUtil.onEntitySpawn(level, zombie, pos);
+                if (zombie != null) {
+                    EntityUtil.onEntitySpawn(level, zombie, pos);
+                }
             } else if(RANDOM.nextInt(10)==0){
                 level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(pot.getItem())));
             }else {

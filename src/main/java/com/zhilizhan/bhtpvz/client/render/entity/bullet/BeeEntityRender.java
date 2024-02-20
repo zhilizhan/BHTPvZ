@@ -13,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class BeeEntityRender extends MobRenderer<BeeEntity, BeeEntityModel<BeeEntity>> {
 
     public BeeEntityRender(EntityRenderDispatcher renderManager) {
-        super(renderManager, new BeeEntityModel(),0.2f);
+        super(renderManager, new BeeEntityModel<>(),0.2f);
     }
 
     protected float getScaleByEntity(BeeEntity entity) {

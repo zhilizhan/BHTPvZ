@@ -12,14 +12,13 @@ import com.zhilizhan.bhtpvz.common.entity.misc.RedSunEntity;
 import com.zhilizhan.bhtpvz.common.impl.zombie.BHTPvZZombies;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class SunFlowerZombieEntity extends AbstractZombotanyEntity {
     public SunFlowerZombieEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
@@ -29,7 +28,7 @@ public class SunFlowerZombieEntity extends AbstractZombotanyEntity {
     @Override
     protected void initAttributes() {
         super.initAttributes();
-        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.25);
+        Objects.requireNonNull(this.getAttribute(Attributes.MOVEMENT_SPEED)).setBaseValue(0.25);
     }
     public void normalZombieTick() {
         super.normalZombieTick();
@@ -59,8 +58,8 @@ public class SunFlowerZombieEntity extends AbstractZombotanyEntity {
 
     protected int getFixedProducCD() {
         int now = this.getShootCD();
-        if (this.hasEffect((MobEffect) EffectRegister.COLD_EFFECT.get())) {
-            int lvl = this.getEffect((MobEffect)EffectRegister.COLD_EFFECT.get()).getAmplifier();
+        if (this.hasEffect(EffectRegister.COLD_EFFECT.get())) {
+            int lvl = Objects.requireNonNull(this.getEffect(EffectRegister.COLD_EFFECT.get())).getAmplifier();
             now += 3 * lvl;
         }
 
@@ -85,12 +84,11 @@ public class SunFlowerZombieEntity extends AbstractZombotanyEntity {
         super.addAdditionalSaveData(compound);
         compound.putInt("produc_tick", this.producTick);}
     public int getGenCD() {
-        boolean time = true;
         return this.level.isDay() ? (this.level.isRaining() ? 500 : 250) : 750;
     }
     public void addAlmanacEntries(List<Pair<IAlmanacEntry, Number>> list) {
         super.addAlmanacEntries(list);
-        list.addAll(Arrays.asList(Pair.of(PAZAlmanacs.GEN_CD, this.getGenCD())));
+        list.add(Pair.of(PAZAlmanacs.GEN_CD, this.getGenCD()));
     }
 
     protected void genSun(int num, int cnt) {
@@ -99,9 +97,11 @@ public class SunFlowerZombieEntity extends AbstractZombotanyEntity {
     }
 
     public void genSomething() {
-        RedSunEntity sun = (RedSunEntity)((EntityType) BHTPvZEntityTypes.RED_SUN.get()).create(this.level);
-        sun.setAmount(sun.getAmount());
-        EntityUtil.onEntityRandomPosSpawn(this.level, sun, this.blockPosition(),1);
+        RedSunEntity sun = (RedSunEntity)((EntityType<?>) BHTPvZEntityTypes.RED_SUN.get()).create(this.level);
+        if (sun != null) {
+            sun.setAmount(sun.getAmount());
+            EntityUtil.onEntityRandomPosSpawn(this.level, sun, this.blockPosition(), 1);
+        }
         EntityUtil.playSound(this, SoundEvents.EXPERIENCE_ORB_PICKUP);
     }
 

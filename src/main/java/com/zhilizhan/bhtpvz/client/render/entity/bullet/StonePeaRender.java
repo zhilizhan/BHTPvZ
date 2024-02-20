@@ -2,7 +2,7 @@ package com.zhilizhan.bhtpvz.client.render.entity.bullet;
 
 import com.hungteen.pvz.client.render.entity.EntityBlockRender;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
-import com.zhilizhan.bhtpvz.common.entity.bullet.StonePeaEntity;
+import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.StonePeaEntity;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;

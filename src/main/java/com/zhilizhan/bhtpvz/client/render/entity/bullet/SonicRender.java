@@ -15,7 +15,7 @@ public class SonicRender  extends EntityBlockRender<SonicEntity> {
     }
 
     public float getScaleByEntity(SonicEntity entity) {
-        return 0.2F;
+        return 0.001F;
     }
 
     public BlockState getBlockByEntity(SonicEntity entity) {

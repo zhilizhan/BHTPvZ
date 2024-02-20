@@ -36,7 +36,6 @@ public class MagnifyingGrassRender  extends PVZPlantRender<MagnifyingGrassEntity
         super.render(entity, entityYaw, partialTicks, matrixStack, buffer, packedLight);
         LivingEntity lv = entity.getActiveAttackTarget();
         if (lv != null) {
-            float h = entity.getAttackAnimationScale(partialTicks);
             float j = (float)entity.level.getGameTime() + partialTicks;
             float k = j * 0.5F % 1.0F;
             float l = entity.getEyeHeight();
@@ -52,12 +51,11 @@ public class MagnifyingGrassRender  extends PVZPlantRender<MagnifyingGrassEntity
             matrixStack.mulPose(Vector3f.YP.rotationDegrees((1.5707964F - o) * 57.295776F));
             matrixStack.mulPose(Vector3f.XP.rotationDegrees(n * 57.295776F));
             float q = j * 0.05F * -1.5F;
-            float r = h * h;
-            int s = 32 + (int)(r * 191.0F);
-            int t = 32 + (int)(r * 191.0F);
+            float r = 1;
+            int s = 64 + (int)(r * 191.0F);
+            int t = 64 + (int)(r * 191.0F);
             int u = 128 - (int)(r * 64.0F);
-            float v = 0.2F;
-            float w = 0.282F;
+
             float x = Mth.cos(q + 2.3561945F) * 0.282F;
             float y = Mth.sin(q + 2.3561945F) * 0.282F;
             float z = Mth.cos(q + 0.7853982F) * 0.282F;

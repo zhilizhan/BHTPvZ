@@ -25,7 +25,7 @@ public class DecorationGenerate {
                 event.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BHTPvZFeatures.TREES_STARFRUIT); // 杨桃树生成
                   }
             if (biome.equals(BHTPvZBiomes.BEWILDER_GARDEN.get())){
-                event.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BHTPvZFeatures.TREES_WISDOM); // 智慧树生成
+                event.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BHTPvZFeatures.HUGE_ORIGIN_MUSHROOM); // 原始蘑菇生成
             }
         }
     }

@@ -5,27 +5,22 @@
   "display_color": "red",
   "spawns": [
     {
-      "entity_type": "pvz:normal_zombie",
+      "entity_type": "bhtpvz:mc_zombie",
       "invasion_level": 1,
       "spawn_weight": 100
     },
     {
-      "entity_type": "bhtpvz:edgar_090547",
-      "invasion_level": 25,
-      "spawn_weight": 25
-    },
-    {
-      "entity_type": "bhtpvz:red_edge_zombie_spawn_egg",
+      "entity_type": "bhtpvz:red_edge",
       "invasion_level": 10,
-      "spawn_weight": 30
+      "spawn_weight": 5
     },
     {
-      "entity_type": "bhtpvz:mj_zombie_spawn_egg",
+      "entity_type": "bhtpvz:mj_zombie",
       "invasion_level": 10,
-      "spawn_weight": 25
+      "spawn_weight": 20
     },
     {
-      "entity_type": "bhtpvz:sun_flower_zombie_spawn_egg",
+      "entity_type": "bhtpvz:sun_flower",
       "invasion_level": 10,
       "spawn_weight": 50
     }

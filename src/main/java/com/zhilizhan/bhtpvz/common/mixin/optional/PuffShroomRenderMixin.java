@@ -16,6 +16,10 @@ public abstract class PuffShroomRenderMixin extends PVZPlantRender<PuffShroomEnt
     public PuffShroomRenderMixin(EntityRenderDispatcher rendererManager, EntityModel<PuffShroomEntity> entityModelIn, float shadowSizeIn) {
         super(rendererManager, entityModelIn, shadowSizeIn);
     }
+    /**
+     * @author
+     * @reason
+     */
     @Overwrite
     public float getScaleByEntity(PuffShroomEntity entity) {
         float size = super.getScaleByEntity(entity)-0.3f+entity.getAttackDamage()*0.1f;

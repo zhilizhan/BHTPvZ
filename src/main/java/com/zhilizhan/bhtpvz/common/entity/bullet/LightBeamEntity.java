@@ -15,7 +15,7 @@ public class LightBeamEntity extends AbstractBulletEntity {
         super(type, worldIn);
     }
     public LightBeamEntity(Level worldIn, LivingEntity shooter) {
-        super((EntityType) BHTPvZEntityTypes.LIGHT_BEAM.get(), worldIn, shooter);
+        super(BHTPvZEntityTypes.LIGHT_BEAM.get(), worldIn, shooter);
     }
     @Override
     protected int getMaxLiveTick() {
@@ -47,7 +47,7 @@ public class LightBeamEntity extends AbstractBulletEntity {
 
     @Override
     public EntityDimensions getDimensions(Pose pose) {
-        return EntityDimensions.scalable(0.5f, 0.5f);
+        return EntityDimensions.scalable(0.2f, 0.2f);
     }
 
 }

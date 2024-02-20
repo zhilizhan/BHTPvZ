@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "bhtpvz.refmap.json",
   "mixins": [
+    "PeaGunItemMixin",
     "PlantCardItemMixin",
     "PlayerEventHandlerMixin",
     "PVZPlantEntityMixin",
@@ -12,6 +13,8 @@
     "optional.ScaredyShroomEntityMixin"
   ],
   "client": [
+    "ClientProxyMixin",
+    "LivingEntityRenderMixin",
     "PVZPlantRenderMixin",
     "optional.PuffShroomRenderMixin"
   ],

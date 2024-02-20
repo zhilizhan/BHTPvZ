@@ -5,7 +5,6 @@ import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
@@ -19,7 +18,7 @@ public class PoppedChorusFruitEntity extends PultBulletEntity {
     }
 
     public PoppedChorusFruitEntity(Level worldIn, LivingEntity shooter) {
-        super((EntityType) BHTPvZEntityTypes.POPPED_CHORUS_FRUIT.get(), worldIn, shooter);
+        super(BHTPvZEntityTypes.POPPED_CHORUS_FRUIT.get(), worldIn, shooter);
     }
 
     protected void dealDamage(Entity target) {
@@ -45,7 +44,7 @@ public class PoppedChorusFruitEntity extends PultBulletEntity {
 
             }
 
-        EntityUtil.playSound(this, (SoundEvent) SoundEvents.CHORUS_FLOWER_DEATH);
+        EntityUtil.playSound(this, SoundEvents.CHORUS_FLOWER_DEATH);
     });
     }
 

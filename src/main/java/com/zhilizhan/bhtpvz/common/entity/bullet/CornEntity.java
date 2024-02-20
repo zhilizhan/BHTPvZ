@@ -5,8 +5,6 @@ import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
-import com.zhilizhan.bhtpvz.common.entity.plant.arma.BurstKernelPultEntity;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
@@ -19,11 +17,10 @@ public class CornEntity extends PultBulletEntity {
     }
 
     public CornEntity(Level worldIn, LivingEntity shooter) {
-        super((EntityType) BHTPvZEntityTypes.CORN.get(), worldIn, shooter);
+        super(BHTPvZEntityTypes.CORN.get(), worldIn, shooter);
     }
-    private BurstKernelPultEntity pultEntity;
 
-
+    @Override
     protected void dealDamage(Entity target) {
         target.hurt(BHTPvZEntityDamageSource.corn(this, this.getThrower()), this.getAttackDamage());
 
@@ -45,7 +42,7 @@ public class CornEntity extends PultBulletEntity {
 
         });
 
-        EntityUtil.playSound(this, (SoundEvent) SoundEvents.ARROW_HIT);
+        EntityUtil.playSound(this, SoundEvents.ARROW_HIT);
     }
 
 

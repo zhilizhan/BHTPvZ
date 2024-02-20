@@ -9,16 +9,16 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class LightBeamRender  extends EntityBlockRender<LightBeamEntity> {
+public class LightBeamRender extends EntityBlockRender<LightBeamEntity> {
     public LightBeamRender(EntityRenderDispatcher renderManager) {
         super(renderManager);
     }
 
     public float getScaleByEntity(LightBeamEntity entity) {
-        return 0.25F;
+        return 0.2F;
     }
 
     public BlockState getBlockByEntity(LightBeamEntity entity) {
-        return Blocks.GLASS.defaultBlockState();
+        return Blocks.GRASS_BLOCK.defaultBlockState();
     }
 }

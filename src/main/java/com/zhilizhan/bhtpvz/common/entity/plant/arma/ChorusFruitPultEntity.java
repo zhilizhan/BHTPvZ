@@ -18,7 +18,6 @@ public class ChorusFruitPultEntity extends PlantPultEntity {
 
     private static final EntityDataAccessor<Integer> CURRENT_BULLET;
 
-
     public ChorusFruitPultEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
         super(type, worldIn);
     }
@@ -48,7 +47,7 @@ public class ChorusFruitPultEntity extends PlantPultEntity {
     }
 
     protected PultBulletEntity createBullet() {
-        return (PultBulletEntity)(!this.isPlantInSuperMode() && this.getCurrentBullet() != ChorusFruitTypes.NORMAL ? new PoppedChorusFruitEntity(this.level, this) : new ChorusFruitEntity(this.level, this));
+        return !this.isPlantInSuperMode() && this.getCurrentBullet() != ChorusFruitTypes.NORMAL ? new PoppedChorusFruitEntity(this.level, this) : new ChorusFruitEntity(this.level, this);
     }
 
     public float getSuperDamage() {
@@ -82,7 +81,7 @@ public class ChorusFruitPultEntity extends PlantPultEntity {
     }
 
     public ChorusFruitTypes getCurrentBullet() {
-        return ChorusFruitTypes.values()[(Integer)this.entityData.get(CURRENT_BULLET)];
+        return ChorusFruitTypes.values()[this.entityData.get(CURRENT_BULLET)];
     }
 
     public IPlantType getPlantType() {
@@ -93,11 +92,11 @@ public class ChorusFruitPultEntity extends PlantPultEntity {
         CURRENT_BULLET = SynchedEntityData.defineId(ChorusFruitPultEntity.class, EntityDataSerializers.INT);
     }
 
-    public static enum ChorusFruitTypes {
+    public enum ChorusFruitTypes {
         NORMAL,
         POPPED;
 
-        private ChorusFruitTypes() {
+        ChorusFruitTypes() {
         }
     }
 }

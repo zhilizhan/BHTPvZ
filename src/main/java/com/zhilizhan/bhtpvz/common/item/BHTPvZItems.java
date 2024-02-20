@@ -43,7 +43,7 @@ public class BHTPvZItems {
     public static final RegistryObject<Item> ANGEL_STARFRUIT = ITEMS.register("angel_starfruit", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(8).saturationMod(1.2F).effect(new MobEffectInstance(MobEffects.REGENERATION, 200, 1), 1.0F).build()))); // 天使杨桃
     public static final RegistryObject<Item> SQUASH_SLICE = ITEMS.register("squash_slice", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(3).saturationMod(0.3F).build()))); //倭瓜片
     public static final RegistryObject<Item> ICE_CABBAGE = ITEMS.register("ice_cabbage", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80, 1), 1.0F).build()))); // 冰卷心菜
-    public static final RegistryObject<Item> ICE_PEA = ITEMS.register("ice_pea", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(3).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 1), 1.0F).build()))); // 冰结豌豆
+    public static final RegistryObject<Item> GOO_PEA = ITEMS.register("goo_pea", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(3).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.POISON, 40, 0), 1.0F).build()))); // 毒豌豆
 
     // 功能性食物
     public static final RegistryObject<Item> XP_SAPLING = ITEMS.register("xp_sapling", ()-> new XpSapling(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new FoodProperties.Builder().nutrition(4).saturationMod(0.5F).effect(new MobEffectInstance(MobEffects.LUCK, 1000, 1), 1.0F).build()))); //经验树苗
@@ -134,8 +134,6 @@ public class BHTPvZItems {
     public static final RegistryObject<PlantCardItem> PRIMAL_PEA_SHOOTER_ENJOY_CARD = registerCard(BHTPvZPlants.PRIMAL_PEA_SHOOTER, true); // 原始豌豆体验卡
     public static final RegistryObject<PlantCardItem> GOO_PEA_SHOOTER_CARD = registerCard(BHTPvZPlants.GOO_PEA_SHOOTER, false); // 毒液豌豆卡
     public static final RegistryObject<PlantCardItem> GOO_PEA_SHOOTER_ENJOY_CARD = registerCard(BHTPvZPlants.GOO_PEA_SHOOTER, true); // 毒液豌豆体验卡
-    public static final RegistryObject<PlantCardItem> LIGHTNING_REED_CARD = registerCard(BHTPvZPlants.LIGHTNING_REED, false); // 闪电芦苇卡
-    public static final RegistryObject<PlantCardItem> LIGHTNING_REED_ENJOY_CARD = registerCard(BHTPvZPlants.LIGHTNING_REED, true); // 闪电芦苇体验卡
     public static final RegistryObject<PlantCardItem> MAGNIFYING_GRASS_CARD = registerCard(BHTPvZPlants.MAGNIFYING_GRASS, false); // 棱镜草卡
     public static final RegistryObject<PlantCardItem> MAGNIFYING_GRASS_ENJOY_CARD = registerCard(BHTPvZPlants.MAGNIFYING_GRASS, true); // 棱镜草体验卡
 
@@ -155,8 +153,7 @@ public class BHTPvZItems {
     public static final RegistryObject<Item> MORION_BLOCK = ITEMS.register("morion_block", ()-> new BlockItem(BHTPvZBlocks.MORION_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 黑晶块
     public static final RegistryObject<Item> DAMSON_CRYSTAL_BLOCK = ITEMS.register("damson_crystal_block", ()-> new BlockItem(BHTPvZBlocks.DAMSON_CRYSTAL_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合晶块
     public static final RegistryObject<Item> DECOMPOSITION_STAGE = ITEMS.register("decomposition_stage", ()-> new BlockItem(BHTPvZBlocks.DECOMPOSITION_STAGE.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 分解台
-    public static final RegistryObject<Item> WISDOM_LOG = ITEMS.register("wisdom_log",() -> new BlockItem(BHTPvZBlocks.WISDOM_LOG.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));  //  智慧原木
-    public static final RegistryObject<BlockItem> SCREEN_DOOR = ITEMS.register("screen_door",() -> new BlockItem(BHTPvZBlocks.SCREEN_DOOR.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));  // 铁网门
+     public static final RegistryObject<BlockItem> SCREEN_DOOR = ITEMS.register("screen_door",() -> new BlockItem(BHTPvZBlocks.SCREEN_DOOR.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));  // 铁网门
     public static final RegistryObject<BlockItem> PEA_BLOCK = ITEMS.register("pea_block",() -> new BlockItem(BHTPvZBlocks.PEA_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));  // 压缩豌豆块
 
 

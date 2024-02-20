@@ -17,8 +17,8 @@ import net.minecraft.world.level.Level;
 
 import java.util.Optional;
 
-public class IceCabbagePultEntity extends CabbagePultEntity implements IIceEffect {
-	private static final int FROZEN_TICK = 25;
+public class IceCabbagePultEntity extends CabbagePultEntity implements IIceEffect{
+	private static final int FROZEN_TICK = 20;
 
 	public IceCabbagePultEntity(EntityType<? extends PathfinderMob> type, Level level) {
 		super(type, level);

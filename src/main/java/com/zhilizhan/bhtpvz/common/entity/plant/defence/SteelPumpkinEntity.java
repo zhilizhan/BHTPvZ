@@ -25,7 +25,6 @@ import java.util.List;
 
 public class SteelPumpkinEntity extends PlantDefenderEntity{
 	private static final EntityDataAccessor<Boolean> IS_SOLID = SynchedEntityData.defineId(SteelPumpkinEntity.class, EntityDataSerializers.BOOLEAN);
-
 	public SteelPumpkinEntity(EntityType<? extends PathfinderMob> type, Level level) {
 		super(type, level);
 		this.canCollideWithPlant = false;
@@ -138,8 +137,10 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 
 
 	public static class SteelPumpkinInfo extends PlantInfo  {
-			private static final float NORMAL_PUMPKIN_LIFE = 400.0F;
-			private static final float SUPER_PUMPKIN_LIFE = 800.0F;
+		public static final float NORMAL_PUMPKIN_LIFE = 800.0F;
+		public static final float EXTRA_PUMPKIN_LIFE = 100.0F;
+
+		public static final float SUPER_PUMPKIN_LIFE = 1200.0F;
 
 			public SteelPumpkinInfo() {
 			}
@@ -147,18 +148,18 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 			public void onSuper(IPlantEntity plantEntity) {
 				super.onSuper(plantEntity);
 				plantEntity.setPumpkin(true);
-				plantEntity.setOuterDefenceLife(1200.0);
+				plantEntity.setOuterDefenceLife(SUPER_PUMPKIN_LIFE);
 			}
 
 			public void placeOn(IPlantEntity plantEntity, int sunCost) {
 				super.placeOn(plantEntity, sunCost);
 				plantEntity.setPumpkin(true);
-				plantEntity.setOuterDefenceLife(900.0);
+				plantEntity.setOuterDefenceLife(NORMAL_PUMPKIN_LIFE+EXTRA_PUMPKIN_LIFE);
 			}
 
 			public void onHeal(IPlantEntity plantEntity, float percent) {
-				float max = plantEntity.getOuterDefenceLife() > 900 ? 1200F : 900F;
-				plantEntity.setOuterDefenceLife(Mth.clamp(plantEntity.getOuterDefenceLife() * (double)(1.0F + percent), 0.0, (double)max));
+				float max = plantEntity.getOuterDefenceLife() > NORMAL_PUMPKIN_LIFE ? SUPER_PUMPKIN_LIFE : NORMAL_PUMPKIN_LIFE;
+				plantEntity.setOuterDefenceLife(Mth.clamp(plantEntity.getOuterDefenceLife() * (double)(1.0F + percent), 0.0, max));
 			}
 		}
 	@Override

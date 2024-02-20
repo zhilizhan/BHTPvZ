@@ -11,16 +11,15 @@ import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.common.impl.plant.PlantType;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.appease.BeeShooterModel;
-import com.zhilizhan.bhtpvz.client.model.entity.plant.appease.GrassCarpModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.appease.PeaPodModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.appease.PrimalPeaShooterModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.arma.BurstKernelPultModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.arma.ChorusFruitPultModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.arma.GoldenMelonPultModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.assist.FodderBushModel;
+import com.zhilizhan.bhtpvz.client.model.entity.plant.assist.GrassCarpModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.defence.SelfImitaterModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.defence.SteelPumpkinModel;
-import com.zhilizhan.bhtpvz.client.model.entity.plant.electric.LightningReedModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.electric.MagnifyingGrassModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.enforce.RotateRadishModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.fire.BlazeWartModel;
@@ -36,6 +35,7 @@ import com.zhilizhan.bhtpvz.common.impl.BHTPvZSkill;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -48,7 +48,7 @@ public final class BHTPvZPlants extends PlantType {
     public static final IPlantType STEEL_PUMPKIN = new BHTPvZPlants("steel_pumpkin", new PlantFeatures()
             .cost(225).requiredLevel(35)
             .cd(CoolDowns.VERY_SLOW).rank(RankTypes.BLUE).essence(EssenceTypes.DEFENCE)
-            .entityType(() -> BHTPvZEntityTypes.STEEL_PUMPKIN.get())
+            .entityType(() -> BHTPvZEntityTypes.STEEL_PUMPKIN.get()).isShroomPlant()
             .summonCard(() -> BHTPvZItems.STEEL_PUMPKIN_CARD.get())
             .enjoyCard(() -> BHTPvZItems.STEEL_PUMPKIN_ENJOY_CARD.get())
             .plantModel(() -> SteelPumpkinModel::new).scale(1F)
@@ -63,7 +63,7 @@ public final class BHTPvZPlants extends PlantType {
             .summonCard(() -> BHTPvZItems.ICE_CABBAGE_PULT_CARD.get())
             .enjoyCard(() -> BHTPvZItems.ICE_CABBAGE_PULT_ENJOY_CARD.get())
             .plantModel(() -> IceCabbagePultModel::new).scale(0.95F)
-            .commonSkill(Collections.singleton(SkillTypes.MORE_CABBAGE_DAMAGE)));
+            .commonSkill(Arrays.asList(SkillTypes.MORE_CABBAGE_DAMAGE)));
     //坚果保龄球
     public static final IPlantType NUT_BOWLING = new BHTPvZPlants("nut_bowling", new PlantFeatures()
             .cost(50).requiredLevel(15)
@@ -97,8 +97,8 @@ public final class BHTPvZPlants extends PlantType {
             .entityType(() -> BHTPvZEntityTypes.CHORUS_FRUIT_PULT.get())
             .summonCard(() -> BHTPvZItems.CHORUS_FRUIT_PULT_CARD.get())
             .enjoyCard(() -> BHTPvZItems.CHORUS_FRUIT_PULT_ENJOY_CARD.get())
-            .plantModel(() -> ChorusFruitPultModel::new).scale(0.95F)
-            .commonSkill(Collections.singletonList(SkillTypes.MORE_KERNEL_DAMAGE)));
+            .plantModel(() -> ChorusFruitPultModel::new).scale(0.95F).placement(BHTPvZPlacements.END_STONE)
+            .cdSkill(Collections.singletonList(SkillTypes.FAST_CD)));
     //转转萝卜
     public static final IPlantType ROTATE_RADISH = new BHTPvZPlants("rotate_radish", new PlantFeatures()
             .cost(150).requiredLevel(20)
@@ -107,7 +107,7 @@ public final class BHTPvZPlants extends PlantType {
             .summonCard(() -> BHTPvZItems.ROTATE_RADISH_CARD.get())
             .enjoyCard(() -> BHTPvZItems.ROTATE_RADISH_ENJOY_CARD.get())
             .plantModel(() -> RotateRadishModel::new).scale(0.95F)
-            .commonSkill(Collections.singletonList(SkillTypes.MORE_SWING_DAMAGE)));
+            .commonSkill(Arrays.asList(SkillTypes.MORE_SWING_DAMAGE,SkillTypes.PLANT_MORE_LIFE)));
 
     //爆裂玉米投手
     public static final IPlantType BURST_KERNEL_PULT = new BHTPvZPlants("burst_kernel_pult", new PlantFeatures()
@@ -119,20 +119,18 @@ public final class BHTPvZPlants extends PlantType {
             .plantModel(() -> BurstKernelPultModel::new).scale(0.95f)
             .commonSkill(Collections.singletonList(SkillTypes.MORE_KERNEL_DAMAGE)));
     //烈焰庞
-
     public static final IPlantType BLAZE_WART = new BHTPvZPlants("blaze_wart", new PlantFeatures()
             .cost(175).requiredLevel(19)
             .cd(CoolDowns.FAST).rank(RankTypes.GREEN).essence(EssenceTypes.FLAME)
             .entityType(() -> BHTPvZEntityTypes.BLAZE_WART.get())
             .summonCard(() -> BHTPvZItems.BLAZE_WART_CARD.get())
             .enjoyCard(() -> BHTPvZItems.BLAZE_WART_ENJOY_CARD.get())
-            .plantModel(() -> BlazeWartModel::new).scale(0.95f)
-            .commonSkill(Collections.singletonList(SkillTypes.MORE_SWING_DAMAGE)));
+            .plantModel(() -> BlazeWartModel::new).scale(0.95f).placement(BHTPvZPlacements.SOUL_SAND)
+            .commonSkill(Collections.singletonList(BHTPvZSkill.WART_HEAL_CD)));
     //草鱼
-
     public static final IPlantType GRASS_CARP = new BHTPvZPlants("grass_carp", new PlantFeatures()
             .cost(225).requiredLevel(23)
-            .cd(CoolDowns.FAST).rank(RankTypes.GREEN).essence(EssenceTypes.APPEASE)
+            .cd(CoolDowns.LITTLE_SLOW).rank(RankTypes.PURPLE).essence(EssenceTypes.ASSIST)
             .entityType(() -> BHTPvZEntityTypes.GRASS_CARP.get()).isWaterPlant()
             .summonCard(() -> BHTPvZItems.GRASS_CARP_CARD.get())
             .enjoyCard(() -> BHTPvZItems.GRASS_CARP_ENJOY_CARD.get())
@@ -152,7 +150,7 @@ public final class BHTPvZPlants extends PlantType {
             .entityType(() -> BHTPvZEntityTypes.SELF_IMITATER.get())
             .summonCard(() -> BHTPvZItems.SELF_IMITATER_CARD.get())
             .enjoyCard(() -> BHTPvZItems.SELF_IMITATER_ENJOY_CARD.get())
-            .plantModel(() -> SelfImitaterModel::new).scale(1.1f).commonSkill(Collections.singletonList(SkillTypes.MORE_GARLIC_LIFE)));
+            .plantModel(() -> SelfImitaterModel::new).scale(1.1f).commonSkill(Collections.singletonList(BHTPvZSkill.IMITATER_CHANCE)));
     //冰结射手
     public static final IPlantType RE_ICEPEA = new BHTPvZPlants("re_icepea", new PlantFeatures()
             .cost(275).requiredLevel(22)
@@ -229,19 +227,11 @@ public final class BHTPvZPlants extends PlantType {
             .cost(175).requiredLevel(28)
             .cd(CoolDowns.VERY_FAST).rank(RankTypes.BLUE).essence(EssenceTypes.TOXIC)
             .entityType(() -> BHTPvZEntityTypes.GOO_PEA_SHOOTER.get())
-            .summonCard(() -> BHTPvZItems.PRIMAL_PEA_SHOOTER_CARD.get())
-            .enjoyCard(() -> BHTPvZItems.PRIMAL_PEA_SHOOTER_ENJOY_CARD.get())
+            .summonCard(() -> BHTPvZItems.GOO_PEA_SHOOTER_CARD.get())
+            .enjoyCard(() -> BHTPvZItems.GOO_PEA_SHOOTER_ENJOY_CARD.get())
             .plantModel(() -> GooPeaShooterModel::new).scale(1.0F)
             .commonSkill(Collections.singletonList(SkillTypes.PEA_DAMAGE)));
-    //芦苇
-    public static final IPlantType LIGHTNING_REED = new BHTPvZPlants("lightning_reed", new PlantFeatures()
-            .cost(175).requiredLevel(28)
-            .cd(CoolDowns.VERY_FAST).rank(RankTypes.BLUE).essence(EssenceTypes.ELECTRIC)
-            .entityType(() -> BHTPvZEntityTypes.LIGHTNING_REED.get())
-            .summonCard(() -> BHTPvZItems.LIGHTNING_REED_CARD.get())
-            .enjoyCard(() -> BHTPvZItems.LIGHTNING_REED_ENJOY_CARD.get())
-            .plantModel(() -> LightningReedModel::new).scale(1.0F)
-            .commonSkill(Collections.singletonList(SkillTypes.PEA_DAMAGE)));
+
     //棱镜草
     public static final IPlantType MAGNIFYING_GRASS = new BHTPvZPlants("magnifying_grass", new PlantFeatures()
             .cost(50).requiredLevel(42)
@@ -250,7 +240,7 @@ public final class BHTPvZPlants extends PlantType {
             .summonCard(() -> BHTPvZItems.MAGNIFYING_GRASS_CARD.get())
             .enjoyCard(() -> BHTPvZItems.MAGNIFYING_GRASS_ENJOY_CARD.get())
             .plantModel(() -> MagnifyingGrassModel::new).scale(1.3F)
-            .commonSkill(Collections.singletonList(BHTPvZSkill.LIGHT_BEAM_DAMAGE)));
+            .commonSkill(Arrays.asList(BHTPvZSkill.LIGHT_BEAM_DAMAGE,BHTPvZSkill.MAGNIFYING_GRASS_DAMAGE)));
 
     public static void register() {
         PVZAPI.get().registerPlantTypes(LIST);
@@ -260,7 +250,6 @@ public final class BHTPvZPlants extends PlantType {
         super(name, features);
         LIST.add(this);
     }
-
     @Override
     public String getModID() {
         return BHTPvZ.MOD_ID;

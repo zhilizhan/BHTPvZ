@@ -50,7 +50,7 @@ public class AirborneZombieRender extends PVZZombieRender<AirborneZombieEntity> 
 		double d10 = Mth.lerp(partialTicks, entityLivingIn.xo, entityLivingIn.getX()) + d2;
 		double d11 = Mth.lerp(partialTicks, entityLivingIn.yo, entityLivingIn.getY());
 		double d12 = Mth.lerp(partialTicks, entityLivingIn.zo, entityLivingIn.getZ()) + d3;
-		matrixStackIn.translate(d2, -(1.6d - (double)entityLivingIn.getBbHeight()) * 0.5d, d3);
+		matrixStackIn.translate(d2, -(1.0f - (double)entityLivingIn.getBbHeight()), d3);
 		float f = (float)(d6 - d10);
 		float f1 = (float)(d7 - d11);
 		float f2 = (float)(d8 - d12);

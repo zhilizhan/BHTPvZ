@@ -121,16 +121,6 @@ public class BHTPvZConfig {
             public static class BanRule {
 
                 public ForgeConfigSpec.BooleanValue BanSteelPumpkin;
-                public ForgeConfigSpec.BooleanValue BanIceCabbagePult;
-                public ForgeConfigSpec.BooleanValue BanFirePeashooter;
-                public ForgeConfigSpec.BooleanValue BanNutBowling;
-                public ForgeConfigSpec.BooleanValue BanChorusFruitPult;
-                public ForgeConfigSpec.BooleanValue BanRotateRadish;
-                public ForgeConfigSpec.BooleanValue BanBurstKernelPult;
-                public ForgeConfigSpec.BooleanValue BanBlazeWart;
-                public ForgeConfigSpec.BooleanValue BanGrassCarp;
-                public ForgeConfigSpec.BooleanValue BanSelfImitater;
-                public ForgeConfigSpec.BooleanValue BanReIcePea;
 
                 public BanRule() {
                 }

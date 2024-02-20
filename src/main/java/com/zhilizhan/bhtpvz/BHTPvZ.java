@@ -2,6 +2,10 @@ package com.zhilizhan.bhtpvz;
 
 import com.ferreusveritas.dynamictrees.api.GatherDataHelper;
 import com.ferreusveritas.dynamictrees.api.registry.RegistryHandler;
+import com.ferreusveritas.dynamictrees.blocks.leaves.LeavesProperties;
+import com.ferreusveritas.dynamictrees.blocks.rootyblocks.SoilProperties;
+import com.ferreusveritas.dynamictrees.trees.Family;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.zhilizhan.bhtpvz.client.particle.BHTPvZParticle;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
 import com.zhilizhan.bhtpvz.common.effect.BHTPvZMobEffects;
@@ -38,7 +42,8 @@ import org.apache.commons.lang3.tuple.Pair;
 
 @Mod(BHTPvZ.MOD_ID)
 @Mod.EventBusSubscriber(modid = BHTPvZ.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class BHTPvZ {
+public class
+BHTPvZ {
     public static final String MOD_ID = "bhtpvz";
 
     // 事件总线
@@ -49,11 +54,10 @@ public class BHTPvZ {
 
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus bus2 = MinecraftForge.EVENT_BUS;
-
+        BHTPvZMobEffects.MOB_EFFECTS.register(bus);
         BHTPvZEntityTypes.ENTITY_TYPES.register(bus);
         BHTPvZItems.ITEMS.register(bus);
         BHTPvZBlocks.BLOCKS.register(bus);
-        BHTPvZMobEffects.MOB_EFFECTS.register(bus);
         BHTPvZBiomes.BIOMES.register(bus);
         BHTPvZParticle.PARTICLE_TYPES.register(bus);
         BHTPvZPlants.register();
@@ -82,9 +86,8 @@ public class BHTPvZ {
     };
 
     //动态的树
-    private void gatherData(final GatherDataEvent event) {
-        GatherDataHelper.gatherTagData(MOD_ID, event);
-        GatherDataHelper.gatherLootData(MOD_ID, event);
+    public void gatherData(GatherDataEvent event) {
+        GatherDataHelper.gatherAllData("bhtpvz", event, SoilProperties.REGISTRY, Family.REGISTRY, Species.REGISTRY, LeavesProperties.REGISTRY);
     }
 
     //初始化刷怪蛋（颜色）

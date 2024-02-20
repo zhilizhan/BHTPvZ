@@ -14,7 +14,10 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.List;
 import java.util.Optional;
+
+import static com.hungteen.pvz.utils.EntityUtil.*;
 
 public class BeeShooterEntity extends PeaShooterEntity {
     public BeeShooterEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
@@ -72,8 +75,15 @@ public class BeeShooterEntity extends PeaShooterEntity {
         }
 
     }
+    public List<BeeEntity> giveBeeAmount(){
+        int range = 60;
+        List<BeeEntity> bee = getPredicateEntities(this, getEntityAABB(this,range,range), BeeEntity.class, (target) -> {
+            return isFriendly(this, target) && target.getOwner()==this;
+        });
+        return bee;
+    }
     public int getShootCD() {
-        return 90;
+        return giveBeeAmount().size()>=2?140:60;
     }
     public int getSuperShootCount() {
         return this.random.nextInt(1)+1;

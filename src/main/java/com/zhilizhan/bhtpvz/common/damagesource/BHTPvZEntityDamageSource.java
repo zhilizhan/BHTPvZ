@@ -1,11 +1,9 @@
 package com.zhilizhan.bhtpvz.common.damagesource;
 
-import com.hungteen.pvz.common.entity.bullet.itembullet.PeaEntity;
 import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.bullet.*;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.*;
 import com.zhilizhan.bhtpvz.common.entity.plant.assist.FodderBushEntity;
-import com.zhilizhan.bhtpvz.common.entity.plant.electric.LightningReedEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.electric.MagnifyingGrassEntity;
 import net.minecraft.world.entity.Entity;
 
@@ -14,10 +12,6 @@ public class BHTPvZEntityDamageSource {
     //冰卷心菜投手伤害
     public static PVZEntityDamageSource iceCabbage(IceCabbageEntity iceCabbage, Entity indirectEntity) {
         return (new PVZEntityDamageSource("ice_cabbage", iceCabbage, indirectEntity).setParabola().setIceDamage());
-    }
-    //火焰豌豆伤害
-    public static PVZEntityDamageSource firePea(PeaEntity pea, Entity indirectEntity) {
-        return (new PVZEntityDamageSource("fire_pea", pea, indirectEntity).setAppease().setFlameDamage());
     }
     //紫颂果伤害
     public static PVZEntityDamageSource chorusFruit(ChorusFruitEntity pea, Entity shooter) {
@@ -39,14 +33,7 @@ public class BHTPvZEntityDamageSource {
     public static PVZEntityDamageSource popCorn(PopCornEntity pea, Entity shooter) {
         return (PVZEntityDamageSource)(new PVZEntityDamageSource("pop_corn", pea, shooter)).setParabola().setExplosion();
     }
-    //鱼豆
-    public static PVZEntityDamageSource fishPea(FishPeaEntity pea, Entity shooter) {
-        return (PVZEntityDamageSource)(new PVZEntityDamageSource("fish_pea", pea, shooter));
-    }
-    //冰结豌豆
-    public static PVZEntityDamageSource icePea(IcePeaEntity pea, Entity shooter) {
-        return (PVZEntityDamageSource)(new PVZEntityDamageSource("ice_pea", pea, shooter)).setIceDamage();
-    }
+
     //音波
     public static PVZEntityDamageSource sonic(SonicEntity pea, Entity shooter) {
         return (new PVZEntityDamageSource("sonic", pea, shooter)).setAppease().setThroughDamage();
@@ -63,10 +50,6 @@ public class BHTPvZEntityDamageSource {
     public static PVZEntityDamageSource goldenMelon(GoldenMelonEntity melon, Entity shooter) {
         return (new PVZEntityDamageSource("golden_melon", melon, shooter)).setParabola();
     }
-    //闪电芦苇
-    public static PVZEntityDamageSource lightningBeam(LightningReedEntity beam, Entity shooter) {
-        return (new PVZEntityDamageSource("lightning_beam", beam, shooter));
-    }
     //光束
     public static PVZEntityDamageSource lightBeam(LightBeamEntity beam, Entity shooter) {
         return (new PVZEntityDamageSource("light_beam", beam, shooter));
@@ -81,6 +64,14 @@ public class BHTPvZEntityDamageSource {
     }
     //熔岩原始豌豆
     public static PVZEntityDamageSource magmaPea(StonePeaEntity pea, Entity shooter) {
-        return (new PVZEntityDamageSource("magma_pea", pea, shooter)).setAppease();
+        return (new PVZEntityDamageSource("magma_pea", pea, shooter)).setAppease().setFlameDamage();
+    }
+    //毒液豌豆
+    public static PVZEntityDamageSource gooPea(GooPeaEntity pea, Entity shooter) {
+        return (new PVZEntityDamageSource("goo_pea", pea, shooter)).setAppease();
+    }
+    //龙火
+    public static PVZEntityDamageSource dragonFire(DragonFireEntity pea, Entity shooter) {
+        return (new PVZEntityDamageSource("dragon_fire", pea, shooter)).setAppease().setFlameDamage();
     }
 }

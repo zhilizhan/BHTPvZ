@@ -23,6 +23,7 @@ public class BHTPvZSpawnEggItem extends SpawnEggItem {
 
 	private final Lazy<? extends EntityType<?>> entityTypeSupplier;
 
+
 	public BHTPvZSpawnEggItem(final RegistryObject<? extends EntityType<?>> entityTypeSupplier, int primaryColorIn, int secondaryColorIn, Properties builder) {
 		super(null, primaryColorIn, secondaryColorIn, builder);
 		this.entityTypeSupplier=Lazy.of(entityTypeSupplier);
@@ -47,7 +48,9 @@ public class BHTPvZSpawnEggItem extends SpawnEggItem {
 			}
 		};
 		for (final SpawnEggItem egg : PVZ_EGGS) {
-			EGGS.put(egg.getType(null), egg);
+			if (EGGS != null) {
+				EGGS.put(egg.getType(null), egg);
+			}
 			DispenserBlock.registerBehavior(egg, defaultDispenseItemBehavior);
 			// ItemColors for each spawn egg don't need to be registered because this method is called before ItemColors is created
 		}

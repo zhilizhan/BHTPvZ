@@ -7,7 +7,7 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.particles.SimpleParticleType;
 
-public class OriginalFumeParticle  extends PVZNormalParticle {
+public class OriginalFumeParticle extends PVZNormalParticle {
     public OriginalFumeParticle(ClientLevel world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(world, x, y, z, xSpeed, ySpeed, zSpeed);
         this.quadSize = 0.3F;

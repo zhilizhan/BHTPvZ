@@ -5,7 +5,6 @@ import com.hungteen.pvz.common.potion.EffectRegister;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
-import com.zhilizhan.bhtpvz.common.entity.plant.arma.BurstKernelPultEntity;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffect;
@@ -24,11 +23,8 @@ public class BurstCornEntity extends CornEntity {
         super(type, worldIn);
     }
     public BurstCornEntity(Level worldIn, LivingEntity shooter) {
-        super((EntityType) BHTPvZEntityTypes.BURST_CORN.get(), worldIn);
+        super(BHTPvZEntityTypes.BURST_CORN.get(), worldIn);
     }
-
-    private BurstKernelPultEntity pultEntity;
-
 
     protected void dealDamage(Entity target) {
             PVZEntityDamageSource source = BHTPvZEntityDamageSource.burst_corn(this, this.getThrower());
@@ -66,7 +62,6 @@ public class BurstCornEntity extends CornEntity {
     public EntityDimensions getDimensions(Pose poseIn) {
         return EntityDimensions.scalable(0.6F, 0.6F);
     }
-
 
 }
 

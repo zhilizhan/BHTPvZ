@@ -13,7 +13,6 @@ public class IceCabbageRender extends BulletRender<IceCabbageEntity> {
 	public IceCabbageRender(EntityRenderDispatcher renderManagerIn) {
 		super(renderManagerIn);
 	}
-
 	@Override
 	protected float getScaleByEntity(IceCabbageEntity entity) {
 		return 1.4f;

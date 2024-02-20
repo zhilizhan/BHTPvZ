@@ -5,6 +5,7 @@ import com.mojang.datafixers.util.Pair;
 import com.zhilizhan.bhtpvz.client.particle.BHTPvZParticle;
 import com.zhilizhan.bhtpvz.client.particle.GoldNuggetParticle;
 import com.zhilizhan.bhtpvz.client.particle.OriginalFumeParticle;
+import com.zhilizhan.bhtpvz.client.particle.SonicBoomParticle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.resources.model.BakedModel;
@@ -29,19 +30,8 @@ public class BHTPvZClientRegister {
         ParticleEngine manager = Minecraft.getInstance().particleEngine;
         manager.register(BHTPvZParticle.GOLD_NUGGET.get(), GoldNuggetParticle.Factory::new);
         manager.register(BHTPvZParticle.ORIGINAL_FUME.get(), OriginalFumeParticle.Factory::new);
+        manager.register(BHTPvZParticle.SONIC_BOOM.get(), SonicBoomParticle.Factory::new);
     }
-  // @SubscribeEvent
-  // public static void changeMobRenderSize(RenderLivingEvent.Pre<LivingEntity, EntityModel<LivingEntity>> event) {
-  //     LivingEntity entity = event.getEntity();
-  //     DamageSource source = entity.getLastDamageSource();
-  //     if (entity.isDeadOrDying()) {
-  //         EntityDimensions entityDimensions = entity.getDimensions(entity.getPose());
-  //         if (source instanceof PVZEntityDamageSource && ((PVZEntityDamageSource)source).isCrushDamage())
-  //             event.getMatrixStack().scale(1, (float) (0.25 / entityDimensions.height), 1);
-  //
-  //     }
-  // }
-
     @SubscribeEvent
     public static void reigsterRenderType(FMLClientSetupEvent ev) {
         // ItemBlockRenderTypes.setRenderLayer((Block) BHTPvZBlocks.STEEL_PUMPKIN.get(), RenderType.translucent());//有bug
@@ -51,7 +41,7 @@ public class BHTPvZClientRegister {
     private static Pair<BakedModel, ModelResourceLocation> getBakedModel(ModelBakeEvent ev, Item item) {
         Map<ResourceLocation, BakedModel> modelRegistry = ev.getModelRegistry();
         ModelResourceLocation location = new ModelResourceLocation(item.getRegistryName(), "inventory");
-        BakedModel model = (BakedModel)modelRegistry.get(location);
+        BakedModel model = modelRegistry.get(location);
         if (model == null) {
             throw new RuntimeException("Did not find Obsidian Hidden in registry");
         } else if (model instanceof PVZBakedModel) {

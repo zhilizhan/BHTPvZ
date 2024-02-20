@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableSet;
 import com.hungteen.pvz.common.block.BlockRegister;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
+import com.zhilizhan.bhtpvz.common.world.feature.HugeOriginMushroomFeature;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.Features;
@@ -17,26 +18,24 @@ import net.minecraft.world.level.levelgen.feature.blockplacers.SimpleBlockPlacer
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.MegaJungleFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.MegaJungleTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
 import net.minecraft.world.level.levelgen.placement.FrequencyWithExtraChanceDecoratorConfiguration;
 
-import static net.minecraft.data.worldgen.Features.FANCY_OAK;
-import static net.minecraft.data.worldgen.Features.JUNGLE_BUSH;
-
 public class BHTPvZFeatures {
+
     // 树木
     public static final ConfiguredFeature<TreeConfiguration, ?> CHERRY = register("cherry", Feature.TREE.configured(new TreeConfiguration.TreeConfigurationBuilder(new SimpleStateProvider(Blocks.OAK_LOG.defaultBlockState()), new SimpleStateProvider(BHTPvZBlocks.CHERRY_LEAVES.get().defaultBlockState()), new BlobFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build()));// 杨桃树
-    public static final ConfiguredFeature<TreeConfiguration, ?> STARFRUIT = register("starfruit", Feature.TREE.configured(new TreeConfiguration.TreeConfigurationBuilder(new SimpleStateProvider(Blocks.OAK_LOG.defaultBlockState()), new SimpleStateProvider(BHTPvZBlocks.STARFRUIT_LEAVES.get().defaultBlockState()), new BlobFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build()));// 杨桃树
-    public static final ConfiguredFeature<TreeConfiguration, ?>  WISDOM = register("wisdom", Feature.TREE.configured((new TreeConfiguration.TreeConfigurationBuilder(new SimpleStateProvider(BHTPvZBlocks.WISDOM_LOG.get().defaultBlockState()), new SimpleStateProvider(Blocks.OAK_LEAVES.defaultBlockState()), new MegaJungleFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 2), new MegaJungleTrunkPlacer(10, 2, 19), new TwoLayersFeatureSize(1, 1, 2))).build()));// 智慧树
+    public static final ConfiguredFeature<TreeConfiguration, ?> STARFRUIT = register("starfruit", Feature.TREE.configured(new TreeConfiguration.TreeConfigurationBuilder(new SimpleStateProvider(Blocks.OAK_LOG.defaultBlockState()), new SimpleStateProvider(BHTPvZBlocks.STARFRUIT_LEAVES.get().defaultBlockState()), new BlobFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build()));// 原始蘑菇
+    public static final ConfiguredFeature<HugeMushroomFeatureConfiguration, ?> MUSHROOM = register(
+            "mushroom",  new HugeOriginMushroomFeature(HugeMushroomFeatureConfiguration.CODEC).configured(new HugeMushroomFeatureConfiguration(new SimpleStateProvider(BHTPvZBlocks.ORIGIN_MUSHROOM_BLOCK.get().defaultBlockState()), new SimpleStateProvider(Blocks.MUSHROOM_STEM.defaultBlockState()), 3)));
 
-    // 树木生成
     public static final ConfiguredFeature<?, ?> TREES_CHERRY = register("trees_cherry", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(ImmutableList.of(CHERRY.weighted(1.0F)), CHERRY)).decorated(Features.Decorators.HEIGHTMAP_SQUARE).decorated(FeatureDecorator.COUNT_EXTRA.configured(new FrequencyWithExtraChanceDecoratorConfiguration(1, 0.02f, 1)))); // 樱桃树生成
     public static final ConfiguredFeature<?, ?> TREES_STARFRUIT = register("trees_starfruit", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(ImmutableList.of(STARFRUIT.weighted(1.0F)), STARFRUIT)).decorated(Features.Decorators.HEIGHTMAP_SQUARE).decorated(FeatureDecorator.COUNT_EXTRA.configured(new FrequencyWithExtraChanceDecoratorConfiguration(1, 0.02f, 1)))); // 杨桃树生成
-    public static final ConfiguredFeature<?, ?> TREES_WISDOM = register("trees_wisdom", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(ImmutableList.of(FANCY_OAK.weighted(0.1F), JUNGLE_BUSH.weighted(0.5F), WISDOM.weighted(0.33333334F)), WISDOM)).decorated(Features.Decorators.HEIGHTMAP_SQUARE).decorated(FeatureDecorator.COUNT_EXTRA.configured(new FrequencyWithExtraChanceDecoratorConfiguration(50, 0.1F, 1))));// 智慧树生成
+
+    //原始蘑菇Feature
+    public static final ConfiguredFeature<?, ?> HUGE_ORIGIN_MUSHROOM = register("huge_origin_mushroom", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(ImmutableList.of(MUSHROOM.weighted(1.0F)), MUSHROOM)).decorated(Features.Decorators.HEIGHTMAP_SQUARE)); // 巨型原始蘑菇生成
 
     // 其他生成
     public static final ConfiguredFeature<?, ?> ORE_MORION = register("ore_morion", Feature.ORE.configured(new OreConfiguration(OreConfiguration.Predicates.NETHERRACK, BHTPvZBlocks.MORION_ORE.get().defaultBlockState(), 10)).decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(32, 10, 80)).squared().count(7))); // 黑晶矿生成

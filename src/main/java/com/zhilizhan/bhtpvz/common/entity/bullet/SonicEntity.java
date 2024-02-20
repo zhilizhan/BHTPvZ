@@ -1,6 +1,8 @@
 package com.zhilizhan.bhtpvz.common.entity.bullet;
 
 import com.hungteen.pvz.common.entity.bullet.AbstractBulletEntity;
+import com.hungteen.pvz.utils.WorldUtil;
+import com.zhilizhan.bhtpvz.client.particle.BHTPvZParticle;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
@@ -34,7 +36,6 @@ public class SonicEntity  extends AbstractBulletEntity {
     }
 
     protected void onImpact(HitResult result) {
-        boolean flag = false;
         if (result.getType() == HitResult.Type.ENTITY) {
             Entity target = ((EntityHitResult)result).getEntity();
             if (this.shouldHit(target)) {
@@ -49,7 +50,7 @@ public class SonicEntity  extends AbstractBulletEntity {
         }
 
         this.level.broadcastEntityEvent(this, (byte)3);
-        if (flag || !this.checkLive(result)) {
+        if (!this.checkLive(result)) {
             this.remove();
         }
 
@@ -63,11 +64,21 @@ public class SonicEntity  extends AbstractBulletEntity {
             return true;
         }
     }
+    public void tick() {
+        super.tick();
+        if (this.level.isClientSide) {
+            int cnt = Math.max(2, Math.min(7, this.getMaxLiveTick() / this.tickCount));
 
+            for(int i = 0; i < cnt; ++i) {
+                WorldUtil.spawnRandomSpeedParticle(this.level, BHTPvZParticle.SONIC_BOOM.get(), this.position(), 0.05F);
+            }
+        }
+
+    }
     private void dealSonicDamage(Entity target) {
         if (!this.level.isClientSide ) {
             target.hurt(BHTPvZEntityDamageSource.sonic(this, this.getThrower()), this.attackDamage);
-            if (target instanceof LivingEntity) {
+            if (target instanceof LivingEntity && Math.random()<=0.75F) {
                 ((LivingEntity) target).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 120));
             }
         }

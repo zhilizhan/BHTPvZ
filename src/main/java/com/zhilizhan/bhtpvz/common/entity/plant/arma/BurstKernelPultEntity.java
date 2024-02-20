@@ -22,7 +22,6 @@ import java.util.List;
 public class BurstKernelPultEntity extends PlantPultEntity {
 
     private static final EntityDataAccessor<Integer> CURRENT_BULLET;
-    private static final int CORN_CHANCE = 20;
     private BurstKernelPultEntity upgradeEntity;
 
     public BurstKernelPultEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
@@ -49,10 +48,8 @@ public class BurstKernelPultEntity extends PlantPultEntity {
 
     private BurstKernelPultEntity getNearByPult(Player player) {
         float range = 1.5F;
-        List<BurstKernelPultEntity> list = this.level.getEntitiesOfClass(BurstKernelPultEntity.class, EntityUtil.getEntityAABB(this, range, range), (pult) -> {
-            return !pult.is(this) && pult.getPlantType() == BHTPvZPlants.BURST_KERNEL_PULT && !EntityUtil.canAttackEntity(pult, player);
-        });
-        return list.size() == 0 ? null : (BurstKernelPultEntity)list.get(0);
+        List<BurstKernelPultEntity> list = this.level.getEntitiesOfClass(BurstKernelPultEntity.class, EntityUtil.getEntityAABB(this, range, range), (pult) -> !pult.is(this) && pult.getPlantType() == BHTPvZPlants.BURST_KERNEL_PULT && !EntityUtil.canAttackEntity(pult, player));
+        return list.size() == 0 ? null : list.get(0);
     }
 
     public void startPultAttack() {
@@ -76,7 +73,7 @@ public class BurstKernelPultEntity extends PlantPultEntity {
     }
 
     protected PultBulletEntity createBullet() {
-        return (PultBulletEntity)(!this.isPlantInSuperMode() && this.getCurrentBullet() == CornTypes.POP_CORN ? new PopCornEntity(this.level, this):(this.getCurrentBullet() == CornTypes.CORN?new CornEntity(this.level,this):new BurstCornEntity(level,this)));
+        return !this.isPlantInSuperMode() && this.getCurrentBullet() == CornTypes.POP_CORN ? new PopCornEntity(this.level, this):(this.getCurrentBullet() == CornTypes.CORN?new CornEntity(this.level,this):new BurstCornEntity(level,this));
     }
 
     public float getSuperDamage() {
@@ -109,7 +106,7 @@ public class BurstKernelPultEntity extends PlantPultEntity {
     }
 
     public BurstKernelPultEntity.CornTypes getCurrentBullet() {
-        return BurstKernelPultEntity.CornTypes.values()[(Integer)this.entityData.get(CURRENT_BULLET)];
+        return BurstKernelPultEntity.CornTypes.values()[this.entityData.get(CURRENT_BULLET)];
     }
     public IPlantType getPlantType() {
         return BHTPvZPlants.BURST_KERNEL_PULT;
@@ -119,12 +116,12 @@ public class BurstKernelPultEntity extends PlantPultEntity {
         CURRENT_BULLET = SynchedEntityData.defineId(BurstKernelPultEntity.class, EntityDataSerializers.INT);
     }
 
-    public static enum CornTypes {
+    public enum CornTypes {
         CORN,
         BURST_CORN,
         POP_CORN;
 
-        private CornTypes() {
+        CornTypes() {
         }
     }
 }

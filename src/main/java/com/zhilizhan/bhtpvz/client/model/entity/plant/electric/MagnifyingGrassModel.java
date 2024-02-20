@@ -8,105 +8,144 @@ import java.util.Optional;
 
 public class MagnifyingGrassModel extends PlantShooterModel<MagnifyingGrassEntity> {
     private final ModelPart total;
-    private final ModelPart down;
-    private final ModelPart group_r1;
-    private final ModelPart group_r2;
-    private final ModelPart group_r3;
-    private final ModelPart group_r4;
-    private final ModelPart body;
-    private final ModelPart neck;
-    private final ModelPart bone_r1;
     private final ModelPart head;
-    private final ModelPart bone2_r1;
-    private final ModelPart bone2_r2;
-    private final ModelPart bone4_r1;
+    private final ModelPart eye;
+    private final ModelPart leaf1;
+    private final ModelPart cube_r1;
+    private final ModelPart cube_r2;
+    private final ModelPart cube_r3;
+    private final ModelPart leaf2;
+    private final ModelPart cube_r4;
+    private final ModelPart cube_r5;
+    private final ModelPart cube_r6;
+    private final ModelPart leaf3;
+    private final ModelPart cube_r7;
+    private final ModelPart cube_r8;
+    private final ModelPart cube_r9;
+    private final ModelPart leaf4;
+    private final ModelPart cube_r10;
+    private final ModelPart cube_r11;
+    private final ModelPart cube_r12;
 
     public MagnifyingGrassModel() {
-        texWidth = 32;
-        texHeight = 32;
+        texWidth = 64;
+        texHeight = 64;
 
         total = new ModelPart(this);
-        total.setPos(-0.1F, 16.0F, 0.5F);
-        setRotationAngle(total, 0.0F, 3.1416F, 0.0F);
+        total.setPos(0.0F, 19.0F, 0.0F);
+        setRotationAngle(total, 0.0F, 1.5708F, 0.0F);
 
-
-        down = new ModelPart(this);
-        down.setPos(0.0F, 0.0F, 0.0F);
-        total.addChild(down);
-
-
-        group_r1 = new ModelPart(this);
-        group_r1.setPos(3.7829F, 7.0449F, -0.5F);
-        down.addChild(group_r1);
-        setRotationAngle(group_r1, 0.0F, 0.0F, -0.2182F);
-        group_r1.texOffs(13, 0).addBox(-3.5F, 0.0F, -1.5F, 7.0F, 0.0F, 3.0F, 0.0F, false);
-
-        group_r2 = new ModelPart(this);
-        group_r2.setPos(0.1F, 7.1F, -0.5F);
-        down.addChild(group_r2);
-        setRotationAngle(group_r2, 0.2618F, 0.0F, 0.0F);
-        group_r2.texOffs(6, 22).addBox(-1.5F, 0.9F, 0.0716F, 3.0F, 0.0F, 5.0F, 0.0F, false);
-
-        group_r3 = new ModelPart(this);
-        group_r3.setPos(-3.5829F, 7.0449F, -0.5F);
-        down.addChild(group_r3);
-        setRotationAngle(group_r3, 0.0F, 0.0F, 0.2618F);
-        group_r3.texOffs(-3, 27).addBox(-3.5F, 0.0F, -1.5F, 7.0F, 0.0F, 3.0F, 0.0F, false);
-
-        group_r4 = new ModelPart(this);
-        group_r4.setPos(0.1F, 7.1F, -0.5F);
-        down.addChild(group_r4);
-        setRotationAngle(group_r4, -0.2618F, 0.0F, 0.0F);
-        group_r4.texOffs(-1, 22).addBox(-1.5F, 0.9F, -5.0716F, 3.0F, 0.0F, 5.0F, 0.0F, false);
-
-        body = new ModelPart(this);
-        body.setPos(0.0F, 0.0F, 0.0F);
-        total.addChild(body);
-
-
-        neck = new ModelPart(this);
-        neck.setPos(0.0F, 0.0F, 0.0F);
-        body.addChild(neck);
-
-
-        bone_r1 = new ModelPart(this);
-        bone_r1.setPos(0.1F, 8.0F, -0.5F);
-        neck.addChild(bone_r1);
-        setRotationAngle(bone_r1, 0.1309F, 0.0F, 0.0F);
-        bone_r1.texOffs(18, 12).addBox(-0.5F, -2.0F, -0.5F, 1.0F, 2.0F, 1.0F, 0.0F, false);
 
         head = new ModelPart(this);
-        head.setPos(0.15F, 0.0184F, -0.6946F);
-        neck.addChild(head);
-        setRotationAngle(head, -0.2618F, 0.0F, 0.0F);
+        head.setPos(0.0F, 0.0F, 0.0F);
+        total.addChild(head);
+        head.texOffs(0, 0).addBox(-2.5F, -8.0F, -5.5F, 5.0F, 8.0F, 11.0F, 0.01F, false);
+        head.texOffs(24, 19).addBox(-1.0F, -13.0F, -2.0F, 2.0F, 18.0F, 4.0F, 0.01F, false);
+        head.texOffs(0, 19).addBox(-2.0F, -11.0F, -4.0F, 4.0F, 14.0F, 8.0F, 0.01F, false);
+
+        eye = new ModelPart(this);
+        eye.setPos(0.0F, 0.0F, 0.0F);
+        head.addChild(eye);
+        eye.texOffs(0, 32).addBox(2.7F, -6.0F, -4.5F, 0.0F, 4.0F, 9.0F, 0.0F, false);
+
+        leaf1 = new ModelPart(this);
+        leaf1.setPos(0.0F, 0.0F, 0.0F);
+        total.addChild(leaf1);
 
 
-        bone2_r1 = new ModelPart(this);
-        bone2_r1.setPos(-1.45F, -0.463F, 1.1169F);
-        head.addChild(bone2_r1);
-        setRotationAngle(bone2_r1, 0.4363F, 0.0F, 0.0F);
-        bone2_r1.texOffs(0, 2).addBox(-1.0F, -2.0244F, 0.0F, 2.0F, 3.0F, 0.0F, 0.0F, false);
+        cube_r1 = new ModelPart(this);
+        cube_r1.setPos(0.0F, 5.0F, 0.0F);
+        leaf1.addChild(cube_r1);
+        setRotationAngle(cube_r1, 0.8727F, -0.3054F, 0.0F);
+        cube_r1.texOffs(26, 6).addBox(-3.0F, 2.55F, 3.05F, 4.0F, 0.0F, 6.0F, 0.0F, false);
 
-        bone2_r2 = new ModelPart(this);
-        bone2_r2.setPos(1.35F, -0.4849F, 1.164F);
-        head.addChild(bone2_r2);
-        setRotationAngle(bone2_r2, 0.4363F, 0.0F, 0.0F);
-        bone2_r2.texOffs(0, 2).addBox(-1.0F, -2.0025F, 0.0F, 2.0F, 3.0F, 0.0F, 0.0F, false);
+        cube_r2 = new ModelPart(this);
+        cube_r2.setPos(0.0F, 5.0F, 0.0F);
+        leaf1.addChild(cube_r2);
+        setRotationAngle(cube_r2, 0.0F, -0.3054F, 0.0F);
+        cube_r2.texOffs(0, 19).addBox(-3.0F, -8.3F, 7.8F, 4.0F, 3.0F, 0.0F, 0.0F, false);
 
-        bone4_r1 = new ModelPart(this);
-        bone4_r1.setPos(-0.05F, -0.9874F, 0.2313F);
-        head.addChild(bone4_r1);
-        setRotationAngle(bone4_r1, 1.5708F, -1.1781F, -1.5708F);
-        bone4_r1.texOffs(4, 3).addBox(-3.1F, -3.75F, -3.75F, 3.5F, 10.0F, 1.75F, 0.0F, false);
-        bone4_r1.texOffs(4, 3).addBox(-3.1F, -3.75F, 1.75F, 3.5F, 10.0F, 1.75F, 0.0F, false);
-        bone4_r1.texOffs(2, 1).addBox(-3.5F, -5.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
+        cube_r3 = new ModelPart(this);
+        cube_r3.setPos(0.0F, 5.0F, 0.0F);
+        leaf1.addChild(cube_r3);
+        setRotationAngle(cube_r3, 0.1745F, -0.3054F, 0.0F);
+        cube_r3.texOffs(32, 20).addBox(-3.0F, 0.0F, 0.0F, 4.0F, 0.0F, 4.0F, 0.0F, false);
+
+        leaf2 = new ModelPart(this);
+        leaf2.setPos(0.0F, 0.0F, 0.0F);
+        total.addChild(leaf2);
+
+
+        cube_r4 = new ModelPart(this);
+        cube_r4.setPos(0.0F, 5.0F, 0.0F);
+        leaf2.addChild(cube_r4);
+        setRotationAngle(cube_r4, 0.8727F, 0.3054F, 0.0F);
+        cube_r4.texOffs(23, 0).addBox(-1.0F, 2.55F, 3.05F, 4.0F, 0.0F, 6.0F, 0.0F, false);
+
+        cube_r5 = new ModelPart(this);
+        cube_r5.setPos(0.0F, 5.0F, 0.0F);
+        leaf2.addChild(cube_r5);
+        setRotationAngle(cube_r5, 0.0F, 0.3054F, 0.0F);
+        cube_r5.texOffs(0, 6).addBox(-1.0F, -8.3F, 7.8F, 4.0F, 3.0F, 0.0F, 0.0F, false);
+
+        cube_r6 = new ModelPart(this);
+        cube_r6.setPos(0.0F, 5.0F, 0.0F);
+        leaf2.addChild(cube_r6);
+        setRotationAngle(cube_r6, 0.1745F, 0.3054F, 0.0F);
+        cube_r6.texOffs(28, 16).addBox(-1.0F, 0.0F, 0.0F, 4.0F, 0.0F, 4.0F, 0.0F, false);
+
+        leaf3 = new ModelPart(this);
+        leaf3.setPos(0.0F, 0.0F, 0.0F);
+        total.addChild(leaf3);
+
+
+        cube_r7 = new ModelPart(this);
+        cube_r7.setPos(0.0F, 5.0F, 0.0F);
+        leaf3.addChild(cube_r7);
+        setRotationAngle(cube_r7, 0.8727F, 2.8362F, 0.0F);
+        cube_r7.texOffs(10, 19).addBox(-3.0F, 2.55F, 3.05F, 4.0F, 0.0F, 6.0F, 0.0F, false);
+
+        cube_r8 = new ModelPart(this);
+        cube_r8.setPos(0.0F, 5.0F, 0.0F);
+        leaf3.addChild(cube_r8);
+        setRotationAngle(cube_r8, 0.0F, 2.8362F, 0.0F);
+        cube_r8.texOffs(0, 3).addBox(-3.0F, -8.3F, 7.8F, 4.0F, 3.0F, 0.0F, 0.0F, false);
+
+        cube_r9 = new ModelPart(this);
+        cube_r9.setPos(0.0F, 5.0F, 0.0F);
+        leaf3.addChild(cube_r9);
+        setRotationAngle(cube_r9, 0.1745F, 2.8362F, 0.0F);
+        cube_r9.texOffs(28, 12).addBox(-3.0F, 0.0F, 0.0F, 4.0F, 0.0F, 4.0F, 0.0F, false);
+
+        leaf4 = new ModelPart(this);
+        leaf4.setPos(0.0F, 0.0F, 0.0F);
+        total.addChild(leaf4);
+
+
+        cube_r10 = new ModelPart(this);
+        cube_r10.setPos(0.0F, 5.0F, 0.0F);
+        leaf4.addChild(cube_r10);
+        setRotationAngle(cube_r10, 0.8727F, -2.8362F, 0.0F);
+        cube_r10.texOffs(15, 0).addBox(-1.0F, 2.55F, 3.05F, 4.0F, 0.0F, 6.0F, 0.0F, false);
+
+        cube_r11 = new ModelPart(this);
+        cube_r11.setPos(0.0F, 5.0F, 0.0F);
+        leaf4.addChild(cube_r11);
+        setRotationAngle(cube_r11, 0.0F, -2.8362F, 0.0F);
+        cube_r11.texOffs(0, 0).addBox(-1.0F, -8.3F, 7.8F, 4.0F, 3.0F, 0.0F, 0.0F, false);
+
+        cube_r12 = new ModelPart(this);
+        cube_r12.setPos(0.0F, 5.0F, 0.0F);
+        leaf4.addChild(cube_r12);
+        setRotationAngle(cube_r12, 0.1745F, -2.8362F, 0.0F);
+        cube_r12.texOffs(17, 6).addBox(-1.0F, 0.0F, 0.0F, 4.0F, 0.0F, 4.0F, 0.0F, false);
     }
     public Optional<ModelPart> getHeadModel() {
         return Optional.ofNullable(this.head);
     }
 
     public Optional<ModelPart> getBodyModel() {
-        return Optional.ofNullable(this.body);
+        return this.getHeadModel();
     }
 
     public ModelPart getPlantWholeBody() {

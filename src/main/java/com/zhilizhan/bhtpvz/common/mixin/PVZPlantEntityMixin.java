@@ -5,6 +5,7 @@ import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.entity.AbstractPAZEntity;
 import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
+import com.zhilizhan.bhtpvz.common.entity.plant.defence.SteelPumpkinEntity;
 import com.zhilizhan.bhtpvz.config.BHTPvZConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
@@ -17,7 +18,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(value = PVZPlantEntity.class,remap = false)
-public abstract  class PVZPlantEntityMixin extends AbstractPAZEntity implements IPlantEntity {
+public abstract class PVZPlantEntityMixin extends AbstractPAZEntity implements IPlantEntity {
 
     public PVZPlantEntityMixin(EntityType<?> arg, Level arg2) {
         super((EntityType<? extends PathfinderMob>) arg, arg2);
@@ -30,11 +31,8 @@ public abstract  class PVZPlantEntityMixin extends AbstractPAZEntity implements 
         return this.isImmuneToWeak;
     }
 
-    @Shadow
-    public abstract IPlantType getPlantType();
 
-    @Shadow
-    public abstract boolean hasMetal();
+    @Shadow public abstract IPlantType getPlantType();
 
     /**
      * @author SuSen36
@@ -65,11 +63,8 @@ public abstract  class PVZPlantEntityMixin extends AbstractPAZEntity implements 
      */
     @Overwrite
     public boolean canBeTargetBy(LivingEntity living) {
-        if (this.getOuterDefenceLife() > 800.0 && BHTPvZConfig.COMMON_CONFIG.EntitySettings.PlantSetting.SteelPumpkinPeace.get() || this.hasMetal()) {
-            return false;
-        }
-        return true;
-}
+        return (!(this.getOuterDefenceLife() > SteelPumpkinEntity.SteelPumpkinInfo.NORMAL_PUMPKIN_LIFE) || !BHTPvZConfig.COMMON_CONFIG.EntitySettings.PlantSetting.SteelPumpkinPeace.get()) && !this.hasMetal();
+    }
 
     /**
      * @author SuSen36

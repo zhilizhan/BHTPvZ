@@ -7,7 +7,6 @@ import com.hungteen.pvz.common.misc.sound.SoundRegister;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.ItemStack;
@@ -45,7 +44,7 @@ public class PopCornEntity extends PultBulletEntity implements ItemSupplier {
                 EntityUtil.spawnParticle(this,9);
             }
 
-            EntityUtil.playSound(this, (SoundEvent) SoundRegister.SWING.get());
+            EntityUtil.playSound(this, SoundRegister.SWING.get());
         });
     }
     @Override

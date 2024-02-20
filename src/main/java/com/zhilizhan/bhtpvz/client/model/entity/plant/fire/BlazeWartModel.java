@@ -5,8 +5,9 @@ import com.hungteen.pvz.utils.AnimationUtil;
 import com.zhilizhan.bhtpvz.common.entity.plant.fire.BlazeWartEntity;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.world.entity.LivingEntity;
 
-public class BlazeWartModel extends PVZPlantModel<BlazeWartEntity> {
+public class BlazeWartModel<T extends LivingEntity> extends PVZPlantModel<BlazeWartEntity> {
  private final ModelPart total;
     private final ModelPart right_arm;
     private final ModelPart right1;
@@ -114,7 +115,7 @@ public class BlazeWartModel extends PVZPlantModel<BlazeWartEntity> {
         total.addChild(body);
         body.texOffs(0, 83).addBox(-1.0F, -4.5F, -6.0F, 12.0F, 5.0F, 12.0F, 0.4F, false);
         body.texOffs(0, 100).addBox(-2.0F, -10.5F, -7.0F, 14.0F, 10.0F, 14.0F, 0.0F, false);
-        body.texOffs(56, 114).addBox(-1.0F, -12.25F, -6.0F, 12.0F, 2.0F, 12.0F, 0.0F, false);
+        body.texOffs(56, 114).addBox(-1.0F, -11.25F, -6.0F, 12.0F, 2.0F, 12.0F, 0.0F, false);
 
         getPlantWholeBody = new ModelPart(this);
         getPlantWholeBody.setPos(0.0F, 0.0F, 0.0F);

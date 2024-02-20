@@ -9,7 +9,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class RedSunEntity extends SunEntity {
@@ -58,10 +57,8 @@ public class RedSunEntity extends SunEntity {
         }
         if (this.following == null && this.getAmount() < 150 && (this.tickCount + this.getId()) % 50 == 0) {
             List<Entity> list = this.level.getEntities(this, this.getBoundingBox().inflate(2.0, 2.0, 2.0));
-            Iterator var2 = list.iterator();
 
-            while(var2.hasNext()) {
-                Entity entity = (Entity)var2.next();
+            for (Entity entity : list) {
                 if (entity instanceof SunEntity && entity.getId() > this.getId()) {
                     this.following = entity;
                     break;

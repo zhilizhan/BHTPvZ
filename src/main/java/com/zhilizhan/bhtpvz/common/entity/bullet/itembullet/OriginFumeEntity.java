@@ -2,19 +2,18 @@ package com.zhilizhan.bhtpvz.common.entity.bullet.itembullet;
 
 import com.hungteen.pvz.common.entity.bullet.itembullet.PVZItemBulletEntity;
 import com.hungteen.pvz.common.entity.plant.toxic.GloomShroomEntity;
+import com.hungteen.pvz.common.entity.zombie.PVZZombieEntity;
 import com.hungteen.pvz.utils.WorldUtil;
 import com.zhilizhan.bhtpvz.client.particle.BHTPvZParticle;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
@@ -33,7 +32,7 @@ public class OriginFumeEntity extends PVZItemBulletEntity {
     }
 
     public OriginFumeEntity(Level worldIn, LivingEntity living) {
-        super((EntityType) BHTPvZEntityTypes.ORIGIN_FUME.get(), worldIn, living);
+        super(BHTPvZEntityTypes.ORIGIN_FUME.get(), worldIn, living);
     }
 
     public void tick() {
@@ -42,7 +41,7 @@ public class OriginFumeEntity extends PVZItemBulletEntity {
             int cnt = Math.max(2, Math.min(5, this.getMaxLiveTick() / this.tickCount));
 
             for(int i = 0; i < cnt; ++i) {
-                WorldUtil.spawnRandomSpeedParticle(this.level, (ParticleOptions) BHTPvZParticle.ORIGINAL_FUME.get(), this.position(), 0.05F);
+                WorldUtil.spawnRandomSpeedParticle(this.level, BHTPvZParticle.ORIGINAL_FUME.get(), this.position(), 0.05F);
             }
         }
 
@@ -54,7 +53,6 @@ public class OriginFumeEntity extends PVZItemBulletEntity {
 
 
     protected void onImpact(HitResult result) {
-        boolean flag = false;
         if (result.getType() == HitResult.Type.ENTITY) {
             Entity target = ((EntityHitResult)result).getEntity();
             if (this.shouldHit(target)) {
@@ -69,7 +67,7 @@ public class OriginFumeEntity extends PVZItemBulletEntity {
         }
 
         this.level.broadcastEntityEvent(this, (byte)3);
-        if (flag || !this.checkLive(result)) {
+        if (!this.checkLive(result)) {
             this.remove();
         }
     }
@@ -86,9 +84,9 @@ public class OriginFumeEntity extends PVZItemBulletEntity {
     private void dealFumeDamage(Entity target) {
         target.hurt(BHTPvZEntityDamageSource.originFume(this, this.getThrower()), this.attackDamage);
         if (!this.level.isClientSide) {
-            ((LivingEntity)target).addEffect(new MobEffectInstance(MobEffects.POISON,120,2));
-            ((LivingEntity)target).addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,60));
-
+            if(target instanceof PVZZombieEntity && random.nextInt(3)==0) {
+                ((LivingEntity) target).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 80));
+            }
         }
 
     }
@@ -102,7 +100,7 @@ public class OriginFumeEntity extends PVZItemBulletEntity {
     }
 
     public ItemStack getItem() {
-        return new ItemStack((ItemLike) BHTPvZItems.ORIGIN_SPORE.get());
+        return new ItemStack(BHTPvZItems.ORIGIN_SPORE.get());
     }
 
 }

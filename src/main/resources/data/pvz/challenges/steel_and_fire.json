@@ -1,0 +1,231 @@
+{
+  "authors": [
+    "susen36"
+  ],
+  "tags": [
+    "overworld"
+  ],
+  "bar_color": "red",
+  "trade_price": 50,
+  "can_trade": true,
+  "trade_weight": 100,
+  "recommend_level": 10,
+  "placement": {
+    "outer": {
+      "min": 1,
+      "max": 8,
+      "ground": true
+    }
+  },
+  "waves": [
+    {
+      "spawns": [
+        {
+          "entity_type": "pvz:ladder_zombie",
+          "spawn_tick": 20,
+          "spawn_amount": {
+            "random": {
+              "min": 6,
+              "max": 7
+            }
+          }
+        },
+        {
+          "entity_type": "pvz:football_zombie",
+          "spawn_tick": 40,
+          "spawn_amount": {
+            "random": {
+              "min": 5,
+              "max": 6
+            }
+          }
+        },
+        {
+          "entity_type": "bhtpvz:red_edge_zombie",
+          "spawn_tick": 50,
+          "nbt":"{steel_and_fire:true}",
+          "spawn_amount": {
+            "random": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        }
+      ],
+      "duration": 2000
+    },
+    {
+      "spawns": [
+        {
+          "entity_type": "pvz:zomboni",
+          "spawn_tick": 30,
+          "spawn_amount": {
+            "random": {
+              "min": 3,
+              "max": 4
+            }
+          }
+        },
+        {
+          "entity_type": "bhtpvz:edgar_090547",
+          "spawn_tick": 40,
+          "spawn_amount": {
+            "random": {
+              "min": 2,
+              "max": 3
+            }
+          }
+        },
+        {
+          "entity_type": "pvz:jack_in_box_zombie",
+          "spawn_tick": 40,
+          "spawn_amount": {
+            "random": {
+              "min": 5,
+              "max": 6
+            }
+          }
+        },
+        {
+          "entity_type": "bhtpvz:red_edge_zombie",
+          "spawn_tick": 50,
+          "nbt":"{steel_and_fire:true}",
+          "spawn_amount": {
+            "random": {
+              "min": 2,
+              "max": 2
+            }
+          }
+        }
+      ],
+      "duration": 4000
+    },
+    {
+      "spawns": [
+        {
+          "entity_type": "pvz:giga_football_zombie",
+          "spawn_tick": 20,
+          "spawn_amount": {
+            "random": {
+              "min": 1,
+              "max": 2
+            }
+          }
+        },
+        {
+          "entity_type": "pvz:screendoor_zombie",
+          "spawn_tick": 30,
+          "spawn_amount": {
+            "random": {
+              "min": 7,
+              "max": 8
+            }
+          }
+        },
+        {
+          "entity_type": "pvz:digger_zombie",
+          "spawn_tick": 40,
+          "spawn_amount": {
+            "random": {
+              "min": 1,
+              "max": 2
+            }
+          }
+        },
+        {
+          "entity_type": "bhtpvz:red_edge_zombie",
+          "spawn_tick": 60,
+          "nbt":"{steel_and_fire:true}",
+          "spawn_amount": {
+            "random": {
+              "min": 3,
+              "max": 3
+            }
+          }
+        }
+      ],
+      "duration": 4500
+    },
+    {
+      "spawns": [
+        {
+          "entity_type": "bhtpvz:steel_pumpkin_zombie",
+          "spawn_tick": 60,
+          "spawn_amount": {
+            "random": {
+              "min": 4,
+              "max": 4
+            }
+          }
+        },
+        {
+          "entity_type": "pvz:lava_zombie",
+          "spawn_tick": 60,
+          "spawn_amount": {
+            "random": {
+              "min": 7,
+              "max": 8
+            }
+          }
+        },
+        {
+          "entity_type": "pvz:jalapeno_zombie",
+          "spawn_tick": 60,
+          "spawn_amount": {
+            "random": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        },
+        {
+          "entity_type": "bhtpvz:red_edge_zombie",
+          "spawn_tick": 50,
+          "nbt":"{steel_and_fire:true}",
+          "spawn_amount": {
+            "random": {
+              "min": 5,
+              "max": 5
+            }
+          }
+        }
+      ],
+      "duration": 5000
+    }
+  ],
+  "rewards": {
+    "unlocks": [
+      "bhtpvz:steel_pumpkin",
+      "bhtpvz:fire_peashooter"
+    ],
+    "items": [
+      {
+        "item": "pvz:pepper",
+        "amount": {
+          "random": {
+            "min": 11,
+            "max": 12
+          }
+        }
+      },
+      {
+        "item": "bhtpvz:steel_pumpkin_enjoy_card",
+        "amount": {
+          "random": {
+            "min": 1,
+            "max": 4
+          }
+        }
+      },
+      {
+        "item": "bhtpvz:fire_peashooter_enjoy_card",
+        "amount": {
+          "random": {
+            "min": 5,
+            "max": 6
+          }
+        }
+      }
+    ]
+  }
+}

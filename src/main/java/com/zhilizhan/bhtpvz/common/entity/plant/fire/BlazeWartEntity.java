@@ -11,11 +11,10 @@ import com.hungteen.pvz.common.misc.sound.SoundRegister;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.hungteen.pvz.utils.enums.PAZAlmanacs;
 import com.mojang.datafixers.util.Pair;
+import com.zhilizhan.bhtpvz.common.impl.BHTPvZSkill;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.level.Level;
 
@@ -24,6 +23,8 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class BlazeWartEntity extends PVZPlantEntity {
+    private final int HEAL_CD = this.getHealCd();
+
     public BlazeWartEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
         super(type, worldIn);
     }
@@ -33,10 +34,20 @@ public class BlazeWartEntity extends PVZPlantEntity {
         this.goalSelector.addGoal(0, new BlazeWartAttackGoal(this));
         this.targetSelector.addGoal(0, new PVZNearestTargetGoal(this, true, false, 3.0F, 3.0F));
     }
+    public boolean hasNetherWart() {
+      return !(this.getHealth() / this.getMaxHealth() < 0.25F);
+    }
 
+    public boolean hurt(DamageSource source, float amount) {
+        if(!this.hasNetherWart()){
+            return super.hurt(source, amount*0.25F);
+        }
+        return super.hurt(source, amount);
+    }
     protected void normalPlantTick() {
         super.normalPlantTick();
         if (!this.level.isClientSide && this.isPlantInSuperMode() && this.getSuperTime() % 5 == 0) {
+            this.heal(this.getMaxHealth()-this.getHealth());
             float range = 5.0F;
             EntityUtil.getTargetableEntities(this, EntityUtil.getEntityAABB(this, range, range)).forEach((target) -> {
                 target.hurt(PVZEntityDamageSource.normal(this), this.getAttackDamage() * 5.0F);
@@ -44,9 +55,11 @@ public class BlazeWartEntity extends PVZPlantEntity {
                 target.setSecondsOnFire(5);
             });
         }
-
+        if(!this.hasNetherWart() &&this.getExistTick() % HEAL_CD == 0){
+            this.heal(4);
+        }
     }
-
+    public int getHealCd(){return (int) this.getSkillValue(BHTPvZSkill.WART_HEAL_CD);}
     public void attackTarget(LivingEntity target) {
         EntityUtil.playSound(this, SoundRegister.SWING.get());
         target.hurt(PVZEntityDamageSource.normal(this), this.getAttackDamage());
@@ -57,9 +70,11 @@ public class BlazeWartEntity extends PVZPlantEntity {
         return 80;
     }
     public boolean canPAZTarget(Entity entity) {
-        return entity instanceof BalloonZombieEntity ? false : super.canPAZTarget(entity);
+        return !(entity instanceof BalloonZombieEntity) && super.canPAZTarget(entity);
     }
-
+    public boolean isNoAi() {
+        return super.isNoAi()|| !this.hasNetherWart();
+    }
     public void addAlmanacEntries(List<Pair<IAlmanacEntry, Number>> list) {
         super.addAlmanacEntries(list);
         list.addAll(Arrays.asList(Pair.of(PAZAlmanacs.ATTACK_DAMAGE, this.getAttackDamage()), Pair.of(PAZAlmanacs.ATTACK_CD, this.getAttackCD())));
@@ -76,6 +91,11 @@ public class BlazeWartEntity extends PVZPlantEntity {
     public int getSuperTimeLength() {
         return 120;
     }
+    @Override
+    public EntityDimensions getDimensions(Pose poseIn) {
+        return EntityDimensions.scalable(0.75f, 0.8f);
+    }
+
 
     public IPlantType getPlantType() {
         return  BHTPvZPlants. BLAZE_WART;
@@ -91,7 +111,7 @@ public class BlazeWartEntity extends PVZPlantEntity {
 
         public boolean canUse() {
             LivingEntity living = this.attacker.getTarget();
-            if (!EntityUtil.isEntityValid(living)) {
+            if (!EntityUtil.isEntityValid(living) || !this.attacker.hasNetherWart()) {
                 return false;
             } else {
                 return this.attacker.canSee(living) && EntityUtil.getAttackRange(this.attacker, living, 3.0) >= EntityUtil.getNearestDistance(this.attacker, living);
@@ -100,7 +120,7 @@ public class BlazeWartEntity extends PVZPlantEntity {
 
         public boolean canContinueToUse() {
             LivingEntity living = this.attacker.getTarget();
-            if (!EntityUtil.isEntityValid(living)) {
+            if (!EntityUtil.isEntityValid(living) || !this.attacker.hasNetherWart()) {
                 return false;
             } else {
                 return this.attacker.canSee(living) && EntityUtil.getAttackRange(this.attacker, living, 3.0) >= EntityUtil.getNearestDistance(this.attacker, living);

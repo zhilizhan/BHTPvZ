@@ -17,8 +17,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
-import java.util.Iterator;
-
 @Mixin(value = PuffShroomEntity.class,remap = false)
 public abstract class PuffshroomEntityMixin extends PlantShooterEntity {
      int  growTime = 8000;
@@ -54,6 +52,10 @@ public abstract class PuffshroomEntityMixin extends PlantShooterEntity {
     protected int getCurrentDamage() {
         return this.isInGrowStage(3) ? this.getDamageInStage(3) : (this.isInGrowStage(2) ? this.getDamageInStage(2) : this.getDamageInStage(1));
     }
+    /**
+     * @author
+     * @reason
+     */
     @Overwrite
     public void shootBullet() {
         if (this.isPlantInSuperMode()) {
@@ -63,17 +65,16 @@ public abstract class PuffshroomEntityMixin extends PlantShooterEntity {
             this.refreshDimensions();
         }
     }
+    /**
+     * @author
+     * @reason
+     */
     @Overwrite
     public void startSuperMode(boolean first) {
         if (first) {
             int cnt = 1;
-            boolean range = true;
-            Iterator var4 = this.level.getEntitiesOfClass(PuffShroomEntity.class, EntityUtil.getEntityAABB(this, 20.0, 20.0), (shroomx) -> {
-                return this.canSuperTogether(shroomx);
-            }).iterator();
 
-            while(var4.hasNext()) {
-                PuffShroomEntity shroom = (PuffShroomEntity)var4.next();
+            for (PuffShroomEntity shroom : this.level.getEntitiesOfClass(PuffShroomEntity.class, EntityUtil.getEntityAABB(this, 20.0, 20.0), this::canSuperTogether)) {
                 if (shroom.canStartSuperMode()) {
                     shroom.startSuperMode(false);
                     ++cnt;
@@ -84,7 +85,7 @@ public abstract class PuffshroomEntityMixin extends PlantShooterEntity {
             }
 
             Player player = EntityUtil.getEntityOwner(this.level, this);
-            if (player != null && player instanceof ServerPlayer) {
+            if (player instanceof ServerPlayer) {
                 EntityEffectAmountTrigger.INSTANCE.trigger((ServerPlayer)player, this, cnt);
             }
         if (!this.isInGrowStage(3)) {

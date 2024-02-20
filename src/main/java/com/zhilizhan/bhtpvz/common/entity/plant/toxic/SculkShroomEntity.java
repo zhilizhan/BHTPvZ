@@ -7,7 +7,6 @@ import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.entity.bullet.SonicEntity;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
@@ -29,12 +28,12 @@ public class SculkShroomEntity extends FumeShroomEntity {
             now += 45.0F;
         }
 
-        EntityUtil.playSound(this, (SoundEvent) SoundEvents.LODESTONE_HIT);
+        EntityUtil.playSound(this, SoundEvents.GENERIC_EXPLODE);
     }
 
     protected AbstractBulletEntity createBullet() {
         SonicEntity sonic = new SonicEntity(this.level, this);
-        sonic.setGlowing(true);
+        sonic.setInvisible(true);
         return sonic;
     }
 
@@ -47,7 +46,7 @@ public class SculkShroomEntity extends FumeShroomEntity {
     }
 
     public int getShootCD() {
-        return 40;
+        return 60;
     }
 
     public float getAttackDamage() {

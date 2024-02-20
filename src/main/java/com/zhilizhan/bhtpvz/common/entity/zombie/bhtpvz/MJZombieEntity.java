@@ -22,10 +22,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.level.Level;
 
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class MJZombieEntity extends PVZZombieEntity {
     private static final EntityDataAccessor<Integer> SUMMON_TIME;
@@ -61,7 +58,7 @@ public class MJZombieEntity extends PVZZombieEntity {
 
     public void tickDance() {
         for (int i = 0; i < 4; ++i) {
-            ((Optional) this.Dancers.get(i)).ifPresent((dancer) -> {
+            this.Dancers.get(i).ifPresent((dancer) -> {
             });
         }
 
@@ -69,15 +66,19 @@ public class MJZombieEntity extends PVZZombieEntity {
 
     public void summonEmptyDancers() {
         for (int i = 0; i < 4; ++i) {
-            if (!((Optional) this.Dancers.get(i)).isPresent() && this.summonCnt < this.getMaxSummonCnt()) {
-                DancerBackupEntity dancer = (DancerBackupEntity) ((EntityType) BHTPvZEntityTypes.DANCER_BACKUP_ZOMBIE.get()).create(this.level);
-                BlockPos pos = WorldUtil.getSuitableHeightPos(this.level, this.blockPosition().offset((double) POS_OFFSET[i][0], 0.0, (double) POS_OFFSET[i][1]));
-                dancer.setDancingOwner(this);
-                dancer.setZombieRising();
-                ZombieUtil.copySummonZombieData(this, dancer);
-                this.setDancer(i, dancer);
-                ++this.summonCnt;
-                EntityUtil.onEntitySpawn(this.level, dancer, pos);
+            if (!this.Dancers.get(i).isPresent() && this.summonCnt < this.getMaxSummonCnt()) {
+                DancerBackupEntity dancer = (DancerBackupEntity) ((EntityType<?>) BHTPvZEntityTypes.DANCER_BACKUP_ZOMBIE.get()).create(this.level);
+                BlockPos pos = WorldUtil.getSuitableHeightPos(this.level, this.blockPosition().offset(POS_OFFSET[i][0], 0.0, POS_OFFSET[i][1]));
+                if (dancer != null) {
+                    dancer.setDancingOwner(this);
+                    dancer.setZombieRising();
+
+                    ZombieUtil.copySummonZombieData(this, dancer);
+
+                    this.setDancer(i, dancer);
+                    ++this.summonCnt;
+                    EntityUtil.onEntitySpawn(this.level, dancer, pos);
+                }
                 this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 5, false, false));
             }
         }
@@ -89,7 +90,7 @@ public class MJZombieEntity extends PVZZombieEntity {
     }
 
     protected void updateSpeed() {
-        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.getAttackTime() > 0 ? 0.0 : (double) this.getWalkSpeed());
+        Objects.requireNonNull(this.getAttribute(Attributes.MOVEMENT_SPEED)).setBaseValue(this.getAttackTime() > 0 ? 0.0 : (double) this.getWalkSpeed());
     }
 
     public float getWalkSpeed() {
@@ -98,11 +99,11 @@ public class MJZombieEntity extends PVZZombieEntity {
 
     protected boolean hasEmptyPlace() {
         for (int i = 0; i < 4; ++i) {
-            if (!((Optional) this.Dancers.get(i)).isPresent()) {
+            if (!this.Dancers.get(i).isPresent()) {
                 return true;
             }
 
-            if (!EntityUtil.isEntityValid((Entity) ((Optional) this.Dancers.get(i)).get())) {
+            if (!EntityUtil.isEntityValid((Entity) ((Optional<?>) this.Dancers.get(i)).orElse(null))) {
                 this.Dancers.set(i, Optional.empty());
                 return true;
             }
@@ -120,13 +121,9 @@ public class MJZombieEntity extends PVZZombieEntity {
 
     private void setDancer(int pos, Entity entity) {
         if (EntityUtil.isEntityValid(entity) && entity instanceof DancerBackupEntity) {
-            this.Dancers.set(pos, Optional.ofNullable((DancerBackupEntity) entity));
+            this.Dancers.set(pos, Optional.of((DancerBackupEntity) entity));
         }
 
-    }
-
-    public boolean isDancing() {
-        return this.getAttackTime() > 0;
     }
 
     public int getMaxSummonCnt() {
@@ -170,8 +167,8 @@ public class MJZombieEntity extends PVZZombieEntity {
         CompoundTag nbt = new CompoundTag();
 
         for (int i = 0; i < 4; ++i) {
-            if (((Optional) this.Dancers.get(i)).isPresent()) {
-                DancerBackupEntity dancer = (DancerBackupEntity) ((Optional) this.Dancers.get(i)).get();
+            if (this.Dancers.get(i).isPresent()) {
+                DancerBackupEntity dancer = (DancerBackupEntity) ((Optional<?>) this.Dancers.get(i)).orElse(null);
                 if (EntityUtil.isEntityValid(dancer)) {
                     nbt.putInt("dancer_" + i, dancer.getId());
                 }
@@ -182,7 +179,7 @@ public class MJZombieEntity extends PVZZombieEntity {
     }
 
     public int getSummonTime() {
-        return (Integer) this.entityData.get(SUMMON_TIME);
+        return this.entityData.get(SUMMON_TIME);
     }
 
     public void setSummonTime(int time) {

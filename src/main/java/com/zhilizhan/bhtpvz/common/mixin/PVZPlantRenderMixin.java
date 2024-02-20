@@ -20,6 +20,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 @OnlyIn(Dist.CLIENT)
 @Mixin(value = PVZPlantRender.class,remap = false)
 public abstract class PVZPlantRenderMixin<T extends PVZPlantEntity> extends MobRenderer<T, EntityModel<T>> {
+
     public PVZPlantRenderMixin(EntityRenderDispatcher arg, EntityModel<T> arg2, float f) {
         super(arg, arg2, f);
     }
@@ -28,14 +29,19 @@ public abstract class PVZPlantRenderMixin<T extends PVZPlantEntity> extends MobR
     protected void addPlantLayers() {
         this.addLayer(new SteelPumpkinArmorLayer<>(this));
     }*/
-    @Overwrite
+/**
+ * @author
+ * @reason
+ */
+@Overwrite
         protected void addPlantLayers() {
-       this.addLayer(new EnergyLayer<>(this));
-       this.addLayer(new CharmLayer<>(this));
-       this.addLayer(new PumpkinArmorLayer<>(this));
-       this.addLayer(new SunLightLayer<>(this));
-       this.addLayer(new HealLightLayer<>(this));
-       this.addLayer(new PlantLadderLayer<>(this));
-       this.addLayer(new SteelPumpkinArmorLayer<>(this));
-}
+        this.addLayer(new EnergyLayer<>(this));
+        this.addLayer(new CharmLayer<>(this));
+        this.addLayer(new PumpkinArmorLayer<>(this));
+        this.addLayer(new SunLightLayer<>(this));
+        this.addLayer(new HealLightLayer<>(this));
+        this.addLayer(new PlantLadderLayer<>(this));
+        this.addLayer(new SteelPumpkinArmorLayer<>(this));
+    }
+
 }

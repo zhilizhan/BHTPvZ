@@ -5,7 +5,7 @@ import com.hungteen.pvz.common.entity.bullet.AbstractBulletEntity;
 import com.hungteen.pvz.common.entity.plant.appease.PeaShooterEntity;
 import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.utils.MathUtil;
-import com.zhilizhan.bhtpvz.common.entity.bullet.StonePeaEntity;
+import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.StonePeaEntity;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;

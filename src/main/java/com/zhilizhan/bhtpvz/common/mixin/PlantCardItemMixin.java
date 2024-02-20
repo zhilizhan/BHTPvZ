@@ -57,6 +57,10 @@ public abstract class PlantCardItemMixin extends SummonCardItem{
     private  static ItemStack getPlantStack(ItemStack stack) {
         return ImitaterCardItem.getDoubleStack(stack).getSecond();
     }
+    /**
+     * @author
+     * @reason
+     */
     @Nullable
     @Overwrite
     public static BlockState getBlockState(Player player, IPlantType plant) {
@@ -66,6 +70,10 @@ public abstract class PlantCardItemMixin extends SummonCardItem{
                                 (plant == BHTPvZPlants.POT_GRASS ? ((PotGrassBlock)BHTPvZBlocks.POT_GRASS.get()).getStateForPlacement(player):null)));
     }
 
+    /**
+     * @author
+     * @reason
+     */
     @Nullable
     @Overwrite
     public static BlockState getBlockState(Direction direction, IPlantType plant) {
@@ -135,6 +143,10 @@ public abstract class PlantCardItemMixin extends SummonCardItem{
         }
 
     }
+    /**
+     * @author SuSen36
+     * @reason
+     */
     @Overwrite
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand handIn) {
         ItemStack heldStack = getHeldStack(player.getItemInHand(handIn));
@@ -156,7 +168,6 @@ public abstract class PlantCardItemMixin extends SummonCardItem{
                 if (world.getFluidState(pos.below()).getType() == Fluids.WATER && raytraceResult.getDirection() == Direction.UP && world.isEmptyBlock(pos)||world.getBlockState(pos.below()).is(BHTPvZBlocks.WATER_POT.get())&& raytraceResult.getDirection() == Direction.UP && world.isEmptyBlock(pos)) {
                     if (!plantType.isWaterPlant()) {
                         this.notifyPlayerAndCD(player, heldStack, PlacementErrors.GROUND_ERROR);
-                        return InteractionResultHolder.fail(heldStack);
                     } else {
                         if (plantType.getPlantBlock().isPresent()) {
                             if (checkSunAndPlaceBlock(player, heldStack, plantStack, cardItem, pos)) {
@@ -167,8 +178,8 @@ public abstract class PlantCardItemMixin extends SummonCardItem{
                             return InteractionResultHolder.success(heldStack);
                         }
 
-                        return InteractionResultHolder.fail(heldStack);
                     }
+                    return InteractionResultHolder.fail(heldStack);
                 } else {
                     return InteractionResultHolder.pass(heldStack);
                 }
@@ -176,6 +187,10 @@ public abstract class PlantCardItemMixin extends SummonCardItem{
         }
 
     }
+    /**
+     * @author
+     * @reason
+     */
     @Overwrite
     public InteractionResult useOn(UseOnContext context) {
         Level world = context.getLevel();
@@ -192,7 +207,7 @@ public abstract class PlantCardItemMixin extends SummonCardItem{
         } else if (plantType == null) {
             PVZMod.LOGGER.error("Plant Card Use : Error Card !");
             return InteractionResult.FAIL;
-        } else if (player.getCooldowns().isOnCooldown(heldStack.getItem())) {
+        } else if (player!=null&&player.getCooldowns().isOnCooldown(heldStack.getItem())) {
             this.notifyPlayerAndCD(player, heldStack, PlacementErrors.CD_ERROR);
             return InteractionResult.FAIL;
         } else if (plantType.isOuterPlant()) {
@@ -200,7 +215,7 @@ public abstract class PlantCardItemMixin extends SummonCardItem{
             return InteractionResult.FAIL;
         }
          else {
-            if (plantType.isWaterPlant()) {
+            if (plantType.isWaterPlant()&&player!=null) {
                   return this.use(world, player, hand).getResult();
 
             }
@@ -228,7 +243,7 @@ public abstract class PlantCardItemMixin extends SummonCardItem{
                             spawnPos = pos.relative(context.getClickedFace());
                         }
 
-                        if (checkSunAndSummonPlant(player, heldStack, plantStack, cardItem, spawnPos, (l) -> {
+                        if (player != null && checkSunAndSummonPlant(player, heldStack, plantStack, cardItem, spawnPos, (l) -> {
                         })) {
                             return InteractionResult.SUCCESS;
                         }

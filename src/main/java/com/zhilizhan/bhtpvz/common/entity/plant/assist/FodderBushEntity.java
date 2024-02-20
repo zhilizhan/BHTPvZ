@@ -11,7 +11,6 @@ import com.hungteen.pvz.utils.EntityUtil;
 import com.hungteen.pvz.utils.interfaces.ICanAttract;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -57,7 +56,7 @@ public class FodderBushEntity extends PVZPlantEntity implements ICanAttract {
                 ((ICanBeCharmed)source.getEntity()).onCharmedBy(this);
             }
 
-            EntityUtil.playSound(this, (SoundEvent) SoundRegister.HYPNO.get());
+            EntityUtil.playSound(this, SoundRegister.HYPNO.get());
         }
 
     public boolean canStartSuperMode() {

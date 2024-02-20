@@ -20,15 +20,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import javax.annotation.Nullable;
 import java.util.List;
-import java.util.UUID;
 
 public class NutBowlingEntity extends PlantCloserEntity {
 
@@ -64,7 +61,7 @@ public class NutBowlingEntity extends PlantCloserEntity {
             if (this.tickCount <= 1 && !this.playSpawnSound) {
                 EntityUtil.playSound(this, SoundRegister.BOWLING.get());
                 this.playSpawnSound = true;
-                this.ownerPlayer = this.level.getPlayerByUUID((UUID)this.getOwnerUUID().get());
+                this.ownerPlayer = this.level.getPlayerByUUID(this.getOwnerUUID().orElse(null));
                 if(this.ownerPlayer!=null){
                 Direction direction = ownerPlayer.getDirection();
                 this.setDirection(direction);
@@ -129,9 +126,7 @@ public class NutBowlingEntity extends PlantCloserEntity {
     protected void tickCollision() {
         if (!this.level.isClientSide) {
             if (this.bowlingTick <= 0) {
-                List<Entity> list = this.level.getEntitiesOfClass(Entity.class, this.getBoundingBox(), (target) -> {
-                    return EntityUtil.canTargetEntity(this.ownerPlayer, target);
-                });
+                List<Entity> list = this.level.getEntitiesOfClass(Entity.class, this.getBoundingBox(), (target) -> EntityUtil.canTargetEntity(this.ownerPlayer, target));
                 if (!list.isEmpty()) {
                     this.dealDamageTo(list.get(0));
                     this.changeDiretion();
@@ -148,7 +143,7 @@ public class NutBowlingEntity extends PlantCloserEntity {
         entity.hurt(PVZEntityDamageSource.normal(this, this.ownerPlayer).setCount(this.hitCount), 30.0F);
         EntityUtil.playSound(this, SoundRegister.BOWLING_HIT.get());
         Player player = this.ownerPlayer;
-        if (player != null && player instanceof ServerPlayer) {
+        if (player instanceof ServerPlayer) {
             EntityEffectAmountTrigger.INSTANCE.trigger((ServerPlayer)player, this, this.hitCount);
         }
 
@@ -183,21 +178,13 @@ public class NutBowlingEntity extends PlantCloserEntity {
     }
 
 
-    public void shoot(Player player) {
-        Direction direction = player.getDirection();
-        this.setDirection(direction);
-        this.yRot = direction.toYRot();
-    }
-
     protected boolean shouldHit(Entity target) {
         return EntityUtil.canTargetEntity(this.ownerPlayer, target);
     }
 
-    @Nullable
-    protected EntityHitResult rayTraceEntities(Vec3 startVec, Vec3 endVec) {
-        return ProjectileUtil.getEntityHitResult(this.level, this, startVec, endVec, this.getBoundingBox().expandTowards(this.getDeltaMovement()).inflate(1.0), (entity) -> {
-            return entity.isPickable() && this.shouldHit(entity) && (this.hitEntities == null || !this.hitEntities.contains(entity.getId()));
-        });
+
+    protected void rayTraceEntities(Vec3 startVec, Vec3 endVec) {
+        ProjectileUtil.getEntityHitResult(this.level, this, startVec, endVec, this.getBoundingBox().expandTowards(this.getDeltaMovement()).inflate(1.0), (entity) -> entity.isPickable() && this.shouldHit(entity) && (this.hitEntities == null || !this.hitEntities.contains(entity.getId())));
     }
 
 

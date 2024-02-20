@@ -35,14 +35,8 @@ public class RotateRadishEntity extends PVZPlantEntity {
         this.targetSelector.addGoal(0, new PVZNearestTargetGoal(this, false, false, 3.0F, 3.0F));
 
     }
-    @Override
-    public float getLife() {
-        return 80;
-    }
 
-
-
-    public void performAttack(LivingEntity target1) {
+    public void performAttack() {
         for (int i = 0; i < 5; ++i) {
             EntityUtil.spawnParticle(this, 7);
         }
@@ -58,7 +52,7 @@ public class RotateRadishEntity extends PVZPlantEntity {
 
             ((LivingEntity)target).hurtDir = (float)(Mth.atan2(d0, d1) * 57.2957763671875 - (double)this.yRot);
 
-             target.hurt(PVZEntityDamageSource.normal(this), this.getAttackDamage());
+            target.hurt(PVZEntityDamageSource.normal(this), this.getAttackDamage());
             ((LivingEntity)target).knockback(2, d1, d0);
         });
         EntityUtil.playSound(this, (SoundEvent) SoundRegister.SWING.get());
@@ -69,7 +63,15 @@ public class RotateRadishEntity extends PVZPlantEntity {
         if (!this.level.isClientSide && this.isPlantInSuperMode() && this.getSuperTime() % 5 == 0) {
             float range = 5.0F;
             EntityUtil.getTargetableEntities(this, EntityUtil.getEntityAABB(this, range, range)).forEach((target) -> {
+                double d1 = target.getX() - this.getX();
+
+                double d0;
+                for(d0 = target.getZ() - this.getZ(); d1 * d1 + d0 * d0 < 1.0E-4; d0 = (Math.random() - Math.random()) * 0.01) {
+                    d1 = (Math.random() - Math.random()) * 0.01;
+                }
+
                 target.hurt(PVZEntityDamageSource.normal(this), this.getAttackDamage() * 5.0F);
+                ((LivingEntity)target).knockback(0.5f, d1, d0);
                 EntityUtil.spawnParticle(target, 7);
                 EntityUtil.playSound(this, (SoundEvent)SoundRegister.SWING.get());
             });
@@ -122,8 +124,7 @@ public class RotateRadishEntity extends PVZPlantEntity {
         }
 
         public void tick() {
-            LivingEntity target = this.attacker.getTarget();
-            this.attacker.getLookControl().setLookAt(target, 30.0F, 30.0F);
+            LivingEntity target = this.attacker.getTarget();;
             if (this.attacker.getAttackTime() == 0) {
                 if (this.attacker.getAttackDamage() >= EntityUtil.getCurrentHealth(target)) {
                     this.attacker.setAttackTime(1);
@@ -133,14 +134,14 @@ public class RotateRadishEntity extends PVZPlantEntity {
             } else if (this.attacker.getAttackTime() > 0) {
                 this.attacker.setAttackTime(this.attacker.getAttackTime() + 1);
                 if (this.attacker.getAttackTime() == this.attacker.getAttackCD() * 4 / 5) {
-                    this.attacker.performAttack(target);
+                    this.attacker.performAttack();
                 } else if (this.attacker.getAttackTime() >= this.attacker.getAttackCD()) {
                     this.attacker.setAttackTime(0);
                 }
             } else {
                 this.attacker.setAttackTime(this.attacker.getAttackTime() - 1);
                 if (-this.attacker.getAttackTime() == this.attacker.getAttackCD() * 4 / 5) {
-                    this.attacker.performAttack(target);
+                    this.attacker.performAttack();
                 } else if (-this.attacker.getAttackTime() >= this.attacker.getAttackCD()) {
                     this.attacker.setAttackTime(0);
                 }
@@ -154,5 +155,5 @@ public class RotateRadishEntity extends PVZPlantEntity {
     public IPlantType getPlantType() {
         return BHTPvZPlants.ROTATE_RADISH;
 
-}}
-
+    }
+}

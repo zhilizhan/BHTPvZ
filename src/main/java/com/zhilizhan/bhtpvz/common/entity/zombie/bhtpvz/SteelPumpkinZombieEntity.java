@@ -18,17 +18,17 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
 
+import java.util.Objects;
+
 public class SteelPumpkinZombieEntity extends AbstractZombotanyEntity implements IHasMetal {
     public SteelPumpkinZombieEntity(EntityType<? extends PathfinderMob> type, Level level) {
         super(type, level);
     }
 
-
-
     @Override
     protected void initAttributes() {
         super.initAttributes();
-        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(ZombieUtil.WALK_SLOW);
+        Objects.requireNonNull(this.getAttribute(Attributes.MOVEMENT_SPEED)).setBaseValue(ZombieUtil.WALK_SLOW);
     }
 
     @Override
