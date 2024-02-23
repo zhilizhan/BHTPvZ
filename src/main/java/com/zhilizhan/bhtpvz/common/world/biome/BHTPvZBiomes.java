@@ -24,7 +24,6 @@ public class BHTPvZBiomes {
 
     public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, BHTPvZ.MOD_ID);
     public static final RegistryObject<Biome> NIGHT = BIOMES.register("night", BHTPvZBiomes::nightBiome);
-    public static final RegistryObject<Biome> BEWILDER_GARDEN = BIOMES.register("bewilder_garden", BHTPvZBiomes::BewilderGardenBiome);
     public static final ResourceKey<Biome> NIGHT_KEY = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(BHTPvZ.MOD_ID, "night"));
     public static final ResourceKey<Biome> BEWILDER_GARDEN_KEY = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(BHTPvZ.MOD_ID, "bewilder_garden"));
 
@@ -47,6 +46,7 @@ public class BHTPvZBiomes {
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         spawnSettings.setPlayerCanSpawn();
         spawnSettings.addMobCharge(EntityRegister.GIGA_TOMB_STONE.get(),1,0);//把墓碑Ban了
+        spawnSettings.addMobCharge(BHTPvZEntityTypes.ORIGIN_MOOB.get(),5,3);//起源蘑菇牛
         spawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.MOOSHROOM, 8, 4, 8));
         BiomeGenerationSettings.Builder biomeGenerationSettings = (new BiomeGenerationSettings.Builder()).surfaceBuilder(SurfaceBuilders.MYCELIUM);
         biomeGenerationSettings.addStructureStart(StructureFeatures.STRONGHOLD); //生成末地传送门
@@ -57,20 +57,5 @@ public class BHTPvZBiomes {
         biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BHTPvZFeatures.PATCH_TOXIC_SHROOM); //生成孢子
         biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BHTPvZFeatures.PATCH_QUESTION_MARK_POT); //生成问号罐
         return biome(Biome.BiomeCategory.PLAINS, Biome.Precipitation.RAIN, 0.125f, 0.25f, 0.8f, 0.4f, effects.build(), spawnSettings.build(), biomeGenerationSettings.build());
-    }
-
-    public static Biome BewilderGardenBiome() {
-        BiomeSpecialEffects.Builder effects = new BiomeSpecialEffects.Builder().fogColor(0xF0FFF0).waterColor(0xF0FFF0).waterFogColor(0x8A8997).skyColor(0xF0FFF0).foliageColorOverride(0x66CDAA).grassColorOverride(0x66CDAA).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS);
-        MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
-        spawnSettings.setPlayerCanSpawn();
-        spawnSettings.addMobCharge(EntityRegister.GIGA_TOMB_STONE.get(),1,0);//把墓碑Ban了
-        spawnSettings.addMobCharge(BHTPvZEntityTypes.ORIGIN_MOOB.get(),5,3);//蘑菇牛
-        BiomeGenerationSettings.Builder biomeGenerationSettings = (new BiomeGenerationSettings.Builder()).surfaceBuilder(SurfaceBuilders.GRASS);
-        biomeGenerationSettings.addStructureStart(StructureFeatures.STRONGHOLD); //生成末地传送门
-        BiomeDefaultFeatures.addBadlandGrass(biomeGenerationSettings); //杂草
-        BiomeDefaultFeatures.addDefaultFlowers(biomeGenerationSettings); //生成花
-        BiomeDefaultFeatures.addDefaultCarvers(biomeGenerationSettings); //生成矿洞和峡谷
-        BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings); //生成矿石
-       return biome(Biome.BiomeCategory.PLAINS, Biome.Precipitation.RAIN, 0.125f, 0.25f, 0.8f, 0.4f, effects.build(), spawnSettings.build(), biomeGenerationSettings.build());
     }
 }
