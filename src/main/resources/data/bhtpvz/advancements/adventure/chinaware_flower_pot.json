@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "bhtpvz:hammer"
+    },
+    "title": {
+      "translate": "advancements.chinaware_flower_pot.title"
+    },
+    "description": {
+      "translate": "advancements.chinaware_flower_pot.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "chinaware_flower_pot": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 0
+  },
+  "parent": "minecraft:adventure/root"
+}

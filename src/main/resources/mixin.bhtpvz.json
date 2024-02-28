@@ -5,6 +5,7 @@
   "refmap": "bhtpvz.refmap.json",
   "mixins": [
     "EntityWroughtnautMixin",
+    "PlantCardItemMixin",
     "PlayerEventHandlerMixin"
   ],
   "client": [

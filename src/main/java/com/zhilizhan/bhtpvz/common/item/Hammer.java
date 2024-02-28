@@ -42,6 +42,7 @@ public class Hammer extends TieredItem {
         }
         return InteractionResult.SUCCESS;
     }
+
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> textComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, world, textComponents, tooltipFlag);
         textComponents.add((new TranslatableComponent("tooltip.bhtpvz.hammer.use")).withStyle(ChatFormatting.GOLD));

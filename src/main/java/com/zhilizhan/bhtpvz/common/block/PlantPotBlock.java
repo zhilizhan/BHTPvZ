@@ -37,9 +37,7 @@ public class PlantPotBlock extends AbstractFacingBlock {
             level.removeBlock(pos, false);
             //植物
             level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(plant.getItem())));
-
         }
-
         return InteractionResult.SUCCESS;
     }
 

@@ -35,6 +35,7 @@ public class BHTPvZBlocks {
     public static final RegistryObject<Block> CHILI = BLOCKS.register("chili", ()-> new ChiliBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP))); // 辣椒作物
     public static final RegistryObject<Block> GARLIC = BLOCKS.register("garlic", ()-> new GarlicBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP))); // 大蒜作物
     public static final RegistryObject<Block> DECOMPOSITION_STAGE = BLOCKS.register("decomposition_stage", ()-> new Block(BlockBehaviour.Properties.of(Material.STONE).harvestLevel(2).strength(2.0f, 6.0f).sound(SoundType.STONE))); // 分解台
+    public static final RegistryObject<ChinaWareFlowerPotBlock> CHINAWARE_FLOWER_POT = BLOCKS.register("chinaware_flower_pot", ChinaWareFlowerPotBlock::new);
 
     private static Boolean always(BlockState state, BlockGetter blockGetter, BlockPos pos) {
         return true;
