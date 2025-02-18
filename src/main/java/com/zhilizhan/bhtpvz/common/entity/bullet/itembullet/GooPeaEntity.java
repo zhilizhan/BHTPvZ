@@ -5,24 +5,25 @@ import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.effect.BHTPvZMobEffects;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.ItemSupplier;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IRendersAsItem;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
 import java.util.Optional;
 
-@OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
+@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
 public class GooPeaEntity extends BHTPvZPeaEntity{
-    public GooPeaEntity(EntityType<?> type, Level worldIn) {
+    public GooPeaEntity(EntityType<?> type, World worldIn) {
         super(type, worldIn);
     }
-    public GooPeaEntity(Level worldIn, LivingEntity shooter) {
+    public GooPeaEntity(World worldIn, LivingEntity shooter) {
         super(BHTPvZEntityTypes.GOO_PEA.get(), worldIn, shooter);
     }
 
@@ -32,9 +33,10 @@ public class GooPeaEntity extends BHTPvZPeaEntity{
         source.addEffect(this.getPoisonEffect().orElse(null));
         target.hurt(source, damage);
     }
-    public Optional<MobEffectInstance> getPoisonEffect() {
-        return Optional.of(new MobEffectInstance(BHTPvZMobEffects.GOO_POISON.get(), 100, 0, false, false));
+    public Optional<EffectInstance> getPoisonEffect() {
+        return Optional.of(new EffectInstance(BHTPvZMobEffects.GOO_POISON.get(), 100, 0, false, false));
     }
+    @Nonnull
     @Override
     public ItemStack getItem() {
         return  new ItemStack(BHTPvZItems.GOO_PEA.get());

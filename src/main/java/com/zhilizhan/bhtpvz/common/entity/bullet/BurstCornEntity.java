@@ -5,12 +5,12 @@ import com.hungteen.pvz.common.potion.EffectRegister;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -19,10 +19,10 @@ public class BurstCornEntity extends CornEntity {
     protected Random random;
     private Entity attackEntity = null;
 
-    public BurstCornEntity(EntityType<?> type, Level worldIn) {
+    public BurstCornEntity(EntityType<?> type, World worldIn) {
         super(type, worldIn);
     }
-    public BurstCornEntity(Level worldIn, LivingEntity shooter) {
+    public BurstCornEntity(World worldIn, LivingEntity shooter) {
         super(BHTPvZEntityTypes.BURST_CORN.get(), worldIn);
     }
 
@@ -30,7 +30,7 @@ public class BurstCornEntity extends CornEntity {
             PVZEntityDamageSource source = BHTPvZEntityDamageSource.burst_corn(this, this.getThrower());
             target.setSecondsOnFire(3);
             target.hurt(source, this.getAttackDamage());
-          if(((LivingEntity) target).hasEffect(EffectRegister.BUTTER_EFFECT.get())){
+          if(target instanceof LivingEntity && ((LivingEntity)target).hasEffect(EffectRegister.BUTTER_EFFECT.get())){
               setSecondsOnFire(3);
           }
         this.attackEntity = target;
@@ -46,7 +46,7 @@ public class BurstCornEntity extends CornEntity {
         EntityUtil.getTargetableEntities(this.getOwnerOrSelf(), EntityUtil.getEntityAABB(this, range, range)).forEach((entity) -> {
             if (!entity.is(this.attackEntity) && this.shouldHit(entity)) {
                 PVZEntityDamageSource source = BHTPvZEntityDamageSource.burst_corn(this, this.getThrower());
-                source.addEffect(new MobEffectInstance((MobEffect) EffectRegister.BUTTER_EFFECT.get(), 60, 1, false, false));
+                source.addEffect(new EffectInstance( EffectRegister.BUTTER_EFFECT.get(), 60, 1, false, false));
                     entity.hurt(source, this.getAttackDamage());
             }
 
@@ -55,13 +55,9 @@ public class BurstCornEntity extends CornEntity {
             EntityUtil.spawnParticle(this,0);
         }
 
-        EntityUtil.playSound(this, (SoundEvent) SoundEvents.GENERIC_EXPLODE);
+        EntityUtil.playSound(this, SoundEvents.GENERIC_EXPLODE);
     }
 
-
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return EntityDimensions.scalable(0.6F, 0.6F);
-    }
 
 }
 

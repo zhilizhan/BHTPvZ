@@ -3,26 +3,22 @@ package com.zhilizhan.bhtpvz.common.entity.plant.appease;
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.entity.bullet.AbstractBulletEntity;
 import com.hungteen.pvz.common.entity.plant.appease.PeaShooterEntity;
-import com.hungteen.pvz.common.impl.SkillTypes;
-import com.hungteen.pvz.utils.MathUtil;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.StonePeaEntity;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.EntityType;
+import net.minecraft.world.World;
 
 public class PrimalPeaShooterEntity extends PeaShooterEntity {
-    public PrimalPeaShooterEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
+
+    public PrimalPeaShooterEntity(EntityType<? extends PeaShooterEntity> type, World worldIn) {
         super(type, worldIn);
     }
+
     @Override
     protected AbstractBulletEntity createBullet() {
         return new StonePeaEntity(this.level, this,this.getStoneState());
     }
-    @Override
-    public float getAttackDamage() {
-        return this.getSkillValue(SkillTypes.PEA_DAMAGE);
-    }
+
     @Override
     public void shootBullet() {
         if (this.isPlantInSuperMode()){
@@ -38,9 +34,6 @@ public class PrimalPeaShooterEntity extends PeaShooterEntity {
         this.setAttackTime(1);
     }
 
-    public int getSuperShootCount() {
-        return MathUtil.getRandomMinMax(this.getRandom(), 1, 2);
-    }
 
     protected StonePeaEntity.State getStoneState() {
         return this.isPlantInSuperMode()? StonePeaEntity.State.FIRE: StonePeaEntity.State.NORMAL;

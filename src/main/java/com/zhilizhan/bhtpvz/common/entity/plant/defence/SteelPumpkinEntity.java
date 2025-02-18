@@ -8,24 +8,26 @@ import com.hungteen.pvz.common.entity.plant.PlantInfo;
 import com.hungteen.pvz.common.entity.plant.base.PlantDefenderEntity;
 import com.hungteen.pvz.common.misc.sound.SoundRegister;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
+import com.zhilizhan.bhtpvz.common.util.BHTPVZUtils;
+import net.minecraft.entity.*;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class SteelPumpkinEntity extends PlantDefenderEntity{
-	private static final EntityDataAccessor<Boolean> IS_SOLID = SynchedEntityData.defineId(SteelPumpkinEntity.class, EntityDataSerializers.BOOLEAN);
-	public SteelPumpkinEntity(EntityType<? extends PathfinderMob> type, Level level) {
+	private static final DataParameter<Boolean> IS_SOLID = EntityDataManager.defineId(SteelPumpkinEntity.class, DataSerializers.BOOLEAN);
+	public SteelPumpkinEntity(EntityType<? extends CreatureEntity> type, World	 level) {
 		super(type, level);
 		this.canCollideWithPlant = false;
 		this.isImmuneToWeak =true;
@@ -40,11 +42,11 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 		return 800;
 	}
 
+	@Nonnull
 	@Override
-	public EntityDimensions getDimensions(Pose poseIn) {
-		return EntityDimensions.scalable(1.1f, 1.4f);
+	public EntitySize getDimensions(@Nonnull Pose poseIn) {
+		return EntitySize.scalable(0.95f, 0.8f);
 	}
-
 
 	@Override
 	public void normalPlantTick() {
@@ -52,18 +54,18 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 			if (this.hasMetal()) {
 				this.decreaseMetal();
 				this.heal(275);
-				this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1000, 5));
+				this.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 1000, 5));
 			}
 			this.checkInsideBlocks();
 			List<LivingEntity> list = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox());
 			if (!list.isEmpty()) {
 				if ( this.random.nextInt(4) == 0) {
 					for (Entity entity : list) {
-						if (!entity.hasPassenger(this)) {
-							if (this.getPassengers().size() < 1 && !entity.isPassenger() && entity.getBbWidth() < this.getBbWidth() && entity instanceof PVZPlantEntity) {
+						if (!entity.hasPassenger(this)&&entity instanceof PVZPlantEntity) {
+							if (this.getPassengers().isEmpty() && !entity.isPassenger() && entity.getBbWidth() < this.getBbWidth() && entity instanceof PVZPlantEntity) {
 								entity.startRiding(this);
 								this.hasPlant();
-								((PVZPlantEntity) entity).addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2000, 5));
+								((PVZPlantEntity)entity).addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 2000, 5));
 							}
 						} else {
 							setSolid(true);
@@ -75,32 +77,32 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 		super.normalPlantTick();
 	}
 
-	public void positionRider(Entity p_184232_1_) {
-		if (this.hasPassenger(p_184232_1_)) {
+	public void positionRider(@Nonnull Entity entity) {
+		if (this.hasPassenger(entity)) {
 			float f = 0.0f;
 			if (this.getPassengers().size() > 1) {
-	   			int i = this.getPassengers().indexOf(p_184232_1_);
+	   			int i = this.getPassengers().indexOf(entity);
 	   			if (i == 0) {
 	   				f = 0.2f;
 	   			} else {
 	   				f = -0.6f;
 	   			}
-	   			if (p_184232_1_ instanceof PVZPlantEntity) {
+	   			if (entity instanceof PVZPlantEntity) {
 	   				f = (float)((double)f + 0.2);
 	   			}
 	   		}
-			Vec3 vec3 = (new Vec3(f, 0.0, 0.0)).yRot(-this.yRot * 0.017453292f - 1.5707964f);
-	   		p_184232_1_.setPos(this.getX() + vec3.x, this.getY(), this.getZ() + vec3.z);
+			Vector3d vec3 = (new Vector3d(f, 0.0, 0.0)).yRot(-this.yRot * 0.017453292f - 1.5707964f);
+	   		entity.setPos(this.getX() + vec3.x, this.getY(), this.getZ() + vec3.z);
 	   	}
 	}
 
 	@Override
-	public SoundEvent getHurtSound(DamageSource damageSourceIn) {
+	public SoundEvent getHurtSound(@Nonnull DamageSource damageSourceIn) {
 		return SoundRegister.METAL_HIT.get();
 	}
 
 	@Override
-	public void readAdditionalSaveData(CompoundTag compound) {
+	public void readAdditionalSaveData(CompoundNBT compound) {
 		super.readAdditionalSaveData(compound);
 		if (compound.contains("is_solid")) {
 			this.setSolid(compound.getBoolean("is_solid"));
@@ -108,7 +110,7 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 	}
 
 	@Override
-	public void addAdditionalSaveData(CompoundTag compound) {
+	public void addAdditionalSaveData(CompoundNBT compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean("is_solid", this.isSolid());
 	}
@@ -147,19 +149,25 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 
 			public void onSuper(IPlantEntity plantEntity) {
 				super.onSuper(plantEntity);
-				plantEntity.setPumpkin(true);
+				if(plantEntity instanceof PVZPlantEntity) {
+					PVZPlantEntity plant = (PVZPlantEntity) plantEntity;
+					BHTPVZUtils.setSteelPumpkin(plant,true);
+				}
 				plantEntity.setOuterDefenceLife(SUPER_PUMPKIN_LIFE);
 			}
 
 			public void placeOn(IPlantEntity plantEntity, int sunCost) {
 				super.placeOn(plantEntity, sunCost);
-				plantEntity.setPumpkin(true);
+				if(plantEntity instanceof PVZPlantEntity) {
+					PVZPlantEntity plant = (PVZPlantEntity) plantEntity;
+					BHTPVZUtils.setSteelPumpkin(plant,true);
+				}else plantEntity.setPumpkin(true);
 				plantEntity.setOuterDefenceLife(NORMAL_PUMPKIN_LIFE+EXTRA_PUMPKIN_LIFE);
 			}
 
 			public void onHeal(IPlantEntity plantEntity, float percent) {
 				float max = plantEntity.getOuterDefenceLife() > NORMAL_PUMPKIN_LIFE ? SUPER_PUMPKIN_LIFE : NORMAL_PUMPKIN_LIFE;
-				plantEntity.setOuterDefenceLife(Mth.clamp(plantEntity.getOuterDefenceLife() * (double)(1.0F + percent), 0.0, max));
+				plantEntity.setOuterDefenceLife(MathHelper.clamp(plantEntity.getOuterDefenceLife() * (double)(1.0F + percent), 0.0, max));
 			}
 		}
 	@Override

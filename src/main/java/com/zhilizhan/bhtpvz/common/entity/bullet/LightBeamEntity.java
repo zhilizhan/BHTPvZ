@@ -4,17 +4,19 @@ import com.hungteen.pvz.common.entity.bullet.AbstractBulletEntity;
 import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.entity.*;
+import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.World;
+
+import javax.annotation.Nonnull;
 
 public class LightBeamEntity extends AbstractBulletEntity {
 
-    public LightBeamEntity(EntityType<?> type, Level worldIn) {
+    public LightBeamEntity(EntityType<?> type, World worldIn) {
         super(type, worldIn);
     }
-    public LightBeamEntity(Level worldIn, LivingEntity shooter) {
+    public LightBeamEntity(World worldIn, LivingEntity shooter) {
         super(BHTPvZEntityTypes.LIGHT_BEAM.get(), worldIn, shooter);
     }
     @Override
@@ -22,10 +24,10 @@ public class LightBeamEntity extends AbstractBulletEntity {
         return 40;
     }
     @Override
-    protected void onImpact(HitResult hitResult) {
+    protected void onImpact(RayTraceResult hitResult) {
         boolean flag = false;
-        if (hitResult.getType() == net.minecraft.world.phys.HitResult.Type.ENTITY) {
-            Entity target = ((EntityHitResult)hitResult).getEntity();
+        if (hitResult.getType() == RayTraceResult.Type.ENTITY) {
+            Entity target = ((EntityRayTraceResult)hitResult).getEntity();
             if (this.shouldHit(target)) {
                 target.invulnerableTime = 0;
                 this.dealDamage(target);
@@ -45,9 +47,10 @@ public class LightBeamEntity extends AbstractBulletEntity {
         target.hurt(source, damage);
     }
 
+    @Nonnull
     @Override
-    public EntityDimensions getDimensions(Pose pose) {
-        return EntityDimensions.scalable(0.2f, 0.2f);
+    public EntitySize getDimensions(@Nonnull Pose pose) {
+        return EntitySize.scalable(0.2f, 0.2f);
     }
 
 }

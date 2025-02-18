@@ -1,15 +1,16 @@
 package com.zhilizhan.bhtpvz.common.block.grower;
 
 import com.zhilizhan.bhtpvz.common.world.BHTPvZFeatures;
-import net.minecraft.world.level.block.grower.AbstractTreeGrower;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.block.trees.Tree;
+import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
-public class StarfruitTreeGrower extends AbstractTreeGrower {
+public class StarfruitTreeGrower extends Tree {
     @Override
-    protected ConfiguredFeature<TreeConfiguration, ?> getConfiguredFeature(Random random, boolean largeHive) {
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(@Nonnull Random random, boolean largeHive) {
         return BHTPvZFeatures.STARFRUIT;
     }
 }

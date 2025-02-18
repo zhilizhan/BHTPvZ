@@ -2,6 +2,7 @@ package com.zhilizhan.bhtpvz.common.entity;
 
 import com.hungteen.pvz.client.render.entity.plant.ice.SnowPeaRender;
 import com.hungteen.pvz.common.entity.PVZEntityClassifications;
+import com.hungteen.pvz.common.entity.misc.drop.SunEntity;
 import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.hungteen.pvz.common.entity.zombie.PVZZombieEntity;
 import com.hungteen.pvz.utils.StringUtil;
@@ -9,6 +10,7 @@ import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.client.render.entity.bullet.*;
 import com.zhilizhan.bhtpvz.client.render.entity.misc.RedSunRender;
 import com.zhilizhan.bhtpvz.client.render.entity.normal.OriginMoobRender;
+import com.zhilizhan.bhtpvz.client.render.entity.normal.ToxicMoobRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.BeeShooterRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.PeaPodRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.PrimalPeaShooterRender;
@@ -33,6 +35,7 @@ import com.zhilizhan.bhtpvz.common.entity.bullet.*;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.*;
 import com.zhilizhan.bhtpvz.common.entity.misc.RedSunEntity;
 import com.zhilizhan.bhtpvz.common.entity.normal.OriginMoobEntity;
+import com.zhilizhan.bhtpvz.common.entity.normal.ToxicMoobEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.appease.BeeShooterEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.appease.PeaPodEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.appease.PrimalPeaShooterEntity;
@@ -53,10 +56,10 @@ import com.zhilizhan.bhtpvz.common.entity.plant.ice.ReIcePeaEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.toxic.GooPeaShooterEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.toxic.OriginShroomEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.toxic.SculkShroomEntity;
-import com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz.*;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
+import com.zhilizhan.bhtpvz.common.entity.zombie.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -94,20 +97,19 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<MagnifyingGrassEntity>> MAGNIFYING_GRASS = registerPlantEntityType(MagnifyingGrassEntity::new, "magnifying_grass");//棱镜草
 
 	// 子弹
-	public static final RegistryObject<EntityType<IceCabbageEntity>> ICE_CABBAGE = registerEntityType(IceCabbageEntity::new, "ice_cabbage", MobCategory.MISC); // 冰卷心菜子弹
-	public static final RegistryObject<EntityType<PoppedChorusFruitEntity>> POPPED_CHORUS_FRUIT = registerEntityType(PoppedChorusFruitEntity::new, "popped_chorus_fruit", MobCategory.MISC); // 爆裂紫颂果子弹
-	public static final RegistryObject<EntityType<ChorusFruitEntity>> CHORUS_FRUIT = registerEntityType(ChorusFruitEntity::new, "chorus_fruit", MobCategory.MISC); // 紫颂果子弹
-	public static final RegistryObject<EntityType<CornEntity>> CORN = registerEntityType(CornEntity::new, "corn", MobCategory.MISC); // 玉米子弹
-	public static final RegistryObject<EntityType<BurstCornEntity>> BURST_CORN = registerEntityType(BurstCornEntity::new, "burst_corn", MobCategory.MISC); // 炸裂玉米子弹
-	public static final RegistryObject<EntityType<PopCornEntity>> POP_CORN = registerEntityType(PopCornEntity::new, "pop_corn", MobCategory.MISC); // 爆米花子弹
-	public static final RegistryObject<EntityType<SonicEntity>> SONIC = registerEntityType(SonicEntity::new, "sonic",MobCategory.MISC);//音波
-	public static final RegistryObject<EntityType<OriginFumeEntity>> ORIGIN_FUME = registerEntityType(OriginFumeEntity::new, "origin_fume",MobCategory.MISC);//原始孢子
-	public static final RegistryObject<EntityType<BeeEntity>> BEE = registerEntityType(BeeEntity::new, "bee",MobCategory.MISC);//蜜蜂
-	public static final RegistryObject<EntityType<GoldenMelonEntity>> GOLDEN_MELON = registerEntityType(GoldenMelonEntity::new, "golden_melon", MobCategory.MISC); // 金西瓜子弹
-	public static final RegistryObject<EntityType<StonePeaEntity>> STONE_PEA = registerEntityType(StonePeaEntity::new, "stone_pea", MobCategory.MISC); // 原始豌豆
-	public static final RegistryObject<EntityType<GooPeaEntity>> GOO_PEA = registerEntityType(GooPeaEntity::new, "goo_pea", MobCategory.MISC); // 毒液豌豆
-	public static final RegistryObject<EntityType<LightBeamEntity>> LIGHT_BEAM = registerEntityType(LightBeamEntity::new, "light_beam", MobCategory.MISC); // 光束
-	public static final RegistryObject<EntityType<DragonFireEntity>> DRAGON_FIRE = registerEntityType(DragonFireEntity::new, "dragon_fire", MobCategory.MISC); // 龙火
+	public static final RegistryObject<EntityType<IceCabbageEntity>> ICE_CABBAGE = registerEntityType(IceCabbageEntity::new, "ice_cabbage", EntityClassification.MISC); // 冰卷心菜子弹
+	public static final RegistryObject<EntityType<PoppedChorusFruitEntity>> POPPED_CHORUS_FRUIT = registerEntityType(PoppedChorusFruitEntity::new, "popped_chorus_fruit", EntityClassification.MISC); // 爆裂紫颂果子弹
+	public static final RegistryObject<EntityType<ChorusFruitEntity>> CHORUS_FRUIT = registerEntityType(ChorusFruitEntity::new, "chorus_fruit", EntityClassification.MISC); // 紫颂果子弹
+	public static final RegistryObject<EntityType<CornEntity>> CORN = registerEntityType(CornEntity::new, "corn", EntityClassification.MISC); // 玉米子弹
+	public static final RegistryObject<EntityType<BurstCornEntity>> BURST_CORN = registerEntityType(BurstCornEntity::new, "burst_corn", EntityClassification.MISC); // 炸裂玉米子弹
+	public static final RegistryObject<EntityType<PopCornEntity>> POP_CORN = registerEntityType(PopCornEntity::new, "pop_corn", EntityClassification.MISC); // 爆米花子弹
+	public static final RegistryObject<EntityType<SonicEntity>> SONIC = registerEntityType(SonicEntity::new, "sonic",EntityClassification.MISC);//音波
+	public static final RegistryObject<EntityType<OriginFumeEntity>> ORIGIN_FUME = registerEntityType(OriginFumeEntity::new, "origin_fume",EntityClassification.MISC);//原始孢子
+	public static final RegistryObject<EntityType<BeeEntity>> BEE = registerEntityType(BeeEntity::new, "bee",EntityClassification.MISC);//蜜蜂
+	public static final RegistryObject<EntityType<GoldenMelonEntity>> GOLDEN_MELON = registerEntityType(GoldenMelonEntity::new, "golden_melon", EntityClassification.MISC); // 金西瓜子弹
+	public static final RegistryObject<EntityType<StonePeaEntity>> STONE_PEA = registerEntityType(StonePeaEntity::new, "stone_pea", EntityClassification.MISC); // 原始豌豆
+	public static final RegistryObject<EntityType<GooPeaEntity>> GOO_PEA = registerEntityType(GooPeaEntity::new, "goo_pea", EntityClassification.MISC); // 毒液豌豆
+	public static final RegistryObject<EntityType<LightBeamEntity>> LIGHT_BEAM = registerEntityType(LightBeamEntity::new, "light_beam", EntityClassification.MISC); // 光束
 
 
 	// 僵尸
@@ -124,9 +126,12 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<ChomperZombieEntity>> CHOMPER_ZOMBIE = registerZombieEntityType(ChomperZombieEntity::new, "chomper_zombie"); // 大嘴花僵尸
 
 	// 普通生物
-	public static final RegistryObject<EntityType<OriginMoobEntity>> ORIGIN_MOOB = registerEntityType(OriginMoobEntity::new, "origin_moob",MobCategory.CREATURE);//起源蘑菇牛
+	public static final RegistryObject<EntityType<OriginMoobEntity>> ORIGIN_MOOB = registerEntityType(OriginMoobEntity::new, "origin_moob",EntityClassification.CREATURE);//起源蘑菇牛
+	public static final RegistryObject<EntityType<ToxicMoobEntity>> TOXIC_MOOB = registerEntityType(ToxicMoobEntity::new, "toxic_moob",EntityClassification.CREATURE);//毒蘑菇牛
+
+
 	//杂项
-	public static final RegistryObject<EntityType<RedSunEntity>> RED_SUN = registerEntityType(RedSunEntity::new, "red_sun",MobCategory.MISC);//红色阳光
+	public static final RegistryObject<EntityType<RedSunEntity>> RED_SUN = registerEntityType(RedSunEntity::new, "red_sun",EntityClassification.MISC);//红色阳光
 
 
 	@OnlyIn(Dist.CLIENT)
@@ -169,7 +174,6 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(STONE_PEA.get(), StonePeaRender::new); // 石豌豆
 		RenderingRegistry.registerEntityRenderingHandler(GOO_PEA.get(), GooPeaRender::new); // 毒液豌豆
 		RenderingRegistry.registerEntityRenderingHandler(LIGHT_BEAM.get(), LightBeamRender::new); // 毒液豌豆
-		RenderingRegistry.registerEntityRenderingHandler(DRAGON_FIRE.get(), DragonFireRender::new); // 毒液豌豆
 
 
 		// 僵尸
@@ -187,6 +191,7 @@ public class BHTPvZEntityTypes {
 
 		// 普通生物
 		RenderingRegistry.registerEntityRenderingHandler(ORIGIN_MOOB.get(), OriginMoobRender::new); // 起源蘑菇牛
+		RenderingRegistry.registerEntityRenderingHandler(TOXIC_MOOB.get(), ToxicMoobRender::new); // 起源蘑菇牛
 
 		//杂项
 		RenderingRegistry.registerEntityRenderingHandler(RED_SUN.get(), RedSunRender::new); // 红太阳
@@ -195,19 +200,21 @@ public class BHTPvZEntityTypes {
 	@SubscribeEvent
 	public static void onAttributeCreate(EntityAttributeCreationEvent event) {
 		event.put(BHTPvZEntityTypes.ORIGIN_MOOB.get(), OriginMoobEntity.createAttributes().build());
-		event.put(BHTPvZEntityTypes.RED_SUN.get(), RedSunEntity.createAttributes().build());
+		event.put(BHTPvZEntityTypes.TOXIC_MOOB.get(), ToxicMoobEntity.createAttributes().build());
+
+		event.put(BHTPvZEntityTypes.RED_SUN.get(), SunEntity.createMobAttributes().build());
 		event.put(BHTPvZEntityTypes.BEE.get(), BeeEntity.createAttributes().build());
 
 	}
-		private static <T extends PVZPlantEntity> RegistryObject<EntityType<T>> registerPlantEntityType(EntityType.EntityFactory<T> factory, String name){
+		private static <T extends PVZPlantEntity> RegistryObject<EntityType<T>> registerPlantEntityType(EntityType.IFactory<T> factory, String name){
 		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(factory, PVZEntityClassifications.PVZ_PLANT).build(StringUtil.prefix(name).toString()));
 	}
 
-	private static <T extends PVZZombieEntity> RegistryObject<EntityType<T>> registerZombieEntityType(EntityType.EntityFactory<T> factory, String name){
+	private static <T extends PVZZombieEntity> RegistryObject<EntityType<T>> registerZombieEntityType(EntityType.IFactory<T> factory, String name){
 		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(factory, PVZEntityClassifications.PVZ_ZOMBIE).fireImmune().build(StringUtil.prefix(name).toString()));
 	}
 
-	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntityType(EntityType.EntityFactory<T> factory, String name, MobCategory category){
+	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntityType(EntityType.IFactory<T> factory, String name, EntityClassification category){
 		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(factory, category).build(StringUtil.prefix(name).toString()));
 	}
 }

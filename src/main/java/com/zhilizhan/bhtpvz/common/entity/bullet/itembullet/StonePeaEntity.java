@@ -6,25 +6,28 @@ import com.hungteen.pvz.common.entity.zombie.PVZZombieEntity;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
 public class StonePeaEntity  extends BHTPvZPeaEntity {
-    private static final EntityDataAccessor<Integer> PEA_STATE;
+    private static final DataParameter<Integer> PEA_STATE = EntityDataManager.defineId(StonePeaEntity.class, DataSerializers.INT);
     public TorchWoodEntity torchWood = null;
     private int power = 0;
-    public StonePeaEntity(EntityType<?> type, Level worldIn) {
+    public StonePeaEntity(EntityType<?> type, World worldIn) {
         super(type, worldIn);
     }
-    public StonePeaEntity(Level worldIn, LivingEntity shooter, StonePeaEntity.State peaState) {
+    public StonePeaEntity(World worldIn, LivingEntity shooter, StonePeaEntity.State peaState) {
         super( BHTPvZEntityTypes.STONE_PEA.get(), worldIn, shooter);
         this.setPeaState(peaState);
     }
@@ -62,7 +65,7 @@ public class StonePeaEntity  extends BHTPvZPeaEntity {
             if (random.nextInt(2) == 0) {
                 ((LivingEntity) target).knockback(5, this.getX() - target.getX(), this.getZ() - target.getZ());
             } else {
-                ((LivingEntity) target).addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 8, false, false, false));
+                ((LivingEntity) target).addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 40, 8, false, false, false));
             }
         }
     }
@@ -77,17 +80,17 @@ public class StonePeaEntity  extends BHTPvZPeaEntity {
 
         return damage;
     }
-
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return new EntityDimensions(0.4F, 0.4F, false);
+    @Override
+    public EntitySize getDimensions(Pose poseIn) {
+        return new EntitySize(0.4F, 0.4F, false);
     }
 
-    public void addAdditionalSaveData(CompoundTag compound) {
+    public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("peaState", this.getPeaState().ordinal());
     }
 
-    public void readAdditionalSaveData(CompoundTag compound) {
+    public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         if (compound.contains("peaState")) {
             this.setPeaState(StonePeaEntity.State.values()[compound.getInt("peaState")]);
@@ -113,13 +116,11 @@ public class StonePeaEntity  extends BHTPvZPeaEntity {
         }
     }
 
+    @Override
     public void setPower(int lvl) {
         this.power = lvl;
     }
 
-    static {
-        PEA_STATE = SynchedEntityData.defineId(StonePeaEntity.class, EntityDataSerializers.INT);
-    }
 
     public enum State {
         STONE,

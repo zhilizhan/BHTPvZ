@@ -7,7 +7,7 @@ import com.hungteen.pvz.common.impl.zombie.ZombieType;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.client.model.entity.zombie.bhtpvz.*;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.Collections;

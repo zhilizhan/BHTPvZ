@@ -4,10 +4,7 @@ import com.hungteen.pvz.api.PVZAPI;
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.client.model.entity.plant.defence.WallNutModel;
 import com.hungteen.pvz.client.model.entity.plant.ice.SnowPeaModel;
-import com.hungteen.pvz.common.impl.CoolDowns;
-import com.hungteen.pvz.common.impl.EssenceTypes;
-import com.hungteen.pvz.common.impl.RankTypes;
-import com.hungteen.pvz.common.impl.SkillTypes;
+import com.hungteen.pvz.common.impl.*;
 import com.hungteen.pvz.common.impl.plant.PlantType;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.appease.BeeShooterModel;
@@ -71,10 +68,11 @@ public final class BHTPvZPlants extends PlantType {
             .entityType(() -> BHTPvZEntityTypes.NUT_BOWLING.get())
             .summonCard(() -> BHTPvZItems.NUT_BOWLING_CARD.get())
             .enjoyCard(() -> BHTPvZItems.NUT_BOWLING_ENJOY_CARD.get())
-            .plantModel(() -> WallNutModel::new).scale(0.95F));
+            .plantModel(() -> WallNutModel::new).scale(0.95F)
+            .placement(Placements.ANY));
     //火焰豌豆
     public static final IPlantType FIRE_PEASHOOTER = new BHTPvZPlants("fire_peashooter", new PlantFeatures()
-            .cost(175).requiredLevel(17)
+            .cost(225).requiredLevel(17)
             .cd(CoolDowns.VERY_FAST).rank(RankTypes.GREEN).essence(EssenceTypes.FLAME)
             .entityType(() -> BHTPvZEntityTypes.FIRE_PEASHOOTER.get())
             .summonCard(() -> BHTPvZItems.FIRE_PEASHOOTER_CARD.get())
@@ -88,7 +86,8 @@ public final class BHTPvZPlants extends PlantType {
             .cd(CoolDowns.HUGE_FAST).rank(RankTypes.GREEN).essence(EssenceTypes.ASSIST)
             .summonCard(() -> BHTPvZItems.WATER_POT_CARD.get())
             .enjoyCard(() -> BHTPvZItems.WATER_POT_ENJOY_CARD.get())
-            .plantBlock(BHTPvZBlocks.WATER_POT));
+            .plantBlock(BHTPvZBlocks.WATER_POT)
+            .placement(Placements.ANY));
 
     //紫颂果
     public static final IPlantType CHORUS_FRUIT_PULT = new BHTPvZPlants("chorus_fruit_pult", new PlantFeatures()
@@ -145,7 +144,7 @@ public final class BHTPvZPlants extends PlantType {
             .plantBlock(BHTPvZBlocks.POT_GRASS));
     //自己模仿者
     public static final IPlantType SELF_IMITATER = new BHTPvZPlants("self_imitater", new PlantFeatures()
-            .cost(125).requiredLevel(16)
+            .cost(175).requiredLevel(16)
             .cd(CoolDowns.SLOW).rank(RankTypes.PURPLE).essence(EssenceTypes.DEFENCE)
             .entityType(() -> BHTPvZEntityTypes.SELF_IMITATER.get())
             .summonCard(() -> BHTPvZItems.SELF_IMITATER_CARD.get())
@@ -169,7 +168,7 @@ public final class BHTPvZPlants extends PlantType {
             .plantModel(() -> PeaPodModel::new).scale(1.1f).commonSkill(Collections.singletonList(SkillTypes.PEA_DAMAGE)));
    //音爆菇
     public static final IPlantType SCULK_SHROOM = new BHTPvZPlants("sculk_shroom", new PlantFeatures()
-            .cost(150).requiredLevel(29).isShroomPlant()
+            .cost(175).requiredLevel(29).isShroomPlant()
             .cd(CoolDowns.FAST).rank(RankTypes.BLACK).essence(EssenceTypes.TOXIC)
             .entityType(() -> BHTPvZEntityTypes.SCULK_SHROOM.get())
             .summonCard(() -> BHTPvZItems.SCULK_SHROOM_CARD.get())
@@ -177,7 +176,7 @@ public final class BHTPvZPlants extends PlantType {
             .plantModel(() -> SculkShroomModel::new).scale(1.4f).commonSkill(Collections.singletonList(SkillTypes.SPORE_DAMAGE)));
    //原始蘑菇
     public static final IPlantType ORIGIN_SHROOM = new BHTPvZPlants("origin_shroom", new PlantFeatures()
-            .cost(125).requiredLevel(18).isShroomPlant()
+            .cost(150).requiredLevel(18).isShroomPlant()
             .cd(CoolDowns.FAST).rank(RankTypes.GREEN).essence(EssenceTypes.TOXIC)
             .entityType(() -> BHTPvZEntityTypes.ORIGIN_SHROOM.get())
             .summonCard(() -> BHTPvZItems.ORIGIN_SHROOM_CARD.get())

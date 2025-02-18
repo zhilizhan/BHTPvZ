@@ -1,71 +1,71 @@
 package com.zhilizhan.bhtpvz.common.item;
 
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.crafting.Ingredient;
+import com.hungteen.pvz.common.item.ItemRegister;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.IArmorMaterial;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.LazyValue;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.function.Supplier;
 
-public class BHTPvZArmorMaterial implements ArmorMaterial {
+public enum BHTPvZArmorMaterial implements IArmorMaterial{
+    ORIGIN("origin", 33, new int[]{3, 6, 8, 3}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 2.0f, 0.0f, () -> Ingredient.of(ItemRegister.ORIGIN_INGOT.get())),
+    DAMSON_CRYSTAL("damson_crystal", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_DIAMOND, 3.0f, 0.1f, () -> Ingredient.of(BHTPvZItems.DAMSON_CRYSTAL_INGOT.get()));
+
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;
-    private final int durabilityMultiplier;
-    private final int[] slotProtections;
-    private final int enchantmentValue;
-    private final SoundEvent sound;
+    private final int maxDamageFactor;
+    private final int[] damageReductionAmountArray;
+    private final int enchantability;
+    private final SoundEvent soundEvent;
     private final float toughness;
     private final float knockbackResistance;
-    private final LazyLoadedValue<Ingredient> repairIngredient;
+    private final LazyValue<Ingredient> repairMaterial;
 
-    protected BHTPvZArmorMaterial(String string2, int j, int[] is, int k, SoundEvent arg, float f, float g, Supplier<Ingredient> supplier) {
-        this.name = string2;
-        this.durabilityMultiplier = j;
-        this.slotProtections = is;
-        this.enchantmentValue = k;
-        this.sound = arg;
-        this.toughness = f;
-        this.knockbackResistance = g;
-        this.repairIngredient = new LazyLoadedValue<>(supplier);
+    private BHTPvZArmorMaterial(String nameIn, int maxDamageFactorIn, int[] damageReductionAmountsIn, int enchantabilityIn, SoundEvent equipSoundIn, float toughnessIn, float kb, Supplier repairMaterialSupplier) {
+        this.name = nameIn;
+        this.maxDamageFactor = maxDamageFactorIn;
+        this.damageReductionAmountArray = damageReductionAmountsIn;
+        this.enchantability = enchantabilityIn;
+        this.soundEvent = equipSoundIn;
+        this.toughness = toughnessIn;
+        this.knockbackResistance = kb;
+        this.repairMaterial = new LazyValue(repairMaterialSupplier);
     }
 
-    @Override
-    public int getDurabilityForSlot(EquipmentSlot slot) {
-        return HEALTH_PER_SLOT[slot.getIndex()] * this.durabilityMultiplier;
+    public int getDurabilityForSlot(EquipmentSlotType slotIn) {
+        return HEALTH_PER_SLOT[slotIn.getIndex()] * this.maxDamageFactor;
     }
 
-    @Override
-    public int getDefenseForSlot(EquipmentSlot slot) {
-        return this.slotProtections[slot.getIndex()];
+    public int getDefenseForSlot(EquipmentSlotType slotIn) {
+        return this.damageReductionAmountArray[slotIn.getIndex()];
     }
 
-    @Override
     public int getEnchantmentValue() {
-        return this.enchantmentValue;
+        return this.enchantability;
     }
 
-    @Override
     public SoundEvent getEquipSound() {
-        return this.sound;
+        return this.soundEvent;
     }
 
-    @Override
     public Ingredient getRepairIngredient() {
-        return this.repairIngredient.get();
+        return (Ingredient)this.repairMaterial.get();
     }
 
-    @Override
+    @OnlyIn(Dist.CLIENT)
     public String getName() {
         return this.name;
     }
 
-    @Override
     public float getToughness() {
         return this.toughness;
     }
 
-    @Override
     public float getKnockbackResistance() {
         return this.knockbackResistance;
     }

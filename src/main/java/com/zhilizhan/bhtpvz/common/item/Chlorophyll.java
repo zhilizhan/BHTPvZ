@@ -3,20 +3,21 @@ package com.zhilizhan.bhtpvz.common.item;
 import com.hungteen.pvz.common.capability.CapabilityHandler;
 import com.hungteen.pvz.utils.PlayerUtil;
 import com.hungteen.pvz.utils.enums.Resources;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.UseAnim;
-import net.minecraft.world.level.Level;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.UseAction;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class Chlorophyll extends Item {
@@ -25,15 +26,15 @@ public class Chlorophyll extends Item {
 }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+    public ActionResult<ItemStack> use(World level, PlayerEntity player, Hand usedHand) {
         player.startUsingItem(usedHand);
-        return InteractionResultHolder.success(player.getItemInHand(usedHand));
+        return ActionResult.success(player.getItemInHand(usedHand));
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
-        if(livingEntity instanceof Player) {
-            Player player = (Player) livingEntity;
+    public ItemStack finishUsingItem(ItemStack stack, World level, LivingEntity livingEntity) {
+        if(livingEntity instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) livingEntity;
             if(!level.isClientSide) {
                 player.getCapability(CapabilityHandler.PLAYER_DATA_CAPABILITY).ifPresent((l) -> {
                     int amount = 1;
@@ -47,16 +48,14 @@ public class Chlorophyll extends Item {
         }
         return stack;
     }
-
     @Override
-    public void appendHoverText(ItemStack stack, Level level, List<Component> tooltipComponents, TooltipFlag
-            isAdvanced) {
-        tooltipComponents.add(new TranslatableComponent("tooltip.bhtpvz.chlorophyll.use").withStyle(ChatFormatting.GREEN));
+    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> textComponents, ITooltipFlag tooltipFlag) {
+        textComponents.add(new TranslationTextComponent("tooltip.bhtpvz.chlorophyll.use").withStyle(TextFormatting.GREEN));
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.EAT;
+    public UseAction getUseAnimation(ItemStack stack) {
+        return UseAction.EAT;
     }
 
     @Override

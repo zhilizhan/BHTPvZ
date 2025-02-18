@@ -3,19 +3,19 @@ package com.zhilizhan.bhtpvz.common.item.sapling;
 import com.hungteen.pvz.common.capability.CapabilityHandler;
 import com.hungteen.pvz.utils.PlayerUtil;
 import com.hungteen.pvz.utils.enums.Resources;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.UseAnim;
-import net.minecraft.world.level.Level;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.UseAction;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -25,21 +25,21 @@ public abstract class AbstractXpSapling extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        player.startUsingItem(usedHand);
-        return InteractionResultHolder.success(player.getItemInHand(usedHand));
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        playerIn.startUsingItem(handIn);
+        return ActionResult.success(playerIn.getItemInHand(handIn));
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
-        if(livingEntity instanceof Player) {
-            Player player = (Player) livingEntity;
+    public ItemStack finishUsingItem(ItemStack stack, World level, LivingEntity livingEntity) {
+        if(livingEntity instanceof PlayerEntity) {
             if(!level.isClientSide) {
+                PlayerEntity player = (PlayerEntity) livingEntity;
                 player.getCapability(CapabilityHandler.PLAYER_DATA_CAPABILITY).ifPresent((l) -> {
                     int amount = amount();
                     {
                         l.getPlayerData().addResource(Resources.TREE_XP, amount);
-                        PlayerUtil.playClientSound(player, SoundEvents.EXPERIENCE_BOTTLE_THROW);
+                        PlayerUtil.playClientSound(player, SoundEvents.EXPERIENCE_ORB_PICKUP);
                         if(!player.isCreative()) {
                             stack.shrink(1);
                         }}
@@ -48,18 +48,19 @@ public abstract class AbstractXpSapling extends Item {
         }
         return stack;
     }
+
     protected int amount(){
         return 200;
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
-        tooltipComponents.add(new TranslatableComponent("tooltip.bhtpvz.xp_sapling.use").withStyle(ChatFormatting.GREEN));
+    public void appendHoverText(ItemStack stack, World level, List<ITextComponent> tooltipComponents, ITooltipFlag isAdvanced) {
+        tooltipComponents.add(new TranslationTextComponent("tooltip.bhtpvz.xp_sapling.use").withStyle(TextFormatting.GREEN));
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.EAT;
+    public UseAction getUseAnimation(ItemStack stack) {
+        return UseAction.EAT;
     }
     @Override
     public int getUseDuration(ItemStack stack) {

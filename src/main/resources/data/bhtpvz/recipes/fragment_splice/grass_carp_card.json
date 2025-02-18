@@ -9,13 +9,13 @@
   ],
   "key": {
     "A": {
-      "item": "bhtpvz:grass_carp_enjoy_card"
-    },
-    "B": {
       "item": "pvz:assist_essence"
     },
+    "B": {
+      "item": "bhtpvz:grass_carp_enjoy_card"
+    },
     "C": {
-      "tag": "pvz:card/red_card"
+      "tag": "pvz:card/purple_cards"
     }
   },
   "result": {

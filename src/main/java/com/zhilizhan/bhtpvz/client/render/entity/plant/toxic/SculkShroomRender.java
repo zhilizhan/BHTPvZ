@@ -4,14 +4,14 @@ import com.hungteen.pvz.client.render.entity.plant.PVZPlantRender;
 import com.hungteen.pvz.utils.AnimationUtil;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.toxic.SculkShroomModel;
 import com.zhilizhan.bhtpvz.common.entity.plant.toxic.SculkShroomEntity;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class SculkShroomRender extends PVZPlantRender<SculkShroomEntity> {
 
-    public SculkShroomRender(EntityRenderDispatcher rendererManager) {
+    public SculkShroomRender(EntityRendererManager rendererManager) {
         super(rendererManager, new SculkShroomModel(), 0.75f);
     }
     public float getScaleByEntity(SculkShroomEntity entity) {

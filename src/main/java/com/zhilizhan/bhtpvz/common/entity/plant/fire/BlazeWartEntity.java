@@ -13,10 +13,10 @@ import com.hungteen.pvz.utils.enums.PAZAlmanacs;
 import com.mojang.datafixers.util.Pair;
 import com.zhilizhan.bhtpvz.common.impl.BHTPvZSkill;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
 
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -25,7 +25,7 @@ import java.util.List;
 public class BlazeWartEntity extends PVZPlantEntity {
     private final int HEAL_CD = this.getHealCd();
 
-    public BlazeWartEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
+    public BlazeWartEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -92,11 +92,10 @@ public class BlazeWartEntity extends PVZPlantEntity {
         return 120;
     }
     @Override
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return EntityDimensions.scalable(0.75f, 0.8f);
+    public EntitySize getDimensions(Pose poseIn) {
+        return EntitySize.scalable(0.75f, 0.8f);
     }
-
-
+    @Override
     public IPlantType getPlantType() {
         return  BHTPvZPlants. BLAZE_WART;
     }

@@ -7,16 +7,16 @@ import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.entity.bullet.SonicEntity;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.Pose;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.EntitySize;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.Pose;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.world.World;
 
 public class SculkShroomEntity extends FumeShroomEntity {
 
-    public SculkShroomEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
+    public SculkShroomEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -57,8 +57,8 @@ public class SculkShroomEntity extends FumeShroomEntity {
         return 24.0F;
     }
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return EntityDimensions.scalable(0.9F, 0.8F);
+    public EntitySize getDimensions(Pose poseIn) {
+        return EntitySize.scalable(0.9F, 0.75F);
     }
 
     public IPlantType getPlantType() {

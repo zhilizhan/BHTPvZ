@@ -11,13 +11,12 @@ import com.hungteen.pvz.utils.EntityUtil;
 import com.hungteen.pvz.utils.enums.PAZAlmanacs;
 import com.mojang.datafixers.util.Pair;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.util.Mth;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.world.World;
 
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -25,7 +24,7 @@ import java.util.List;
 
 public class RotateRadishEntity extends PVZPlantEntity {
 
-    public RotateRadishEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
+    public RotateRadishEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -49,13 +48,14 @@ public class RotateRadishEntity extends PVZPlantEntity {
             for(d0 = target.getZ() - this.getZ(); d1 * d1 + d0 * d0 < 1.0E-4; d0 = (Math.random() - Math.random()) * 0.01) {
                 d1 = (Math.random() - Math.random()) * 0.01;
             }
-
-            ((LivingEntity)target).hurtDir = (float)(Mth.atan2(d0, d1) * 57.2957763671875 - (double)this.yRot);
-
+             if(target instanceof LivingEntity&& EntityUtil.isEntityValid(target)) {
+                 ((LivingEntity) target).hurtDir = (float) (Math.atan2(d0, d1) * 57.2957763671875 - (double) this.yRot);
+                 ((LivingEntity) target).knockback(2, d1, d0);
+             }
             target.hurt(PVZEntityDamageSource.normal(this), this.getAttackDamage());
-            ((LivingEntity)target).knockback(2, d1, d0);
+
         });
-        EntityUtil.playSound(this, (SoundEvent) SoundRegister.SWING.get());
+        EntityUtil.playSound(this, SoundRegister.SWING.get());
     }
     //大招
     protected void normalPlantTick() {

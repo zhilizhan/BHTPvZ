@@ -21,5 +21,6 @@ public class PlantList {
         PLANT.addItem(PVZPlants.CHERRY_BOMB, 85);
         PLANT.addItem(PVZPlants.MELON_PULT, 70);
         PLANT.addItem(PVZPlants.JALAPENO, 85);
+        PLANT.addItem(PVZPlants.ICE_SHROOM, 85);
     }
 }

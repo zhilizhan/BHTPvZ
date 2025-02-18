@@ -10,7 +10,7 @@
       "spawn_weight": 100
     },
     {
-      "entity_type": "bhtpvz:red_edge",
+      "entity_type": "bhtpvz:red_edge_zombie",
       "invasion_level": 10,
       "spawn_weight": 5
     },
@@ -20,7 +20,7 @@
       "spawn_weight": 20
     },
     {
-      "entity_type": "bhtpvz:sun_flower",
+      "entity_type": "bhtpvz:sun_flower_zombie",
       "invasion_level": 10,
       "spawn_weight": 50
     }

@@ -4,12 +4,10 @@
     "select": { "name": "pvz:zen_garden" },
     "apply": {
       "species" : {
-        "method" : "splice_before",
+        "method" : "splice_after",
         "random" : {
           "bhtpvz:dt_cherry" : 4,
-          "dynamictrees:oak" : 1,
-          "bhtpvz:dt_starfruit" :3,
-          "dtpvz:nut" : 4
+          "bhtpvz:dt_starfruit" :3
         }
       },
       "density": [ 0.3 ],

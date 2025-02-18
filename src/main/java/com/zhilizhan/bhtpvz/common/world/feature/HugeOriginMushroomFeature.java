@@ -1,20 +1,20 @@
 package com.zhilizhan.bhtpvz.common.world.feature;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.levelgen.feature.AbstractHugeMushroomFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.HugeMushroomFeatureConfiguration;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.feature.AbstractBigMushroomFeature;
+import net.minecraft.world.gen.feature.BigMushroomFeatureConfig;
 
 import java.util.Random;
 
-public class HugeOriginMushroomFeature  extends AbstractHugeMushroomFeature{
+public class HugeOriginMushroomFeature extends AbstractBigMushroomFeature {
 
-    public HugeOriginMushroomFeature(Codec<HugeMushroomFeatureConfiguration> codec) {
+    public HugeOriginMushroomFeature(Codec<BigMushroomFeatureConfig> codec) {
         super(codec);
     }
 
-    protected void makeCap(LevelAccessor level, Random random, BlockPos pos, int treeHeight, BlockPos.MutableBlockPos mutablePos, HugeMushroomFeatureConfiguration config) {
+    protected void makeCap(IWorld level, Random random, BlockPos pos, int treeHeight, BlockPos.Mutable mutablePos, BigMushroomFeatureConfig config) {
         int i = config.foliageRadius;
 
         for(int j = -i; j <= i; ++j) {

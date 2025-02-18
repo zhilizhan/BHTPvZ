@@ -4,14 +4,14 @@ import com.hungteen.pvz.client.render.entity.plant.PVZPlantRender;
 import com.hungteen.pvz.utils.AnimationUtil;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.toxic.OriginShroomModel;
 import com.zhilizhan.bhtpvz.common.entity.plant.toxic.OriginShroomEntity;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class OriginShroomRender extends PVZPlantRender<OriginShroomEntity> {
 
-    public OriginShroomRender(EntityRenderDispatcher rendererManager) {
+    public OriginShroomRender(EntityRendererManager rendererManager) {
         super(rendererManager, new OriginShroomModel(), 0.75f);
     }
     public float getScaleByEntity(OriginShroomEntity entity) {

@@ -6,45 +6,48 @@ import com.hungteen.pvz.common.block.BlockRegister;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
 import com.zhilizhan.bhtpvz.common.world.feature.HugeOriginMushroomFeature;
-import net.minecraft.core.Registry;
-import net.minecraft.data.BuiltinRegistries;
-import net.minecraft.data.worldgen.Features;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.UniformInt;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.blockplacers.SimpleBlockPlacer;
-import net.minecraft.world.level.levelgen.feature.configurations.*;
-import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
-import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
-import net.minecraft.world.level.levelgen.placement.FrequencyWithExtraChanceDecoratorConfiguration;
+import com.zhilizhan.bhtpvz.common.world.feature.HugeToxicShroomFeature;
+import net.minecraft.block.Blocks;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.WorldGenRegistries;
+import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
+import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
+import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
+import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.placement.TopSolidRangeConfig;
+import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
+
 
 public class BHTPvZFeatures {
 
     // 树木
-    public static final ConfiguredFeature<TreeConfiguration, ?> CHERRY = register("cherry", Feature.TREE.configured(new TreeConfiguration.TreeConfigurationBuilder(new SimpleStateProvider(Blocks.OAK_LOG.defaultBlockState()), new SimpleStateProvider(BHTPvZBlocks.CHERRY_LEAVES.get().defaultBlockState()), new BlobFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build()));// 杨桃树
-    public static final ConfiguredFeature<TreeConfiguration, ?> STARFRUIT = register("starfruit", Feature.TREE.configured(new TreeConfiguration.TreeConfigurationBuilder(new SimpleStateProvider(Blocks.OAK_LOG.defaultBlockState()), new SimpleStateProvider(BHTPvZBlocks.STARFRUIT_LEAVES.get().defaultBlockState()), new BlobFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build()));// 原始蘑菇
-    public static final ConfiguredFeature<HugeMushroomFeatureConfiguration, ?> MUSHROOM = register(
-            "mushroom",  new HugeOriginMushroomFeature(HugeMushroomFeatureConfiguration.CODEC).configured(new HugeMushroomFeatureConfiguration(new SimpleStateProvider(BHTPvZBlocks.ORIGIN_MUSHROOM_BLOCK.get().defaultBlockState()), new SimpleStateProvider(Blocks.MUSHROOM_STEM.defaultBlockState()), 3)));
+    public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> CHERRY = register("cherry", Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.OAK_LOG.defaultBlockState()), new SimpleBlockStateProvider(BHTPvZBlocks.CHERRY_LEAVES.get().defaultBlockState()), new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1)).ignoreVines().build()));// 杨桃树
+    public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> STARFRUIT = register("starfruit", Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.OAK_LOG.defaultBlockState()), new SimpleBlockStateProvider(BHTPvZBlocks.STARFRUIT_LEAVES.get().defaultBlockState()), new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1)).ignoreVines().build()));// 原始蘑菇
 
-    public static final ConfiguredFeature<?, ?> TREES_CHERRY = register("trees_cherry", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(ImmutableList.of(CHERRY.weighted(1.0F)), CHERRY)).decorated(Features.Decorators.HEIGHTMAP_SQUARE).decorated(FeatureDecorator.COUNT_EXTRA.configured(new FrequencyWithExtraChanceDecoratorConfiguration(1, 0.02f, 1)))); // 樱桃树生成
-    public static final ConfiguredFeature<?, ?> TREES_STARFRUIT = register("trees_starfruit", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(ImmutableList.of(STARFRUIT.weighted(1.0F)), STARFRUIT)).decorated(Features.Decorators.HEIGHTMAP_SQUARE).decorated(FeatureDecorator.COUNT_EXTRA.configured(new FrequencyWithExtraChanceDecoratorConfiguration(1, 0.02f, 1)))); // 杨桃树生成
+    public static final ConfiguredFeature<?, ?> TREES_CHERRY = register("trees_cherry", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(CHERRY.weighted(0.45F)), CHERRY)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(1, 0.02f, 1)))); // 樱桃树生成
+    public static final ConfiguredFeature<?, ?> TREES_STARFRUIT = register("trees_starfruit", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(STARFRUIT.weighted(0.25F)), STARFRUIT)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(1, 0.02f, 1)))); // 杨桃树生成
 
-    //原始蘑菇Feature
-    public static final ConfiguredFeature<?, ?> HUGE_ORIGIN_MUSHROOM = register("huge_origin_mushroom", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(ImmutableList.of(MUSHROOM.weighted(1.0F)), MUSHROOM)).decorated(Features.Decorators.HEIGHTMAP_SQUARE)); // 巨型原始蘑菇生成
+    //巨型原始蘑菇
+    public static final ConfiguredFeature<?, ?> ORGIGIN_MUSHROOM = register(
+            "origin_mushroom",  new HugeOriginMushroomFeature(BigMushroomFeatureConfig.CODEC).configured(new BigMushroomFeatureConfig(new SimpleBlockStateProvider(BHTPvZBlocks.ORIGIN_MUSHROOM_BLOCK.get().defaultBlockState()), new SimpleBlockStateProvider(Blocks.MUSHROOM_STEM.defaultBlockState()), 3)));
+    public static final ConfiguredFeature<?, ?> HUGE_ORIGIN_MUSHROOM = register("huge_origin_mushroom", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(ORGIGIN_MUSHROOM.weighted(0.1F)), ORGIGIN_MUSHROOM)).decorated(Features.Placements.HEIGHTMAP_SQUARE));
+
+    //巨型PVZ毒蘑菇
+    public static final ConfiguredFeature<?, ?> TOXIC_MUSHROOM = register(
+            "toxic_shroom",  new HugeToxicShroomFeature(BigMushroomFeatureConfig.CODEC).configured(new BigMushroomFeatureConfig(new SimpleBlockStateProvider(BHTPvZBlocks.TOXIC_SHROOM_BLOCK.get().defaultBlockState()), new SimpleBlockStateProvider(Blocks.MUSHROOM_STEM.defaultBlockState()), 3)));
+    public static final ConfiguredFeature<?, ?> HUGE_TOXIC_MUSHROOM = register("huge_toxic_shroom", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(TOXIC_MUSHROOM.weighted(0.1F)), TOXIC_MUSHROOM)).decorated(Features.Placements.HEIGHTMAP_SQUARE));
 
     // 其他生成
-    public static final ConfiguredFeature<?, ?> ORE_MORION = register("ore_morion", Feature.ORE.configured(new OreConfiguration(OreConfiguration.Predicates.NETHERRACK, BHTPvZBlocks.MORION_ORE.get().defaultBlockState(), 10)).decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(32, 10, 80)).squared().count(7))); // 黑晶矿生成
-    public static final ConfiguredFeature<?, ?> PATCH_SQUASH = register("patch_squash", Feature.RANDOM_PATCH.configured((new RandomPatchConfiguration.GrassConfigurationBuilder(new SimpleStateProvider((BHTPvZBlocks.SQUASH.get()).defaultBlockState()), new SimpleBlockPlacer())).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK.getBlock())).noProjection().build()).decorated(Features.Decorators.HEIGHTMAP_DOUBLE_SQUARE).chance(32)); // 窝瓜生成
-    public static final ConfiguredFeature<?, ?> PATCH_TOXIC_SHROOM = register("patch_toxic_shroom", Feature.RANDOM_PATCH.configured((new RandomPatchConfiguration.GrassConfigurationBuilder(new SimpleStateProvider((BlockRegister.TOXIC_SHROOM.get()).defaultBlockState()), new SimpleBlockPlacer())).tries(64).whitelist(ImmutableSet.of(Blocks.MYCELIUM.getBlock())).noProjection().build()).decorated(Features.Decorators.HEIGHTMAP_SQUARE).chance(32)); // 孢子生成
-    public static final ConfiguredFeature<?, ?> PATCH_QUESTION_MARK_POT = register("patch_question_mark_pot", Feature.RANDOM_PATCH.configured((new RandomPatchConfiguration.GrassConfigurationBuilder(new SimpleStateProvider((BHTPvZBlocks.QUESTION_MARK_POT.get()).defaultBlockState()), new SimpleBlockPlacer())).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK.getBlock())).noProjection().build()).decorated(Features.Decorators.HEIGHTMAP_DOUBLE_SQUARE).chance(32)); // 问号罐生成
-    public static final ConfiguredFeature<?, ?> PATCH_PLANT_POT = register("patch_plant_pot", Feature.RANDOM_PATCH.configured((new RandomPatchConfiguration.GrassConfigurationBuilder(new SimpleStateProvider((BHTPvZBlocks.PLANT_POT.get()).defaultBlockState()), new SimpleBlockPlacer())).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK.getBlock())).noProjection().build()).decorated(Features.Decorators.HEIGHTMAP_DOUBLE_SQUARE).chance(32)); // 植物罐生成
+    public static final ConfiguredFeature<?, ?> ORE_MORION = register("ore_morion", Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, BHTPvZBlocks.MORION_ORE.get().defaultBlockState(), 10)).decorated(Placement.RANGE.configured(new TopSolidRangeConfig(32, 10, 80)).squared().count(7))); // 黑晶矿生成
+    public static final ConfiguredFeature<?, ?> PATCH_SQUASH = register("patch_squash", Feature.RANDOM_PATCH.configured((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider((BHTPvZBlocks.SQUASH.get()).defaultBlockState()), new SimpleBlockPlacer())).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK.getBlock())).noProjection().build()).decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE).chance(32)); // 窝瓜生成
+    public static final ConfiguredFeature<?, ?> PATCH_TOXIC_SHROOM = register("patch_toxic_shroom", Feature.RANDOM_PATCH.configured((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider((BlockRegister.TOXIC_SHROOM.get()).defaultBlockState()), new SimpleBlockPlacer())).tries(64).whitelist(ImmutableSet.of(Blocks.MYCELIUM.getBlock())).noProjection().build()).decorated(Features.Placements.HEIGHTMAP_SQUARE).chance(32)); // 孢子生成
+    public static final ConfiguredFeature<?, ?> PATCH_QUESTION_MARK_POT = register("patch_question_mark_pot", Feature.RANDOM_PATCH.configured((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider((BHTPvZBlocks.QUESTION_MARK_POT.get()).defaultBlockState()), new SimpleBlockPlacer())).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK.getBlock())).noProjection().build()).decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE).chance(32)); // 问号罐生成
+    public static final ConfiguredFeature<?, ?> PATCH_PLANT_POT = register("patch_plant_pot", Feature.RANDOM_PATCH.configured((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider((BHTPvZBlocks.PLANT_POT.get()).defaultBlockState()), new SimpleBlockPlacer())).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK.getBlock())).noProjection().build()).decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE).chance(32)); // 植物罐生成
 
-    private static <FC extends FeatureConfiguration> ConfiguredFeature<FC, ?> register(String id, ConfiguredFeature<FC, ?> configuredFeature) {
-        return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(BHTPvZ.MOD_ID, id), configuredFeature);
+    private static  <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String id, ConfiguredFeature<FC, ?> configuredFeature) {
+        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(BHTPvZ.MOD_ID, id), configuredFeature);
     }
 }

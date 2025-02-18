@@ -1,27 +1,30 @@
 package com.zhilizhan.bhtpvz.common.entity.bullet.itembullet;
 
 import com.hungteen.pvz.common.entity.bullet.AbstractShootBulletEntity;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.ItemSupplier;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IRendersAsItem;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
-public abstract class BHTPvZPeaEntity extends AbstractShootBulletEntity implements ItemSupplier {
+@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
+public abstract class BHTPvZPeaEntity extends AbstractShootBulletEntity implements IRendersAsItem {
     private int power = 0;
-    public BHTPvZPeaEntity(EntityType<?> type, Level worldIn) {
+    public BHTPvZPeaEntity(EntityType<?> type, World worldIn) {
         super(type,worldIn);
     }
-    public BHTPvZPeaEntity(EntityType<?> type, Level worldIn, LivingEntity shooter) {
+    public BHTPvZPeaEntity(EntityType<?> type, World worldIn, LivingEntity shooter) {
         super(type,worldIn,shooter);
     }
 
-    protected void onImpact(HitResult result) {
+    protected void onImpact(RayTraceResult result) {
         boolean flag = false;
-        if (result.getType() == net.minecraft.world.phys.HitResult.Type.ENTITY) {
-            Entity target = ((EntityHitResult)result).getEntity();
+        if (result.getType() == RayTraceResult.Type.ENTITY) {
+            Entity target = ((EntityRayTraceResult)result).getEntity();
             if (this.shouldHit(target)) {
                 target.invulnerableTime = 0;
                 this.dealPeaDamage(target);

@@ -37,6 +37,8 @@
   "item.bhtpvz.dt_cherry_seed": "cherry seed",
   "item.bhtpvz.dt_starfruit_seed": "starfruit seed",
   "item.bhtpvz.goo_pea": "goo pea",
+  "item.bhtpvz.pot_grass": "pot grass",
+
 
   "item.bhtpvz.ice_cabbage_pult_card":"ice cabbage pult card",
   "item.bhtpvz.ice_cabbage_pult_enjoy_card":"ice cabbage pult enjoy card",
@@ -85,7 +87,7 @@
 
 
   "item.bhtpvz.origin_moob_spawn_egg": "origin moob spawn egg",
-
+  "item.bhtpvz.toxic_moob_spawn_egg": "toxic moob spawn egg",
 
   "item.bhtpvz.edgar_090547_spawn_egg": "edgar 090547 spawn egg",
   "item.bhtpvz.flower_pot_zombie_spawn_egg": "flower pot zombie spawn egg",
@@ -99,6 +101,10 @@
   "item.bhtpvz.sun_flower_zombie_spawn_egg": "sun flower zombie spawn egg",
   "item.bhtpvz.chomper_zombie_spawn_egg": "chomper zombie spawn egg",
 
+  "item.bhtpvz.pool_disc": "pool music disc",
+  "item.bhtpvz.bowling_music_disc": "bowling music disc",
+  "item.bhtpvz.pool_disc.desc": "pool bgm",
+  "item.bhtpvz.bowling_music_disc.desc": "bowling bgm",
 
   "block.bhtpvz.cherry_leaves": "cherry leaves",
   "block.bhtpvz.starfruit_leaves": "starfruit leaves",
@@ -122,6 +128,7 @@
   "block.bhtpvz.dt_starfruit_branch": "starfruit branch",
   "block.bhtpvz.dt_cherry_branch": "cherry branch",
   "block.bhtpvz.pea_block": "pea block",
+  "block.bhtpvz.toxic_shroom_block": "toxic shroom block",
 
 
   "effect.bhtpvz.halitosis": "halitosis",
@@ -129,6 +136,7 @@
 
 
   "tooltip.bhtpvz.xp_sapling.use": "Eat to gain experience",
+  "tooltip.bhtpvz.wisdom_sapling.use": "eat to gain huge amount experience",
   "tooltip.bhtpvz.token.use": "Use to summon dave",
   "tooltip.bhtpvz.sun_token.use": "Use to summon sunDave",
   "tooltip.bhtpvz.steel_pumpkin_token.use": "Use to summon steelPumpkin",
@@ -176,6 +184,7 @@
 
 
   "entity.bhtpvz.origin_moob": "origin moob",
+  "entity.bhtpvz.toxic_moob": "toxic moob",
   "entity.bhtpvz.red_sun": "red sun",
 
   "skill.pvz.wart_heal_cd": "Heal CD",
@@ -190,7 +199,8 @@
   "skill.pvz.grass_carp_damage.desc": "Plants will have more heal amount",
   "skill.pvz.grass_carp_heal_rage": "Bigger heal rage",
   "skill.pvz.grass_carp_heal_rage.desc": "Plants will have bigger heal rage",
-
+  "skill.pvz.more_chorus_fruit_damage": "Higher damage",
+  "skill.pvz.more_chorus_fruit_damage.desc": "Plants will have higher damage",
 
   "challenge.pvz.roof_extra.name": "Roof Extra",
   "challenge.pvz.roof_extra.msg1": "Additional challenges of bhtpvz",
@@ -251,5 +261,9 @@
 
   "invasion.pvz.lawn_extra": "lawn extra invasion",
   "invasion.pvz.roof_extra": "roof extra invasion",
-  "invasion.pvz.invis_invasion": "invis invasion"
+  "invasion.pvz.invis_invasion": "invis invasion",
+
+  "sound.bhtpvz.buzzer": "Buzzer",
+  "sound.bhtpvz.pool": "Pool music",
+  "sound.bhtpvz.bowling_music": "Bowling music"
 }

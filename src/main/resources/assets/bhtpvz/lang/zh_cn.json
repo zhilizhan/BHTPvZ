@@ -37,7 +37,7 @@
   "item.bhtpvz.dt_cherry_seed": "樱桃树种子",
   "item.bhtpvz.dt_starfruit_seed": "杨桃树种子",
   "item.bhtpvz.goo_pea": "毒液豌豆",
-
+  "item.bhtpvz.pot_grass": "罐子草",
 
   "item.bhtpvz.ice_cabbage_pult_card": "冰卷心菜投手卡",
   "item.bhtpvz.ice_cabbage_pult_enjoy_card": "冰卷心菜投手体验卡",
@@ -85,6 +85,7 @@
   "item.bhtpvz.magnifying_grass_enjoy_card": "棱镜草体验卡",
 
   "item.bhtpvz.origin_moob_spawn_egg": "起源蘑菇牛刷怪蛋",
+  "item.bhtpvz.toxic_moob_spawn_egg": "剧毒蘑菇牛刷怪蛋",
 
   "item.bhtpvz.edgar_090547_spawn_egg": "埃德加-090547刷怪蛋",
   "item.bhtpvz.flower_pot_zombie_spawn_egg": "花盆僵尸刷怪蛋",
@@ -97,6 +98,11 @@
   "item.bhtpvz.dancer_backup_zombie_spawn_egg": "舞伴僵尸刷怪蛋",
   "item.bhtpvz.sun_flower_zombie_spawn_egg": "向日葵僵尸刷怪蛋",
   "item.bhtpvz.chomper_zombie_spawn_egg": "大嘴花僵尸刷怪蛋",
+
+  "item.bhtpvz.pool_disc": "泳池音乐唱片",
+  "item.bhtpvz.bowling_music_disc": "保龄球音乐唱片",
+  "item.bhtpvz.pool_disc.desc": "泳池bgm",
+  "item.bhtpvz.bowling_music_disc.desc": "保龄球bgm",
 
   "block.bhtpvz.cherry_leaves": "樱桃树树叶",
   "block.bhtpvz.starfruit_leaves":"杨桃树树叶",
@@ -120,6 +126,7 @@
   "block.bhtpvz.dt_starfruit_branch": "杨桃树",
   "block.bhtpvz.dt_cherry_branch": "樱桃树",
   "block.bhtpvz.pea_block": "豌豆块",
+  "block.bhtpvz.toxic_shroom_block": "毒蘑菇块",
 
 
   "effect.bhtpvz.halitosis": "口臭",
@@ -127,6 +134,7 @@
 
 
   "tooltip.bhtpvz.xp_sapling.use": "食用以获得经验",
+  "tooltip.bhtpvz.wisdom_sapling.use": "食用以获得大量经验",
   "tooltip.bhtpvz.steel_coin.use": "使用后抽奖次数+3",
   "tooltip.bhtpvz.token.use": "使用以召唤戴夫",
   "tooltip.bhtpvz.sun_token.use": "使用以召唤阳光戴夫",
@@ -171,6 +179,7 @@
   "entity.bhtpvz.chomper_zombie": "大嘴花僵尸",
 
   "entity.bhtpvz.origin_moob": "起源蘑菇牛",
+  "entity.bhtpvz.toxic_moob": "剧毒蘑菇牛",
   "entity.bhtpvz.red_sun": "红太阳",
   "entity.bhtpvz.bee": "蜜蜂",
 
@@ -186,7 +195,8 @@
   "skill.pvz.grass_carp_damage.desc": "植物会有更多的治疗量",
   "skill.pvz.grass_carp_heal_rage": "更大范围",
   "skill.pvz.grass_carp_heal_rage.desc": "植物会有更大的治疗范围",
-
+  "skill.pvz.more_chorus_fruit_damage": "投掷训练",
+  "skill.pvz.more_chorus_fruit_damage.desc": "植物将造成更高的伤害",
 
   "challenge.pvz.roof_extra.name": "屋顶附加",
   "challenge.pvz.roof_extra.msg1": "BHtpvz的附加挑战",
@@ -240,15 +250,18 @@
   "challenge.pvz.steel_and_fire.msg4": "",
   "challenge.pvz.steel_and_fire.msg5": "",
   "challenge.pvz.steel_and_fire.msg6": "",
-  "challenge.pvz.gym.msg1": "Additional challenges of bhtpvz",
+  "challenge.pvz.gym.msg1": "bhtpvz的其他挑战",
   "challenge.pvz.gym.msg2": "",
   "challenge.pvz.gym.msg4": "",
   "challenge.pvz.gym.msg5": "",
   "challenge.pvz.gym.msg6": "",
-  "challenge.pvz.dance.msg1": "Additional challenges of bhtpvz",
+  "challenge.pvz.dance.msg1": "bhtpvz的其他挑战",
   "challenge.pvz.dance.msg2": "",
   "challenge.pvz.dance.msg4": "",
   "challenge.pvz.dance.msg5": "",
-  "challenge.pvz.dance.msg6": ""
+  "challenge.pvz.dance.msg6": "",
 
+  "sound.bhtpvz.buzzer": "挥动锤子声",
+  "sound.bhtpvz.pool": "泳池音乐",
+  "sound.bhtpvz.bowling_music": "保龄球音乐"
 }

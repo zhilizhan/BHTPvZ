@@ -2,7 +2,7 @@ package com.zhilizhan.bhtpvz.common.impl.plant;
 
 import com.hungteen.pvz.api.types.ICardPlacement;
 import com.hungteen.pvz.common.misc.tag.PVZBlockTags;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.block.Blocks;
 
 public class BHTPvZPlacements  {
     public BHTPvZPlacements() {

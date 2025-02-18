@@ -6,20 +6,19 @@ import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import com.zhilizhan.bhtpvz.common.entity.plant.ice.IceCabbagePultEntity;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.projectile.ItemSupplier;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
-public class IceCabbageEntity extends PultBulletEntity implements ItemSupplier {
+@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
+public class IceCabbageEntity extends PultBulletEntity implements IRendersAsItem {
 
-	public IceCabbageEntity(Level level, LivingEntity shooter) {
+	public IceCabbageEntity(World level, LivingEntity shooter) {
 		super(BHTPvZEntityTypes.ICE_CABBAGE.get(), level, shooter);
 	}
-	public IceCabbageEntity(EntityType<IceCabbageEntity> iceCabbageEntityEntityType, Level worldIn) {
+	public IceCabbageEntity(EntityType<IceCabbageEntity> iceCabbageEntityEntityType, World worldIn) {
 		super(BHTPvZEntityTypes.ICE_CABBAGE.get(), worldIn);
 	}
 
@@ -30,12 +29,12 @@ public class IceCabbageEntity extends PultBulletEntity implements ItemSupplier {
 			source.addEffect(((IceCabbagePultEntity) this.getThrower()).getFrozenEffect().orElse(null));
 			source.addEffect(((IceCabbagePultEntity) this.getThrower()).getColdEffect().orElse(null));
 		}
-		entity.hurt(source, this.attackDamage);
+		if(entity instanceof LivingEntity)entity.hurt(source, this.attackDamage);
 	}
 
 	@Override
-	public EntityDimensions getDimensions(Pose pose) {
-		return EntityDimensions.scalable(0.6f, 0.6f);
+	public EntitySize getDimensions(Pose pose) {
+		return EntitySize.scalable(0.6f, 0.6f);
 	}
 
 	@Override

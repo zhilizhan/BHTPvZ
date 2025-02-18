@@ -2,64 +2,64 @@ package com.zhilizhan.bhtpvz.client.model.entity.zombie.bhtpvz;
 
 import com.hungteen.pvz.api.interfaces.IBodyEntity;
 import com.hungteen.pvz.client.model.entity.zombie.PVZZombieModel;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz.AirborneZombieEntity;
-import net.minecraft.client.model.geom.ModelPart;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.zhilizhan.bhtpvz.common.entity.zombie.AirborneZombieEntity;
+import net.minecraft.client.renderer.model.ModelRenderer;
 
 public class AirborneZombieModel extends PVZZombieModel<AirborneZombieEntity> {
-	private final ModelPart total;
-	private final ModelPart zombie;
-	private final ModelPart left_leg;
-	private final ModelPart right_leg;
-	private final ModelPart up;
-	private final ModelPart left_hand;
-	private final ModelPart right_hand;
-	private final ModelPart head;
+	private final ModelRenderer total;
+	private final ModelRenderer zombie;
+	private final ModelRenderer left_leg;
+	private final ModelRenderer right_leg;
+	private final ModelRenderer up;
+	private final ModelRenderer left_hand;
+	private final ModelRenderer right_hand;
+	private final ModelRenderer head;
 
 	public AirborneZombieModel() {
 		texWidth = 128;
 		texHeight = 128;
 
-		total = new ModelPart(this);
+		total = new ModelRenderer(this);
 		total.setPos(0.0f, -12.0f, 0.0f);
 		setRotationAngle(total, 0.7854f, 0.0f, 0.0f);
 
-		zombie = new ModelPart(this);
+		zombie = new ModelRenderer(this);
 		zombie.setPos(0.0f, 0.0f, 0.0f);
 		total.addChild(zombie);
 
-		left_leg = new ModelPart(this);
+		left_leg = new ModelRenderer(this);
 		left_leg.setPos(4.0f, 13.0f, 0.0f);
 		zombie.addChild(left_leg);
 		setRotationAngle(left_leg, -0.7854f, 0.0f, 0.0f);
 		left_leg.texOffs(44, 0).addBox(-5.0f, -1.0f, -3.0f, 8.0f, 24.0f, 8.0f, 0.0f, false);
 
-		right_leg = new ModelPart(this);
+		right_leg = new ModelRenderer(this);
 		right_leg.setPos(-4.0f, 13.0f, 0.0f);
 		zombie.addChild(right_leg);
 		setRotationAngle(right_leg, -0.7854f, 0.0f, 0.0f);
 		right_leg.texOffs(0, 0).addBox(-5.0f, -1.0f, -3.0f, 8.0f, 24.0f, 8.0f, 0.0f, false);
 
-		up = new ModelPart(this);
+		up = new ModelRenderer(this);
 		up.setPos(0.0f, 12.0f, 0.0f);
 		zombie.addChild(up);
 		setRotationAngle(up, 0.5236f, 0.0f, 0.0f);
 		up.texOffs(0, 41).addBox(-8.0f, -24.0f, -4.0f, 16.0f, 24.0f, 8.0f, 0.0f, false);
 
-		left_hand = new ModelPart(this);
+		left_hand = new ModelRenderer(this);
 		left_hand.setPos(12.0f, -20.0f, 0.0f);
 		up.addChild(left_hand);
 		setRotationAngle(left_hand, -1.5708f, -0.2182f, 0.0f);
 		left_hand.texOffs(96, 60).addBox(-4.0f, -4.0f, -4.0f, 8.0f, 24.0f, 8.0f, 0.0f, false);
 
-		right_hand = new ModelPart(this);
+		right_hand = new ModelRenderer(this);
 		right_hand.setPos(-12.0f, -20.0f, 0.0f);
 		up.addChild(right_hand);
 		setRotationAngle(right_hand, -1.6144f, 0.2182f, 0.0f);
 		right_hand.texOffs(96, 0).addBox(-4.0f, -4.0f, -4.0f, 8.0f, 24.0f, 8.0f, 0.0f, false);
 
-		head = new ModelPart(this);
+		head = new ModelRenderer(this);
 		head.setPos(0.0f, -24.0f, 0.0f);
 		up.addChild(head);
 		setRotationAngle(head, -1.0908f, 0.0f, 0.0f);
@@ -112,42 +112,42 @@ public class AirborneZombieModel extends PVZZombieModel<AirborneZombieEntity> {
 	}
 
 	@Override
-	public void renderBody(IBodyEntity entity, PoseStack stack, VertexConsumer buffer, int packedLight, int packedOverlay) {
+	public void renderBody(IBodyEntity entity, MatrixStack stack, IVertexBuilder buffer, int packedLight, int packedOverlay) {
 		super.renderBody(entity, stack, buffer, packedLight, packedOverlay);
 	}
 
 	@Override
-	public ModelPart getZombieLeftHand() {
+	public ModelRenderer getZombieLeftHand() {
 		return this.left_hand;
 	}
 
 	@Override
-	public ModelPart getZombieRightHand() {
+	public ModelRenderer getZombieRightHand() {
 		return this.right_hand;
 	}
 
 	@Override
-	public ModelPart getZombieLeftLeg() {
+	public ModelRenderer getZombieLeftLeg() {
 		return this.left_leg;
 	}
 
 	@Override
-	public ModelPart getZombieRightLeg() {
+	public ModelRenderer getZombieRightLeg() {
 		return this.right_leg;
 	}
 
 	@Override
-	public ModelPart getZombieHead() {
+	public ModelRenderer getZombieHead() {
 		return this.head;
 	}
 
 	@Override
-	public ModelPart getZombieUpBody() {
+	public ModelRenderer getZombieUpBody() {
 		return this.up;
 	}
 
 	@Override
-	public ModelPart getZombieWholeBody() {
+	public ModelRenderer getZombieWholeBody() {
 		return this.total;
 	}
 }

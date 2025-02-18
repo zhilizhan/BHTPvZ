@@ -8,19 +8,17 @@ import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.common.potion.EffectRegister;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.IceCabbageEntity;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.Pose;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.world.World;
 
 import java.util.Optional;
 
 public class IceCabbagePultEntity extends CabbagePultEntity implements IIceEffect{
-	private static final int FROZEN_TICK = 20;
+	private static final int FROZEN_TICK = 15;
 
-	public IceCabbagePultEntity(EntityType<? extends PathfinderMob> type, Level level) {
+	public IceCabbagePultEntity(EntityType<? extends CreatureEntity> type, World level) {
 		super(type, level);
 	}
 
@@ -35,27 +33,17 @@ public class IceCabbagePultEntity extends CabbagePultEntity implements IIceEffec
 	}
 
 	public int getColdDuration() {
-		return 60;
+		return 50;
 	}
 
 	@Override
-	public Optional<MobEffectInstance> getColdEffect() {
-		return Optional.of(new MobEffectInstance(EffectRegister.COLD_EFFECT.get(), FROZEN_TICK + this.getColdDuration(), 2, false, false));
+	public Optional<EffectInstance> getColdEffect() {
+		return Optional.of(new EffectInstance(EffectRegister.COLD_EFFECT.get(), FROZEN_TICK + this.getColdDuration(), 2, false, false));
 	}
 
 	@Override
-	public Optional<MobEffectInstance> getFrozenEffect() {
-		return Optional.of(new MobEffectInstance(EffectRegister.FROZEN_EFFECT.get(), FROZEN_TICK, 2, false, false));
-	}
-
-	@Override
-	public float getSuperDamage() {
-		return this.getAttackDamage() + 20;
-	}
-
-	@Override
-	public EntityDimensions getDimensions(Pose poseIn) {
-		return EntityDimensions.scalable(0.8f, 1.0f);
+	public Optional<EffectInstance> getFrozenEffect() {
+		return Optional.of(new EffectInstance(EffectRegister.FROZEN_EFFECT.get(), FROZEN_TICK, 2, false, false));
 	}
 
 	@Override

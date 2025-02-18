@@ -2,26 +2,28 @@ package com.zhilizhan.bhtpvz.common.entity.plant.enforce;
 
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.advancement.trigger.EntityEffectAmountTrigger;
+import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.hungteen.pvz.common.entity.plant.base.PlantCloserEntity;
 import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
 import com.hungteen.pvz.common.misc.sound.SoundRegister;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
-import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
-import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.entity.projectile.ProjectileHelper;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceContext;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -29,16 +31,18 @@ import java.util.List;
 
 public class NutBowlingEntity extends PlantCloserEntity {
 
-    protected IntOpenHashSet hitEntities;
-    private static final EntityDataAccessor<Integer> FACING;
-    private static final EntityDataAccessor<Integer> DIRECTION;
+    protected IntOpenHashSet hitEntities = new IntOpenHashSet();
+    private static final DataParameter<Integer>  FACING = EntityDataManager.defineId(NutBowlingEntity.class, DataSerializers.INT);
+
+    private static final DataParameter<Integer>  DIRECTION = EntityDataManager.defineId(NutBowlingEntity.class, DataSerializers.INT);
+
     private int bowlingTick;
     private int wallTick;
     private boolean playSpawnSound;
     protected int hitCount;
 
 
-    public NutBowlingEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
+    public NutBowlingEntity(EntityType<? extends PVZPlantEntity> type, World worldIn) {
         super(type, worldIn);
         this.bowlingTick = 0;
         this.wallTick = 0;
@@ -53,72 +57,90 @@ public class NutBowlingEntity extends PlantCloserEntity {
     public void performAttack(LivingEntity livingEntity) {
 
     }
-
-
+    @Override
     public void normalPlantTick() {
         super.normalPlantTick();
         if (!this.level.isClientSide) {
-            if (this.tickCount <= 1 && !this.playSpawnSound) {
+            if (this.tickCount <=20 && !this.playSpawnSound) {
                 EntityUtil.playSound(this, SoundRegister.BOWLING.get());
                 this.playSpawnSound = true;
-                this.ownerPlayer = this.level.getPlayerByUUID(this.getOwnerUUID().orElse(null));
-                if(this.ownerPlayer!=null){
-                Direction direction = ownerPlayer.getDirection();
-                this.setDirection(direction);
-                this.yRot = direction.toYRot();
-            }
-            }
-
-            if (this.tickCount >= this.getMaxLiveTick()) {
-                this.remove();
-            }
-        }
-
-        this.yRotO = this.yRot;
-        this.yRot = this.getDirection().toYRot() + this.getBowlingFacing().offset;
-        double angle = (double)this.yRot * Math.PI / 180.0;
-        double dx = -Math.sin(angle);
-        double dz = Math.cos(angle);
-        this.setDeltaMovement(dx , this.getDeltaMovement().y, dz );
-        this.tickRayTrace();
-        this.tickMove();
-        this.tickCollision();
-        if (!this.level.isClientSide) {
-            if (this.bowlingTick > 0) {
-                --this.bowlingTick;
-            }
-
-            if (this.wallTick > 0) {
-                --this.wallTick;
-            }
-
-            if (this.bowlingTick == 0 && this.horizontalCollision) {
-                if (this.wallTick > 0) {
+                if (this.getOwnerUUID().isPresent())
+                    this.ownerPlayer = this.level.getPlayerByUUID(this.getOwnerUUID().orElse(null));
+                if (this.ownerPlayer != null) {
+                    Direction direction = ownerPlayer.getDirection();
+                    this.setDirection(direction);
+                }
+            }else if (this.tickCount > 0) {
+                this.yRot = this.getDirection().toYRot() + this.getBowlingFacing().offset;
+                if (this.tickCount >= this.getMaxLiveTick()) {
                     this.remove();
-                } else {
-                    this.wallTick = 15;
-                    this.changeDiretion();
+                }
+
+                this.yRotO = this.yRot;
+
+                double angle = (double) this.yRot * Math.PI / 180.0;
+                double dx = -Math.sin(angle);
+                double dz = Math.cos(angle);
+                this.setDeltaMovement(dx, this.getDeltaMovement().y, dz);
+                this.tickRayTrace();
+                this.tickMove();
+                this.tickCollision();
+                if (!this.level.isClientSide) {
+                    if (this.bowlingTick > 0) {
+                        --this.bowlingTick;
+                    }
+
+                    if (this.wallTick > 0) {
+                        --this.wallTick;
+                    }
+
+                    if (this.bowlingTick == 0 && this.horizontalCollision) {
+                        if (this.wallTick > 0) {
+                            this.remove();
+                        } else {
+                            this.wallTick = 15;
+                            this.changeDiretion();
+                        }
+                    }
                 }
             }
         }
 
     }
     protected void tickMove() {
-        Vec3 vec3d = this.getDeltaMovement();
-        double d0 = this.getX() + vec3d.x;
-        double d1 = this.getY() + vec3d.y;
-        double d2 = this.getZ() + vec3d.z;
+        Vector3d vec3d = this.getDeltaMovement();
+        double dx = vec3d.x;
+        double dy = vec3d.y;
+        double dz = vec3d.z;
+        // 生成水中粒子效果
         if (this.isInWater()) {
-            for(int i = 0; i < 4; ++i) {
-                this.level.addParticle(ParticleTypes.BUBBLE, d0 - vec3d.x * 0.25, d1 - vec3d.y * 0.25, d2 - vec3d.z * 0.25, vec3d.x, vec3d.y, vec3d.z);
+            for (int i = 0; i < 3; ++i) {
+                double particleX = this.getX() - dx * 0.25;  // 使用实时坐标值进行计算
+                double particleY = this.getY() - vec3d.y * 0.25;
+                double particleZ = this.getZ() - dz * 0.25;
+                this.level.addParticle(ParticleTypes.BUBBLE, particleX, particleY, particleZ, dx, vec3d.y, dz);
+            }
+        }
+        if (!this.isNoGravity()) {
+
+            if(this.horizontalCollision&&this.isOneBlockHighObstacle()){
+                dy+=0.25;
             }
 
-        }
+            // 根据当前速度动态调整水平移动速度
+            double speedFactor = 1.0F;
+            double horizontalSpeed = Math.sqrt(dx * dx + dz * dz);
+            if (Math.abs(horizontalSpeed) > 1.0) {
+                double ratio = speedFactor / horizontalSpeed;
+                dx *= ratio;
+                dz *= ratio;
+            }
 
-        // this.setDeltaMovement(vec3d.scale((double)f1));
-        if (!this.isNoGravity()) {
-            Vec3 vec3d1 = this.getDeltaMovement();
-            this.setDeltaMovement(vec3d1.x/2.5, vec3d1.y, vec3d1.z/2.5);
+            // 限制速度范围在 [Math.abs(dd), 0.35] 内
+            dx = Math.signum(dx) * Math.min(Math.abs(dx), 0.35);
+            dz = Math.signum(dz) * Math.min(Math.abs(dz), 0.35);
+
+            this.setDeltaMovement(dx, dy, dz);
         }
 
         this.move(MoverType.SELF, this.getDeltaMovement());
@@ -131,22 +153,36 @@ public class NutBowlingEntity extends PlantCloserEntity {
                     this.dealDamageTo(list.get(0));
                     this.changeDiretion();
                 }
-
             }
         }
     }
+    protected boolean isOneBlockHighObstacle() {
+        World world = this.level;
+        BlockPos pos = this.blockPosition();  // 获取实体当前坐标
+        Direction facing = this.getDirection();  // 假定为正面所朝方向
 
+        // 前方的方块位置
+        BlockPos frontBlockPos = pos.offset(facing.getNormal());
+        // 前方上方一格的方块位置
+        BlockPos frontUpBlockPos = frontBlockPos.above();
+
+        // 检查前方的方块是否为实体障碍
+        boolean isFrontBlockSolid = !world.getBlockState(frontBlockPos).isAir();
+        // 检查前方上方的方块是否为非障碍（如空气）
+        boolean isFrontUpBlockPassable = world.getBlockState(frontUpBlockPos).isAir();
+
+        return isFrontBlockSolid && isFrontUpBlockPassable;
+    }
 
     protected void dealDamageTo(Entity entity) {
         ++this.hitCount;
 
         entity.hurt(PVZEntityDamageSource.normal(this, this.ownerPlayer).setCount(this.hitCount), 30.0F);
         EntityUtil.playSound(this, SoundRegister.BOWLING_HIT.get());
-        Player player = this.ownerPlayer;
-        if (player instanceof ServerPlayer) {
-            EntityEffectAmountTrigger.INSTANCE.trigger((ServerPlayer)player, this, this.hitCount);
+        PlayerEntity player = this.ownerPlayer;
+        if (player instanceof ServerPlayerEntity) {
+            EntityEffectAmountTrigger.INSTANCE.trigger((ServerPlayerEntity)player, this, this.hitCount);
         }
-
 
     }
     private void tickRayTrace() {
@@ -154,10 +190,10 @@ public class NutBowlingEntity extends PlantCloserEntity {
         double angle = (double)(this.getDirection().toYRot() + this.getBowlingFacing().offset) * Math.PI / 180.0;
         double dx = Math.sin(angle);
         double dz = -Math.cos(angle);
-        Vec3 start = this.position();
-        Vec3 end = start.add(new Vec3(dx * rayLen, 0.0, dz * rayLen));
-        HitResult result = this.level.clip(new ClipContext(start, end, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
-        if (result.getType() != HitResult.Type.MISS) {
+        Vector3d start = this.position();
+        Vector3d end = start.add(new Vector3d(dx * rayLen, 0.0, dz * rayLen));
+        RayTraceResult result = this.level.clip(new RayTraceContext(start, end, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this));
+        if (result.getType() != RayTraceResult.Type.MISS) {
             end = result.getLocation();
         }
 
@@ -183,18 +219,17 @@ public class NutBowlingEntity extends PlantCloserEntity {
     }
 
 
-    protected void rayTraceEntities(Vec3 startVec, Vec3 endVec) {
-        ProjectileUtil.getEntityHitResult(this.level, this, startVec, endVec, this.getBoundingBox().expandTowards(this.getDeltaMovement()).inflate(1.0), (entity) -> entity.isPickable() && this.shouldHit(entity) && (this.hitEntities == null || !this.hitEntities.contains(entity.getId())));
+    protected void rayTraceEntities(Vector3d startVec, Vector3d endVec) {
+        ProjectileHelper.getEntityHitResult(this.level, this, startVec, endVec, this.getBoundingBox().expandTowards(this.getDeltaMovement()).inflate(1.0), (entity) -> entity.isPickable() && this.shouldHit(entity) && (this.hitEntities == null || !this.hitEntities.contains(entity.getId())));
     }
 
 
     protected int getMaxLiveTick() {
-        return 400;
+        return 300;
     }
 
-
     @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
+    public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("bowling_facings", this.getBowlingFacing().ordinal());
         compound.putInt("bowling_directions", this.getDirection().ordinal());
@@ -208,7 +243,7 @@ public class NutBowlingEntity extends PlantCloserEntity {
         this.entityData.define(DIRECTION, Direction.NORTH.ordinal());
     }
     @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
+    public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         if (compound.contains("bowling_facings")) {
             this.setBowlingFacing(NutBowlingEntity.BowlingFacings.values()[compound.getInt("bowling_facings")]);
@@ -254,23 +289,12 @@ public class NutBowlingEntity extends PlantCloserEntity {
         d0 *= 64.0;
         return distance < d0 * d0;
     }
-
-    @OnlyIn(Dist.CLIENT)
-    public void lerpMotion(double x, double y, double z) {
-        this.setDeltaMovement(x, y, z);
-    }
-
     public boolean isAttackable() {
         return false;
     }
    // protected float getStandingEyeHeight(Pose pose, EntityDimensions dimension) {
    //     return 0.1f;
    // }
-
-    static {
-        FACING = SynchedEntityData.defineId(NutBowlingEntity.class, EntityDataSerializers.INT);
-        DIRECTION = SynchedEntityData.defineId(NutBowlingEntity.class, EntityDataSerializers.INT);
-    }
 
     public  enum BowlingFacings {
         LEFT(-45.0F),
@@ -284,9 +308,8 @@ public class NutBowlingEntity extends PlantCloserEntity {
         }
     }
 
-
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return EntityDimensions.scalable(1F, 1.2F);
+    public EntitySize getDimensions(Pose poseIn) {
+        return EntitySize.scalable(1F, 1.2F);
     }
 
     public IPlantType getPlantType() {

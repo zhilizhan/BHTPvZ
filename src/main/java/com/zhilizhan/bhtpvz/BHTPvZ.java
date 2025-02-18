@@ -16,13 +16,14 @@ import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
 import com.zhilizhan.bhtpvz.common.impl.zombie.BHTPvZZombies;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZSpawnEggItem;
+import com.zhilizhan.bhtpvz.common.sound.BHTPvZSound;
 import com.zhilizhan.bhtpvz.common.world.DecorationGenerate;
 import com.zhilizhan.bhtpvz.common.world.biome.BHTPvZBiomes;
 import com.zhilizhan.bhtpvz.config.BHTPvZConfig;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.entity.EntityType;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -39,6 +40,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.commons.lang3.tuple.Pair;
+
+import javax.annotation.Nonnull;
 
 @Mod(BHTPvZ.MOD_ID)
 @Mod.EventBusSubscriber(modid = BHTPvZ.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -63,26 +66,33 @@ BHTPvZ {
         BHTPvZPlants.register();
         BHTPvZZombies.register();
         BHTPvZSkill.SkillType.register();
-        MinecraftForge.EVENT_BUS.register(LivingEvents.class);
         bus.addListener(this::commonSetup);
-        MinecraftForge.EVENT_BUS.register(bus);
+        //MinecraftForge.EVENT_BUS.register(bus);
 
+
+        bus2.register(LivingEvents.class);
         bus2.addListener(EventPriority.HIGH, DecorationGenerate::addOresToBiomes);
         bus2.addListener(EventPriority.HIGH, DecorationGenerate::addTreesToBiomes);
         bus2.addListener(EventPriority.HIGH, DecorationGenerate::addBlocksToBiomes);
-
+        BHTPvZSound.SOUNDS.register(bus);
+        
+        
         //动态的树
         if(ModList.get().isLoaded("dynamictrees")){
         RegistryHandler.setup(MOD_ID);
-        bus.addListener(this::gatherData);}
+        bus.addListener(this::gatherData);
+        }
     }
 
     // 创造物品栏
-    public static final CreativeModeTab BHTPVZ = new CreativeModeTab("better_hung_teen_plants_vs_zombies") {
+    public static final ItemGroup BHTPVZ = new ItemGroup("better_hung_teen_plants_vs_zombies") {
+        @Nonnull
         @OnlyIn(Dist.CLIENT)
+        @Override
         public ItemStack makeIcon() {
             return new ItemStack(BHTPvZItems.CHERRY.get());
         }
+
     };
 
     //动态的树
@@ -98,10 +108,12 @@ BHTPvZ {
     public static ResourceLocation prefix(String a) {
         return new ResourceLocation("bhtpvz", a);
     }
+
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             BHTPvZBiomes.addBiomeTypes();
             BHTPvZBiomes.addBiomesToGeneration();
         });
     }
+   
 }

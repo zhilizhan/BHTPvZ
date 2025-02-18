@@ -7,20 +7,21 @@ import com.hungteen.pvz.common.misc.sound.SoundRegister;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.projectile.ItemSupplier;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
-public class PopCornEntity extends PultBulletEntity implements ItemSupplier {
-    public PopCornEntity(EntityType<?> type, Level level) {
+import javax.annotation.Nonnull;
+
+@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
+public class PopCornEntity extends PultBulletEntity implements IRendersAsItem {
+    public PopCornEntity(EntityType<?> type, World level) {
         super(type, level);
     }
 
-    public PopCornEntity(Level level, LivingEntity shooter) {
+    public PopCornEntity(World level, LivingEntity shooter) {
         super(BHTPvZEntityTypes.POP_CORN.get(), level, shooter);
     }
     private Entity attackEntity = null;
@@ -47,11 +48,13 @@ public class PopCornEntity extends PultBulletEntity implements ItemSupplier {
             EntityUtil.playSound(this, SoundRegister.SWING.get());
         });
     }
+    @Nonnull
     @Override
-    public EntityDimensions getDimensions(Pose pose) {
-        return EntityDimensions.scalable(0.6f, 0.6f);
+    public EntitySize getDimensions(@Nonnull Pose pose) {
+        return EntitySize.scalable(0.6f, 0.6f);
     }
 
+    @Nonnull
     @Override
     public ItemStack getItem() {
         return new ItemStack(ItemRegister.POP_CORN.get());

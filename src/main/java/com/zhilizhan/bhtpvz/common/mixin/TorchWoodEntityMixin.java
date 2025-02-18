@@ -4,9 +4,9 @@ import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.hungteen.pvz.common.entity.plant.flame.TorchWoodEntity;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.StonePeaEntity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class TorchWoodEntityMixin extends PVZPlantEntity {
     @Shadow public abstract float getHeatRange();
 
-    public TorchWoodEntityMixin(EntityType<? extends PathfinderMob> type, Level worldIn) {
+    public TorchWoodEntityMixin(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
 

@@ -9,29 +9,30 @@ import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.projectile.ItemSupplier;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BushBlock;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.block.Block;
+import net.minecraft.block.BushBlock;
+import net.minecraft.entity.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
+import javax.annotation.Nonnull;
+
+@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
 public class OriginFumeEntity extends PVZItemBulletEntity {
 
 
-    public OriginFumeEntity(EntityType<?> type, Level worldIn) {
+    public OriginFumeEntity(EntityType<?> type, World worldIn) {
         super(type, worldIn);
     }
 
-    public OriginFumeEntity(Level worldIn, LivingEntity living) {
+    public OriginFumeEntity(World worldIn, LivingEntity living) {
         super(BHTPvZEntityTypes.ORIGIN_FUME.get(), worldIn, living);
     }
 
@@ -52,9 +53,9 @@ public class OriginFumeEntity extends PVZItemBulletEntity {
     }
 
 
-    protected void onImpact(HitResult result) {
-        if (result.getType() == HitResult.Type.ENTITY) {
-            Entity target = ((EntityHitResult)result).getEntity();
+    protected void onImpact(RayTraceResult result) {
+        if (result.getType() == RayTraceResult.Type.ENTITY) {
+            Entity target = ((EntityRayTraceResult)result).getEntity();
             if (this.shouldHit(target)) {
                 target.invulnerableTime = 0;
                 this.dealFumeDamage(target);
@@ -72,9 +73,9 @@ public class OriginFumeEntity extends PVZItemBulletEntity {
         }
     }
 
-    protected boolean checkLive(HitResult result) {
-        if (result.getType() == HitResult.Type.BLOCK) {
-            Block block = this.level.getBlockState(((BlockHitResult)result).getBlockPos()).getBlock();
+    protected boolean checkLive(RayTraceResult result) {
+        if (result.getType() == RayTraceResult.Type.BLOCK) {
+            Block block = this.level.getBlockState(((BlockRayTraceResult)result).getBlockPos()).getBlock();
             return block instanceof BushBlock;
         } else {
             return true;
@@ -85,20 +86,22 @@ public class OriginFumeEntity extends PVZItemBulletEntity {
         target.hurt(BHTPvZEntityDamageSource.originFume(this, this.getThrower()), this.attackDamage);
         if (!this.level.isClientSide) {
             if(target instanceof PVZZombieEntity && random.nextInt(3)==0) {
-                ((LivingEntity) target).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 80));
+                ((LivingEntity) target).addEffect(new EffectInstance(Effects.WEAKNESS, 80));
             }
         }
 
     }
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return EntityDimensions.scalable(0.25F, 0.25F);
+    @Nonnull
+    public EntitySize getDimensions(@Nonnull Pose poseIn) {
+        return EntitySize.scalable(0.25F, 0.25F);
     }
 
     protected float getGravityVelocity() {
         return 0.0015F;
     }
 
+    @Nonnull
     public ItemStack getItem() {
         return new ItemStack(BHTPvZItems.ORIGIN_SPORE.get());
     }

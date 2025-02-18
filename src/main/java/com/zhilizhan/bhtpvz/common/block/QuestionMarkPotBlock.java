@@ -4,30 +4,30 @@ import com.hungteen.pvz.api.types.IZombieType;
 import com.hungteen.pvz.common.block.AbstractFacingBlock;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 
 import static com.zhilizhan.bhtpvz.common.list.PlantItemList.PLANT_ITEM;
 import static com.zhilizhan.bhtpvz.common.list.ZombieList.ZOMBIE;
 
 public class QuestionMarkPotBlock extends AbstractFacingBlock {
 
-    private static final VoxelShape SHAPE = Shapes.or(
+    private static final VoxelShape SHAPE = VoxelShapes.or(
             Block.box(4.0, 0.0, 4.0, 12.0, 1.0, 12.0),
             Block.box(3.0, 1.0, 3.0, 13.0, 10.0, 13.0),
             Block.box(4.0, 10.0, 4.0, 12.0, 12.0, 12.0),
@@ -37,7 +37,7 @@ public class QuestionMarkPotBlock extends AbstractFacingBlock {
         super(properties);
     }
 
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    public ActionResultType use(BlockState state, World level, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         IZombieType zombieType = ZOMBIE.getRandomItem(RANDOM).orElse(null);
         ItemStack plant = PLANT_ITEM.getRandomItem(RANDOM).get().getDefaultInstance();
         ItemStack pot = BHTPvZItems.POT_GRASS_CARD.get().getDefaultInstance();
@@ -45,7 +45,7 @@ public class QuestionMarkPotBlock extends AbstractFacingBlock {
         if (!level.isClientSide && player.getMainHandItem().getItem()==BHTPvZItems.HAMMER.get()) {
             level.removeBlock(pos, false);
             //僵尸
-            PathfinderMob zombie = null;
+            CreatureEntity zombie = null;
             if (zombieType != null) {
                 zombie = zombieType.getEntityType().get().create(level);
             }
@@ -61,17 +61,17 @@ public class QuestionMarkPotBlock extends AbstractFacingBlock {
         }
         //扣除耐久
         player.getMainHandItem().hurtAndBreak(2, player, (arg) -> arg.broadcastBreakEvent(player.getUsedItemHand()));
-        return InteractionResult.SUCCESS;
+        return ActionResultType.SUCCESS;
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, IBlockReader level, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }
 
     @Override
-    public BlockPathTypes getAiPathNodeType(BlockState state, BlockGetter world, BlockPos pos, Mob entity) {
-        return BlockPathTypes.FENCE;
+    public PathNodeType getAiPathNodeType(BlockState state, IBlockReader world, BlockPos pos, MobEntity entity) {
+        return PathNodeType.FENCE;
     }
 
 }

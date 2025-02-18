@@ -5,18 +5,21 @@ import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.*;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.world.World;
+
+import javax.annotation.Nonnull;
+
 
 public class CornEntity extends PultBulletEntity {
     private Entity attackEntity = null;
 
-    public CornEntity(EntityType<?> type, Level worldIn) {
+    public CornEntity(EntityType<?> type, World worldIn) {
         super(type, worldIn);
     }
 
-    public CornEntity(Level worldIn, LivingEntity shooter) {
+    public CornEntity(World worldIn, LivingEntity shooter) {
         super(BHTPvZEntityTypes.CORN.get(), worldIn, shooter);
     }
 
@@ -46,8 +49,9 @@ public class CornEntity extends PultBulletEntity {
     }
 
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return EntityDimensions.scalable(0.6F, 0.6F);
+    @Nonnull
+    public EntitySize getDimensions(@Nonnull Pose poseIn) {
+        return EntitySize.scalable(0.6F, 0.6F);
     }
 }
 

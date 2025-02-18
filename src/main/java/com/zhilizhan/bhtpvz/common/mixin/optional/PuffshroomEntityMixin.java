@@ -7,35 +7,42 @@ import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.common.misc.sound.SoundRegister;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.config.BHTPvZConfig;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = PuffShroomEntity.class,remap = false)
 public abstract class PuffshroomEntityMixin extends PlantShooterEntity {
-     int  growTime = 8000;
+    @Unique
+    int  growTime = 8000;
     @Shadow protected abstract boolean canSuperTogether(PuffShroomEntity entity);
 
     @Shadow public abstract int getMaxSuperCnt();
 
-    public PuffshroomEntityMixin(EntityType<? extends PathfinderMob> type, Level worldIn) {
+    public PuffshroomEntityMixin(EntityType <? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
+    @Unique
     protected void growUpTo(int stage) {
         this.setExistTick(growTime * (stage - 1) - 10 - 2);
-        EntityUtil.playSound(this, (SoundEvent) SoundRegister.PLANT_GROW.get());
+        EntityUtil.playSound(this, SoundRegister.PLANT_GROW.get());
     }
 
+    @Unique
     public int getDamageInStage(int stage) {
         return stage == 3 ? 2 : (stage == 2 ? 1 : 0);
     }
 
+    @Unique
     public boolean isInGrowStage(int stage) {
         return this.getExistTick() > growTime * (stage - 1);
     }
@@ -43,34 +50,31 @@ public abstract class PuffshroomEntityMixin extends PlantShooterEntity {
      * @author SuSen36
      * @reason 胆小菇长大加攻击
      */
-    @Overwrite
-    public float getAttackDamage() {
+    @Inject(method = "getAttackDamage", at = @At("HEAD"),cancellable = true)
+    public void getAttackDamage(CallbackInfoReturnable<Float> cir) {
         if(BHTPvZConfig.COMMON_CONFIG.EntitySettings.PlantSetting.PuffShroomGrow.get()){
-        return this.getSkillValue(SkillTypes.SPORE_DAMAGE) + getCurrentDamage();}
-        return this.getSkillValue(SkillTypes.SPORE_DAMAGE);
+        float f = this.getSkillValue(SkillTypes.SPORE_DAMAGE) + getCurrentDamage();
+        cir.setReturnValue(f);
+        cir.cancel();
+      }
     }
     protected int getCurrentDamage() {
         return this.isInGrowStage(3) ? this.getDamageInStage(3) : (this.isInGrowStage(2) ? this.getDamageInStage(2) : this.getDamageInStage(1));
     }
-    /**
-     * @author
-     * @reason
-     */
-    @Overwrite
-    public void shootBullet() {
+
+    @Inject(method = "shootBullet", at = @At("HEAD"),cancellable = true)
+    public void shootBullet(CallbackInfo ci) {
         if (this.isPlantInSuperMode()) {
             this.performShoot(0.1, 0.0, -0.20000000298023224, this.getExistTick() % 5 == 0, 0.0);
         } else {
             this.performShoot(0.1, 0.0, -0.20000000298023224, this.getAttackTime() == 1, 0.0);
             this.refreshDimensions();
         }
+        ci.cancel();
     }
-    /**
-     * @author
-     * @reason
-     */
-    @Overwrite
-    public void startSuperMode(boolean first) {
+
+    @Inject(method = "startSuperMode", at = @At("HEAD"),cancellable = true)
+    public void startSuperMode(boolean first, CallbackInfo ci) {
         if (first) {
             int cnt = 1;
 
@@ -84,13 +88,14 @@ public abstract class PuffshroomEntityMixin extends PlantShooterEntity {
                 }
             }
 
-            Player player = EntityUtil.getEntityOwner(this.level, this);
-            if (player instanceof ServerPlayer) {
-                EntityEffectAmountTrigger.INSTANCE.trigger((ServerPlayer)player, this, cnt);
+            PlayerEntity player = EntityUtil.getEntityOwner(this.level, this);
+            if (player instanceof ServerPlayerEntity) {
+                EntityEffectAmountTrigger.INSTANCE.trigger((ServerPlayerEntity)player, this, cnt);
             }
         if (!this.isInGrowStage(3)) {
             this.growUpTo(3);
         }
         }
+        ci.cancel();
     }
 }

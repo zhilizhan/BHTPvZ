@@ -3,47 +3,50 @@ package com.zhilizhan.bhtpvz.common.entity.plant.electric;
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.entity.ai.goal.target.PVZNearestTargetGoal;
 import com.hungteen.pvz.common.entity.bullet.AbstractBulletEntity;
+import com.hungteen.pvz.common.entity.misc.drop.DropEntity;
+import com.hungteen.pvz.common.entity.misc.drop.SunEntity;
 import com.hungteen.pvz.common.entity.plant.base.PlantShooterEntity;
 import com.hungteen.pvz.common.entity.plant.light.SunFlowerEntity;
 import com.hungteen.pvz.utils.EntityUtil;
+import com.hungteen.pvz.utils.MathUtil;
 import com.hungteen.pvz.utils.PlayerUtil;
 import com.hungteen.pvz.utils.enums.Resources;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.bullet.LightBeamEntity;
 import com.zhilizhan.bhtpvz.common.impl.BHTPvZSkill;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
 public class MagnifyingGrassEntity extends PlantShooterEntity {
-    private static final EntityDataAccessor<Integer> DATA_ID_ATTACK_TARGET= SynchedEntityData.defineId(MagnifyingGrassEntity.class, EntityDataSerializers.INT);
+    private static final DataParameter<Integer> DATA_ID_ATTACK_TARGET= EntityDataManager.defineId(MagnifyingGrassEntity.class, DataSerializers.INT);
+
 
     private LivingEntity clientSideCachedAttackTarget;
     private int clientSideAttackTime;
-    public MagnifyingGrassEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
+    public MagnifyingGrassEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
     public int sunCost = 50;
     protected void registerGoals() {
-        this.goalSelector.addGoal(4, new SpuerAttackGoal(this));
+        this.goalSelector.addGoal(2, new SuperAttackGoal(this));
         this.targetSelector.addGoal(1, new PVZNearestTargetGoal(this, false,true, 10, 10));
-
     }
     @Override
     protected AbstractBulletEntity createBullet() {
@@ -62,7 +65,7 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
     @Override
     public void performShoot(double forwardOffset, double rightOffset, double heightOffset, boolean needSound, double angleOffset) {
         Optional.ofNullable(this.getTarget()).ifPresent((target) -> {
-            Vec3 vec = EntityUtil.getNormalisedVector2d(this, target);
+            Vector3d vec = EntityUtil.getNormalisedVector2d(this, target);
             double deltaY = (double)(this.getDimensions(this.getPose()).height * 0.3F) + heightOffset;
             double deltaX = forwardOffset * vec.x - rightOffset * vec.z;
             double deltaZ = forwardOffset * vec.z + rightOffset * vec.x;
@@ -79,16 +82,17 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
         });
     }
     @Override
-    public InteractionResult interactAt(Player player, Vec3 vec3d, InteractionHand hand) {
-        if (!this.level.isClientSide) {
+    public ActionResultType interactAt(PlayerEntity player, Vector3d vec3d, Hand hand) {
+        if (!this.level.isClientSide && this.getAttackTime()<=0) {
             if (PlayerUtil.getResource(player, Resources.SUN_NUM) > sunCost && this.getTarget()!=null && this.getAttackTime()==0 && !this.isDeadOrDying()) {
                 if(!player.isCreative()) PlayerUtil.addResource(player, Resources.SUN_NUM, -sunCost);
                 this.setAttackTime(1);
-                return InteractionResult.SUCCESS;
+                return ActionResultType.SUCCESS;
             }
         }
         return super.interactAt(player, vec3d, hand);
     }
+
     @Override
     public void shootBullet() {
         if (!this.isPlantInSuperMode()) {
@@ -127,10 +131,44 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
                     this.getLookControl().setLookAt(lv3, 90.0F, 90.0F);
                     this.getLookControl().tick();
                 }
-            }
-
+            }else tickSunCollect();
         });
     }
+    private void tickSunCollect() {
+        if (this.level.isClientSide || this.tickCount % 20 != 0) {
+            return;
+        }
+        List<SunEntity> sunList = this.level.getEntitiesOfClass(SunEntity.class, MathUtil.getAABBWithPos(this.blockPosition(), 10.0), sun -> sun.getDropState() == DropEntity.DropStates.NORMAL && !sun.removed);
+
+        if (sunList.isEmpty()) {
+            return;
+        }
+
+        SunEntity sunEntity = sunList.get(0);
+        if (sunEntity == null) {
+            return;
+        }
+
+        if (this.getAttackTime() <= 0 && sunEntity.getAmount() >= this.sunCost) {
+            double speed = 0.15;
+            Vector3d now = new Vector3d(this.blockPosition().getX() + 0.5, this.blockPosition().getY() + 1.0, this.blockPosition().getZ() + 0.5);
+            Vector3d vec = now.subtract(sunEntity.position());
+
+            if (vec.length() <= 1.0) {
+                if (sunEntity.getAmount() <= 0) {
+                    sunEntity.remove();
+                } else {
+                    sunEntity.setAmount(sunEntity.getAmount() - this.sunCost);
+                }
+                this.setAttackTime(1);
+            } else {
+                sunEntity.setDeltaMovement(vec.normalize().scale(speed));
+            }
+        }
+    }
+
+
+
     @Nullable
     public LivingEntity getActiveAttackTarget() {
         if (!this.hasActiveAttackTarget()) {
@@ -139,9 +177,9 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
             if (this.clientSideCachedAttackTarget != null) {
                 return this.clientSideCachedAttackTarget;
             } else {
-                Entity lv = this.level.getEntity(this.entityData.get(DATA_ID_ATTACK_TARGET));
-                if (lv instanceof LivingEntity) {
-                    this.clientSideCachedAttackTarget = (LivingEntity)lv;
+                Entity entity = this.level.getEntity(this.entityData.get(DATA_ID_ATTACK_TARGET));
+                if (entity instanceof LivingEntity) {
+                    this.clientSideCachedAttackTarget = (LivingEntity)entity;
                     return this.clientSideCachedAttackTarget;
                 } else {
                     return null;
@@ -156,7 +194,7 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
         this.entityData.define(DATA_ID_ATTACK_TARGET, 0);
     }
 
-    public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
+    public void onSyncedDataUpdated(DataParameter<?> key) {
         super.onSyncedDataUpdated(key);
         if (DATA_ID_ATTACK_TARGET.equals(key)) {
             this.clientSideAttackTime = 0;
@@ -168,11 +206,12 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
     public int getAttackDuration() {
         return this.getSuperTime();
     }
-    static class SpuerAttackGoal extends Goal {
+
+    static class SuperAttackGoal extends Goal {
         private final MagnifyingGrassEntity grass;
         private int attackTime;
 
-        public SpuerAttackGoal(MagnifyingGrassEntity arg) {
+        public SuperAttackGoal(MagnifyingGrassEntity arg) {
             this.grass = arg;
         }
 
@@ -182,12 +221,15 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
         }
 
         public boolean canContinueToUse() {
-            return super.canContinueToUse() && ( this.grass.distanceToSqr(this.grass.getTarget()) > 12.0) && this.grass.isPlantInSuperMode();
+            LivingEntity lv = this.grass.getTarget();
+            return super.canContinueToUse() && (EntityUtil.isEntityValid(lv) &&this.grass.distanceToSqr(lv) > 1.0) && this.grass.isPlantInSuperMode();
         }
 
         public void start() {
+            LivingEntity lv = this.grass.getTarget();
+
             this.attackTime = -10;
-            this.grass.getLookControl().setLookAt(this.grass.getTarget(), 90.0F, 90.0F);
+            if(EntityUtil.isEntityValid(lv))this.grass.getLookControl().setLookAt(lv, 90.0F, 90.0F);
             this.grass.hasImpulse = true;
         }
 
@@ -198,29 +240,28 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
 
         public void tick() {
             LivingEntity living = this.grass.getTarget();
+            if(EntityUtil.isEntityValid(living)){
             this.grass.getLookControl().setLookAt(living, 90.0F, 90.0F);
             if (!this.grass.canSee(living)) {
                 this.grass.setTarget(null);
             } else {
                 ++this.attackTime;
-                if (this.attackTime == 0 && this.grass.getTarget()!=null) {
+                if (this.attackTime == 0 && this.grass.getTarget() != null) {
                     this.grass.setActiveAttackTarget(this.grass.getTarget().getId());
                     if (!this.grass.isSilent()) {
-                        this.grass.level.broadcastEntityEvent(this.grass, (byte)21);
+                        this.grass.level.broadcastEntityEvent(this.grass, (byte) 21);
                     }
                 } else if (this.attackTime >= this.grass.getAttackDuration()) {
                     float baseDamage = this.grass.getSuperAttackDamage();
                     float inflate = 8.0f;
-                    AABB entityAABB = this.grass.getBoundingBox().inflate(inflate, inflate/2, inflate);
+                    AxisAlignedBB entityAABB = this.grass.getBoundingBox().inflate(inflate, inflate / 2, inflate);
                     List<SunFlowerEntity> sunFlower = this.grass.level.getEntitiesOfClass(SunFlowerEntity.class, entityAABB);
-                    float finalDamage = baseDamage*sunFlower.size();
+                    float finalDamage = baseDamage * sunFlower.size();
 
-                    if (living != null) {
-                        living.hurt(BHTPvZEntityDamageSource.magnifyingGrass(this.grass, this.grass), finalDamage);
-                    }
+                    living.hurt(BHTPvZEntityDamageSource.magnifyingGrass(this.grass, this.grass), finalDamage);
                     this.grass.setTarget(null);
                 }
-
+            }
                 super.tick();
             }
         }

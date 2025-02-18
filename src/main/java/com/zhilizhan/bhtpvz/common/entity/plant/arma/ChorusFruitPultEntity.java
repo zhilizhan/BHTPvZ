@@ -3,22 +3,22 @@ package com.zhilizhan.bhtpvz.common.entity.plant.arma;
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.entity.bullet.PultBulletEntity;
 import com.hungteen.pvz.common.entity.plant.base.PlantPultEntity;
-import com.hungteen.pvz.common.impl.SkillTypes;
 import com.zhilizhan.bhtpvz.common.entity.bullet.ChorusFruitEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.PoppedChorusFruitEntity;
+import com.zhilizhan.bhtpvz.common.impl.BHTPvZSkill;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.*;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.world.World;
 
 public class ChorusFruitPultEntity extends PlantPultEntity {
 
-    private static final EntityDataAccessor<Integer> CURRENT_BULLET;
+    private static final DataParameter<Integer>  CURRENT_BULLET = EntityDataManager.defineId(ChorusFruitPultEntity.class, DataSerializers.INT);
 
-    public ChorusFruitPultEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
+    public ChorusFruitPultEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -26,8 +26,12 @@ public class ChorusFruitPultEntity extends PlantPultEntity {
         super.defineSynchedData();
         this.entityData.define(CURRENT_BULLET, ChorusFruitTypes.POPPED.ordinal());
     }
+    @Override
+    public int getPultCD() {
+        return 100;
+    }
 
-
+    @Override
     public void startPultAttack() {
         super.startPultAttack();
         this.changeBullet();
@@ -37,7 +41,7 @@ public class ChorusFruitPultEntity extends PlantPultEntity {
         if (this.isPlantInSuperMode() && !this.isSuperOut) {
             this.setCurrentBullet(ChorusFruitTypes.POPPED);
         } else {
-            this.setCurrentBullet(this.getRandom().nextInt(3) == 0 ? ChorusFruitTypes.NORMAL : ChorusFruitTypes.POPPED);
+            this.setCurrentBullet(this.getRandom().nextInt(2) == 0 ? ChorusFruitTypes.NORMAL : ChorusFruitTypes.POPPED);
         }
     }
 
@@ -55,15 +59,15 @@ public class ChorusFruitPultEntity extends PlantPultEntity {
     }
 
     public float getAttackDamage() {
-        return this.getSkillValue(SkillTypes.MORE_KERNEL_DAMAGE);
+        return this.getSkillValue(BHTPvZSkill.MORE_CHORUS_FRUIT_DAMAGE);
     }
 
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return EntityDimensions.scalable(0.8F, 1.0F);
+    public EntitySize getDimensions(Pose poseIn) {
+        return EntitySize.scalable(0.75F, 0.8F);
     }
 
-    public void readAdditionalSaveData(CompoundTag compound) {
+    public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         if (compound.contains("current_bullet_type")) {
             this.setCurrentBullet(ChorusFruitTypes.values()[compound.getInt("current_bullet_type")]);
@@ -71,7 +75,7 @@ public class ChorusFruitPultEntity extends PlantPultEntity {
 
     }
 
-    public void addAdditionalSaveData(CompoundTag compound) {
+    public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("current_bullet_type", this.getCurrentBullet().ordinal());
     }
@@ -88,9 +92,6 @@ public class ChorusFruitPultEntity extends PlantPultEntity {
         return BHTPvZPlants.CHORUS_FRUIT_PULT;
     }
 
-    static {
-        CURRENT_BULLET = SynchedEntityData.defineId(ChorusFruitPultEntity.class, EntityDataSerializers.INT);
-    }
 
     public enum ChorusFruitTypes {
         NORMAL,

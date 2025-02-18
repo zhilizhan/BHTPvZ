@@ -3,7 +3,7 @@ package com.zhilizhan.bhtpvz.common.mixin;
 import com.hungteen.pvz.client.ClientProxy;
 import com.hungteen.pvz.client.render.layer.fullskin.ColdLayer;
 import com.zhilizhan.bhtpvz.client.render.layer.GooPoisonLayer;
-import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.LivingRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -22,9 +22,9 @@ public class ClientProxyMixin {
     @Unique
     private void addLayersForRender() {
         MC.getEntityRenderDispatcher().renderers.values().forEach((r) -> {
-            if (r instanceof LivingEntityRenderer) {
-                ((LivingEntityRenderer)r).addLayer(new GooPoisonLayer((LivingEntityRenderer)r));
-                ((LivingEntityRenderer)r).addLayer(new ColdLayer((LivingEntityRenderer)r));
+            if (r instanceof LivingRenderer) {
+                ((LivingRenderer)r).addLayer(new GooPoisonLayer((LivingRenderer)r));
+                ((LivingRenderer)r).addLayer(new ColdLayer((LivingRenderer)r));
             }
         });
     }

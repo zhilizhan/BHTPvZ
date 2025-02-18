@@ -9,22 +9,23 @@ import com.zhilizhan.bhtpvz.common.entity.bullet.BurstCornEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.CornEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.PopCornEntity;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.world.World;
 
 import java.util.List;
 
 public class BurstKernelPultEntity extends PlantPultEntity {
 
-    private static final EntityDataAccessor<Integer> CURRENT_BULLET;
+    private static final DataParameter<Integer>  CURRENT_BULLET = EntityDataManager.defineId(BurstKernelPultEntity.class, DataSerializers.INT);
+
     private BurstKernelPultEntity upgradeEntity;
 
-    public BurstKernelPultEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
+    public BurstKernelPultEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -41,15 +42,15 @@ public class BurstKernelPultEntity extends PlantPultEntity {
 
     }
 
-    public boolean canBeUpgrade(Player player) {
+    public boolean canBeUpgrade(PlayerEntity player) {
         this.upgradeEntity = this.getNearByPult(player);
         return super.canBeUpgrade(player) && EntityUtil.isEntityValid(this.upgradeEntity);
     }
 
-    private BurstKernelPultEntity getNearByPult(Player player) {
+    private BurstKernelPultEntity getNearByPult(PlayerEntity player) {
         float range = 1.5F;
         List<BurstKernelPultEntity> list = this.level.getEntitiesOfClass(BurstKernelPultEntity.class, EntityUtil.getEntityAABB(this, range, range), (pult) -> !pult.is(this) && pult.getPlantType() == BHTPvZPlants.BURST_KERNEL_PULT && !EntityUtil.canAttackEntity(pult, player));
-        return list.size() == 0 ? null : list.get(0);
+        return list.isEmpty() ? null : list.get(0);
     }
 
     public void startPultAttack() {
@@ -84,11 +85,11 @@ public class BurstKernelPultEntity extends PlantPultEntity {
         return 5;
     }
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return EntityDimensions.scalable(0.8F, 1.0F);
+    public EntitySize getDimensions(Pose poseIn) {
+        return EntitySize.scalable(0.7F, 0.8F);
     }
 
-    public void readAdditionalSaveData(CompoundTag compound) {
+    public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         if (compound.contains("current_bullet_type")) {
             this.setCurrentBullet(BurstKernelPultEntity.CornTypes.values()[compound.getInt("current_bullet_type")]);
@@ -96,7 +97,7 @@ public class BurstKernelPultEntity extends PlantPultEntity {
 
     }
 
-    public void addAdditionalSaveData(CompoundTag compound) {
+    public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("current_bullet_type", this.getCurrentBullet().ordinal());
     }
@@ -110,10 +111,6 @@ public class BurstKernelPultEntity extends PlantPultEntity {
     }
     public IPlantType getPlantType() {
         return BHTPvZPlants.BURST_KERNEL_PULT;
-    }
-
-    static {
-        CURRENT_BULLET = SynchedEntityData.defineId(BurstKernelPultEntity.class, EntityDataSerializers.INT);
     }
 
     public enum CornTypes {

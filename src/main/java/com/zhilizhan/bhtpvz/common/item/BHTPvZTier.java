@@ -1,27 +1,28 @@
 package com.zhilizhan.bhtpvz.common.item;
 
-import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.item.IItemTier;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.LazyValue;
 
+import javax.annotation.Nonnull;
 import java.util.function.Supplier;
 
-public class
-BHTPvZTier implements Tier {
+public enum BHTPvZTier implements IItemTier {
+    DAMSON_CRYSTAL(4, 2031, 9.0f, 4.0f, 15, () -> Ingredient.of(BHTPvZItems.DAMSON_CRYSTAL_INGOT.get()));
     private final int level;
     private final int uses;
     private final float speed;
     private final float damage;
     private final int enchantmentValue;
-    private final LazyLoadedValue<Ingredient> repairIngredient;
+    private final LazyValue<Ingredient> repairIngredient;
 
-    protected BHTPvZTier(int i, int j, float f, float g, int k, Supplier<Ingredient> supplier) {
+    BHTPvZTier(int i, int j, float f, float g, int k, Supplier<Ingredient> supplier) {
         this.level = i;
         this.uses = j;
         this.speed = f;
         this.damage = g;
         this.enchantmentValue = k;
-        this.repairIngredient = new LazyLoadedValue<>(supplier);
+        this.repairIngredient = new LazyValue<>(supplier);
     }
 
     @Override
@@ -49,6 +50,7 @@ BHTPvZTier implements Tier {
         return this.enchantmentValue;
     }
 
+    @Nonnull
     @Override
     public Ingredient getRepairIngredient() {
         return this.repairIngredient.get();

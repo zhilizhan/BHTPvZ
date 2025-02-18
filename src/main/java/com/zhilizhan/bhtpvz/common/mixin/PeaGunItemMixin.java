@@ -18,21 +18,21 @@ import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.GooPeaEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.StonePeaEntity;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -48,11 +48,13 @@ import static com.hungteen.pvz.common.item.tool.plant.PeaGunItem.getFirstBullets
 public abstract class PeaGunItemMixin {
     @Shadow @Final private static HashSet<IPlantType> SHOOT_MODES;
 
-    @Shadow protected abstract void shrinkItemStack(Player player, ItemStack stack);
+    @Shadow protected abstract void shrinkItemStack(PlayerEntity player, ItemStack stack);
 
-    @Shadow protected abstract PeaEntity.Type getPeaType(Player player);
+    @Shadow protected abstract PeaEntity.Type getPeaType(PlayerEntity player);
 
+    @Unique
     private static final HashSet<IPlantType> BHTPVZ_SHOOT_MODES = new HashSet<>(Arrays.asList(BHTPvZPlants.RE_ICEPEA,BHTPvZPlants.PEA_POD,BHTPvZPlants.PRIMAL_PEA_SHOOTER,BHTPvZPlants.FIRE_PEASHOOTER,BHTPvZPlants.GOO_PEA_SHOOTER,BHTPvZPlants.BEE_SHOOTER));
+    @Unique
     private static final HashSet<IPlantType> NORMAL_PEA_MODES = new HashSet<>(Arrays.asList(BHTPvZPlants.RE_ICEPEA,BHTPvZPlants.PEA_POD,BHTPvZPlants.FIRE_PEASHOOTER,PVZPlants.SNOW_PEA,PVZPlants.PEA_SHOOTER,PVZPlants.GATLING_PEA,PVZPlants.SPLIT_PEA,PVZPlants.THREE_PEATER));
 
     @Inject(method = "registerPeaGunShootMode", at = @At("TAIL"))
@@ -63,12 +65,9 @@ public abstract class PeaGunItemMixin {
     private static boolean isValidMode(HashSet<?> instance, Object o,ItemStack stack) {
         return (SHOOT_MODES.contains(((PlantCardItem)stack.getItem()).plantType)||BHTPVZ_SHOOT_MODES.contains(((PlantCardItem)stack.getItem()).plantType) )&& !((PlantCardItem)stack.getItem()).isEnjoyCard;
     }
-    /**
-     * @author
-     * @reason
-     */
-    @Overwrite
-    public void performShoot(Level world, Player player, ItemStack itemStack, IPlantType mode) {
+
+    @Inject(method = "performShoot", at = @At(value = "HEAD"), cancellable = true)
+    public void performShoot(World world, PlayerEntity player, ItemStack itemStack, IPlantType mode, CallbackInfo ci) {
         ItemStack stack = getFirstBullets(itemStack);
         if (mode == PVZPlants.PEA_SHOOTER||mode==BHTPvZPlants.FIRE_PEASHOOTER||mode==BHTPvZPlants.BEE_SHOOTER||mode == PVZPlants.SNOW_PEA||mode==BHTPvZPlants.GOO_PEA_SHOOTER||mode==BHTPvZPlants.PRIMAL_PEA_SHOOTER) {
             this.shootPea(world, player, mode, stack, 0.5, 0.0,0.0, 0.0F);
@@ -111,11 +110,13 @@ public abstract class PeaGunItemMixin {
         EntityUtil.playSound(player, sound);
         this.shrinkItemStack(player, itemStack);
         if (PlayerUtil.isPlayerSurvival(player)) {
-            itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
+            itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(Hand.MAIN_HAND));
         }
+        ci.cancel();
     }
-    public void shootPea(Level world, Player player, IPlantType mode, ItemStack stack, double forwardOffset,double heightOffset ,double rightOffset, float angle) {
-        Vec3 vec = player.getLookAngle();
+    @Unique
+    public void shootPea(World world, PlayerEntity player, IPlantType mode, ItemStack stack, double forwardOffset, double heightOffset , double rightOffset, float angle) {
+        Vector3d vec = player.getLookAngle();
         double deltaX = forwardOffset * vec.x - rightOffset * vec.z;
         double deltaY = heightOffset - 0.4;
         double deltaZ = forwardOffset * vec.z + rightOffset * vec.x;
@@ -129,8 +130,9 @@ public abstract class PeaGunItemMixin {
             pea.shootPea(player.getLookAngle(), 1.2999999523162842, angle);
             pea.summonByOwner(player);
             pea.setAttackDamage(1.5F);
-            }
+
             world.addFreshEntity(pea);
+            }
         } else if (mode ==BHTPvZPlants.GOO_PEA_SHOOTER||stack.getItem()==BHTPvZItems.GOO_PEA.get()) {
             GooPeaEntity pea = BHTPvZEntityTypes.GOO_PEA.get().create(world);
             if (pea != null) {
@@ -140,8 +142,9 @@ public abstract class PeaGunItemMixin {
             pea.setPower(EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, player.getMainHandItem()));
             pea.summonByOwner(player);
             pea.setAttackDamage(1.5F);
-            }
+
             world.addFreshEntity(pea);
+            }
         } else if (mode ==BHTPvZPlants.PRIMAL_PEA_SHOOTER||stack.getItem()==BHTPvZItems.PEA_BLOCK.get()) {
             if (Math.random() <= 0.5F||stack.getItem()==BHTPvZItems.PEA_BLOCK.get()) {
                 StonePeaEntity pea =  BHTPvZEntityTypes.STONE_PEA.get().create(world);
@@ -151,8 +154,10 @@ public abstract class PeaGunItemMixin {
                 pea.setPower(EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, player.getMainHandItem()));
                 pea.summonByOwner(player);
                 pea.setAttackDamage(1.5F);
-                }
+
                 world.addFreshEntity(pea);
+                }
+
             } else {
                 PeaEntity pea = EntityRegister.PEA.get().create(world);
                 if (pea != null) {
@@ -164,8 +169,9 @@ public abstract class PeaGunItemMixin {
                 pea.shootPea(player.getLookAngle(), 1.2999999523162842, angle);
                 pea.summonByOwner(player);
                 pea.setAttackDamage(1.5F);
-                }
+
                 world.addFreshEntity(pea);
+                }
             }
         } else if (mode == BHTPvZPlants.BEE_SHOOTER) {
             BeeEntity bee = BHTPvZEntityTypes.BEE.get().create(world);
@@ -178,8 +184,9 @@ public abstract class PeaGunItemMixin {
             bee.summonByOwner(player);
             Objects.requireNonNull(bee.getAttribute(Attributes.MAX_HEALTH)).setBaseValue(power);
             Objects.requireNonNull(bee.getAttribute(Attributes.ATTACK_DAMAGE)).setBaseValue((power / 2));
+
+                world.addFreshEntity(bee);
             }
-            world.addFreshEntity(bee);
         } else if (mode == PVZPlants.STAR_FRUIT || mode == OtherPlants.ANGEL_STAR_FRUIT){
               StarEntity star = EntityRegister.STAR.get().create(world);
             if (star != null) {
@@ -191,8 +198,9 @@ public abstract class PeaGunItemMixin {
                 star.shootPea(player.getLookAngle(), 1.2999999523162842, angle);
                 star.summonByOwner(player);
                 star.setAttackDamage(1.5F + power);
-            }
+
                 world.addFreshEntity(star);
+            }
         }else if (stack.getItem()==BHTPvZItems.STARFRUIT.get()||stack.getItem()==BHTPvZItems.ANGEL_STARFRUIT.get()) {
             Item item = stack.getItem();
             StarEntity star = EntityRegister.STAR.get().create(world);
@@ -207,11 +215,13 @@ public abstract class PeaGunItemMixin {
             star.shootPea(player.getLookAngle(), 1.2999999523162842, angle);
             star.summonByOwner(player);
             star.setAttackDamage(1.5F + power);
-            }
+
             world.addFreshEntity(star);
+            }
         }
 
     }
+    @Unique
     private PeaEntity.State getPeaState(IPlantType plant, Item item) {
         if (plant == PVZPlants.SNOW_PEA || plant == BHTPvZPlants.RE_ICEPEA) {
             return PeaEntity.State.ICE;
@@ -223,6 +233,7 @@ public abstract class PeaGunItemMixin {
             return item == ItemRegister.FLAME_PEA.get() ? PeaEntity.State.FIRE : PeaEntity.State.NORMAL;
         }
     }
+    @Unique
     private StarEntity.StarStates getStarState(IPlantType plant, Item item) {
         if (plant == PVZPlants.STAR_FRUIT) {
             return StarEntity.StarStates.YELLOW;

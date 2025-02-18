@@ -4,67 +4,67 @@ package com.zhilizhan.bhtpvz.client.model.entity.zombie.bhtpvz;// Made with Bloc
 
 
 import com.hungteen.pvz.client.model.entity.zombie.PVZZombieModel;
-import com.zhilizhan.bhtpvz.common.entity.zombie.bhtpvz.RedEdgeZombieEntity;
-import net.minecraft.client.model.geom.ModelPart;
+import com.zhilizhan.bhtpvz.common.entity.zombie.RedEdgeZombieEntity;
+import net.minecraft.client.renderer.model.ModelRenderer;
 
 public class RedEdgeZombieModel extends PVZZombieModel<RedEdgeZombieEntity> {
-	private final ModelPart total;
-	private final ModelPart right_leg;
-	private final ModelPart left_leg;
-	private final ModelPart up;
-	private final ModelPart body;
-	private final ModelPart left_hand;
-	private final ModelPart sword;
-	private final ModelPart cross_r1;
-	private final ModelPart right_hand;
-	private final ModelPart head;
-	private final ModelPart getZombieLeftHand;
-	private final ModelPart getZombieRightHand;
-	private final ModelPart getZombieLeftLeg;
-	private final ModelPart getZombieRightLeg;
-	private final ModelPart getZombieHead;
-	private final ModelPart getZombieUpBody;
-	private final ModelPart getZombieWholeBody;
+	private final ModelRenderer total;
+	private final ModelRenderer right_leg;
+	private final ModelRenderer left_leg;
+	private final ModelRenderer up;
+	private final ModelRenderer body;
+	private final ModelRenderer left_hand;
+	private final ModelRenderer sword;
+	private final ModelRenderer cross_r1;
+	private final ModelRenderer right_hand;
+	private final ModelRenderer head;
+	private final ModelRenderer getZombieLeftHand;
+	private final ModelRenderer getZombieRightHand;
+	private final ModelRenderer getZombieLeftLeg;
+	private final ModelRenderer getZombieRightLeg;
+	private final ModelRenderer getZombieHead;
+	private final ModelRenderer getZombieUpBody;
+	private final ModelRenderer getZombieWholeBody;
 
 	public RedEdgeZombieModel() {
 		texWidth = 128;
 		texHeight = 128;
 
-		total = new ModelPart(this);
+		total = new ModelRenderer(this);
 		total.setPos(0.0F, 24.0F, 0.0F);
 
 
-		right_leg = new ModelPart(this);
+		right_leg = new ModelRenderer(this);
 		right_leg.setPos(-4.0F, -24.0F, 0.0F);
 		total.addChild(right_leg);
 		right_leg.texOffs(0, 32).addBox(-4.0F, 0.0F, -4.0F, 8.0F, 24.0F, 8.0F, 0.0F, false);
 
-		left_leg = new ModelPart(this);
+		left_leg = new ModelRenderer(this);
 		left_leg.setPos(4.0F, -24.0F, 0.0F);
 		total.addChild(left_leg);
 		left_leg.texOffs(0, 32).addBox(-4.0F, 0.0F, -4.0F, 8.0F, 24.0F, 8.0F, 0.0F, false);
 
-		up = new ModelPart(this);
+		up = new ModelRenderer(this);
 		up.setPos(0.0F, -24.0F, 0.0F);
 		total.addChild(up);
 
 
-		body = new ModelPart(this);
+		body = new ModelRenderer(this);
 		body.setPos(0.0F, -7.0F, 0.0F);
 		up.addChild(body);
 		body.texOffs(32, 32).addBox(-8.0F, -17.0F, -4.0F, 16.0F, 24.0F, 8.0F, 0.0F, false);
 
-		left_hand = new ModelPart(this);
+		left_hand = new ModelRenderer(this);
 		left_hand.setPos(12.0F, -20.0F, 0.0F);
 		up.addChild(left_hand);
 		left_hand.texOffs(80, 32).addBox(-4.0F, -4.0F, -4.0F, 8.0F, 24.0F, 8.0F, 0.0F, false);
 
-		sword = new ModelPart(this);
+		sword = new ModelRenderer(this);
 		sword.setPos(0.0F, 0.0F, 0.0F);
 		left_hand.addChild(sword);
 
 
-		cross_r1 = new ModelPart(this);
+		cross_r1 = new ModelRenderer(this);
 		cross_r1.setPos(0.0F, 0.0F, 0.0F);
 		sword.addChild(cross_r1);
 		setRotationAngle(cross_r1, 1.5708F, 0.0F, 0.0F);
@@ -72,77 +72,77 @@ public class RedEdgeZombieModel extends PVZZombieModel<RedEdgeZombieEntity> {
 		cross_r1.texOffs(22, 82).addBox(-1.0F, -47.0F, -17.0F, 1.0F, 34.0F, 4.0F, 0.0F, false);
 		cross_r1.texOffs(36, 112).addBox(0.0F, -16.0F, -17.0F, 1.0F, 13.0F, 3.0F, 0.0F, false);
 
-		right_hand = new ModelPart(this);
+		right_hand = new ModelRenderer(this);
 		right_hand.setPos(-12.0F, -20.0F, 0.0F);
 		up.addChild(right_hand);
 		right_hand.texOffs(80, 32).addBox(-4.0F, -4.0F, -4.0F, 8.0F, 24.0F, 8.0F, 0.0F, false);
 
-		head = new ModelPart(this);
+		head = new ModelRenderer(this);
 		head.setPos(0.0F, -24.0F, 0.0F);
 		up.addChild(head);
 		head.texOffs(0, 0).addBox(-8.0F, -16.0F, -8.0F, 16.0F, 16.0F, 16.0F, 0.0F, false);
 
-		getZombieLeftHand = new ModelPart(this);
+		getZombieLeftHand = new ModelRenderer(this);
 		getZombieLeftHand.setPos(0.0F, 0.0F, 0.0F);
 
 
-		getZombieRightHand = new ModelPart(this);
+		getZombieRightHand = new ModelRenderer(this);
 		getZombieRightHand.setPos(0.0F, 0.0F, 0.0F);
 
 
-		getZombieLeftLeg = new ModelPart(this);
+		getZombieLeftLeg = new ModelRenderer(this);
 		getZombieLeftLeg.setPos(0.0F, 0.0F, 0.0F);
 
 
-		getZombieRightLeg = new ModelPart(this);
+		getZombieRightLeg = new ModelRenderer(this);
 		getZombieRightLeg.setPos(0.0F, 0.0F, 0.0F);
 
 
-		getZombieHead = new ModelPart(this);
+		getZombieHead = new ModelRenderer(this);
 		getZombieHead.setPos(0.0F, 0.0F, 0.0F);
 
 
-		getZombieUpBody = new ModelPart(this);
+		getZombieUpBody = new ModelRenderer(this);
 		getZombieUpBody.setPos(0.0F, 0.0F, 0.0F);
 
 
-		getZombieWholeBody = new ModelPart(this);
+		getZombieWholeBody = new ModelRenderer(this);
 		getZombieWholeBody.setPos(0.0F, 0.0F, 0.0F);
 
 	}
 
 	@Override
-	public ModelPart getZombieLeftHand() {
+	public ModelRenderer getZombieLeftHand() {
 		return this.right_hand;
 	}
 
 	@Override
-	public ModelPart getZombieRightHand() {
+	public ModelRenderer getZombieRightHand() {
 		return this.left_hand;
 	}
 
 	@Override
-	public ModelPart getZombieLeftLeg() {
+	public ModelRenderer getZombieLeftLeg() {
 		return this.left_leg;
 	}
 
 	@Override
-	public ModelPart getZombieRightLeg() {
+	public ModelRenderer getZombieRightLeg() {
 		return this.right_leg;
 	}
 
 	@Override
-	public ModelPart getZombieHead() {
+	public ModelRenderer getZombieHead() {
 		return this.head;
 	}
 
 	@Override
-	public ModelPart getZombieUpBody() {
+	public ModelRenderer getZombieUpBody() {
 		return this.up;
 	}
 
 	@Override
-	public ModelPart getZombieWholeBody() {
+	public ModelRenderer getZombieWholeBody() {
 		return this.total;
 	}
 }

@@ -1,24 +1,23 @@
 package com.zhilizhan.bhtpvz.common.block;
 
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
-
-import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.CropsBlock;
+import net.minecraft.state.IntegerProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.IItemProvider;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class ChiliBlock extends CropBlock {
+public class ChiliBlock extends CropsBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
             Block.box(0.0, 0.0, 0.0, 16.0, 7.0, 16.0),
@@ -27,12 +26,12 @@ public class ChiliBlock extends CropBlock {
             Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 16.0)
     };
 
-    public ChiliBlock(Properties properties) {
+    public ChiliBlock(Block.Properties properties) {
         super(properties);
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, IBlockReader level, BlockPos pos, ISelectionContext context) {
         return SHAPE_BY_AGE[state.getValue(getAgeProperty())];
     }
 
@@ -47,24 +46,24 @@ public class ChiliBlock extends CropBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerWorld level, BlockPos pos, Random random) {
         if (random.nextInt(3) != 0) {
             super.randomTick(state, level, pos, random);
         }
     }
 
     @Override
-    protected int getBonemealAgeIncrease(Level level) {
+    protected int getBonemealAgeIncrease(World level) {
         return super.getBonemealAgeIncrease(level) / 3;
     }
 
     @Override
-    protected ItemLike getBaseSeedId() {
+    protected IItemProvider getBaseSeedId() {
         return BHTPvZItems.CHILI_SEEDS.get();
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
 }

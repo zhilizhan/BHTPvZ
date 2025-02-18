@@ -7,14 +7,14 @@ import com.hungteen.pvz.common.entity.plant.appease.PeaShooterEntity;
 import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.utils.MathUtil;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.Pose;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.EntitySize;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.Pose;
+import net.minecraft.world.World;
 
 public class FirePeashooterEntity extends PeaShooterEntity {
-    public FirePeashooterEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
+    public FirePeashooterEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -34,8 +34,7 @@ public class FirePeashooterEntity extends PeaShooterEntity {
     }
 
     protected AbstractBulletEntity createBullet() {
-        PeaEntity pea = new PeaEntity(this.level, this, this.getShootType(), this.getShootState());
-        return pea;
+        return new PeaEntity(this.level, this, this.getShootType(), this.getShootState());
     }
 
     public float getAttackDamage() {
@@ -62,8 +61,8 @@ public class FirePeashooterEntity extends PeaShooterEntity {
         return 100;
     }
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return EntityDimensions.scalable(0.7F, 1.3F);
+    public EntitySize getDimensions(Pose poseIn) {
+        return EntitySize.scalable(0.7F, 1.3F);
     }
 
     public IPlantType getPlantType() {

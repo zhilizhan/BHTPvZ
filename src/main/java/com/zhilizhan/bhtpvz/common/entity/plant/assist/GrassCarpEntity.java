@@ -5,22 +5,24 @@ import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.impl.BHTPvZSkill;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.Pose;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.EntitySize;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.Pose;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.world.World;
+
+import javax.annotation.Nonnull;
 
 public class GrassCarpEntity extends PVZPlantEntity {
     private static final int EFFECT_CD = 200;
-    public GrassCarpEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
+    public GrassCarpEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(2, new FloatGoal(this));
+        this.goalSelector.addGoal(2, new SwimGoal(this));
     }
 
     public void normalPlantTick() {
@@ -51,8 +53,8 @@ public class GrassCarpEntity extends PVZPlantEntity {
     public float getEffectRange() {
         return this.getSkillValue(BHTPvZSkill.GRASS_CARP_HEAL_RANGE);
     }
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return EntityDimensions.scalable(0.8F, 0.8F);
+    public EntitySize getDimensions(@Nonnull Pose poseIn) {
+        return EntitySize.scalable(0.8F, 0.8F);
     }
 
     @Override

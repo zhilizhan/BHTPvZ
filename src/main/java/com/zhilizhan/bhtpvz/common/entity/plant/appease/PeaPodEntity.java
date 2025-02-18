@@ -10,27 +10,27 @@ import com.hungteen.pvz.common.item.spawn.card.PlantCardItem;
 import com.hungteen.pvz.utils.PlayerUtil;
 import com.hungteen.pvz.utils.enums.Resources;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
 public class PeaPodEntity extends PeaShooterEntity {
-    private static final EntityDataAccessor<Integer> DATA_COUNT  = SynchedEntityData.defineId(PeaPodEntity.class, EntityDataSerializers.INT);
+    private static final DataParameter<Integer> DATA_COUNT  = EntityDataManager.defineId(PeaPodEntity.class, DataSerializers.INT);
 
-    public PeaPodEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
+    public PeaPodEntity(EntityType<? extends PeaShooterEntity> type, World worldIn) {
         super(type, worldIn);
     }
+
     @Override
     public void shootBullet() {
         if (this.isPlantInSuperMode()){
@@ -45,7 +45,7 @@ public class PeaPodEntity extends PeaShooterEntity {
     }
 
     @Override
-    public InteractionResult interactAt(Player player, Vec3 vec3d, InteractionHand hand) {
+    public ActionResultType interactAt(PlayerEntity player, Vector3d vec3d, Hand hand) {
         if (!this.level.isClientSide) {
             ItemStack stack = player.getItemInHand(hand);
             PlantCardItem item = (PlantCardItem) stack.getItem();
@@ -56,8 +56,8 @@ public class PeaPodEntity extends PeaShooterEntity {
             boolean flag1 = sunCost <= PlayerUtil.getResource(player, Resources.SUN_NUM) || player.isCreative();
             if (flag && flag1 && this.getCount()<5){
                 MinecraftForge.EVENT_BUS.post(new SummonCardUseEvent(player, stack,plantStack));
-                if (player instanceof ServerPlayer) {
-                    PlayerPlacePAZTrigger.INSTANCE.trigger((ServerPlayer) player, PlayerPlacePAZTrigger.PlaceTypes.PLANT.toString().toLowerCase(), item.plantType.getIdentity());
+                if (player instanceof ServerPlayerEntity) {
+                    PlayerPlacePAZTrigger.INSTANCE.trigger((ServerPlayerEntity) player, PlayerPlacePAZTrigger.PlaceTypes.PLANT.toString().toLowerCase(), item.plantType.getIdentity());
                 }
                 if (PlayerUtil.isPlayerSurvival(player)) {
                     if (item.isEnjoyCard) {
@@ -70,9 +70,9 @@ public class PeaPodEntity extends PeaShooterEntity {
                     player.getCooldowns().addCooldown(stack.getItem(), 10);
                 }
                 this.addCount();
-                return InteractionResult.SUCCESS;
+                return ActionResultType.SUCCESS;
             }
-                return InteractionResult.FAIL;
+                return ActionResultType.FAIL;
         }
 
         return super.interactAt(player, vec3d, hand);
@@ -81,12 +81,12 @@ public class PeaPodEntity extends PeaShooterEntity {
         super.defineSynchedData();
         this.entityData.define(DATA_COUNT,1);
     }
-    public void addAdditionalSaveData(CompoundTag compound) {
+    public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
          compound.putInt("Count", this.getCount()-1);
     }
 
-    public void readAdditionalSaveData(CompoundTag compound) {
+    public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         int i = compound.getInt("Count");
         if (i < 0) {

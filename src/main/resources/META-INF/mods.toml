@@ -6,7 +6,7 @@ issueTrackerURL = "https://github.com/zhilizhan/BHTPvZ/issues"
 [[mods]]
 modId = "bhtpvz"
 version = "${version}"
-displayName = "${mod_name}"
+displayName = "Better HungTeen's Plants vs Zombies"
 authors = "${mod_authors}"
 credits = "\nArtist: GrassCarp, DLlover, Echoes_ACT\nData Pack: 136"
 logoFile = "logo.png"
@@ -30,5 +30,5 @@ side = "BOTH"
 modId = "pvz"
 mandatory = true
 versionRange = "[${pvz_version},)"
-ordering = "NONE"
+ordering = "BEFORE"  # BEFORE 表示在目标Mod之前加载资源包，AFTER 表示在目标Mod之后加载资源包
 side = "BOTH"

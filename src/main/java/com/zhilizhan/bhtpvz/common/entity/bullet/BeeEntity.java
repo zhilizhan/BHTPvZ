@@ -5,56 +5,56 @@ import com.hungteen.pvz.api.interfaces.IHasGroup;
 import com.hungteen.pvz.api.interfaces.IHasOwner;
 import com.hungteen.pvz.common.entity.EntityGroupHander;
 import com.hungteen.pvz.utils.EntityUtil;
-import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.Mth;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.control.FlyingMoveControl;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
-import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.controller.FlyingMovementController;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.NBTUtil;
+import net.minecraft.pathfinding.FlyingPathNavigator;
+import net.minecraft.pathfinding.PathNavigator;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.UUID;
 
-public class BeeEntity extends PathfinderMob  implements IHasGroup, IHasOwner {
+public class BeeEntity extends CreatureEntity implements IHasGroup, IHasOwner {
     protected Entity owner;
     protected UUID ownerId;
     protected PVZGroupType groupType;
     private int limitedLifeTicks = 500;
-    public BeeEntity(EntityType<? extends PathfinderMob> arg, Level arg2) {
+    public BeeEntity(EntityType<? extends CreatureEntity> arg, World arg2) {
         super(arg, arg2);
         this.setNoGravity(true);
         this.groupType = this.getInitialEntityGroup();
-        this.moveControl = new FlyingMoveControl(this, 20, true);
+        this.moveControl = new FlyingMovementController(this, 20, true);
         this.xpReward = 0;
     }
-    public BeeEntity(EntityType<? extends PathfinderMob> type, Level worldIn, Entity livingEntityIn) {
+    public BeeEntity(EntityType<? extends CreatureEntity> type, World worldIn, Entity livingEntityIn) {
         super(type, worldIn);
         this.summonByOwner(livingEntityIn);
     }
 
-    public void shootBee(Vec3 vec, double speed, double angleOffset) {
+    public void shootBee(Vector3d vec, double speed, double angleOffset) {
         this.shootBee(vec.x, vec.y, vec.z, speed, angleOffset);
     }
 
     public void shootBee(double dx, double dy, double dz, double speed, double angleOffset) {
         double dxz = Math.sqrt(dx * dx + dz * dz);
 
-        double degree = Mth.atan2(dz, dx) + Math.toRadians(angleOffset);
+        double degree = MathHelper.atan2(dz, dx) + Math.toRadians(angleOffset);
         dx = Math.cos(degree) * dxz;
         dz = Math.sin(degree) * dxz;
         double totSpeed = Math.sqrt(dxz * dxz + dy * dy);
-        this.setDeltaMovement((new Vec3(dx / totSpeed, dy / totSpeed, dz / totSpeed)).scale(speed));
+        this.setDeltaMovement((new Vector3d(dx / totSpeed, dy / totSpeed, dz / totSpeed)).scale(speed));
     }
 
     protected void registerGoals() {
@@ -75,8 +75,8 @@ public class BeeEntity extends PathfinderMob  implements IHasGroup, IHasOwner {
             limitedLifeTicks--;
         }
     }
-    protected PathNavigation createNavigation(Level level) {
-        FlyingPathNavigation flyingpathnavigator = new FlyingPathNavigation(this, level);
+    protected PathNavigator createNavigation(World level) {
+        FlyingPathNavigator flyingpathnavigator = new FlyingPathNavigator(this, level);
         flyingpathnavigator.setCanOpenDoors(false);
         flyingpathnavigator.setCanFloat(false);
         flyingpathnavigator.setCanPassDoors(true);
@@ -85,11 +85,11 @@ public class BeeEntity extends PathfinderMob  implements IHasGroup, IHasOwner {
     public void setLimitedLife(int limitedLifeTicks) {
         this.limitedLifeTicks = limitedLifeTicks;
     }
-    public void readAdditionalSaveData(CompoundTag compound) {
+    public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.owner = null;
         if (compound.contains("owner", 10)) {
-            this.ownerId = NbtUtils.loadUUID(compound.getCompound("owner"));
+            this.ownerId = NBTUtil.loadUUID(compound.getCompound("owner"));
         }
         if (compound.contains("group_owner_type")) {
             this.groupType = EntityGroupHander.getGroup(compound.getInt("group_owner_type"));
@@ -97,10 +97,10 @@ public class BeeEntity extends PathfinderMob  implements IHasGroup, IHasOwner {
         this.setLimitedLife(compound.getInt("life_ticks"));
     }
 
-    public void addAdditionalSaveData(CompoundTag compound) {
+    public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         if (this.ownerId != null) {
-            compound.put("owner", NbtUtils.createUUID(this.ownerId));
+            compound.put("owner", NBTUtil.createUUID(this.ownerId));
         }
         compound.putInt("group_owner_type", this.groupType.ordinal());
         compound.putInt("life_ticks", this.limitedLifeTicks);
@@ -114,8 +114,8 @@ public class BeeEntity extends PathfinderMob  implements IHasGroup, IHasOwner {
 
     @Nullable
     public Entity getOwner() {
-        if (EntityUtil.isEntityValid(this.owner) && this.ownerId != null && this.level instanceof ServerLevel) {
-            this.owner = ((ServerLevel)this.level).getEntity(this.ownerId);
+        if (EntityUtil.isEntityValid(this.owner) && this.ownerId != null && this.level instanceof ServerWorld) {
+            this.owner = ((ServerWorld)this.level).getEntity(this.ownerId);
         }
 
         return this.owner;
@@ -138,12 +138,12 @@ public class BeeEntity extends PathfinderMob  implements IHasGroup, IHasOwner {
     public PVZGroupType getEntityGroupType() {
         return this.groupType;
     }
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return EntityDimensions.scalable(0.4F, 0.4F);
+    public EntitySize getDimensions(Pose poseIn) {
+        return EntitySize.scalable(0.4F, 0.4F);
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 1).add(Attributes.FLYING_SPEED, 0.5000000238418579).add(Attributes.KNOCKBACK_RESISTANCE, 5.4002).add(Attributes.ATTACK_DAMAGE, 0.0).add(Attributes.FOLLOW_RANGE, 34.0);
+    public static AttributeModifierMap.MutableAttribute createAttributes() {
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 1).add(Attributes.FLYING_SPEED, 0.5000000238418579).add(Attributes.KNOCKBACK_RESISTANCE, 5.4002).add(Attributes.ATTACK_DAMAGE, 0.0).add(Attributes.FOLLOW_RANGE, 34.0);
     }
 
 
