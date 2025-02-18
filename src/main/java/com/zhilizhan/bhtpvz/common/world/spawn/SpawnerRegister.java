@@ -22,10 +22,10 @@ public class SpawnerRegister {
     public static void addSpawn(BiomeLoadingEvent event) {
         RegistryKey<Biome> biomeKey = RegistryKey.create(Registry.BIOME_REGISTRY, Objects.requireNonNull(event.getName()));
         if(biomeKey== BHTPvZBiomes.NIGHT_KEY) {
-            event.getSpawns().addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(BHTPvZEntityTypes.TOXIC_MOOB.get(), 3, 1, 1));
+            event.getSpawns().addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(BHTPvZEntityTypes.TOXIC_MOOB.get(), 3, 0, 1));
         }
         if(biomeKey== BHTPvZBiomes.ZEN_GANIGHT_KEY) {
-            event.getSpawns().addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(BHTPvZEntityTypes.ORIGIN_MOOB.get(), 5, 1, 1)); }
+            event.getSpawns().addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(BHTPvZEntityTypes.ORIGIN_MOOB.get(), 5, 0, 1)); }
     }
 
 }
