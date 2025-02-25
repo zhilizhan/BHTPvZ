@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class BHTPvZSkill extends SkillTypes {
 
-    public static final ISkillType WART_HEAL_CD = new SkillTypes.SkillType("wart_heal_cd", ArrayUtil.getAverageArray(5, 15.0F, 9.0F), Arrays.asList(2, 3, 4,5));
+    public static final ISkillType WART_HEAL_CD = new SkillTypes.SkillType("wart_heal_cd", ArrayUtil.getAverageArray(5, 25.0F, 15.0F), Arrays.asList(2, 3, 4,5));
     public static final ISkillType IMITATER_CHANCE = new SkillTypes.SkillType("imitater_chance", ArrayUtil.getAverageArray(3, 3.0F, 5.0F), Arrays.asList(2, 3, 5));
 
     public static final ISkillType LIGHT_BEAM_DAMAGE = new SkillTypes.SkillType("light_beam_damage", ArrayUtil.getAverageArray(5, 35.0F, 65.0F), Arrays.asList(2, 3, 4, 5, 6));

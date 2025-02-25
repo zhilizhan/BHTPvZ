@@ -5,6 +5,7 @@ import com.hungteen.pvz.PVZMod;
 import com.hungteen.pvz.api.types.IPAZType;
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.block.BlockRegister;
+import com.hungteen.pvz.common.enchantment.EnchantmentRegister;
 import com.hungteen.pvz.common.enchantment.card.plantcard.SoillessPlantEnchantment;
 import com.hungteen.pvz.common.impl.plant.PVZPlants;
 import com.hungteen.pvz.common.item.spawn.card.ImitaterCardItem;
@@ -14,12 +15,15 @@ import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
 import com.zhilizhan.bhtpvz.common.block.PotGrassBlock;
 import com.zhilizhan.bhtpvz.common.block.WaterPotBlock;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
+import com.zhilizhan.bhtpvz.common.tileentity.PotGrassTileEntity;
 import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -55,7 +59,6 @@ public abstract class PlantCardItemMixin extends SummonCardItem {
     private static ItemStack getHeldStack(ItemStack stack) {
         return null;
     }
-
 
     @Inject(method = "getBlockState(Lnet/minecraft/entity/player/PlayerEntity;Lcom/hungteen/pvz/api/types/IPlantType;)Lnet/minecraft/block/BlockState;", at = @At("HEAD"), cancellable = true)
     private static void getBlockState(PlayerEntity player, IPlantType plant, CallbackInfoReturnable<BlockState> cir) {
@@ -131,6 +134,21 @@ public abstract class PlantCardItemMixin extends SummonCardItem {
             }
         }
 
+    }
+    @Inject(method = "checkSunAndPlaceBlock", at = @At("RETURN"), cancellable = true)
+    private static void checkPlaceBlock(PlayerEntity player, ItemStack heldStack, ItemStack plantStack, PlantCardItem cardItem, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
+        if (cir.getReturnValue()) { // Check if the return value is true
+            cardItem.plantType.getPlantBlock().ifPresent(block -> {
+                TileEntity blockEntity = player.level.getBlockEntity(pos);
+                if (blockEntity instanceof PotGrassTileEntity) {
+                    PotGrassTileEntity potGrass = (PotGrassTileEntity) blockEntity;
+                    boolean isCharmed = (EnchantmentHelper.getItemEnchantmentLevel(EnchantmentRegister.CHARM.get(), plantStack) > 0);
+
+                    potGrass.setOwnerId(player.getUUID());
+                    potGrass.setCharmed(isCharmed);
+                }
+            });
+        }
     }
     /**
      * This method is used to handle the interaction of using a plant item on a specific context.

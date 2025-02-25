@@ -1,6 +1,7 @@
 package com.zhilizhan.bhtpvz.client.render.entity.plant.electric;
 
 import com.hungteen.pvz.client.render.entity.plant.PVZPlantRender;
+import com.hungteen.pvz.utils.EntityUtil;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.electric.MagnifyingGrassModel;
@@ -35,7 +36,7 @@ public class MagnifyingGrassRender  extends PVZPlantRender<MagnifyingGrassEntity
     public void render(MagnifyingGrassEntity entity, float entityYaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight) {
         super.render(entity, entityYaw, partialTicks, matrixStack, buffer, packedLight);
         LivingEntity lv = entity.getActiveAttackTarget();
-        if (lv != null) {
+        if (EntityUtil.isEntityValid(lv) && entity.isInSuperState()) {
             float j = (float)entity.level.getGameTime() + partialTicks;
             float k = j * 0.5F % 1.0F;
             float l = entity.getEyeHeight();

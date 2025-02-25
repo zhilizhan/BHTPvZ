@@ -153,7 +153,7 @@ public class BHTPvZItems {
     public static final RegistryObject<Item> MORION_ORE = ITEMS.register("morion_ore", ()-> new BlockItem(BHTPvZBlocks.MORION_ORE.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 黑晶矿
     public static final RegistryObject<Item> MORION_BLOCK = ITEMS.register("morion_block", ()-> new BlockItem(BHTPvZBlocks.MORION_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 黑晶块
     public static final RegistryObject<Item> DAMSON_CRYSTAL_BLOCK = ITEMS.register("damson_crystal_block", ()-> new BlockItem(BHTPvZBlocks.DAMSON_CRYSTAL_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 暗紫合晶块
-    public static final RegistryObject<Item> DECOMPOSITION_STAGE = ITEMS.register("decomposition_stage", ()-> new BlockItem(BHTPvZBlocks.DECOMPOSITION_STAGE.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 分解台
+    public static final RegistryObject<Item> CARD_DECOMPOSITION_TABLE = ITEMS.register("card_decomposition_table", ()-> new BlockItem(BHTPvZBlocks.CARD_DECOMPOSITION_TABLE.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 分解台
     public static final RegistryObject<BlockItem> SCREEN_DOOR = ITEMS.register("screen_door",() -> new BlockItem(BHTPvZBlocks.SCREEN_DOOR.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));  // 铁网门
     public static final RegistryObject<BlockItem> PEA_BLOCK = ITEMS.register("pea_block",() -> new BlockItem(BHTPvZBlocks.PEA_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ)));  // 压缩豌豆块
     public static final RegistryObject<Item> TOXIC_SHROOM_BLOCK = ITEMS.register("toxic_shroom_block", ()-> new BlockItem(BHTPvZBlocks.TOXIC_SHROOM_BLOCK.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // PVZ毒蘑菇块

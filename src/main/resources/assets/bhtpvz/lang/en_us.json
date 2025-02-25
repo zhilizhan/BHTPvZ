@@ -120,7 +120,7 @@
   "block.bhtpvz.damson_crystal_block": "damson crystal block",
   "block.bhtpvz.chili": "chili seeds",
   "block.bhtpvz.garlic": "garlic",
-  "block.bhtpvz.decomposition_stage": "decomposition stage",
+  "block.bhtpvz.card_decomposition_table": "card decomposition table",
   "block.bhtpvz.steel_pumpkin": "steel pumpkin",
   "block.bhtpvz.water_pot": "waterPot",
   "block.bhtpvz.screen_door": "screen door",
@@ -143,6 +143,7 @@
   "tooltip.bhtpvz.steel_coin.use": "Use to chance number+3",
   "tooltip.bhtpvz.chlorophyll.use": "Eat to gain energy",
   "tooltip.bhtpvz.hammer.use": "Right hammer zombies or pot",
+  "tooltip.bhtpvz.card_decomposition_table":"qin",
 
 
   "entity.bhtpvz.ice_cabbage_pult":"ice cabbage pult",
@@ -262,6 +263,11 @@
   "invasion.pvz.lawn_extra": "lawn extra invasion",
   "invasion.pvz.roof_extra": "roof extra invasion",
   "invasion.pvz.invis_invasion": "invis invasion",
+
+  "gui.bhtpvz.card_decomposition": "Decomposition",
+  "gui.bhtpvz.card_decomposition_table.tip1": "It need the power of sun to run",
+  "gui.bhtpvz.card_decomposition_table.tip2": "put sun storage sapling on left side bar",
+  "gui.bhtpvz.card_decomposition_table.tip3": "The probability of a template card being released is 1/3",
 
   "sound.bhtpvz.buzzer": "Buzzer",
   "sound.bhtpvz.pool": "Pool music",

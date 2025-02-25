@@ -18,7 +18,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class Hammer extends TieredItem {
+public class
+Hammer extends TieredItem {
     public Hammer(Properties properties) {
         super(ItemTier.WOOD, properties);
     }

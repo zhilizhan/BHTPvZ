@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "bhtpvz:block/card_decomposition_table_side",
+    "north": "bhtpvz:block/card_decomposition_table_side",
+    "south": "bhtpvz:block/card_decomposition_table_side",
+    "east": "bhtpvz:block/card_decomposition_table_side",
+    "west": "bhtpvz:block/card_decomposition_table_side",
+    "up": "bhtpvz:block/card_decomposition_table_top",
+    "down": "bhtpvz:block/card_decomposition_table_bottom"
+  }
+}
