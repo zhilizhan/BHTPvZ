@@ -1,5 +1,6 @@
 version 0.7.7-alpha.4 :
 1-修复了原始蘑菇牛生成过多的bug
+2-毒液豌豆的buff伤害更改为3*3
 version 0.7.7-alpha.3 :
 1-修复了已知的崩溃bug
 2-修复了BHTPVZ的袭击会生成猪的bug

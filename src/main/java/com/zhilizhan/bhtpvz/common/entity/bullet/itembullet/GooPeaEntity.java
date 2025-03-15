@@ -1,6 +1,7 @@
 package com.zhilizhan.bhtpvz.common.entity.bullet.itembullet;
 
 import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
+import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.effect.BHTPvZMobEffects;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
@@ -32,9 +33,18 @@ public class GooPeaEntity extends BHTPvZPeaEntity{
         PVZEntityDamageSource source = BHTPvZEntityDamageSource.gooPea(this, this.getThrower());
         source.addEffect(this.getPoisonEffect().orElse(null));
         target.hurt(source, damage);
+        this.dealSplashDamage();
     }
     public Optional<EffectInstance> getPoisonEffect() {
         return Optional.of(new EffectInstance(BHTPvZMobEffects.GOO_POISON.get(), 100, 0, false, false));
+    }
+    public void dealSplashDamage() {
+        float range = 3.0F;
+        EntityUtil.getTargetableEntities(this.getOwnerOrSelf(), EntityUtil.getEntityAABB(this, (double)3.0F, (double)3.0F)).forEach((entity) -> {
+            PVZEntityDamageSource source = BHTPvZEntityDamageSource.gooPea(this, this.getThrower());
+            this.getPoisonEffect().ifPresent((e) -> source.addEffect(e));
+            entity.hurt(source, this.getAttackDamage() / 2.0F);
+        });
     }
     @Nonnull
     @Override

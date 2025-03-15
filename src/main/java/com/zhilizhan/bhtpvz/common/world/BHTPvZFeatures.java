@@ -29,7 +29,7 @@ public class BHTPvZFeatures {
 
     public static final ConfiguredFeature<?, ?> TREES_CHERRY = register("trees_cherry", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(CHERRY.weighted(0.45F)), CHERRY)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(1, 0.02f, 1)))); // 樱桃树生成
     public static final ConfiguredFeature<?, ?> TREES_STARFRUIT = register("trees_starfruit", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(STARFRUIT.weighted(0.25F)), STARFRUIT)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(1, 0.02f, 1)))); // 杨桃树生成
-
+/*
     //巨型原始蘑菇
     public static final ConfiguredFeature<?, ?> ORGIGIN_MUSHROOM = register(
             "origin_mushroom",  new HugeOriginMushroomFeature(BigMushroomFeatureConfig.CODEC).configured(new BigMushroomFeatureConfig(new SimpleBlockStateProvider(BHTPvZBlocks.ORIGIN_MUSHROOM_BLOCK.get().defaultBlockState()), new SimpleBlockStateProvider(Blocks.MUSHROOM_STEM.defaultBlockState()), 3)));
@@ -39,7 +39,7 @@ public class BHTPvZFeatures {
     public static final ConfiguredFeature<?, ?> TOXIC_MUSHROOM = register(
             "toxic_shroom",  new HugeToxicShroomFeature(BigMushroomFeatureConfig.CODEC).configured(new BigMushroomFeatureConfig(new SimpleBlockStateProvider(BHTPvZBlocks.TOXIC_SHROOM_BLOCK.get().defaultBlockState()), new SimpleBlockStateProvider(Blocks.MUSHROOM_STEM.defaultBlockState()), 3)));
     public static final ConfiguredFeature<?, ?> HUGE_TOXIC_MUSHROOM = register("huge_toxic_shroom", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(TOXIC_MUSHROOM.weighted(0.1F)), TOXIC_MUSHROOM)).decorated(Features.Placements.HEIGHTMAP_SQUARE));
-
+*/
     // 其他生成
     public static final ConfiguredFeature<?, ?> ORE_MORION = register("ore_morion", Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, BHTPvZBlocks.MORION_ORE.get().defaultBlockState(), 10)).decorated(Placement.RANGE.configured(new TopSolidRangeConfig(32, 10, 80)).squared().count(7))); // 黑晶矿生成
     public static final ConfiguredFeature<?, ?> PATCH_SQUASH = register("patch_squash", Feature.RANDOM_PATCH.configured((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider((BHTPvZBlocks.SQUASH.get()).defaultBlockState()), new SimpleBlockPlacer())).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK.getBlock())).noProjection().build()).decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE).chance(32)); // 窝瓜生成
