@@ -11,7 +11,7 @@ import com.hungteen.pvz.utils.EntityUtil;
 import com.hungteen.pvz.utils.MathUtil;
 import com.hungteen.pvz.utils.PlayerUtil;
 import com.hungteen.pvz.utils.enums.Resources;
-import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
+import com.zhilizhan.bhtpvz.common.misc.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.bullet.LightBeamEntity;
 import com.zhilizhan.bhtpvz.common.impl.BHTPvZSkill;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;

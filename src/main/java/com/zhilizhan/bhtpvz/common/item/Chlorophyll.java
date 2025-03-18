@@ -41,7 +41,9 @@ public class Chlorophyll extends Item {
                     {
                         l.getPlayerData().addResource(Resources.ENERGY_NUM, amount);
                         PlayerUtil.playClientSound(player, SoundEvents.EXPERIENCE_BOTTLE_THROW);
-                        stack.shrink(1);
+                        if(!player.isCreative()) {
+                            stack.shrink(1);
+                        }
                     }
                 });
             }

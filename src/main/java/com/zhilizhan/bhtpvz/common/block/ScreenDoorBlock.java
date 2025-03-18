@@ -34,5 +34,4 @@ public class ScreenDoorBlock extends DoorBlock {
         return ActionResultType.sidedSuccess(level.isClientSide);
     }
 
-
 }

@@ -8,7 +8,7 @@ import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
 import com.hungteen.pvz.common.misc.sound.SoundRegister;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.client.particle.BHTPvZParticle;
-import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
+import com.zhilizhan.bhtpvz.common.misc.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import net.minecraft.entity.*;
 import net.minecraft.world.World;

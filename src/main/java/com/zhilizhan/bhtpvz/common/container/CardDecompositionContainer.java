@@ -28,7 +28,7 @@ public class CardDecompositionContainer extends PVZContainer {
         } else {
             this.addDataSlots(this.te.array);
             //阳光充能槽
-            this.addSlot(new SlotItemHandler(this.te.handler, 0, 7, 119) {
+            this.addSlot(new SlotItemHandler(this.te.handler, 0, 6, 119) {
                              public boolean mayPlace(ItemStack stack) {
                                  return stack.getItem() instanceof SunStorageSaplingItem;
                              }
@@ -40,21 +40,21 @@ public class CardDecompositionContainer extends PVZContainer {
                 }
             });
 
-            // 输出槽位1 (上方)
+            // 输出槽位1
             this.addSlot(new SlotItemHandler(this.te.handler, 2, 116, 64) { // 坐标(29, 17)
                 public boolean mayPlace(ItemStack stack) {
                     return false; // 不能手动放置物品
                 }
             });
 
-            // 输出槽位2 (上方)
+            // 输出槽位2
             this.addSlot(new SlotItemHandler(this.te.handler, 3, 141, 64) { // 坐标(59, 17)
                 public boolean mayPlace(ItemStack stack) {
                     return false; // 不能手动放置物品
                 }
             });
 
-            // 输出槽位3 (上方)
+            // 输出槽位3
             this.addSlot(new SlotItemHandler(this.te.handler, 4, 166, 64) { // 坐标(89, 17)
                 public boolean mayPlace(ItemStack stack) {
                     return false; // 不能手动放置物品
@@ -122,7 +122,7 @@ public class CardDecompositionContainer extends PVZContainer {
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
-            if (index != 0 && index >= 12) {
+            if (index >= 12) {
                 if (index < 40) {
                     if (!this.moveItemStackTo(itemstack1, 0, 13, false) && !this.moveItemStackTo(itemstack1, 40, this.slots.size(), false)) {
                         return ItemStack.EMPTY;

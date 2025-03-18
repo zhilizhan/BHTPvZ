@@ -52,8 +52,8 @@
   "item.bhtpvz.water_pot_enjoy_card": "water pot enjoy card",
   "item.bhtpvz.chorus_fruit_pult_card": "chorusfruit pult card",
   "item.bhtpvz.chorus_fruit_pult_enjoy_card": "chorusfruit pult enjoy card",
-  "item.bhtpvz.burst_kernel_pult_card": "burst kernel pult card",
-  "item.bhtpvz.burst_kernel_pult_enjoy_card": "burst kernel pult enjoy card",
+  "item.bhtpvz.caramel_kernel_pult_card": "caramel kernel pult card",
+  "item.bhtpvz.caramel_kernel_pult_enjoy_card": "caramel kernel pult enjoy card",
   "item.bhtpvz.rotate_radish_card": "rotate radish card",
   "item.bhtpvz.rotate_radish_enjoy_card": "rotate radish enjoy card",
   "item.bhtpvz.blaze_wart_card": "blaze wart pult card",
@@ -143,7 +143,7 @@
   "tooltip.bhtpvz.steel_coin.use": "Use to chance number+3",
   "tooltip.bhtpvz.chlorophyll.use": "Eat to gain energy",
   "tooltip.bhtpvz.hammer.use": "Right hammer zombies or pot",
-  "tooltip.bhtpvz.card_decomposition_table":"qin",
+  "tooltip.bhtpvz.card_decomposition_table":"A machine device that decomposes summon cards into their enjoy cards",
 
 
   "entity.bhtpvz.ice_cabbage_pult":"ice cabbage pult",
@@ -153,7 +153,7 @@
   "entity.bhtpvz.water_pot": "water pot",
   "entity.bhtpvz.pot_grass": "pot grass",
   "entity.bhtpvz.chorus_fruit_pult": "chorus fruit pult",
-  "entity.bhtpvz.burst_kernel_pult": "burst kernel",
+  "entity.bhtpvz.caramel_kernel_pult": "caramel kernel pult",
   "entity.bhtpvz.rotate_radish": "rotate radish",
   "entity.bhtpvz.blaze_wart": "blaze_wart",
   "entity.bhtpvz.grass_carp": "grass carp",
@@ -202,6 +202,12 @@
   "skill.pvz.grass_carp_heal_rage.desc": "Plants will have bigger heal rage",
   "skill.pvz.more_chorus_fruit_damage": "Higher damage",
   "skill.pvz.more_chorus_fruit_damage.desc": "Plants will have higher damage",
+  "skill.pvz.more_stone_pea_damage": "Higher damage",
+  "skill.pvz.more_stone_pea_damage.desc": "Plants will have higher damage",
+  "skill.pvz.more_golden_melon_damage": "Higher damage",
+  "skill.pvz.more_golden_melon_damage.desc": "Plants will have higher damage",
+
+
 
   "challenge.pvz.roof_extra.name": "Roof Extra",
   "challenge.pvz.roof_extra.msg1": "Additional challenges of bhtpvz",

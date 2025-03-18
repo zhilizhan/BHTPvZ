@@ -17,6 +17,6 @@ public class BHTPvZItemBlockRenderTypes {
         event.enqueueWork(()-> RenderTypeLookup.setRenderLayer(BHTPvZBlocks.ORIGIN_MUSHROOM.get(), RenderType.cutout())); // 原始蘑菇渲染
         event.enqueueWork(()-> RenderTypeLookup.setRenderLayer(BHTPvZBlocks.CHILI.get(), RenderType.cutout())); // 辣椒作物渲染
         event.enqueueWork(()-> RenderTypeLookup.setRenderLayer(BHTPvZBlocks.GARLIC.get(), RenderType.cutout())); // 大蒜作物渲染
-
+        event.enqueueWork(()-> RenderTypeLookup.setRenderLayer(BHTPvZBlocks.SCREEN_DOOR.get(), RenderType.cutout())); // 铁栅栏门渲染
     }
 }

@@ -133,11 +133,7 @@ public class Edgar090547Entity extends PVZZombieEntity {
         ImpEntity imp = (ImpEntity)((EntityType<?>) EntityRegister.IMP.get()).create(this.level);
         EntityUtil.onEntitySpawn(this.level, imp, this.blockPosition());
         super.dropAllDeathLoot(damageSourceIn);
-    }/*
-    public int getGlimmerCD() {
-       return  (int) this.distanceToSqr(this.getTarget())>47 ? 0 :(int) this.distanceToSqr(this.getTarget())/2;}
     }
-    */
 
     @Override
     public ZombieType getZombieType() {

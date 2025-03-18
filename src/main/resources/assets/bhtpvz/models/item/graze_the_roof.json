@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pvz:item/zen_garden"}
+    "layer0": "pvz:item/zen_garden"
+  }
 }

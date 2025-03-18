@@ -2,7 +2,6 @@ package com.zhilizhan.bhtpvz.client.gui.screen;
 
 import com.hungteen.pvz.client.gui.screen.PVZContainerScreen;
 import com.hungteen.pvz.client.gui.widget.DisplayField;
-import com.hungteen.pvz.common.tileentity.CardFusionTileEntity;
 import com.hungteen.pvz.utils.MathUtil;
 import com.hungteen.pvz.utils.StringUtil;
 import com.hungteen.pvz.utils.enums.Colors;

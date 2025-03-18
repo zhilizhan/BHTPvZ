@@ -9,7 +9,7 @@ import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
 import com.hungteen.pvz.common.misc.sound.SoundRegister;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.hungteen.pvz.utils.interfaces.ICanAttract;
-import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
+import com.zhilizhan.bhtpvz.common.misc.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
 import net.minecraft.entity.*;
 import net.minecraft.potion.EffectInstance;

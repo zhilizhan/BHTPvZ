@@ -1,7 +1,5 @@
 package com.zhilizhan.bhtpvz.common.network;
 
-
-import com.hungteen.pvz.common.network.toserver.ClickButtonPacket;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.common.network.toserver.BHTPvZClickButtonPacket;
 import net.minecraft.util.ResourceLocation;

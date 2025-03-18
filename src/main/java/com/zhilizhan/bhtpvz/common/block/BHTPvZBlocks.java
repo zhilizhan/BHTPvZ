@@ -33,7 +33,7 @@ public class BHTPvZBlocks {
     public static final RegistryObject<Block> CHILI = BLOCKS.register("chili", ()-> new ChiliBlock(Block.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP))); // 辣椒作物
     public static final RegistryObject<Block> GARLIC = BLOCKS.register("garlic", ()-> new GarlicBlock(Block.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP))); // 大蒜作物
     public static final RegistryObject<Block> CARD_DECOMPOSITION_TABLE = BLOCKS.register("card_decomposition_table", CardDecompositionBlock::new); // 分解台
-    public static final RegistryObject<DoorBlock> SCREEN_DOOR  = BLOCKS.register("screen_door", () -> new ScreenDoorBlock((Block.Properties.of(Material.METAL, MaterialColor.METAL).harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(25.0f, 25.0f).sound(SoundType.METAL).requiresCorrectToolForDrops()))); // 铁网门
+    public static final RegistryObject<DoorBlock> SCREEN_DOOR  = BLOCKS.register("screen_door", () -> new ScreenDoorBlock((Block.Properties.of(Material.METAL, MaterialColor.METAL).harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(25.0f, 25.0f).sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion())));
     public static final RegistryObject<Block> PEA_BLOCK  = BLOCKS.register("pea_block", () -> new Block((Block.Properties.of(Material.PLANT, MaterialColor.PLANT).harvestTool(ToolType.HOE).harvestLevel(1).strength(5.0f, 5.0f).sound(SoundType.BAMBOO_SAPLING)))); // 豌豆块
     public static final RegistryObject<Block> TOXIC_SHROOM_BLOCK  = BLOCKS.register("toxic_shroom_block", () -> new Block(Block.Properties.of(Material.WOOD, MaterialColor.COLOR_GREEN).harvestLevel(2).strength(0.6f, 1.0f).sound(SoundType.WOOD))); // PVZ毒蘑菇块
 

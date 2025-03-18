@@ -1,7 +1,6 @@
 package com.zhilizhan.bhtpvz.data.loot;
 
 import com.google.common.collect.ImmutableList;
-import com.hungteen.pvz.data.loot.PVZFishingLootTables;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
@@ -18,16 +17,15 @@ import java.util.function.Supplier;
 public class LootTableGenerator extends LootTableProvider{
 
 	private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, Builder>>>, LootParameterSet>> tables = ImmutableList.of(
-			Pair.of(BHTPVZChestLootTables::new, LootParameterSets.CHEST),
+			Pair.of(BHPvZChestLootTables::new, LootParameterSets.CHEST),
 			Pair.of(BHTPVZEntityLootTables::new, LootParameterSets.ENTITY),
-			Pair.of(BHTPVZChestLootTables::new, LootParameterSets.BLOCK),
-			Pair.of(PVZFishingLootTables::new, LootParameterSets.FISHING)
-			);
+			Pair.of(BHTPVZBlockLootTables::new, LootParameterSets.BLOCK)
+	);
 	
 	public LootTableGenerator(DataGenerator dataGeneratorIn) {
 		super(dataGeneratorIn);
 	}
-	
+
 	@Override
 	protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, Builder>>>, LootParameterSet>> getTables() {
 		return this.tables;
@@ -40,7 +38,7 @@ public class LootTableGenerator extends LootTableProvider{
 
 	@Override
 	public String getName() {
-		return "Plants vs Zombies loot tables";
+		return "Better Plants vs Zombies loot tables";
 	}
 	
 }

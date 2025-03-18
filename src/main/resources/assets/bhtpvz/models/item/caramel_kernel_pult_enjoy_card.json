@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "pvz:item/misc/mega_card",
-    "layer1": "bhtpvz:screenshot/plant/burst_kernel_pult"
+    "layer1": "bhtpvz:screenshot/plant/caramel_kernel_pult"
   }
 }

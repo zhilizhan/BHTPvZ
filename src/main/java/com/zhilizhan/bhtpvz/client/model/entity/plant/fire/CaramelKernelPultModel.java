@@ -1,11 +1,11 @@
-package com.zhilizhan.bhtpvz.client.model.entity.plant.arma;
+package com.zhilizhan.bhtpvz.client.model.entity.plant.fire;
 
 import com.hungteen.pvz.client.model.entity.plant.PVZPlantModel;
-import com.zhilizhan.bhtpvz.common.entity.plant.arma.BurstKernelPultEntity;
+import com.zhilizhan.bhtpvz.common.entity.plant.arma.CaramelKernelPultEntity;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 
-public class BurstKernelPultModel extends PVZPlantModel<BurstKernelPultEntity> {
+public class CaramelKernelPultModel extends PVZPlantModel<CaramelKernelPultEntity> {
     private final ModelRenderer total;
     private final ModelRenderer head;
     private final ModelRenderer face;
@@ -70,7 +70,7 @@ public class BurstKernelPultModel extends PVZPlantModel<BurstKernelPultEntity> {
     private final ModelRenderer pop_corn;
     private final ModelRenderer getPlantWholeBody;
 
-    public BurstKernelPultModel() {
+    public CaramelKernelPultModel() {
         texWidth = 128;
         texHeight = 128;
 
@@ -452,16 +452,16 @@ public class BurstKernelPultModel extends PVZPlantModel<BurstKernelPultEntity> {
 
     }
 
-    public void setupAnim(BurstKernelPultEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(CaramelKernelPultEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         if (entity.getAttackTime() > 0) {
             float percent = 1.0F - (float) entity.getAttackTime() / (float)entity.getPultAnimTime();
             this.pult.xRot = (1.0F - MathHelper.abs(MathHelper.cos(percent * 3.14159F))) * 1.5F;
-            this.corn.visible = (double)percent < 0.5 && entity.getCurrentBullet() == BurstKernelPultEntity.CornTypes.CORN;
-            this.popped.visible = (double)percent < 0.5 && entity.getCurrentBullet() == BurstKernelPultEntity.CornTypes.BURST_CORN;
-            this.pop_corn.visible = (double)percent < 0.5 && entity.getCurrentBullet() == BurstKernelPultEntity.CornTypes.POP_CORN;
+            this.corn.visible = (double)percent < 0.5 && entity.getCurrentBullet() == CaramelKernelPultEntity.CornTypes.CORN;
+            this.popped.visible = (double)percent < 0.5 && entity.getCurrentBullet() == CaramelKernelPultEntity.CornTypes.BURST_CORN;
+            this.pop_corn.visible = (double)percent < 0.5 && entity.getCurrentBullet() == CaramelKernelPultEntity.CornTypes.POP_CORN;
         } else {
             this.pult.xRot = MathHelper.sin(ageInTicks / 10.0F) / 8.0F;
-            this.pop_corn.visible = entity instanceof BurstKernelPultEntity;
+            this.pop_corn.visible = entity instanceof CaramelKernelPultEntity;
         }
 
     }

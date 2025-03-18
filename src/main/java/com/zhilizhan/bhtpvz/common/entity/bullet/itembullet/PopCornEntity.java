@@ -5,7 +5,7 @@ import com.hungteen.pvz.common.item.ItemRegister;
 import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
 import com.hungteen.pvz.common.misc.sound.SoundRegister;
 import com.hungteen.pvz.utils.EntityUtil;
-import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
+import com.zhilizhan.bhtpvz.common.misc.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import net.minecraft.entity.*;
 import net.minecraft.item.ItemStack;
@@ -41,7 +41,7 @@ public class PopCornEntity extends PultBulletEntity implements IRendersAsItem {
                 entity.hurt(source, this.getAttackDamage() / 2.0F);
 
             }
-            for(int i = 0; i < 10; ++i) {
+            for(int i = 0; i < 8; ++i) {
                 EntityUtil.spawnParticle(this,9);
             }
 

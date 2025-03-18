@@ -1,14 +1,13 @@
 package com.zhilizhan.bhtpvz.data.loot;
 
-import com.hungteen.pvz.PVZMod;
-import com.hungteen.pvz.common.block.BlockRegister;
-import com.hungteen.pvz.common.item.ItemRegister;
+
+import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
+import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
@@ -22,7 +21,7 @@ import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.loot.conditions.MatchTool;
 import net.minecraft.loot.conditions.TableBonus;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.fml.RegistryObject;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -31,8 +30,7 @@ import java.util.Set;
 public class BHTPVZBlockLootTables extends BlockLootTables {
 
 	private final Set<Block> knownBlocks = new HashSet<>();
-	private ILootCondition.IBuilder tmpBuilder;
-	private static final ILootCondition.IBuilder HAS_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item()
+    private static final ILootCondition.IBuilder HAS_SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item()
 			.hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))));
 //	private static final ILootCondition.IBuilder HAS_NO_SILK_TOUCH = HAS_SILK_TOUCH.invert();
 	private static final ILootCondition.IBuilder HAS_SHEARS = MatchTool
@@ -44,43 +42,38 @@ public class BHTPVZBlockLootTables extends BlockLootTables {
 
 	@Override
 	protected void addTables() {
+		//不可掉落
 		final Set<Block> noLootBlocks = new HashSet<>(Arrays.asList(
-				BlockRegister.LILY_PAD.get(), BlockRegister.FLOWER_POT.get(),
-				BlockRegister.SLOT_MACHINE.get()
+				BHTPvZBlocks.WATER_POT.get(),BHTPvZBlocks.POT_GRASS.get(),BHTPvZBlocks.QUESTION_MARK_POT.get(),BHTPvZBlocks.PLANT_POT.get()
 			    ));
-		// drop item like coal ore
-		Arrays.asList(BlockRegister.ORIGIN_ORE.get(), BlockRegister.APPEASE_ORE.get(), BlockRegister.LIGHT_ORE.get(),
-				BlockRegister.EXPLOSION_ORE.get(), BlockRegister.DEFENCE_ORE.get(), BlockRegister.ICE_ORE.get(),
-				BlockRegister.ENFORCE_ORE.get(), BlockRegister.TOXIC_ORE.get(), BlockRegister.ASSIST_ORE.get(),
-				BlockRegister.MAGIC_ORE.get(), BlockRegister.FLAME_ORE.get(), BlockRegister.SPEAR_ORE.get(),
-				BlockRegister.ARMA_ORE.get(), BlockRegister.ELECTRIC_ORE.get(), BlockRegister.SHADOW_ORE.get())
-				.forEach((object) -> {
-					this.add(object, (block) -> createOreDrop(block, object.essence.getEssenceItem()));
-				});
-		// crop
-		this.tmpBuilder = getAgeBuilder(BlockRegister.CABBAGE.get(), 3);
-		this.add(BlockRegister.CABBAGE.get(),
-				createCropDrops(BlockRegister.CABBAGE.get(), ItemRegister.CABBAGE.get(), this.tmpBuilder));
-		this.tmpBuilder = getAgeBuilder(BlockRegister.CORN.get(), 7);
-		this.add(BlockRegister.CORN.get(),
-				createCropDrops(BlockRegister.CORN.get(), ItemRegister.CORN.get(), this.tmpBuilder));
 
-		// leaves
-		this.add(BlockRegister.NUT_LEAVES.get(), (p_218506_0_) -> {
-			return createLeavesDrops(p_218506_0_, BlockRegister.NUT_SAPLING.get(), ItemRegister.NUT.get(), NORMAL_LEAVES_SAPLING_CHANCES);
+		// 矿石
+		this.add(BHTPvZBlocks.MORION_ORE.get(), (block) -> {
+			return createOreDrop(block, BHTPvZBlocks.MORION_ORE.get().asItem());
 		});
 
-		// misc
-		this.dropOther(BlockRegister.GOLD_TILE1.get(), Blocks.GOLD_BLOCK);
-		this.dropOther(BlockRegister.GOLD_TILE2.get(), Blocks.GOLD_BLOCK);
-		this.dropOther(BlockRegister.GOLD_TILE3.get(), Blocks.GOLD_BLOCK);
+		// 农作物
+        ILootCondition.IBuilder tmpBuilder = getAgeBuilder(BHTPvZBlocks.CHILI.get(), 3);
+		this.add(BHTPvZBlocks.CHILI.get(),
+				createCropDrops(BHTPvZBlocks.CHILI.get(), BHTPvZBlocks.CHILI.get().asItem(), tmpBuilder));
+		tmpBuilder = getAgeBuilder(BHTPvZBlocks.GARLIC.get(), 3);
+		this.add(BHTPvZBlocks.GARLIC.get(),
+				createCropDrops(BHTPvZBlocks.GARLIC.get(), BHTPvZBlocks.GARLIC.get().asItem(), tmpBuilder));
 
-		// other blocks are drop itself
-		ForgeRegistries.BLOCKS.forEach(block -> {
-			if (block.getRegistryName().getNamespace().equals(PVZMod.MOD_ID) && !noLootBlocks.contains(block) && !this.knownBlocks.contains(block)) {
-				this.dropSelf(block);
-			}
+		// 树叶
+		this.add(BHTPvZBlocks.CHERRY_LEAVES.get(), (block) -> {
+			return createLeavesDrops(block, BHTPvZBlocks.CHERRY_SAPLING.get(), BHTPvZItems.CHERRY.get(), NORMAL_LEAVES_SAPLING_CHANCES);
 		});
+		this.add(BHTPvZBlocks.STARFRUIT_LEAVES.get(), (block) -> {
+			return createLeavesDrops(block, BHTPvZBlocks.STARFRUIT_SAPLING.get(), BHTPvZItems.STARFRUIT.get(), NORMAL_LEAVES_SAPLING_CHANCES);
+		});
+
+		// 其他方块掉落其本身
+		BHTPvZBlocks.BLOCKS.getEntries().stream()
+				.map(RegistryObject::get)
+				.filter(block -> !noLootBlocks.contains(block))
+				.filter(block -> !knownBlocks.contains(block)) // 避免重复
+				.forEach(this::dropSelf);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "bhtpvz:block/card_decomposition_table_m"
+      "model": "bhtpvz:block/card_decomposition_table"
     }
   }
 }

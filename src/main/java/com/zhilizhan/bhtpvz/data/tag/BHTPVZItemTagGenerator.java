@@ -1,28 +1,17 @@
 package com.zhilizhan.bhtpvz.data.tag;
 
 import com.hungteen.pvz.PVZMod;
-import com.hungteen.pvz.common.block.BlockRegister;
-import com.hungteen.pvz.common.block.ores.EssenceOreBlock;
-import com.hungteen.pvz.common.impl.RankTypes;
 import com.hungteen.pvz.common.item.ItemRegister;
-import com.hungteen.pvz.common.item.material.TemplateCardItem;
 import com.hungteen.pvz.common.item.spawn.card.PlantCardItem;
 import com.hungteen.pvz.common.item.spawn.card.SummonCardItem;
 import com.hungteen.pvz.common.misc.tag.PVZItemTags;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
-import com.zhilizhan.bhtpvz.data.BHTPVZBlockModelGenerator;
-import net.minecraft.block.Block;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.Comparator;
-import java.util.function.Predicate;
 
 public class BHTPVZItemTagGenerator extends ItemTagsProvider{
 

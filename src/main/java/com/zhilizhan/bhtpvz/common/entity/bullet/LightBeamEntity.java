@@ -2,7 +2,7 @@ package com.zhilizhan.bhtpvz.common.entity.bullet;
 
 import com.hungteen.pvz.common.entity.bullet.AbstractBulletEntity;
 import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
-import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
+import com.zhilizhan.bhtpvz.common.misc.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import net.minecraft.entity.*;
 import net.minecraft.util.math.EntityRayTraceResult;

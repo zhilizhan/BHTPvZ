@@ -10,7 +10,7 @@ import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.appease.BeeShooterModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.appease.PeaPodModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.appease.PrimalPeaShooterModel;
-import com.zhilizhan.bhtpvz.client.model.entity.plant.arma.BurstKernelPultModel;
+import com.zhilizhan.bhtpvz.client.model.entity.plant.fire.CaramelKernelPultModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.arma.ChorusFruitPultModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.arma.GoldenMelonPultModel;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.assist.FodderBushModel;
@@ -108,14 +108,14 @@ public final class BHTPvZPlants extends PlantType {
             .plantModel(() -> RotateRadishModel::new).scale(0.95F)
             .commonSkill(Arrays.asList(SkillTypes.MORE_SWING_DAMAGE,SkillTypes.PLANT_MORE_LIFE)));
 
-    //爆裂玉米投手
-    public static final IPlantType BURST_KERNEL_PULT = new BHTPvZPlants("burst_kernel_pult", new PlantFeatures()
+    //焦糖玉米投手
+    public static final IPlantType CARAMEL_KERNEL_PULT = new BHTPvZPlants("caramel_kernel_pult", new PlantFeatures()
             .cost(125).requiredLevel(15)
-            .cd(CoolDowns.FAST).rank(RankTypes.GREEN).essence(EssenceTypes.ARMA)
-            .entityType(() -> BHTPvZEntityTypes.BURST_KERNEL_PULT.get())
-            .summonCard(() -> BHTPvZItems.BURST_KERNEL_PULT_CARD.get())
-            .enjoyCard(() -> BHTPvZItems.BURST_KERNEL_PULT_ENJOY_CARD.get())
-            .plantModel(() -> BurstKernelPultModel::new).scale(0.95f)
+            .cd(CoolDowns.FAST).rank(RankTypes.GREEN).essence(EssenceTypes.FLAME)
+            .entityType(() -> BHTPvZEntityTypes.CARAMEL_KERNEL_PULT.get())
+            .summonCard(() -> BHTPvZItems.CARAMEL_KERNEL_PULT_CARD.get())
+            .enjoyCard(() -> BHTPvZItems.CARAMEL_KERNEL_PULT_ENJOY_CARD.get())
+            .plantModel(() -> CaramelKernelPultModel::new).scale(0.95f)
             .commonSkill(Collections.singletonList(SkillTypes.MORE_KERNEL_DAMAGE)));
     //烈焰庞
     public static final IPlantType BLAZE_WART = new BHTPvZPlants("blaze_wart", new PlantFeatures()

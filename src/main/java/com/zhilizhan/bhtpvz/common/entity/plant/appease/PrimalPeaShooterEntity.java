@@ -3,8 +3,10 @@ package com.zhilizhan.bhtpvz.common.entity.plant.appease;
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.entity.bullet.AbstractBulletEntity;
 import com.hungteen.pvz.common.entity.plant.appease.PeaShooterEntity;
+import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.utils.MathUtil;
 import com.zhilizhan.bhtpvz.common.entity.bullet.itembullet.StonePeaEntity;
+import com.zhilizhan.bhtpvz.common.impl.BHTPvZSkill;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.World;
@@ -36,6 +38,9 @@ public class PrimalPeaShooterEntity extends PeaShooterEntity {
     }
     public void startShootAttack() {
         this.setAttackTime(1);
+    }
+    public float getAttackDamage() {
+        return this.getSkillValue(BHTPvZSkill.MORE_STONE_PEA_DAMAGE);
     }
 
     protected StonePeaEntity.State getStoneState() {

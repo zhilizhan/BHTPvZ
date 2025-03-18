@@ -26,8 +26,7 @@ public class BHTPVZEntityTypeTagGenerator extends EntityTypeTagsProvider{
 		
 		// for plant entities.
 		this.tag(PVZEntityTypeTags.PVZ_PLANTS)
-				.add(getFilterTypes(type -> type.getCategory() == PVZEntityClassifications.PVZ_PLANT))
-				.add(EntityRegister.CRAZY_DAVE.get());
+				.add(getFilterTypes(type -> type.getCategory() == PVZEntityClassifications.PVZ_PLANT));
 
 		// for zombie entities.
 		this.tag(PVZEntityTypeTags.PVZ_ZOMBIES)

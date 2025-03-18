@@ -3,9 +3,7 @@ package com.zhilizhan.bhtpvz.data.recipe;
 import com.hungteen.pvz.api.PVZAPI;
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.api.types.IRankType;
-
 import com.hungteen.pvz.common.block.BlockRegister;
-import com.hungteen.pvz.common.impl.RankTypes;
 import com.hungteen.pvz.common.item.ItemRegister;
 import com.hungteen.pvz.common.item.spawn.card.PlantCardItem;
 import com.hungteen.pvz.common.misc.tag.PVZItemTags;
@@ -48,7 +46,7 @@ public class RecipeGenerator extends ForgeRecipeProvider{
 		registerCommonCard(consumer, BHTPvZItems.WATER_POT_CARD.get(), BHTPvZItems.WATER_POT.get());
 		registerCommonCard(consumer, BHTPvZItems.CHORUS_FRUIT_PULT_CARD.get(), Items.CHORUS_FRUIT);
 		registerCommonCard(consumer, BHTPvZItems.ROTATE_RADISH_CARD.get(), Items.CARROT);
-		registerCommonCard(consumer, BHTPvZItems.BURST_KERNEL_PULT_CARD.get(), PVZItemTags.CORNS);
+		registerCommonCard(consumer, BHTPvZItems.CARAMEL_KERNEL_PULT_CARD.get(), PVZItemTags.CORNS);
 		registerCommonCard(consumer, BHTPvZItems.BLAZE_WART_CARD.get(), Items.NETHER_WART);
 		registerCommonCard(consumer, BHTPvZItems.POT_GRASS_CARD.get(), BHTPvZItems.POT_GRASS.get());
 		registerCommonCard(consumer, BHTPvZItems.SELF_IMITATER_CARD.get(), Items.BAKED_POTATO);
@@ -158,7 +156,7 @@ public class RecipeGenerator extends ForgeRecipeProvider{
 				.define('C', rankCard)
 				.define('D', specialItem)
 				.unlockedBy("has_essence", has(essence))
-				.save(consumer, BHTPvZ.prefix("card/" + result.plantType.toString().toLowerCase() + "_card"));
+				.save(consumer, BHTPvZ.prefix("card/" + "special_" + result.plantType.toString().toLowerCase() + "_card"));
 	}
 	
 	private void registerCommonCard(Consumer<IFinishedRecipe> consumer, PlantCardItem result, ITag.INamedTag<Item> crop) {
@@ -173,7 +171,7 @@ public class RecipeGenerator extends ForgeRecipeProvider{
 					.define('B', crop)
 					.define('C', rankCard)
 					.unlockedBy("has_essence", has(essence))
-					.save(consumer, BHTPvZ.prefix("card/" + result.plantType.toString().toLowerCase() + "_card"));
+					.save(consumer, BHTPvZ.prefix("card/" +  result.plantType.toString().toLowerCase() + "_card"));
 		}
 	}
 

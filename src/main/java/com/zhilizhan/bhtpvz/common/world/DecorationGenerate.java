@@ -23,10 +23,10 @@ public class DecorationGenerate {
             if (biome.equals(BiomeRegister.ZEN_GARDEN.get())) {
                 event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BHTPvZFeatures.TREES_CHERRY); // 樱桃树生成
                 event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BHTPvZFeatures.TREES_STARFRUIT); // 杨桃树生成
-                event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BHTPvZFeatures.HUGE_ORIGIN_MUSHROOM); // 巨型原始蘑菇生成
+                //event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BHTPvZFeatures.HUGE_ORIGIN_MUSHROOM); // 巨型原始蘑菇生成
             }
             if (biome.equals(BHTPvZBiomes.NIGHT.get())) {
-                event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BHTPvZFeatures.HUGE_TOXIC_MUSHROOM); // 巨型毒蘑菇生成
+                //event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BHTPvZFeatures.HUGE_TOXIC_MUSHROOM); // 巨型毒蘑菇生成
             }
         }
     }

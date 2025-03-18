@@ -5,6 +5,7 @@ import com.hungteen.pvz.common.entity.bullet.PultBulletEntity;
 import com.hungteen.pvz.common.entity.plant.arma.MelonPultEntity;
 import com.hungteen.pvz.common.impl.SkillTypes;
 import com.zhilizhan.bhtpvz.common.entity.bullet.GoldenMelonEntity;
+import com.zhilizhan.bhtpvz.common.impl.BHTPvZSkill;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
@@ -21,7 +22,7 @@ public class GoldenMelonPultEntity extends MelonPultEntity {
     }
     @Override
     public float getAttackDamage() {
-        return this.getSkillValue(SkillTypes.MORE_MELON_DAMAGE)+4.0F;
+        return this.getSkillValue(BHTPvZSkill.MORE_GOLDEN_MELON_DAMAGE);
     }
     @Override
     protected float getLife() {

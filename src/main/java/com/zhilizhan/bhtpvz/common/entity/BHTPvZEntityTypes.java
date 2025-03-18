@@ -14,7 +14,7 @@ import com.zhilizhan.bhtpvz.client.render.entity.normal.ToxicMoobRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.BeeShooterRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.PeaPodRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.PrimalPeaShooterRender;
-import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.BurstKernelPultRender;
+import com.zhilizhan.bhtpvz.client.render.entity.plant.fire.CaramelKernelPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.ChorusFruitPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.GoldenMelonPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.assist.FodderBushRender;
@@ -39,7 +39,7 @@ import com.zhilizhan.bhtpvz.common.entity.normal.ToxicMoobEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.appease.BeeShooterEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.appease.PeaPodEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.appease.PrimalPeaShooterEntity;
-import com.zhilizhan.bhtpvz.common.entity.plant.arma.BurstKernelPultEntity;
+import com.zhilizhan.bhtpvz.common.entity.plant.arma.CaramelKernelPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.ChorusFruitPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.GoldenMelonPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.assist.FodderBushEntity;
@@ -81,7 +81,7 @@ public class BHTPvZEntityTypes {
 	public static final RegistryObject<EntityType<NutBowlingEntity>> NUT_BOWLING = registerPlantEntityType(NutBowlingEntity::new, "nut_bowling"); // 保龄球坚果
 	public static final RegistryObject<EntityType<ChorusFruitPultEntity>> CHORUS_FRUIT_PULT = registerPlantEntityType(ChorusFruitPultEntity::new, "chorus_fruit_pult"); // 紫颂果投手
 	public static final RegistryObject<EntityType<RotateRadishEntity>> ROTATE_RADISH = registerPlantEntityType(RotateRadishEntity::new, "rotate_radish"); // 转转萝卜
-	public static final RegistryObject<EntityType<BurstKernelPultEntity>> BURST_KERNEL_PULT = registerPlantEntityType(BurstKernelPultEntity::new, "burst_kernel_pult"); // 爆裂玉米投手
+	public static final RegistryObject<EntityType<CaramelKernelPultEntity>> CARAMEL_KERNEL_PULT = registerPlantEntityType(CaramelKernelPultEntity::new, "caramel_kernel_pult"); // 焦糖玉米投手
 	public static final RegistryObject<EntityType<BlazeWartEntity>> BLAZE_WART = registerPlantEntityType(BlazeWartEntity::new, "blaze_wart"); // 烈焰庞
 	public static final RegistryObject<EntityType<GrassCarpEntity>> GRASS_CARP = registerPlantEntityType(GrassCarpEntity::new, "grass_carp");//草鱼
 	public static final RegistryObject<EntityType<SelfImitaterEntity>> SELF_IMITATER = registerPlantEntityType(SelfImitaterEntity::new, "self_imitater");//自己模仿者
@@ -144,7 +144,7 @@ public class BHTPvZEntityTypes {
 		RenderingRegistry.registerEntityRenderingHandler(NUT_BOWLING.get(), NutBowlingRender::new); // 保龄球坚果
 		RenderingRegistry.registerEntityRenderingHandler(CHORUS_FRUIT_PULT.get(), ChorusFruitPultRender::new); // 紫颂果投手
 		RenderingRegistry.registerEntityRenderingHandler(ROTATE_RADISH.get(), RotateRadishRender::new); // 转转萝卜
-		RenderingRegistry.registerEntityRenderingHandler(BURST_KERNEL_PULT.get(), BurstKernelPultRender::new); // 爆裂玉米投手
+		RenderingRegistry.registerEntityRenderingHandler(CARAMEL_KERNEL_PULT.get(), CaramelKernelPultRender::new); // 焦糖玉米投手
 		RenderingRegistry.registerEntityRenderingHandler(BLAZE_WART.get(), BlazeWartRender::new); // 烈焰庞
 		RenderingRegistry.registerEntityRenderingHandler(GRASS_CARP.get(), GrassCrapRender::new); // 草鱼
 		RenderingRegistry.registerEntityRenderingHandler(SELF_IMITATER.get(), SelfImitaterRender::new); // 自己模仿者

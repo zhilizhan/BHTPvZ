@@ -1,4 +1,4 @@
-package com.zhilizhan.bhtpvz.common.damagesource;
+package com.zhilizhan.bhtpvz.common.misc;
 
 import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.bullet.*;

@@ -19,13 +19,13 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BurstKernelPultEntity extends PlantPultEntity {
+public class CaramelKernelPultEntity extends PlantPultEntity {
 
-    private static final DataParameter<Integer>  CURRENT_BULLET = EntityDataManager.defineId(BurstKernelPultEntity.class, DataSerializers.INT);
+    private static final DataParameter<Integer>  CURRENT_BULLET = EntityDataManager.defineId(CaramelKernelPultEntity.class, DataSerializers.INT);
 
-    private BurstKernelPultEntity upgradeEntity;
+    private CaramelKernelPultEntity upgradeEntity;
 
-    public BurstKernelPultEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
+    public CaramelKernelPultEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -39,7 +39,6 @@ public class BurstKernelPultEntity extends PlantPultEntity {
         if (this.upgradeEntity != null) {
             this.upgradeEntity.remove();
         }
-
     }
 
     public boolean canBeUpgrade(PlayerEntity player) {
@@ -47,9 +46,9 @@ public class BurstKernelPultEntity extends PlantPultEntity {
         return super.canBeUpgrade(player) && EntityUtil.isEntityValid(this.upgradeEntity);
     }
 
-    private BurstKernelPultEntity getNearByPult(PlayerEntity player) {
+    private CaramelKernelPultEntity getNearByPult(PlayerEntity player) {
         float range = 1.5F;
-        List<BurstKernelPultEntity> list = this.level.getEntitiesOfClass(BurstKernelPultEntity.class, EntityUtil.getEntityAABB(this, range, range), (pult) -> !pult.is(this) && pult.getPlantType() == BHTPvZPlants.BURST_KERNEL_PULT && !EntityUtil.canAttackEntity(pult, player));
+        List<CaramelKernelPultEntity> list = this.level.getEntitiesOfClass(CaramelKernelPultEntity.class, EntityUtil.getEntityAABB(this, range, range), (pult) -> !pult.is(this) && pult.getPlantType() == BHTPvZPlants.CARAMEL_KERNEL_PULT && !EntityUtil.canAttackEntity(pult, player));
         return list.isEmpty() ? null : list.get(0);
     }
 
@@ -92,7 +91,7 @@ public class BurstKernelPultEntity extends PlantPultEntity {
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         if (compound.contains("current_bullet_type")) {
-            this.setCurrentBullet(BurstKernelPultEntity.CornTypes.values()[compound.getInt("current_bullet_type")]);
+            this.setCurrentBullet(CaramelKernelPultEntity.CornTypes.values()[compound.getInt("current_bullet_type")]);
         }
 
     }
@@ -102,15 +101,15 @@ public class BurstKernelPultEntity extends PlantPultEntity {
         compound.putInt("current_bullet_type", this.getCurrentBullet().ordinal());
     }
 
-    public void setCurrentBullet(BurstKernelPultEntity.CornTypes type) {
+    public void setCurrentBullet(CaramelKernelPultEntity.CornTypes type) {
         this.entityData.set(CURRENT_BULLET, type.ordinal());
     }
 
-    public BurstKernelPultEntity.CornTypes getCurrentBullet() {
-        return BurstKernelPultEntity.CornTypes.values()[this.entityData.get(CURRENT_BULLET)];
+    public CaramelKernelPultEntity.CornTypes getCurrentBullet() {
+        return CaramelKernelPultEntity.CornTypes.values()[this.entityData.get(CURRENT_BULLET)];
     }
     public IPlantType getPlantType() {
-        return BHTPvZPlants.BURST_KERNEL_PULT;
+        return BHTPvZPlants.CARAMEL_KERNEL_PULT;
     }
 
     public enum CornTypes {

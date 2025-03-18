@@ -41,7 +41,9 @@ public class SteelCoin extends Item {
                     {
                         l.getPlayerData().addResource(Resources.LOTTERY_CHANCE, amount);
                         PlayerUtil.playClientSound(player, SoundEvents.IRON_GOLEM_STEP);
-                        stack.shrink(1);
+                        if(!player.isCreative()) {
+                            stack.shrink(1);
+                        }
                     }
                 });
             }
@@ -56,7 +58,7 @@ public class SteelCoin extends Item {
 
     @Override
     public UseAction getUseAnimation(ItemStack stack) {
-        return UseAction.SPEAR;
+        return UseAction.BLOCK;
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.zhilizhan.bhtpvz.common.entity.bullet;
 import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
 import com.hungteen.pvz.common.potion.EffectRegister;
 import com.hungteen.pvz.utils.EntityUtil;
-import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
+import com.zhilizhan.bhtpvz.common.misc.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -51,7 +51,7 @@ public class BurstCornEntity extends CornEntity {
             }
 
         });
-        for(int i = 0; i < 10; ++i) {
+        for(int i = 0; i < 6; ++i) {
             EntityUtil.spawnParticle(this,0);
         }
 

@@ -5,7 +5,7 @@ import com.hungteen.pvz.common.entity.plant.toxic.GloomShroomEntity;
 import com.hungteen.pvz.common.entity.zombie.PVZZombieEntity;
 import com.hungteen.pvz.utils.WorldUtil;
 import com.zhilizhan.bhtpvz.client.particle.BHTPvZParticle;
-import com.zhilizhan.bhtpvz.common.damagesource.BHTPvZEntityDamageSource;
+import com.zhilizhan.bhtpvz.common.misc.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
