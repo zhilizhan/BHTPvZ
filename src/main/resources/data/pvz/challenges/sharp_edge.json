@@ -57,12 +57,12 @@
     {
       "spawns": [
         {
-          "entity_type": "pvz:sunday_edition_zombie",
+          "entity_type": "pvz:zomboni",
           "spawn_tick": 30,
           "spawn_amount": {
             "random": {
-              "min": 8,
-              "max": 9
+              "min": 3,
+              "max": 4
             }
           }
         },
@@ -81,15 +81,15 @@
           "spawn_tick": 60,
           "spawn_amount": {
             "random": {
-              "min": 7,
-              "max":8
+              "min": 6,
+              "max": 7
             }
           }
         },
         {
           "entity_type": "bhtpvz:red_edge_zombie",
-          "spawn_tick": 80,
-          "nbt":"{sharp_edge:true}",
+          "spawn_tick": 50,
+          "nbt":"{steel_and_fire:true}",
           "spawn_amount": {
             "random": {
               "min": 2,
@@ -98,20 +98,10 @@
           }
         }
       ],
-      "duration": 5000
+      "duration": 4000
     },
     {
       "spawns": [
-        {
-          "entity_type": "bhtpvz:flower_pot_zombie",
-          "spawn_tick": 20,
-          "spawn_amount": {
-            "random": {
-              "min": 5,
-              "max": 6
-            }
-          }
-        },
         {
           "entity_type": "pvz:giga_gargantuar",
           "spawn_tick": 40,
@@ -123,12 +113,22 @@
           }
         },
         {
-          "entity_type": "pvz:gatlingpea_zombie",
-          "spawn_tick": 60,
+          "entity_type": "bhtpvz:flower_pot_zombie",
+          "spawn_tick": 20,
           "spawn_amount": {
             "random": {
-              "min": 5,
-              "max": 6
+              "min": 1,
+              "max": 1
+            }
+          }
+        },
+        {
+          "entity_type": "pvz:gatlingpea_zombie",
+          "spawn_tick": 40,
+          "spawn_amount": {
+            "random": {
+              "min": 4,
+              "max": 5
             }
           }
         },
@@ -144,10 +144,20 @@
           }
         }
       ],
-      "duration": 5500
+      "duration": 4500
     },
     {
       "spawns": [
+        {
+          "entity_type": "bhtpvz:red_edge_zombie",
+          "spawn_tick": 60,
+          "spawn_amount": {
+            "random": {
+              "min": 3,
+              "max": 3
+            }
+          }
+        },
         {
           "entity_type": "bhtpvz:chomper_zombie",
           "spawn_tick": 80,
@@ -190,38 +200,29 @@
     ],
     "items": [
       {
+        "item": "pvz:enforce_essence",
+        "amount": {
+          "random": {
+            "min": 9,
+            "max": 12
+          }
+        }
+      },
+      {
+        "item": "bhtpvz:caramel_kernel_pult_enjoy_card",
+        "amount": {
+          "random": {
+            "min": 1,
+            "max": 4
+          }
+        }
+      },
+      {
         "item": "bhtpvz:blaze_wart_enjoy_card",
         "amount": {
           "random": {
             "min": 5,
             "max": 6
-          }
-        }
-      },
-      {
-        "item": "bhtpvz:burst_kernel_pult_enjoy_card",
-        "amount": {
-          "random": {
-            "min": 4,
-            "max": 6
-          }
-        }
-      },
-      {
-        "item": "bhtpvz:blaze_wart_enjoy_card",
-        "amount": {
-          "random": {
-            "min": 3,
-            "max": 5
-          }
-        }
-      },
-      {
-        "item": "pvz:enforce_ore",
-        "amount": {
-          "random": {
-            "min": 24,
-            "max": 26
           }
         }
       }

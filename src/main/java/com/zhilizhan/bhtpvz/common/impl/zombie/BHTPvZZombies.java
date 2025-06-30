@@ -25,7 +25,7 @@ public final class BHTPvZZombies extends ZombieType {
 	//MC僵尸
 	public static final ZombieType MC_ZOMBIE = new BHTPvZZombies("mc_zombie", new ZombieFeatures().rank(RankTypes.WHITE).xp(5).entityType(BHTPvZEntityTypes.MC_ZOMBIE::get).zombieModel(() -> MCZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
 	//钢南瓜僵尸
-	public static final ZombieType STEEL_PUMPKIN_ZOMBIE = new BHTPvZZombies("steel_pumpkin_zombie", new ZombieFeatures().rank(RankTypes.BLUE).xp(25).entityType(BHTPvZEntityTypes.STEEL_PUMPKIN_ZOMBIE::get).zombieModel(() -> MCZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
+	public static final ZombieType STEEL_PUMPKIN_ZOMBIE = new BHTPvZZombies("steel_pumpkin_zombie", new ZombieFeatures().rank(RankTypes.BLUE).xp(25).entityType(BHTPvZEntityTypes.STEEL_PUMPKIN_ZOMBIE::get).zombieModel(() -> SteelPumpkinZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
 	//箭靶僵尸
 	public static final ZombieType TARGET_ARROW_ZOMBIE = new BHTPvZZombies("target_arrow_zombie", new ZombieFeatures().rank(RankTypes.GREEN).xp(8).entityType(BHTPvZEntityTypes.TARGET_ARROW_ZOMBIE::get).zombieModel(() -> TargetArrowZombieModel::new).scale(0.5f).eatCommonSkill(Collections.emptyList()));
 	//红刀僵尸

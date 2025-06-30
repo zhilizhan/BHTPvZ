@@ -1,12 +1,15 @@
 package com.zhilizhan.bhtpvz.common.entity.bullet.itembullet;
 
+import com.hungteen.pvz.api.interfaces.IIceEffect;
 import com.hungteen.pvz.common.entity.bullet.PultBulletEntity;
 import com.hungteen.pvz.common.misc.PVZEntityDamageSource;
-import com.zhilizhan.bhtpvz.common.misc.BHTPvZEntityDamageSource;
+import com.hungteen.pvz.common.potion.EffectRegister;
+import com.hungteen.pvz.utils.EffectUtil;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
-import com.zhilizhan.bhtpvz.common.entity.plant.ice.IceCabbagePultEntity;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
+import com.zhilizhan.bhtpvz.common.misc.BHTPvZEntityDamageSource;
 import net.minecraft.entity.*;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -23,13 +26,17 @@ public class IceCabbageEntity extends PultBulletEntity implements IRendersAsItem
 	}
 
 	@Override
-	protected void dealDamage(Entity entity) {
+	protected void dealDamage(Entity target) {
+		float damage = this.getAttackDamage();
 		PVZEntityDamageSource source = BHTPvZEntityDamageSource.iceCabbage(this, this.getThrower());
-		if(this.getThrower() instanceof IceCabbagePultEntity) {
-			source.addEffect(((IceCabbagePultEntity) this.getThrower()).getFrozenEffect().orElse(null));
-			source.addEffect(((IceCabbagePultEntity) this.getThrower()).getColdEffect().orElse(null));
+		LivingEntity owner = this.getThrower();
+		if (owner instanceof IIceEffect) {
+			((IIceEffect)owner).getColdEffect().ifPresent(source::addEffect);
+			((IIceEffect)owner).getFrozenEffect().ifPresent(source::addEffect);
+		} else if (owner instanceof PlayerEntity) {
+			source.addEffect(EffectUtil.effect(EffectRegister.COLD_EFFECT.get(), 100, 5));
 		}
-		if(entity instanceof LivingEntity)entity.hurt(source, this.attackDamage);
+		target.hurt(source, damage);
 	}
 
 	@Override

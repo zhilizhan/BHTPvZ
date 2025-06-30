@@ -31,6 +31,7 @@ public class PlantPotBlock extends AbstractFacingBlock {
     public PlantPotBlock(Properties properties) {
         super(properties);
     }
+
     public ActionResultType use(BlockState state, World level, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         ItemStack plant = PLANT_ITEM.getRandomItem(RANDOM).get().getDefaultInstance();
         if (!level.isClientSide && player.getMainHandItem().getItem()==BHTPvZItems.HAMMER.get()) {

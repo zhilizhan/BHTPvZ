@@ -43,7 +43,7 @@ public final class BHTPvZPlants extends PlantType {
 
     //钢南瓜
     public static final IPlantType STEEL_PUMPKIN = new BHTPvZPlants("steel_pumpkin", new PlantFeatures()
-            .cost(225).requiredLevel(35)
+            .cost(225).requiredLevel(45)
             .cd(CoolDowns.VERY_SLOW).rank(RankTypes.BLUE).essence(EssenceTypes.DEFENCE)
             .entityType(() -> BHTPvZEntityTypes.STEEL_PUMPKIN.get()).isShroomPlant()
             .summonCard(() -> BHTPvZItems.STEEL_PUMPKIN_CARD.get())
@@ -141,7 +141,8 @@ public final class BHTPvZPlants extends PlantType {
             .cd(CoolDowns.SLOW).rank(RankTypes.GREEN).essence(EssenceTypes.ASSIST)
             .summonCard(() -> BHTPvZItems.POT_GRASS_CARD.get())
             .enjoyCard(() -> BHTPvZItems.POT_GRASS_ENJOY_CARD.get())
-            .plantBlock(BHTPvZBlocks.POT_GRASS));
+            .plantBlock(BHTPvZBlocks.POT_GRASS)
+    );
     //自己模仿者
     public static final IPlantType SELF_IMITATER = new BHTPvZPlants("self_imitater", new PlantFeatures()
             .cost(175).requiredLevel(16)

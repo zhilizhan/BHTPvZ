@@ -12,7 +12,7 @@ public class BHTPvZSkill extends SkillTypes {
     public static final ISkillType IMITATER_CHANCE = new SkillTypes.SkillType("imitater_chance", ArrayUtil.getAverageArray(3, 3.0F, 5.0F), Arrays.asList(2, 3, 5));
 
     public static final ISkillType LIGHT_BEAM_DAMAGE = new SkillTypes.SkillType("light_beam_damage", ArrayUtil.getAverageArray(5, 35.0F, 65.0F), Arrays.asList(2, 3, 4, 5, 6));
-    public static final ISkillType MAGNIFYING_GRASS_DAMAGE = new SkillTypes.SkillType("magnifying_grass_damage", ArrayUtil.getAverageArray(3, 0.5F, 1.25F), Arrays.asList(2, 4));
+    public static final ISkillType MAGNIFYING_GRASS_DAMAGE = new SkillTypes.SkillType("magnifying_grass_damage", ArrayUtil.getAverageArray(3, 1.25F, 2.0F), Arrays.asList(2, 4));
     public static final ISkillType GRASS_CARP_DAMAGE = new SkillType("grass_carp_damage", ArrayUtil.getAverageArray(4, 1.0F, 2.0F), Arrays.asList(2, 3, 4, 5, 6));
     public static final ISkillType GRASS_CARP_HEAL_RANGE = new SkillType("grass_carp_heal_rage", ArrayUtil.getAverageArray(5, 9.0F, 15.0F), Arrays.asList(2, 4, 5, 6));
 

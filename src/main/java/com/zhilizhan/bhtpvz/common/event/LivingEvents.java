@@ -11,7 +11,6 @@ import com.hungteen.pvz.utils.EntityUtil;
 import com.hungteen.pvz.utils.PlayerUtil;
 import com.hungteen.pvz.utils.enums.Resources;
 import com.zhilizhan.bhtpvz.BHTPvZ;
-import com.zhilizhan.bhtpvz.common.effect.BHTPvZMobEffects;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
 import com.zhilizhan.bhtpvz.config.BHTPvZConfig;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -20,17 +19,14 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = BHTPvZ.MOD_ID)
 public class LivingEvents {
@@ -61,18 +57,17 @@ public class LivingEvents {
 		}
 	}
 	@SubscribeEvent
-	public static void HalitosisEffect(LivingEvent.LivingUpdateEvent event) {
-		LivingEntity entity0 = event.getEntityLiving();
-		if(entity0.hasEffect(BHTPvZMobEffects.HALITOSIS.get())&& entity0.isAlive()) {
-			float range = 5.0F;
-			List<LivingEntity> entities = EntityUtil.getTargetableLivings(entity0, EntityUtil.getEntityAABB(entity0, range, range));
-			entities.forEach(entity -> entity.addEffect(new EffectInstance(Effects.POISON, 60)));
+	public static void onPlayerEatFood(LivingEntityUseItemEvent.Finish event) {
+		if (event.getEntity() instanceof LivingEntity && event.getItem().isEdible() && event.getItem().getItem() == BHTPvZItems.ICE_CABBAGE.get()) {
+			LivingEntity living = event.getEntityLiving();
+			// 消除火焰效果
+			if (!living.level.isClientSide()) {
+				living.clearFire();
+				living.setSecondsOnFire(0);
+			}
 		}
-		if (entity0.isAlive() && entity0.hasEffect(BHTPvZMobEffects.GOO_POISON.get())) {
-					if(entity0.tickCount % 20 == 0)entity0.hurt(DamageSource.MAGIC,1.5F);
-		}
-
 	}
+
 	@SubscribeEvent
 	public static void PlayerRightClickItem(PlayerInteractEvent.EntityInteractSpecific event) {
 		Entity entity = event.getTarget();

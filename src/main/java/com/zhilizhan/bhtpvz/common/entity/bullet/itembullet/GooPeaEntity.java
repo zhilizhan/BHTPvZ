@@ -39,8 +39,8 @@ public class GooPeaEntity extends BHTPvZPeaEntity{
         return Optional.of(new EffectInstance(BHTPvZMobEffects.GOO_POISON.get(), 100, 0, false, false));
     }
     public void dealSplashDamage() {
-        float range = 3.0F;
-        EntityUtil.getTargetableEntities(this.getOwnerOrSelf(), EntityUtil.getEntityAABB(this, (double)3.0F, (double)3.0F)).forEach((entity) -> {
+        float range = 1.5F;
+        EntityUtil.getTargetableEntities(this.getOwnerOrSelf(), EntityUtil.getEntityAABB(this, (double)range, (double)range)).forEach((entity) -> {
             PVZEntityDamageSource source = BHTPvZEntityDamageSource.gooPea(this, this.getThrower());
             this.getPoisonEffect().ifPresent((e) -> source.addEffect(e));
             entity.hurt(source, this.getAttackDamage() / 2.0F);

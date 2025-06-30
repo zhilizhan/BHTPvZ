@@ -6,6 +6,7 @@ import com.hungteen.pvz.utils.enums.Colors;
 import com.mojang.datafixers.util.Pair;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
+import com.zhilizhan.bhtpvz.common.effect.BHTPvZMobEffects;
 import com.zhilizhan.bhtpvz.common.entity.BHTPvZEntityTypes;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
 import com.zhilizhan.bhtpvz.common.item.sapling.WisdomSapling;
@@ -37,7 +38,7 @@ public class BHTPvZItems {
 
     // 食物
     public static final RegistryObject<Item> CHERRY = ITEMS.register("cherry", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new Food.Builder().nutrition(4).saturationMod(0.3F).build()))); // 樱桃
-    public static final RegistryObject<Item> GARLIC = ITEMS.register("garlic", ()-> new Garlic(BHTPvZBlocks.GARLIC.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new Food.Builder().nutrition(2).saturationMod(0.3F)/*.effect(new EffectInstance(BHTPvZEffects.HALITOSIS.get(), 400, 1), 1.0F)*/.build()))); // 大蒜
+    public static final RegistryObject<Item> GARLIC = ITEMS.register("garlic", ()-> new BlockItem(BHTPvZBlocks.GARLIC.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new Food.Builder().nutrition(2).saturationMod(0.3F).effect(()->new EffectInstance(BHTPvZMobEffects.HALITOSIS.get(), 120, 0), 1.0F).build()))); // 大蒜
     public static final RegistryObject<Item> STARFRUIT = ITEMS.register("starfruit", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new Food.Builder().nutrition(4).saturationMod(0.3F).build()))); // 杨桃
     public static final RegistryObject<Item> ANGEL_STARFRUIT = ITEMS.register("angel_starfruit", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new Food.Builder().nutrition(8).saturationMod(1.2F).effect(new EffectInstance(Effects.REGENERATION, 200, 1), 1.0F).build()))); // 天使杨桃
     public static final RegistryObject<Item> SQUASH_SLICE = ITEMS.register("squash_slice", ()-> new Item(new Item.Properties().tab(BHTPvZ.BHTPVZ).food(new Food.Builder().nutrition(3).saturationMod(0.3F).build()))); //倭瓜片
@@ -139,6 +140,7 @@ public class BHTPvZItems {
 
     //唱片
     public static final RegistryObject<MusicDiscItem> POOL_DISC = ITEMS.register("pool_disc", () -> new MusicDiscItem(0, BHTPvZSound.POOL, (new Item.Properties()).stacksTo(1).tab(BHTPvZ.BHTPVZ).rarity(Rarity.RARE)));
+    public static final RegistryObject<MusicDiscItem> ROOF_DISC = ITEMS.register("roof_disc", () -> new MusicDiscItem(0, BHTPvZSound.ROOF, (new Item.Properties()).stacksTo(1).tab(BHTPvZ.BHTPVZ).rarity(Rarity.RARE)));
     public static final RegistryObject<MusicDiscItem> BOWLING_MUSIC_DISC = ITEMS.register("bowling_music_disc", () -> new MusicDiscItem(0, BHTPvZSound.BOWLING_MUSIC, (new Item.Properties()).stacksTo(1).tab(BHTPvZ.BHTPVZ).rarity(Rarity.RARE)));
     // 方块物品
     public static final RegistryObject<Item> CHERRY_TREE_LEAVES = ITEMS.register("cherry_leaves", ()-> new BlockItem(BHTPvZBlocks.CHERRY_LEAVES.get(), new Item.Properties().tab(BHTPvZ.BHTPVZ))); // 樱桃树树叶

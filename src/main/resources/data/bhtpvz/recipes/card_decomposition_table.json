@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XYX",
+    "CAC",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "pvz:amethyst_ingot"
+    },
+    "X": {
+      "item": "pvz:origin_essence"
+    },
+    "Y": {
+      "item": "pvz:light_essence"
+    },
+    "A": {
+      "item": "minecraft:crafting_table"
+    },
+    "C": {
+      "item": "bhtpvz:damson_crystal_block"
+    }
+  },
+  "result": {
+    "item": "bhtpvz:card_decomposition_table",
+    "count": 1
+  }
+}

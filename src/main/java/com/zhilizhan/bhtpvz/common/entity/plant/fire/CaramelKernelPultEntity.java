@@ -1,9 +1,10 @@
-package com.zhilizhan.bhtpvz.common.entity.plant.arma;
+package com.zhilizhan.bhtpvz.common.entity.plant.fire;
 
 import com.hungteen.pvz.api.types.IPlantType;
 import com.hungteen.pvz.common.entity.bullet.PultBulletEntity;
 import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.hungteen.pvz.common.entity.plant.base.PlantPultEntity;
+import com.hungteen.pvz.common.impl.SkillTypes;
 import com.hungteen.pvz.utils.EntityUtil;
 import com.zhilizhan.bhtpvz.common.entity.bullet.BurstCornEntity;
 import com.zhilizhan.bhtpvz.common.entity.bullet.CornEntity;
@@ -81,7 +82,7 @@ public class CaramelKernelPultEntity extends PlantPultEntity {
     }
 
     public float getAttackDamage() {
-        return 5;
+        return this.getSkillValue(SkillTypes.MORE_KERNEL_DAMAGE)*2;
     }
 
     public EntitySize getDimensions(Pose poseIn) {

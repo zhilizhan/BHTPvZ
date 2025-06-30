@@ -77,10 +77,12 @@ public class PeaPodEntity extends PeaShooterEntity {
 
         return super.interactAt(player, vec3d, hand);
     }
+
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_COUNT,1);
     }
+
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
          compound.putInt("Count", this.getCount()-1);
@@ -110,9 +112,11 @@ public class PeaPodEntity extends PeaShooterEntity {
     protected PeaEntity.Type getShootType() {
         return this.isPlantInSuperMode() ? PeaEntity.Type.HUGE : PeaEntity.Type.NORMAL;
     }
+
     private static ItemStack getPlantStack(ItemStack stack) {
         return ImitaterCardItem.getDoubleStack(stack).getSecond();
     }
+
     public IPlantType getPlantType() {
         return BHTPvZPlants.PEA_POD;
     }

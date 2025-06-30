@@ -34,6 +34,12 @@ public class BlazeWartEntity extends PVZPlantEntity {
         this.goalSelector.addGoal(0, new BlazeWartAttackGoal(this));
         this.targetSelector.addGoal(0, new PVZNearestTargetGoal(this, true, false, 3.0F, 3.0F));
     }
+
+    @Override
+    public boolean fireImmune() {
+        return true;
+    }
+
     public boolean hasNetherWart() {
       return !(this.getHealth() / this.getMaxHealth() < 0.25F);
     }
@@ -44,6 +50,7 @@ public class BlazeWartEntity extends PVZPlantEntity {
         }
         return super.hurt(source, amount);
     }
+
     protected void normalPlantTick() {
         super.normalPlantTick();
         if (!this.level.isClientSide && this.isPlantInSuperMode() && this.getSuperTime() % 5 == 0) {
@@ -59,22 +66,27 @@ public class BlazeWartEntity extends PVZPlantEntity {
             this.heal(4);
         }
     }
+
     public int getHealCd(){return (int) this.getSkillValue(BHTPvZSkill.WART_HEAL_CD);}
     public void attackTarget(LivingEntity target) {
         EntityUtil.playSound(this, SoundRegister.SWING.get());
         target.hurt(PVZEntityDamageSource.normal(this), this.getAttackDamage());
         target.setSecondsOnFire(3);
     }
+
     @Override
     public float getLife() {
         return 80;
     }
+
     public boolean canPAZTarget(Entity entity) {
         return !(entity instanceof BalloonZombieEntity) && super.canPAZTarget(entity);
     }
+
     public boolean isNoAi() {
         return super.isNoAi()|| !this.hasNetherWart();
     }
+
     public void addAlmanacEntries(List<Pair<IAlmanacEntry, Number>> list) {
         super.addAlmanacEntries(list);
         list.addAll(Arrays.asList(Pair.of(PAZAlmanacs.ATTACK_DAMAGE, this.getAttackDamage()), Pair.of(PAZAlmanacs.ATTACK_CD, this.getAttackCD())));

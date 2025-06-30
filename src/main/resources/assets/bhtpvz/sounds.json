@@ -17,6 +17,15 @@
       }
     ]
   },
+  "roof": {
+    "subtitle": "sound.bhtpvz.roof",
+    "sounds": [
+      {
+        "name": "bhtpvz:roof",
+        "stream": true
+      }
+    ]
+  },
   "bowling_music": {
     "subtitle": "sound.bhtpvz.bowling_music",
     "sounds": [

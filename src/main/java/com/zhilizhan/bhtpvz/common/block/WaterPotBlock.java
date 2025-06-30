@@ -11,7 +11,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
-    public class WaterPotBlock extends AbstractFacingBlock {
+public class WaterPotBlock extends AbstractFacingBlock {
     protected static final VoxelShape WATER_POT_AABB = Block.box(2.0, 0.0, 2.0, 14.0, 8.0, 14.0);
 
     public WaterPotBlock(Properties properties) {

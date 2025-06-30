@@ -12,6 +12,8 @@ public class BHTPvZSound {
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, BHTPvZ.MOD_ID);
     public static final RegistryObject<SoundEvent> BUZZER = registerSound("buzzer");
     public static final RegistryObject<SoundEvent> POOL = registerSound("pool");
+    public static final RegistryObject<SoundEvent> ROOF = registerSound("roof");
+
     public static final RegistryObject<SoundEvent> BOWLING_MUSIC = registerSound("bowling_music");
 
     private static RegistryObject<SoundEvent> registerSound(String name) {

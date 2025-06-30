@@ -55,8 +55,8 @@ public class BHTPvZEntityDamageSource {
         return (new PVZEntityDamageSource("light_beam", beam, shooter));
     }
     //棱镜草
-    public static PVZEntityDamageSource magnifyingGrass(MagnifyingGrassEntity entity, Entity shooter) {
-        return (new PVZEntityDamageSource("magnifying_grass", entity, shooter));
+    public static PVZEntityDamageSource magnifyingGrass(MagnifyingGrassEntity entity) {
+        return (new PVZEntityDamageSource("magnifying_grass", entity));
     }
     //原始豌豆
     public static PVZEntityDamageSource stonePea(StonePeaEntity pea, Entity shooter) {

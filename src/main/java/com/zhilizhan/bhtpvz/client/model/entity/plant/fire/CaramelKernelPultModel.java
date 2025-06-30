@@ -1,7 +1,7 @@
 package com.zhilizhan.bhtpvz.client.model.entity.plant.fire;
 
 import com.hungteen.pvz.client.model.entity.plant.PVZPlantModel;
-import com.zhilizhan.bhtpvz.common.entity.plant.arma.CaramelKernelPultEntity;
+import com.zhilizhan.bhtpvz.common.entity.plant.fire.CaramelKernelPultEntity;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 

@@ -8,7 +8,7 @@ import com.hungteen.pvz.common.entity.plant.PlantInfo;
 import com.hungteen.pvz.common.entity.plant.base.PlantDefenderEntity;
 import com.hungteen.pvz.common.misc.sound.SoundRegister;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import com.zhilizhan.bhtpvz.common.util.BHTPVZUtils;
+import com.zhilizhan.bhtpvz.common.api.ISteelPumpkin;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -138,38 +138,39 @@ public class SteelPumpkinEntity extends PlantDefenderEntity{
 	}
 
 
-	public static class SteelPumpkinInfo extends PlantInfo  {
+	public static class SteelPumpkinInfo extends PlantInfo {
 		public static final float NORMAL_PUMPKIN_LIFE = 800.0F;
-		public static final float EXTRA_PUMPKIN_LIFE = 100.0F;
-
 		public static final float SUPER_PUMPKIN_LIFE = 1200.0F;
 
-			public SteelPumpkinInfo() {
-			}
+		public SteelPumpkinInfo() {
+		}
 
-			public void onSuper(IPlantEntity plantEntity) {
-				super.onSuper(plantEntity);
-				if(plantEntity instanceof PVZPlantEntity) {
-					PVZPlantEntity plant = (PVZPlantEntity) plantEntity;
-					BHTPVZUtils.setSteelPumpkin(plant,true);
-				}
-				plantEntity.setOuterDefenceLife(SUPER_PUMPKIN_LIFE);
+		public void onSuper(IPlantEntity plantEntity) {
+			super.onSuper(plantEntity);
+			if (plantEntity instanceof ISteelPumpkin) {
+				ISteelPumpkin steelPumpkin = (ISteelPumpkin) plantEntity;
+				steelPumpkin.setSteelPumpkin(true);
 			}
+			plantEntity.setOuterDefenceLife(SUPER_PUMPKIN_LIFE);
+		}
 
-			public void placeOn(IPlantEntity plantEntity, int sunCost) {
-				super.placeOn(plantEntity, sunCost);
-				if(plantEntity instanceof PVZPlantEntity) {
-					PVZPlantEntity plant = (PVZPlantEntity) plantEntity;
-					BHTPVZUtils.setSteelPumpkin(plant,true);
-				}else plantEntity.setPumpkin(true);
-				plantEntity.setOuterDefenceLife(NORMAL_PUMPKIN_LIFE+EXTRA_PUMPKIN_LIFE);
-			}
-
-			public void onHeal(IPlantEntity plantEntity, float percent) {
-				float max = plantEntity.getOuterDefenceLife() > NORMAL_PUMPKIN_LIFE ? SUPER_PUMPKIN_LIFE : NORMAL_PUMPKIN_LIFE;
-				plantEntity.setOuterDefenceLife(MathHelper.clamp(plantEntity.getOuterDefenceLife() * (double)(1.0F + percent), 0.0, max));
+		public void placeOn(IPlantEntity plantEntity, int sunCost) {
+			super.placeOn(plantEntity, sunCost);
+			if (plantEntity instanceof ISteelPumpkin) {
+				ISteelPumpkin steelPumpkin = (ISteelPumpkin) plantEntity;
+				steelPumpkin.setSteelPumpkin(true);
+				plantEntity.setOuterDefenceLife(NORMAL_PUMPKIN_LIFE);
+			} else {
+				plantEntity.setPumpkin(true);
+				plantEntity.setOuterDefenceLife(NORMAL_PUMPKIN_LIFE);
 			}
 		}
+
+		public void onHeal(IPlantEntity plantEntity, float percent) {
+			float max = plantEntity.getOuterDefenceLife() > NORMAL_PUMPKIN_LIFE ? SUPER_PUMPKIN_LIFE : NORMAL_PUMPKIN_LIFE;
+			plantEntity.setOuterDefenceLife(MathHelper.clamp(plantEntity.getOuterDefenceLife() * (double) (1.0F + percent), 0.0, max));
+		}
+	}
 	@Override
 	public IPlantType getPlantType() {
 		return BHTPvZPlants.STEEL_PUMPKIN;

@@ -4,7 +4,7 @@ import com.hungteen.pvz.client.render.layer.component.ComponentLayer;
 import com.hungteen.pvz.common.entity.plant.PVZPlantEntity;
 import com.zhilizhan.bhtpvz.client.model.entity.plant.defence.SteelPumpkinModel;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import com.zhilizhan.bhtpvz.common.util.BHTPVZUtils;
+import com.zhilizhan.bhtpvz.common.api.ISteelPumpkin;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
@@ -15,7 +15,7 @@ public class SteelPumpkinArmorLayer <T extends PVZPlantEntity> extends Component
     }
 
     public boolean canRender(T entity) {
-        return entity.getOuterDefenceLife()> 0 && BHTPVZUtils.getSteelPumpkin(entity);
+        return entity.getOuterDefenceLife()> 0 && entity instanceof ISteelPumpkin && ((ISteelPumpkin) entity).hasSteelPumpkin();
     }
     public ResourceLocation getRenderTexture(T plant) {
         return BHTPvZPlants.STEEL_PUMPKIN.getRenderResource();

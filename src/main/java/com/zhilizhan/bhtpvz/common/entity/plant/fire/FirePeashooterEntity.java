@@ -33,6 +33,11 @@ public class FirePeashooterEntity extends PeaShooterEntity {
 
     }
 
+    @Override
+    public boolean fireImmune() {
+        return true;
+    }
+
     protected AbstractBulletEntity createBullet() {
         return new PeaEntity(this.level, this, this.getShootType(), this.getShootState());
     }

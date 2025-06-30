@@ -41,9 +41,7 @@ public class PopCornEntity extends PultBulletEntity implements IRendersAsItem {
                 entity.hurt(source, this.getAttackDamage() / 2.0F);
 
             }
-            for(int i = 0; i < 8; ++i) {
-                EntityUtil.spawnParticle(this,9);
-            }
+            EntityUtil.spawnParticle(this,9);
 
             EntityUtil.playSound(this, SoundRegister.SWING.get());
         });

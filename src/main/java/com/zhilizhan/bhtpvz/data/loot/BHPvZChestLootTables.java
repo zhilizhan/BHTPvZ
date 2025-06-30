@@ -44,6 +44,10 @@ public class BHPvZChestLootTables  implements Consumer<BiConsumer<ResourceLocati
                 ).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(2))
                         .add(ItemLootEntry.lootTableItem(BHTPvZItems.WISDOM_SAPLING.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
                         .add(ItemLootEntry.lootTableItem(BHTPvZItems.XP_SAPLING.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F))))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.STEEL_COIN.get()).setWeight(8).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
+                ).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(2))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.ROOF_DISC.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.POOL_DISC.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
                 ));
         t.accept(PVZLoot.BUCKET_HOUSE_CHEST, LootTable.lootTable()
                 .withPool(LootPool.lootPool().setRolls(RandomValueRange.between(2.0F, 4.0F))
@@ -77,6 +81,10 @@ public class BHPvZChestLootTables  implements Consumer<BiConsumer<ResourceLocati
                 .withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(2))
                         .add(ItemLootEntry.lootTableItem(BHTPvZItems.WISDOM_SAPLING.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
                         .add(ItemLootEntry.lootTableItem(BHTPvZItems.XP_SAPLING.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F))))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.STEEL_COIN.get()).setWeight(8).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
+                ).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(2))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.ROOF_DISC.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.POOL_DISC.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
                 ));
         t.accept(PVZLoot.DOLPHIN_HOUSE_CHEST, LootTable.lootTable()
                 .withPool(LootPool.lootPool().setRolls(RandomValueRange.between(2.0F, 4.0F))
@@ -110,6 +118,10 @@ public class BHPvZChestLootTables  implements Consumer<BiConsumer<ResourceLocati
                 .withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(2))
                         .add(ItemLootEntry.lootTableItem(BHTPvZItems.WISDOM_SAPLING.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
                         .add(ItemLootEntry.lootTableItem(BHTPvZItems.XP_SAPLING.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F))))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.STEEL_COIN.get()).setWeight(8).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
+                ).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(2))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.ROOF_DISC.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.POOL_DISC.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
                 ));
         t.accept(PVZLoot.GRAVE_YARD_CHEST, LootTable.lootTable()
                 .withPool(LootPool.lootPool().setRolls(RandomValueRange.between(2.0F, 4.0F))
@@ -144,6 +156,10 @@ public class BHPvZChestLootTables  implements Consumer<BiConsumer<ResourceLocati
                 .withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(2))
                         .add(ItemLootEntry.lootTableItem(BHTPvZItems.WISDOM_SAPLING.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
                         .add(ItemLootEntry.lootTableItem(BHTPvZItems.XP_SAPLING.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F))))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.STEEL_COIN.get()).setWeight(8).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
+                ).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(2))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.ROOF_DISC.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.POOL_DISC.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
                 ));
         t.accept(PVZLoot.SUN_TEMPLE_CHEST, LootTable.lootTable()
                 .withPool(LootPool.lootPool().setRolls(RandomValueRange.between(2.0F, 4.0F))
@@ -176,6 +192,10 @@ public class BHPvZChestLootTables  implements Consumer<BiConsumer<ResourceLocati
                 .withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(2))
                         .add(ItemLootEntry.lootTableItem(BHTPvZItems.WISDOM_SAPLING.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
                         .add(ItemLootEntry.lootTableItem(BHTPvZItems.XP_SAPLING.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F))))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.STEEL_COIN.get()).setWeight(8).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
+                ).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(2))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.ROOF_DISC.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.POOL_DISC.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
                 ));
         t.accept(PVZLoot.YETI_HOUSE_CHEST, LootTable.lootTable()
                 .withPool(LootPool.lootPool().setRolls(RandomValueRange.between(2.0F, 4.0F))
@@ -210,6 +230,10 @@ public class BHPvZChestLootTables  implements Consumer<BiConsumer<ResourceLocati
                 .withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(2))
                         .add(ItemLootEntry.lootTableItem(BHTPvZItems.WISDOM_SAPLING.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))))
                         .add(ItemLootEntry.lootTableItem(BHTPvZItems.XP_SAPLING.get()).setWeight(10).apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F))))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.STEEL_COIN.get()).setWeight(8).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
+                ).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(2))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.ROOF_DISC.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
+                        .add(ItemLootEntry.lootTableItem(BHTPvZItems.POOL_DISC.get()).setWeight(5).apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F))))
                 ));
     }
 

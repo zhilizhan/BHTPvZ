@@ -4,8 +4,6 @@ import com.hungteen.pvz.client.model.entity.plant.PlantShooterModel;
 import com.zhilizhan.bhtpvz.common.entity.plant.electric.MagnifyingGrassEntity;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
-import java.util.Optional;
-
 public class MagnifyingGrassModel extends PlantShooterModel<MagnifyingGrassEntity> {
     private final ModelRenderer total;
     private final ModelRenderer head;
@@ -139,13 +137,6 @@ public class MagnifyingGrassModel extends PlantShooterModel<MagnifyingGrassEntit
         leaf4.addChild(cube_r12);
         setRotationAngle(cube_r12, 0.1745F, -2.8362F, 0.0F);
         cube_r12.texOffs(17, 6).addBox(-1.0F, 0.0F, 0.0F, 4.0F, 0.0F, 4.0F, 0.0F, false);
-    }
-    public Optional<ModelRenderer> getHeadModel() {
-        return Optional.ofNullable(this.head);
-    }
-
-    public Optional<ModelRenderer> getBodyModel() {
-        return this.getHeadModel();
     }
 
     public ModelRenderer getPlantWholeBody() {

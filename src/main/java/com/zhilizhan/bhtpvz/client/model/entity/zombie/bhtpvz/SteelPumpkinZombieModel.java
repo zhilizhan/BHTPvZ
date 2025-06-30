@@ -133,8 +133,8 @@ public class SteelPumpkinZombieModel extends PVZZombieModel<SteelPumpkinZombieEn
 
         getZombieWholeBody = new ModelRenderer(this);
         getZombieWholeBody.setPos(0.0F, 0.0F, 0.0F);
-
     }
+
     @Override
     public void updateFreeParts(SteelPumpkinZombieEntity entity) {
         super.updateFreeParts(entity);

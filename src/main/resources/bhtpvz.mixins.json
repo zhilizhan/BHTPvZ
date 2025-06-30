@@ -5,6 +5,7 @@
   "refmap": "bhtpvz.refmap.json",
   "mixins": [
     "MobEntityMixin",
+    "OriginBlockMixin",
     "PeaGunItemMixin",
     "PlantCardItemMixin",
     "PlayerEventHandlerMixin",

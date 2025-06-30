@@ -5,8 +5,6 @@ import com.google.common.collect.ImmutableSet;
 import com.hungteen.pvz.common.block.BlockRegister;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
-import com.zhilizhan.bhtpvz.common.world.feature.HugeOriginMushroomFeature;
-import com.zhilizhan.bhtpvz.common.world.feature.HugeToxicShroomFeature;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -19,7 +17,6 @@ import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
-
 
 public class BHTPvZFeatures {
 

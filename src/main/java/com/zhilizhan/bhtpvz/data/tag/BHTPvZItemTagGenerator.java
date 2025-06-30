@@ -6,6 +6,7 @@ import com.hungteen.pvz.common.item.spawn.card.PlantCardItem;
 import com.hungteen.pvz.common.item.spawn.card.SummonCardItem;
 import com.hungteen.pvz.common.misc.tag.PVZItemTags;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
+import com.zhilizhan.bhtpvz.common.misc.BHTPvZItemTags;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
@@ -13,20 +14,24 @@ import net.minecraft.item.Item;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class BHTPVZItemTagGenerator extends ItemTagsProvider{
+public class BHTPvZItemTagGenerator extends ItemTagsProvider{
 
-	public BHTPVZItemTagGenerator(DataGenerator generatorIn, BlockTagsProvider provider, ExistingFileHelper helper) {
+	public BHTPvZItemTagGenerator(DataGenerator generatorIn, BlockTagsProvider provider, ExistingFileHelper helper) {
 		super(generatorIn, provider, PVZMod.MOD_ID, helper);
 	}
 	
 	@Override
 	protected void addTags() {
-		//mc tag
-
 		//forge tag
 		this.tag(PVZItemTags.PEAS).add(BHTPvZItems.GOO_PEA.get());
 		this.tag(PVZItemTags.CHILIPEPPERS).add(ItemRegister.PEPPER.get());
 		this.tag(PVZItemTags.CABBAGES).add(BHTPvZItems.ICE_CABBAGE.get());
+		this.tag(BHTPvZItemTags.STARFRUIT).add(BHTPvZItems.STARFRUIT.get());
+		this.tag(BHTPvZItemTags.STARFRUIT).add(BHTPvZItems.ANGEL_STARFRUIT.get());
+		this.tag(BHTPvZItemTags.CHERRY).add(BHTPvZItems.CHERRY.get());
+		this.tag(BHTPvZItemTags.GARLIC).add(BHTPvZItems.GARLIC.get());
+
+		this.tag(BHTPvZItemTags.CHILI_SEEDS).add(BHTPvZItems.CHILI_SEEDS.get());
 		//this.tag(PVZItemTags.AMETHYST_INGOTS).add(ItemRegister.AMETHYST_INGOT.get());
 		//this.tag(PVZItemTags.AMETHYST_ORES).add(BlockRegister.AMETHYST_ORE.get().asItem());
 		this.tag(PVZItemTags.BLACK_MATERIALS).add(BHTPvZItems.DAMSON_CRYSTAL_INGOT.get());

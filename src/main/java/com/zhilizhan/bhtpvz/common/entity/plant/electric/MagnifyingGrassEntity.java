@@ -1,7 +1,6 @@
 package com.zhilizhan.bhtpvz.common.entity.plant.electric;
 
 import com.hungteen.pvz.api.types.IPlantType;
-import com.hungteen.pvz.common.entity.ai.goal.target.PVZNearestTargetGoal;
 import com.hungteen.pvz.common.entity.bullet.AbstractBulletEntity;
 import com.hungteen.pvz.common.entity.misc.drop.DropEntity;
 import com.hungteen.pvz.common.entity.misc.drop.SunEntity;
@@ -11,14 +10,11 @@ import com.hungteen.pvz.utils.EntityUtil;
 import com.hungteen.pvz.utils.MathUtil;
 import com.hungteen.pvz.utils.PlayerUtil;
 import com.hungteen.pvz.utils.enums.Resources;
-import com.zhilizhan.bhtpvz.common.misc.BHTPvZEntityDamageSource;
 import com.zhilizhan.bhtpvz.common.entity.bullet.LightBeamEntity;
 import com.zhilizhan.bhtpvz.common.impl.BHTPvZSkill;
 import com.zhilizhan.bhtpvz.common.impl.plant.BHTPvZPlants;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import com.zhilizhan.bhtpvz.common.misc.BHTPvZEntityDamageSource;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.datasync.DataParameter;
@@ -37,23 +33,26 @@ import java.util.Optional;
 public class MagnifyingGrassEntity extends PlantShooterEntity {
     private static final DataParameter<Integer> DATA_ID_ATTACK_TARGET= EntityDataManager.defineId(MagnifyingGrassEntity.class, DataSerializers.INT);
 
-
     private LivingEntity clientSideCachedAttackTarget;
     private int clientSideAttackTime;
     public MagnifyingGrassEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
     public int sunCost = 50;
+
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(2, new SuperAttackGoal(this));
-        this.targetSelector.addGoal(1, new PVZNearestTargetGoal(this, false,true, 10, 10));
+        super.registerGoals();
     }
+
     @Override
     protected AbstractBulletEntity createBullet() {
         LightBeamEntity beam = new LightBeamEntity(this.level, this);
-        beam.setGlowing(true);
+        beam.setTrailColor(16777045);
         return beam;
     }
+
     @Override
     public float getAttackDamage() {
         return this.getSkillValue(BHTPvZSkill.LIGHT_BEAM_DAMAGE);
@@ -62,6 +61,7 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
     public float getSuperAttackDamage() {
         return this.getSkillValue(BHTPvZSkill.MAGNIFYING_GRASS_DAMAGE);
     }
+
     @Override
     public void performShoot(double forwardOffset, double rightOffset, double heightOffset, boolean needSound, double angleOffset) {
         Optional.ofNullable(this.getTarget()).ifPresent((target) -> {
@@ -81,12 +81,13 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
             this.level.addFreshEntity(bullet);
         });
     }
+
     @Override
     public ActionResultType interactAt(PlayerEntity player, Vector3d vec3d, Hand hand) {
         if (!this.level.isClientSide && this.getAttackTime()<=0) {
-            if (PlayerUtil.getResource(player, Resources.SUN_NUM) > sunCost && this.getTarget()!=null && this.getAttackTime()==0 && !this.isDeadOrDying()) {
+            if (PlayerUtil.getResource(player, Resources.SUN_NUM) > sunCost && this.getTarget()!=null && this.getAttackTime()==0 && !this.isDeadOrDying()||player.isCreative()) {
                 if(!player.isCreative()) PlayerUtil.addResource(player, Resources.SUN_NUM, -sunCost);
-                this.setAttackTime(1);
+                this.startShootAttack();
                 return ActionResultType.SUCCESS;
             }
         }
@@ -96,21 +97,31 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
     @Override
     public void shootBullet() {
         if (!this.isPlantInSuperMode()) {
-          this.performShoot(0.2, 0.0, 0.0, this.getAttackTime() == 1, 0.0);
+          this.performShoot(0.15, 0.0, 0.0, this.getAttackTime() == 1, 0.0);
         }
     }
+
     @Override
     public int getShootCD() {
-        return getSuperTime();
+        if(this.isPlantInSuperMode()) {
+            return getSuperTime();
+        }
+        return 0;
     }
+
     public int getSuperTimeLength() {
         return 200;
     }
+
     @Override
-    public void startShootAttack() {}
+    public void startShootAttack() {
+        this.shootBullet();
+    }
+
     private void setActiveAttackTarget(int activeAttackTargetId) {
         this.entityData.set(DATA_ID_ATTACK_TARGET, activeAttackTargetId);
     }
+
     public boolean hasActiveAttackTarget() {
         return this.entityData.get(DATA_ID_ATTACK_TARGET) != 0;
     }
@@ -120,12 +131,10 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
         super.normalPlantTick();
         Optional.ofNullable(this.getTarget()).ifPresent((target) -> {
             EntityUtil.getNormalisedVector2d(this, target);
-
             if (this.hasActiveAttackTarget()) {
                 if (this.clientSideAttackTime < 0) {
                     ++this.clientSideAttackTime;
                 }
-
                 LivingEntity lv3 = this.getActiveAttackTarget();
                 if (lv3 != null) {
                     this.getLookControl().setLookAt(lv3, 90.0F, 90.0F);
@@ -134,11 +143,12 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
             }else tickSunCollect();
         });
     }
+
     private void tickSunCollect() {
-        if (this.level.isClientSide || this.tickCount % 20 != 0) {
+        if (this.level.isClientSide ) {
             return;
         }
-        List<SunEntity> sunList = this.level.getEntitiesOfClass(SunEntity.class, MathUtil.getAABBWithPos(this.blockPosition(), 10.0), sun -> sun.getDropState() == DropEntity.DropStates.NORMAL && !sun.removed);
+        List<SunEntity> sunList = this.level.getEntitiesOfClass(SunEntity.class, MathUtil.getAABBWithPos(this.blockPosition(), 16.0), sun -> sun.getDropState() == DropEntity.DropStates.NORMAL && !sun.removed);
 
         if (sunList.isEmpty()) {
             return;
@@ -149,25 +159,23 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
             return;
         }
 
-        if (this.getAttackTime() <= 0 && sunEntity.getAmount() >= this.sunCost) {
+        if (this.getTarget() != null && sunEntity.getAmount() >= this.sunCost) {
             double speed = 0.15;
             Vector3d now = new Vector3d(this.blockPosition().getX() + 0.5, this.blockPosition().getY() + 1.0, this.blockPosition().getZ() + 0.5);
             Vector3d vec = now.subtract(sunEntity.position());
 
-            if (vec.length() <= 1.0) {
+            if (vec.length() <= 1.0 && this.tickCount % 5 == 0) {
                 if (sunEntity.getAmount() <= 0) {
                     sunEntity.remove();
                 } else {
                     sunEntity.setAmount(sunEntity.getAmount() - this.sunCost);
                 }
-                this.setAttackTime(1);
+                this.startShootAttack();
             } else {
                 sunEntity.setDeltaMovement(vec.normalize().scale(speed));
             }
         }
     }
-
-
 
     @Nullable
     public LivingEntity getActiveAttackTarget() {
@@ -189,6 +197,7 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
             return this.getTarget();
         }
     }
+
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_ID_ATTACK_TARGET, 0);
@@ -200,16 +209,10 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
             this.clientSideAttackTime = 0;
             this.clientSideCachedAttackTarget = null;
         }
-
-    }
-
-    public int getAttackDuration() {
-        return this.getSuperTime();
     }
 
     static class SuperAttackGoal extends Goal {
         private final MagnifyingGrassEntity grass;
-        private int attackTime;
 
         public SuperAttackGoal(MagnifyingGrassEntity arg) {
             this.grass = arg;
@@ -228,7 +231,6 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
         public void start() {
             LivingEntity lv = this.grass.getTarget();
 
-            this.attackTime = -10;
             if(EntityUtil.isEntityValid(lv))this.grass.getLookControl().setLookAt(lv, 90.0F, 90.0F);
             this.grass.hasImpulse = true;
         }
@@ -240,32 +242,38 @@ public class MagnifyingGrassEntity extends PlantShooterEntity {
 
         public void tick() {
             LivingEntity living = this.grass.getTarget();
-            if(EntityUtil.isEntityValid(living)){
-            this.grass.getLookControl().setLookAt(living, 90.0F, 90.0F);
-            if (!this.grass.canSee(living)) {
-                this.grass.setTarget(null);
-            } else {
-                ++this.attackTime;
-                if (this.attackTime == 0 && this.grass.getTarget() != null) {
-                    this.grass.setActiveAttackTarget(this.grass.getTarget().getId());
-                    if (!this.grass.isSilent()) {
-                        this.grass.level.broadcastEntityEvent(this.grass, (byte) 21);
-                    }
-                } else if (this.attackTime >= this.grass.getAttackDuration()) {
-                    float baseDamage = this.grass.getSuperAttackDamage();
-                    float inflate = 8.0f;
-                    AxisAlignedBB entityAABB = this.grass.getBoundingBox().inflate(inflate, inflate / 2, inflate);
-                    List<SunFlowerEntity> sunFlower = this.grass.level.getEntitiesOfClass(SunFlowerEntity.class, entityAABB);
-                    float finalDamage = baseDamage * sunFlower.size();
-
-                    living.hurt(BHTPvZEntityDamageSource.magnifyingGrass(this.grass, this.grass), finalDamage);
+            if(EntityUtil.isEntityValid(living)) {
+                this.grass.getLookControl().setLookAt(living, 90.0F, 90.0F);
+                if (!this.grass.canSee(living)) {
                     this.grass.setTarget(null);
+                } else {
+                    if (this.grass.getActiveAttackTarget() != this.grass.getTarget() && this.grass.getTarget() != null) {
+                        this.grass.setActiveAttackTarget(this.grass.getTarget().getId());
+                        if (!this.grass.isSilent()) {
+                            this.grass.level.broadcastEntityEvent(this.grass, (byte) 21);
+                        }
+                    }
+                    if (this.grass.isPlantInSuperMode()) {
+                        float baseDamage = this.grass.getSuperAttackDamage();
+                        float inflate = 8.0f;
+                        AxisAlignedBB entityAABB = this.grass.getBoundingBox().inflate(inflate, inflate / 2, inflate);
+                        List<SunFlowerEntity> sunFlower = this.grass.level.getEntitiesOfClass(SunFlowerEntity.class, entityAABB);
+                        float finalDamage = baseDamage * sunFlower.size();
+
+                        living.hurt(BHTPvZEntityDamageSource.magnifyingGrass(this.grass), this.grass.getSuperAttackDamage()+finalDamage);
+                        this.grass.setTarget(null);
+                    }
                 }
-            }
                 super.tick();
             }
         }
     }
+
+    @Override
+    public EntitySize getDimensions(Pose poseIn) {
+        return EntitySize.scalable(0.7F, 1.3F);
+    }
+
     @Override
     public IPlantType getPlantType() {
         return BHTPvZPlants.MAGNIFYING_GRASS;

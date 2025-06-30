@@ -1,13 +1,16 @@
 [
   {
-    "_comment": "Generation for cherry and starfruit",
-    "select": { "name": "pvz:zen_garden" },
+    "_comment": "Generation for nuts. Has decent spawns of nut trees",
+    "select": {
+      "name": "pvz:zen_garden"
+    },
     "apply": {
       "species" : {
-        "method" : "splice_after",
+        "method" : "splice_before",
         "random" : {
           "bhtpvz:dt_cherry" : 4,
-          "bhtpvz:dt_starfruit" :3
+          "bhtpvz:dt_starfruit" : 3,
+          "..." : 3
         }
       },
       "density": [ 0.3 ],

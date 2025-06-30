@@ -11,15 +11,11 @@ import com.hungteen.pvz.data.recipe.FragmentRecipeBuilder;
 import com.hungteen.pvz.data.recipe.FusionRecipeBuilder;
 import com.zhilizhan.bhtpvz.BHTPvZ;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
-import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.data.ForgeRecipeProvider;
@@ -55,6 +51,13 @@ public class RecipeGenerator extends ForgeRecipeProvider{
 		registerCommonCard(consumer, BHTPvZItems.PRIMAL_PEA_SHOOTER_CARD.get(), BHTPvZItems.PEA_BLOCK.get());
 		registerCommonCard(consumer, BHTPvZItems.GOO_PEA_SHOOTER_CARD.get(), BHTPvZItems.GOO_PEA.get());
 		registerCommonCard(consumer, BHTPvZItems.MAGNIFYING_GRASS_CARD.get(), Items.GLASS);
+
+		//extra craft
+		registerCommonCard(consumer, ItemRegister.STAR_FRUIT_CARD.get(), BHTPvZItems.STARFRUIT.get());
+		registerCommonCard(consumer, ItemRegister.CHERRY_BOMB_CARD.get(), BHTPvZItems.CHERRY.get());
+		registerCommonCard(consumer, ItemRegister.ANGEL_STAR_FRUIT_CARD.get(), BHTPvZItems.ANGEL_STARFRUIT.get());
+		registerCommonCard(consumer, ItemRegister.SQUASH_CARD.get(), BHTPvZItems.SQUASH.get());
+		registerCommonCard(consumer, ItemRegister.GARLIC_CARD.get(), BHTPvZItems.GARLIC.get());
 
 		//smelt
 		//registerStoneSmelting(consumer, BHTPVZBlocks.AMETHYST_ORE.get(), BHTPVZItems.AMETHYST_INGOT.get(), 1.4F, 250, "amethyst_ingot");
@@ -92,9 +95,8 @@ public class RecipeGenerator extends ForgeRecipeProvider{
 	}
 
 	private void registerFusion(Consumer<IFinishedRecipe> consumer, List<IItemProvider> list, Item result) {
-		final ItemStack stack = new ItemStack(result);
 		final com.hungteen.pvz.data.recipe.FusionRecipeBuilder builder = FusionRecipeBuilder.shapeless(result);
-		list.forEach(i -> builder.requires(i));
+		list.forEach(builder::requires);
 		if(result instanceof PlantCardItem){
 			builder.requires(((PlantCardItem) result).plantType.getRank().getCardTag());
 		}
@@ -120,17 +122,6 @@ public class RecipeGenerator extends ForgeRecipeProvider{
 		});
 	}
 	
-	private void registerStoneSmelting(Consumer<IFinishedRecipe> consumer, IItemProvider input, IItemProvider item, float xp, int time, String name) {
-		CookingRecipeBuilder.smelting(Ingredient.of(input), item, xp, time).unlockedBy("has_input", has(input)).save(consumer, BHTPvZ.prefix("smelting/" + name + "_from_smelting"));
-		CookingRecipeBuilder.blasting(Ingredient.of(input), item, xp, time).unlockedBy("has_input", has(input)).save(consumer, BHTPvZ.prefix("smelting/" + name + "_from_blasting"));
-	}
-	
-	private void registerFoodSmelting(Consumer<IFinishedRecipe> consumer, IItemProvider input, IItemProvider item, float xp, int time, String name) {
-		CookingRecipeBuilder.smelting(Ingredient.of(input), item, xp, time).unlockedBy("has_input", has(input)).save(consumer, BHTPvZ.prefix("smelting/" + name));
-		CookingRecipeBuilder.cooking(Ingredient.of(input), item, xp, time, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_input", has(input)).save(consumer, BHTPvZ.prefix("smelting/" + name + "_from_smoking"));
-		CookingRecipeBuilder.cooking(Ingredient.of(input), item, xp, time, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_input", has(input)).save(consumer, BHTPvZ.prefix("smelting/" + name + "_from_campfire_cooking"));
-	}
-	
 	private void registerCommonCard(Consumer<IFinishedRecipe> consumer, PlantCardItem result, Item crop) {
 		final Item essence = result.plantType.getEssence().getEssenceItem();
 		final ITag.INamedTag<Item> rankCard = result.plantType.getRank().getCardTag();
@@ -144,6 +135,7 @@ public class RecipeGenerator extends ForgeRecipeProvider{
 				.unlockedBy("has_essence", has(essence))
 				.save(consumer, BHTPvZ.prefix("card/" + result.plantType.toString().toLowerCase() + "_card"));
 	}
+
 	private void registerSpecialCard(Consumer<IFinishedRecipe> consumer, PlantCardItem result, Item crop ,Item specialItem) {
 		final Item essence = result.plantType.getEssence().getEssenceItem();
 		final ITag.INamedTag<Item> rankCard = result.plantType.getRank().getCardTag();

@@ -1,6 +1,7 @@
 package com.zhilizhan.bhtpvz.data.loot;
 
 
+import com.hungteen.pvz.common.item.ItemRegister;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
@@ -42,9 +43,9 @@ public class BHTPVZBlockLootTables extends BlockLootTables {
 
 	@Override
 	protected void addTables() {
-		//不可掉落
+		//无loot表
 		final Set<Block> noLootBlocks = new HashSet<>(Arrays.asList(
-				BHTPvZBlocks.WATER_POT.get(),BHTPvZBlocks.POT_GRASS.get(),BHTPvZBlocks.QUESTION_MARK_POT.get(),BHTPvZBlocks.PLANT_POT.get()
+				BHTPvZBlocks.WATER_POT.get(),BHTPvZBlocks.POT_GRASS.get(),BHTPvZBlocks.QUESTION_MARK_POT.get(),BHTPvZBlocks.PLANT_POT.get(),BHTPvZBlocks.SQUASH.get(),BHTPvZBlocks.SCREEN_DOOR.get()
 			    ));
 
 		// 矿石
@@ -55,10 +56,10 @@ public class BHTPVZBlockLootTables extends BlockLootTables {
 		// 农作物
         ILootCondition.IBuilder tmpBuilder = getAgeBuilder(BHTPvZBlocks.CHILI.get(), 3);
 		this.add(BHTPvZBlocks.CHILI.get(),
-				createCropDrops(BHTPvZBlocks.CHILI.get(), BHTPvZBlocks.CHILI.get().asItem(), tmpBuilder));
+				createCropDrops(BHTPvZBlocks.CHILI.get(), ItemRegister.PEPPER.get(), tmpBuilder));
 		tmpBuilder = getAgeBuilder(BHTPvZBlocks.GARLIC.get(), 3);
 		this.add(BHTPvZBlocks.GARLIC.get(),
-				createCropDrops(BHTPvZBlocks.GARLIC.get(), BHTPvZBlocks.GARLIC.get().asItem(), tmpBuilder));
+				createCropDrops(BHTPvZBlocks.GARLIC.get(), BHTPvZItems.GARLIC.get(), tmpBuilder));
 
 		// 树叶
 		this.add(BHTPvZBlocks.CHERRY_LEAVES.get(), (block) -> {

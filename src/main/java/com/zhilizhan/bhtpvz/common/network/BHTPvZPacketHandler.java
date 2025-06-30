@@ -1,6 +1,7 @@
 package com.zhilizhan.bhtpvz.common.network;
 
 import com.zhilizhan.bhtpvz.BHTPvZ;
+import com.zhilizhan.bhtpvz.common.network.toclient.SteelPumpkinSyncPacket;
 import com.zhilizhan.bhtpvz.common.network.toserver.BHTPvZClickButtonPacket;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.network.NetworkRegistry;
@@ -21,6 +22,7 @@ public class BHTPvZPacketHandler {
 	public static void init() {
 		int id = 0;
 		CHANNEL.registerMessage(id++, BHTPvZClickButtonPacket.class, BHTPvZClickButtonPacket::encode, BHTPvZClickButtonPacket::new, BHTPvZClickButtonPacket.Handler::onMessage);
+	    CHANNEL.registerMessage(id++, SteelPumpkinSyncPacket.class, SteelPumpkinSyncPacket::encode, SteelPumpkinSyncPacket::new, SteelPumpkinSyncPacket.Handler::onMessage);
 	}
 	
 }

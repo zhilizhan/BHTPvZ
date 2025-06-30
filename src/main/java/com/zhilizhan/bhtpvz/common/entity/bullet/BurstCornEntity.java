@@ -42,16 +42,16 @@ public class BurstCornEntity extends CornEntity {
     }
 
     public void dealSplashDamage() {
-        float range = 3.0F;
+        float range = 2.0F;
         EntityUtil.getTargetableEntities(this.getOwnerOrSelf(), EntityUtil.getEntityAABB(this, range, range)).forEach((entity) -> {
             if (!entity.is(this.attackEntity) && this.shouldHit(entity)) {
                 PVZEntityDamageSource source = BHTPvZEntityDamageSource.burst_corn(this, this.getThrower());
                 source.addEffect(new EffectInstance( EffectRegister.BUTTER_EFFECT.get(), 60, 1, false, false));
-                    entity.hurt(source, this.getAttackDamage());
+                    entity.hurt(source, this.getAttackDamage()*0.75F);
             }
 
         });
-        for(int i = 0; i < 6; ++i) {
+        for(int i = 0; i < 4; ++i) {
             EntityUtil.spawnParticle(this,0);
         }
 

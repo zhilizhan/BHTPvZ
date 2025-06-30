@@ -14,7 +14,6 @@ import com.zhilizhan.bhtpvz.client.render.entity.normal.ToxicMoobRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.BeeShooterRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.PeaPodRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.appease.PrimalPeaShooterRender;
-import com.zhilizhan.bhtpvz.client.render.entity.plant.fire.CaramelKernelPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.ChorusFruitPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.arma.GoldenMelonPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.assist.FodderBushRender;
@@ -25,6 +24,7 @@ import com.zhilizhan.bhtpvz.client.render.entity.plant.electric.MagnifyingGrassR
 import com.zhilizhan.bhtpvz.client.render.entity.plant.enforce.NutBowlingRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.enforce.RotateRadishRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.fire.BlazeWartRender;
+import com.zhilizhan.bhtpvz.client.render.entity.plant.fire.CaramelKernelPultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.fire.FirePeashooterRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.ice.IceCabbagePultRender;
 import com.zhilizhan.bhtpvz.client.render.entity.plant.toxic.GooPeaShooterRender;
@@ -39,7 +39,6 @@ import com.zhilizhan.bhtpvz.common.entity.normal.ToxicMoobEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.appease.BeeShooterEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.appease.PeaPodEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.appease.PrimalPeaShooterEntity;
-import com.zhilizhan.bhtpvz.common.entity.plant.arma.CaramelKernelPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.ChorusFruitPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.arma.GoldenMelonPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.assist.FodderBushEntity;
@@ -50,6 +49,7 @@ import com.zhilizhan.bhtpvz.common.entity.plant.electric.MagnifyingGrassEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.enforce.NutBowlingEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.enforce.RotateRadishEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.fire.BlazeWartEntity;
+import com.zhilizhan.bhtpvz.common.entity.plant.fire.CaramelKernelPultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.fire.FirePeashooterEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.ice.IceCabbagePultEntity;
 import com.zhilizhan.bhtpvz.common.entity.plant.ice.ReIcePeaEntity;
@@ -195,8 +195,8 @@ public class BHTPvZEntityTypes {
 
 		//杂项
 		RenderingRegistry.registerEntityRenderingHandler(RED_SUN.get(), RedSunRender::new); // 红太阳
-
 	}
+
 	@SubscribeEvent
 	public static void onAttributeCreate(EntityAttributeCreationEvent event) {
 		event.put(BHTPvZEntityTypes.ORIGIN_MOOB.get(), OriginMoobEntity.createAttributes().build());

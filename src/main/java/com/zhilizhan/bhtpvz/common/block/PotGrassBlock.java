@@ -12,13 +12,14 @@ import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -28,7 +29,6 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-import static com.zhilizhan.bhtpvz.common.list.PlantItemList.PLANT_ITEM;
 import static com.zhilizhan.bhtpvz.common.list.PlantList.PLANT;
 
 public class PotGrassBlock extends AbstractFacingBlock {
@@ -56,6 +56,14 @@ public class PotGrassBlock extends AbstractFacingBlock {
                 this.trySpawnPlant(level, pos);
             }
         }
+    }
+    @Override
+    public ActionResultType use(BlockState state, World level, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (!level.isClientSide) {
+            trySpawnPlant(level, pos);
+            return ActionResultType.SUCCESS;
+        }
+        return ActionResultType.FAIL;
     }
 
     private void trySpawnPlant(World level, BlockPos pos) {

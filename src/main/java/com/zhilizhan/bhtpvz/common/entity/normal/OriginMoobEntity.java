@@ -36,7 +36,7 @@ public class OriginMoobEntity extends CowEntity implements IForgeShearable {
 
 
     public List<ItemStack> onSheared(@Nullable PlayerEntity player, @Nonnull ItemStack item, World world, BlockPos pos, int fortune) {
-        world.playSound((PlayerEntity)null, this, SoundEvents.MOOSHROOM_SHEAR, player == null ? SoundCategory.BLOCKS : SoundCategory.PLAYERS, 1.0F, 1.0F);
+        world.playSound(null, this, SoundEvents.MOOSHROOM_SHEAR, player == null ? SoundCategory.BLOCKS : SoundCategory.PLAYERS, 1.0F, 1.0F);
         if (world.isClientSide() || this.isBaby()) {
             return Collections.emptyList();
         } else {

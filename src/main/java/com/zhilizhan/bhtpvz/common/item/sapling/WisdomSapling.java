@@ -18,7 +18,7 @@ public class WisdomSapling extends AbstractXpSapling {
     }
     @Override
     protected int amount(){
-        return 500;
+        return 750;
     }
     @Override
     public void appendHoverText(ItemStack stack, World level, List<ITextComponent> tooltipComponents, ITooltipFlag isAdvanced) {

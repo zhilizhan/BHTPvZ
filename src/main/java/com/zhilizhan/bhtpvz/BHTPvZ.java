@@ -6,7 +6,6 @@ import com.ferreusveritas.dynamictrees.blocks.leaves.LeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.rootyblocks.SoilProperties;
 import com.ferreusveritas.dynamictrees.trees.Family;
 import com.ferreusveritas.dynamictrees.trees.Species;
-
 import com.zhilizhan.bhtpvz.client.particle.BHTPvZParticle;
 import com.zhilizhan.bhtpvz.common.block.BHTPvZBlocks;
 import com.zhilizhan.bhtpvz.common.container.BHTPvZContainer;
@@ -19,6 +18,7 @@ import com.zhilizhan.bhtpvz.common.impl.zombie.BHTPvZZombies;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZItems;
 import com.zhilizhan.bhtpvz.common.item.BHTPvZSpawnEggItem;
 import com.zhilizhan.bhtpvz.common.network.BHTPvZPacketHandler;
+import com.zhilizhan.bhtpvz.common.other.OtherRegister;
 import com.zhilizhan.bhtpvz.common.sound.BHTPvZSound;
 import com.zhilizhan.bhtpvz.common.tileentity.BHTPvZTileEntity;
 import com.zhilizhan.bhtpvz.common.world.DecorationGenerate;
@@ -27,9 +27,9 @@ import com.zhilizhan.bhtpvz.config.BHTPvZConfig;
 import com.zhilizhan.bhtpvz.data.ItemModelGenerator;
 import com.zhilizhan.bhtpvz.data.loot.LootTableGenerator;
 import com.zhilizhan.bhtpvz.data.recipe.RecipeGenerator;
-import com.zhilizhan.bhtpvz.data.tag.BHTPVZBlockTagGenerator;
-import com.zhilizhan.bhtpvz.data.tag.BHTPVZEntityTypeTagGenerator;
-import com.zhilizhan.bhtpvz.data.tag.BHTPVZItemTagGenerator;
+import com.zhilizhan.bhtpvz.data.tag.BHTPvZBlockTagGenerator;
+import com.zhilizhan.bhtpvz.data.tag.BHTPvZEntityTypeTagGenerator;
+import com.zhilizhan.bhtpvz.data.tag.BHTPvZItemTagGenerator;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -102,7 +102,6 @@ BHTPvZ {
         public ItemStack makeIcon() {
             return new ItemStack(BHTPvZItems.CHERRY.get());
         }
-
     };
 
     public void gatherData(GatherDataEvent event) {
@@ -110,10 +109,10 @@ BHTPvZ {
         ExistingFileHelper helper = event.getExistingFileHelper();
         if(event.includeServer()) {
             //for tags.
-            BHTPVZBlockTagGenerator generator = new BHTPVZBlockTagGenerator(event.getGenerator(), helper);
+            BHTPvZBlockTagGenerator generator = new BHTPvZBlockTagGenerator(event.getGenerator(), helper);
             event.getGenerator().addProvider(generator);
-            event.getGenerator().addProvider(new BHTPVZItemTagGenerator(event.getGenerator(), generator, helper));
-            event.getGenerator().addProvider(new BHTPVZEntityTypeTagGenerator(event.getGenerator(), helper));
+            event.getGenerator().addProvider(new BHTPvZItemTagGenerator(event.getGenerator(), generator, helper));
+            event.getGenerator().addProvider(new BHTPvZEntityTypeTagGenerator(event.getGenerator(), helper));
             //for recipes.
             event.getGenerator().addProvider(new RecipeGenerator(event.getGenerator()));
             //for loot tables.
@@ -133,12 +132,12 @@ BHTPvZ {
             GatherDataHelper.gatherAllData("bhtpvz", event, SoilProperties.REGISTRY, Family.REGISTRY, Species.REGISTRY, LeavesProperties.REGISTRY);
         }
     }
-
     //初始化刷怪蛋（颜色）
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onPostRegisterEntities(final RegistryEvent.Register<EntityType<?>> event) {
         BHTPvZSpawnEggItem.initUnaddedEggs();
     }
+
     public static ResourceLocation prefix(String a) {
         return new ResourceLocation(MOD_ID, a);
     }
@@ -148,6 +147,7 @@ BHTPvZ {
             BHTPvZBiomes.addBiomeTypes();
             BHTPvZBiomes.addBiomesToGeneration();
             BHTPvZPacketHandler.init();
+            OtherRegister.registerCompostable();
         });
     }
 
